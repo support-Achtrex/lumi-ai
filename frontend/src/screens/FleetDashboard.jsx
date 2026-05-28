@@ -20,7 +20,7 @@ export default function FleetDashboard() {
     try {
       const token = localStorage.getItem('token') || 'mock_token';
       const response = await axios.post(
-        'http://localhost:3001/api/diagnostics/reasoning',
+        '/api/diagnostics/reasoning',
         {
           vin: vehicle.vin,
           symptoms: 'Routine fleet diagnostics and predictive maintenance check.'
