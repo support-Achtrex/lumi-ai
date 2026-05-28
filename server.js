@@ -86,10 +86,6 @@ app.use('/api/analytics',   analyticsRoutes);
 const { setupSocketHandlers } = require('./services/SocketService');
 setupSocketHandlers(io);
 
-// ── Error handlers ────────────────────────────────────────────────────────────
-app.use(notFoundHandler);
-app.use(errorHandler);
-
 // ── Production Frontend Serving ───────────────────────────────────────────────
 if (process.env.NODE_ENV === 'production') {
   // Serve static files from the React frontend app
@@ -100,6 +96,10 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.join(__dirname, 'frontend', 'dist', 'index.html'));
   });
 }
+
+// ── Error handlers ────────────────────────────────────────────────────────────
+app.use(notFoundHandler);
+app.use(errorHandler);
 
 // ── Startup ───────────────────────────────────────────────────────────────────
 const PORT = process.env.PORT || 3001;
