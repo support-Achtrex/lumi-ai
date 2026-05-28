@@ -125,10 +125,6 @@ async function start() {
       logger.info(`🌐 Frontend: ${process.env.FRONTEND_URL}`);
       logger.info(`🤖 Model: ${process.env.ANTHROPIC_MODEL}`);
     });
-  } catch (error) {
-    logger.error('Critical failure starting LUMI AI server:', error);
-    process.exit(1);
-  }
 }
 
 start();
