@@ -5,7 +5,8 @@ const jwt      = require('jsonwebtoken');
 const { body, validationResult } = require('express-validator');
 const { query } = require('../config/database');
 const { set }   = require('../config/redis');
-const { authenticate, authRateLimiter } = require('../middleware/auth');
+const { authenticate } = require('../middleware/auth');
+const { authRateLimiter } = require('../middleware/rateLimiter');
 const { v4: uuidv4 } = require('uuid');
 const logger = require('../config/logger');
 
