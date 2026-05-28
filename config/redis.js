@@ -26,24 +26,36 @@ function getClient() {
 }
 
 async function set(key, value, ttlSeconds) {
-  const c = getClient();
-  const serialised = JSON.stringify(value);
-  if (ttlSeconds) {
-    await c.setex(key, ttlSeconds, serialised);
-  } else {
-    await c.set(key, serialised);
+  try {
+    const c = getClient();
+    const serialised = JSON.stringify(value);
+    if (ttlSeconds) {
+      await c.setex(key, ttlSeconds, serialised);
+    } else {
+      await c.set(key, serialised);
+    }
+  } catch (e) {
+    // Cache disabled / demo mode
   }
 }
 
 async function get(key) {
-  const c = getClient();
-  const value = await c.get(key);
-  return value ? JSON.parse(value) : null;
+  try {
+    const c = getClient();
+    const value = await c.get(key);
+    return value ? JSON.parse(value) : null;
+  } catch (e) {
+    return null;
+  }
 }
 
 async function del(key) {
-  const c = getClient();
-  return c.del(key);
+  try {
+    const c = getClient();
+    return await c.del(key);
+  } catch (e) {
+    return null;
+  }
 }
 
 async function exists(key) {

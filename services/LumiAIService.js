@@ -1,10 +1,11 @@
-const Anthropic = require('@anthropic-ai/sdk');
+const { OpenAI } = require('openai');
 const logger = require('../config/logger');
 const { get, set, DEFAULT_TTL } = require('../config/redis');
 const VehicleDataService = require('./VehicleDataService');
 
-const anthropic = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY
+const openai = new OpenAI({
+  apiKey: process.env.GROK_API_KEY,
+  baseURL: 'https://api.x.ai/v1'
 });
 
 // ── LUMI AI Core System Prompt ────────────────────────────────────────────────
@@ -68,6 +69,17 @@ RESPONSE FORMATTING:
 - For fleet analytics: always include projected ROI or cost impact
 - Keep responses concise but complete — enterprise users value precision over length
 
+UI COMPONENTS (CRITICAL):
+If the user asks for a "TCO breakdown" or a "Comparison", you MUST embed a structured JSON code block in your markdown.
+For TCO:
+\`\`\`json
+{ "type": "tco_breakdown", "vin": "...", "vehicle": "...", "depreciation": 0, "fuel": 0, "maintenance": 0, "insurance": "...", "total": 0, "costPerMile": 0.0, "comparisonText": "...", "verdict": "..." }
+\`\`\`
+For Comparisons:
+\`\`\`json
+{ "type": "comparison", "summary": "...", "winner": { "name": "...", "total": 0, "costPerMile": 0.0 }, "loser": { "name": "...", "total": 0, "costPerMile": 0.0 } }
+\`\`\`
+
 LIMITATIONS — BE TRANSPARENT ABOUT THESE:
 - You do not have real-time inventory data unless provided via tool call
 - Market pricing estimates are based on historical patterns — live market may vary
@@ -88,22 +100,24 @@ class LumiAIService {
       const enrichedMessages = await this.enrichMessages(messages, vehicleContext);
 
       const params = {
-        model:      process.env.ANTHROPIC_MODEL || 'claude-sonnet-4-20250514',
-        max_tokens: parseInt(process.env.ANTHROPIC_MAX_TOKENS) || 4096,
-        system:     LUMI_SYSTEM_PROMPT,
-        messages:   enrichedMessages
+        model:      process.env.GROK_MODEL || 'grok-4.3',
+        max_tokens: parseInt(process.env.MAX_TOKENS) || 4096,
+        messages:   [
+          { role: 'system', content: LUMI_SYSTEM_PROMPT },
+          ...enrichedMessages
+        ]
       };
 
       if (stream) {
         return this.streamResponse(params, sessionId);
       }
 
-      const response = await anthropic.messages.create(params);
+      const response = await openai.chat.completions.create(params);
 
       const result = {
-        content:      response.content[0].text,
-        inputTokens:  response.usage.input_tokens,
-        outputTokens: response.usage.output_tokens,
+        content:      response.choices[0].message.content,
+        inputTokens:  response.usage.prompt_tokens,
+        outputTokens: response.usage.completion_tokens,
         model:        response.model,
         sessionId
       };
@@ -120,9 +134,17 @@ class LumiAIService {
   }
 
   // ── Streaming response using Server-Sent Events ───────────────────────────
-  static async streamResponse(params, sessionId) {
-    const stream = await anthropic.messages.stream(params);
-    return stream;
+  static async* streamResponse(params, sessionId) {
+    const stream = await openai.chat.completions.create({ ...params, stream: true });
+    for await (const chunk of stream) {
+      if (chunk.choices[0]?.delta?.content) {
+        // Yield in the format expected by the existing routes/chat.js (Anthropic style)
+        yield { 
+          type: 'content_block_delta', 
+          delta: { type: 'text_delta', text: chunk.choices[0].delta.content } 
+        };
+      }
+    }
   }
 
   // ── Vehicle-context aware query ───────────────────────────────────────────
@@ -162,7 +184,39 @@ class LumiAIService {
 
     const prompts = {
       maintenance: `Analyse this fleet and provide a prioritised maintenance schedule for the next 90 days. For each vehicle, identify: (1) immediate maintenance required, (2) upcoming scheduled maintenance, (3) risk of breakdown if not serviced. Rank by urgency and estimated cost impact.\n\nFLEET:\n${fleetSummary}`,
-      tco: `Calculate and compare the Total Cost of Ownership for each vehicle in this fleet. Include: depreciation, expected maintenance, fuel costs (estimate), insurance category, and recommend which vehicles should be replaced in the next 12 months.\n\nFLEET:\n${fleetSummary}`,
+      tco: `Calculate and compare the Total Cost of Ownership for each vehicle in this fleet. Include: depreciation, expected maintenance, fuel costs (estimate), insurance category, and recommend which vehicles should be replaced in the next 12 months.
+
+IMPORTANT: For the final TCO summary, output a strictly formatted JSON code block like this:
+\`\`\`json
+{
+  "type": "tco_breakdown",
+  "vin": "4T1BF1FK2EU123456",
+  "vehicle": "2022 Toyota Camry SE",
+  "depreciation": 9200,
+  "fuel": 11250,
+  "maintenance": 4800,
+  "insurance": "Standard",
+  "total": 25250,
+  "costPerMile": 0.34,
+  "comparisonText": "12% below class average",
+  "verdict": "Good value"
+}
+\`\`\`
+
+FLEET:\n${fleetSummary}`,
+      comparison: `Compare the vehicles in this fleet. 
+
+IMPORTANT: Provide a strictly formatted JSON code block like this:
+\`\`\`json
+{
+  "type": "comparison",
+  "summary": "The Camry SE edges out the Accord LX by $1,550 over 5 years...",
+  "winner": { "name": "Camry SE", "total": 25250, "costPerMile": 0.34 },
+  "loser": { "name": "Accord LX", "total": 26800, "costPerMile": 0.36 }
+}
+\`\`\`
+
+FLEET:\n${fleetSummary}`,
       performance: `Analyse fleet performance patterns. Identify underperforming vehicles, flag anomalies in mileage or maintenance history, and recommend fleet composition optimisations.\n\nFLEET:\n${fleetSummary}`,
       risk: `Assess operational risk across this fleet. Flag vehicles that are: (1) overdue for maintenance, (2) approaching end-of-life, (3) likely to require major repairs in the next 6 months. Provide a risk score (LOW/MEDIUM/HIGH/CRITICAL) for each.\n\nFLEET:\n${fleetSummary}`
     };
@@ -249,14 +303,22 @@ ${context}
 Return ONLY a valid JSON array and absolutely nothing else. Do not use markdown blocks.`;
 
     try {
-      const response = await anthropic.messages.create({
-        model:      process.env.ANTHROPIC_MODEL || 'claude-sonnet-4-20250514',
+      const response = await openai.chat.completions.create({
+        model:      process.env.GROK_MODEL || 'grok-4.3',
         max_tokens: 2500,
-        system:     'You are a strict JSON-only diagnostic reasoning engine. Return only the JSON array of nodes without formatting or markdown code blocks.',
-        messages:   [{ role: 'user', content: prompt }]
+        messages:   [
+          { role: 'system', content: 'You are a strict JSON-only diagnostic reasoning engine. Return only the JSON array of nodes without formatting or markdown code blocks.' },
+          { role: 'user', content: prompt }
+        ]
       });
 
-      return JSON.parse(response.content[0].text);
+      let responseText = response.choices[0].message.content.trim();
+      if (responseText.startsWith('\`\`\`json')) {
+        responseText = responseText.substring(7, responseText.length - 3).trim();
+      } else if (responseText.startsWith('\`\`\`')) {
+        responseText = responseText.substring(3, responseText.length - 3).trim();
+      }
+      return JSON.parse(responseText);
     } catch (error) {
       logger.error('Failed to generate diagnostic reasoning nodes:', error);
       throw error;
@@ -287,14 +349,22 @@ Return JSON only with this exact structure:
 }`;
 
     try {
-      const response = await anthropic.messages.create({
-        model:      process.env.ANTHROPIC_MODEL || 'claude-sonnet-4-20250514',
+      const response = await openai.chat.completions.create({
+        model:      process.env.GROK_MODEL || 'grok-4.3',
         max_tokens: 500,
-        system:     'You are a JSON-only response system. Return valid JSON and nothing else.',
-        messages:   [{ role: 'user', content: prompt }]
+        messages:   [
+          { role: 'system', content: 'You are a JSON-only response system. Return valid JSON and nothing else.' },
+          { role: 'user', content: prompt }
+        ]
       });
 
-      return JSON.parse(response.content[0].text);
+      let responseText = response.choices[0].message.content.trim();
+      if (responseText.startsWith('\`\`\`json')) {
+        responseText = responseText.substring(7, responseText.length - 3).trim();
+      } else if (responseText.startsWith('\`\`\`')) {
+        responseText = responseText.substring(3, responseText.length - 3).trim();
+      }
+      return JSON.parse(responseText);
     } catch (error) {
       return {
         primaryIntent: 'general_query',
@@ -339,7 +409,7 @@ Return JSON only with this exact structure:
       return { statusCode: 429, message: 'Rate limit reached. Please wait before sending another request.' };
     }
     if (error.status === 401) {
-      return { statusCode: 401, message: 'Invalid Anthropic API key. Check your configuration.' };
+      return { statusCode: 401, message: 'Invalid Grok API key. Check your configuration.' };
     }
     if (error.status === 500) {
       return { statusCode: 503, message: 'AI service temporarily unavailable. Please retry.' };
