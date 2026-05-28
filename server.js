@@ -105,12 +105,19 @@ if (process.env.NODE_ENV === 'production') {
 const PORT = process.env.PORT || 3001;
 
 async function start() {
-  try {
-    await connectDB();
-    logger.info('✅ PostgreSQL connected');
+    try {
+      await connectDB();
+      logger.info('✅ PostgreSQL connected');
+    } catch (dbErr) {
+      logger.error('⚠️ PostgreSQL connection failed. Running in degraded/demo mode.', dbErr.message);
+    }
 
-    await connectRedis();
-    logger.info('✅ Redis connected');
+    try {
+      await connectRedis();
+      logger.info('✅ Redis connected');
+    } catch (redisErr) {
+      logger.error('⚠️ Redis connection failed. Cache disabled.', redisErr.message);
+    }
 
     server.listen(PORT, () => {
       logger.info(`🚀 LUMI AI server running on port ${PORT}`);
@@ -119,7 +126,7 @@ async function start() {
       logger.info(`🤖 Model: ${process.env.ANTHROPIC_MODEL}`);
     });
   } catch (error) {
-    logger.error('Failed to start LUMI AI server:', error);
+    logger.error('Critical failure starting LUMI AI server:', error);
     process.exit(1);
   }
 }
