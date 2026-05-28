@@ -4,7 +4,7 @@ const logger = require('./logger');
 let client;
 
 async function connectRedis() {
-  client = new Redis({
+  client = process.env.REDIS_URL ? new Redis(process.env.REDIS_URL) : new Redis({
     host:     process.env.REDIS_HOST     || 'localhost',
     port:     parseInt(process.env.REDIS_PORT) || 6379,
     password: process.env.REDIS_PASSWORD || undefined,
