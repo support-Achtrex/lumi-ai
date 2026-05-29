@@ -84,6 +84,26 @@ export default function VINPage() {
                   <span style={{ fontSize:12, color:'#791F1F' }}>{openRecalls.length} open recall{openRecalls.length > 1 ? 's' : ''} — {openRecalls.map(r => r.component).join(' · ')}</span>
                 </div>
               )}
+              {data.history && (
+                <div className="grid3" style={{ borderTop:'0.5px solid #D0DCE8' }}>
+                  <div className="gc">
+                    <div className="label">Accidents</div>
+                    <div className="value" style={{ color: data.history.accidents > 0 ? '#E53935' : '#27500A' }}>
+                      {data.history.accidents > 0 ? `${data.history.accidents} Reported` : '0 Reported'}
+                    </div>
+                  </div>
+                  <div className="gc">
+                    <div className="label">Owners</div>
+                    <div className="value">{data.history.owners || 1}</div>
+                  </div>
+                  <div className="gc">
+                    <div className="label">Title Status</div>
+                    <div className="value" style={{ color: data.history.title_status === 'Clean' ? '#27500A' : '#E53935' }}>
+                      {data.history.title_status || 'Clean'}
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
 
             <div style={{ display:'flex', gap:8 }}>

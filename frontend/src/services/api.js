@@ -77,6 +77,12 @@ class APIService {
       },
       body: JSON.stringify({ message, conversationId, vin, image, voice })
     });
+    
+    if (!response.ok) {
+      const err = await response.json().catch(() => ({}));
+      throw new Error(err.error || err.message || `Server error: ${response.status}`);
+    }
+
     const reader  = response.body.getReader();
     const decoder = new TextDecoder();
     while (true) {

@@ -388,17 +388,22 @@ Return JSON only with this exact structure:
         const contentStr = vehicleContext ? `${msg.content || ''}\n\n[VEHICLE DATA CONTEXT]\n${JSON.stringify(vehicleContext, null, 2)}` : (msg.content || '');
         
         if (image) {
+          const contentArr = [];
+          if (contentStr && contentStr.trim() !== '') {
+            contentArr.push({ type: 'text', text: contentStr });
+          } else {
+            contentArr.push({ type: 'text', text: 'Please analyze this image.' });
+          }
+          contentArr.push({ type: 'image_url', image_url: { url: image } });
+          
           return {
             ...msg,
-            content: [
-              { type: 'text', text: contentStr },
-              { type: 'image_url', image_url: { url: image } }
-            ]
+            content: contentArr
           };
         }
         return {
           ...msg,
-          content: contentStr
+          content: contentStr || ' '
         };
       }
       return msg;
