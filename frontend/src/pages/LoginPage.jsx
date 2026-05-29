@@ -32,8 +32,7 @@ export default function LoginPage() {
     <div style={{ minHeight:'100vh', background:'#050E1A', display:'flex', alignItems:'center', justifyContent:'center', padding:20 }}>
       <div style={{ width:'100%', maxWidth:400 }}>
         <div style={{ textAlign:'center', marginBottom:32 }}>
-          <div style={{ width:48, height:48, background:'#00C8A8', borderRadius:12, display:'flex', alignItems:'center', justifyContent:'center', fontSize:22, fontWeight:500, color:'#04342C', margin:'0 auto 16px' }}>L</div>
-          <div style={{ fontSize:24, fontWeight:500, color:'#fff', marginBottom:6 }}>LUMI AI</div>
+          <img src="/logo.png" alt="LUMI AI" style={{ height: 60, objectFit: 'contain', margin: '0 auto 16px', display: 'block' }} />
           <div style={{ fontSize:13, color:'#607D8B' }}>Automotive intelligence by Achtrex</div>
         </div>
         <div style={{ background:'#0A1628', border:'0.5px solid #1C2B3A', borderRadius:12, padding:28 }}>

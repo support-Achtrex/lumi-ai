@@ -40,12 +40,8 @@ export default function AppShell() {
       <aside style={{ width:210, minWidth:210, background:'#fff', borderRight:'0.5px solid #D0DCE8', display:'flex', flexDirection:'column', overflow:'hidden' }}>
 
         {/* Logo */}
-        <div style={{ padding:'14px 16px', borderBottom:'0.5px solid #D0DCE8', display:'flex', alignItems:'center', gap:9 }}>
-          <div style={{ width:30, height:30, background:'#00C8A8', borderRadius:7, display:'flex', alignItems:'center', justifyContent:'center', fontSize:14, fontWeight:500, color:'#04342C', flexShrink:0 }}>L</div>
-          <div>
-            <div style={{ fontSize:13.5, fontWeight:500, color:'#1C2B3A' }}>LUMI AI</div>
-            <div style={{ fontSize:10, color:'#90A4AE' }}>by Achtrex</div>
-          </div>
+        <div style={{ padding:'14px 16px', borderBottom:'0.5px solid #D0DCE8', display:'flex', alignItems:'center' }}>
+          <img src="/logo.png" alt="LUMI AI" style={{ height: 32, objectFit: 'contain' }} />
         </div>
 
         {/* Nav */}
