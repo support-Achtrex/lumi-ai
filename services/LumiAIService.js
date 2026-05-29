@@ -3,10 +3,15 @@ const logger = require('../config/logger');
 const { get, set, DEFAULT_TTL } = require('../config/redis');
 const VehicleDataService = require('./VehicleDataService');
 
-const openai = new OpenAI({
-  apiKey: process.env.GROK_API_KEY,
-  baseURL: 'https://api.x.ai/v1'
-});
+let _openai = null;
+function getClient() {
+  if (!_openai) {
+    const key = process.env.GROK_API_KEY;
+    if (!key) throw new Error('GROK_API_KEY environment variable is not set. Add it to your Railway/production environment.');
+    _openai = new OpenAI({ apiKey: key, baseURL: 'https://api.x.ai/v1' });
+  }
+  return _openai;
+}
 
 // ── LUMI AI Core System Prompt ────────────────────────────────────────────────
 // This is the heart of LUMI AI — the automotive-domain reasoning layer
@@ -112,7 +117,7 @@ class LumiAIService {
         return this.streamResponse(params, sessionId);
       }
 
-      const response = await openai.chat.completions.create(params);
+      const response = await getClient().chat.completions.create(params);
 
       const result = {
         content:      response.choices[0].message.content,
@@ -135,7 +140,7 @@ class LumiAIService {
 
   // ── Streaming response using Server-Sent Events ───────────────────────────
   static async* streamResponse(params, sessionId) {
-    const stream = await openai.chat.completions.create({ ...params, stream: true });
+    const stream = await getClient().chat.completions.create({ ...params, stream: true });
     for await (const chunk of stream) {
       if (chunk.choices[0]?.delta?.content) {
         // Yield in the format expected by the existing routes/chat.js (Anthropic style)
@@ -303,7 +308,7 @@ ${context}
 Return ONLY a valid JSON array and absolutely nothing else. Do not use markdown blocks.`;
 
     try {
-      const response = await openai.chat.completions.create({
+      const response = await getClient().chat.completions.create({
         model:      process.env.GROK_MODEL || 'grok-4.3',
         max_tokens: 2500,
         messages:   [
@@ -349,7 +354,7 @@ Return JSON only with this exact structure:
 }`;
 
     try {
-      const response = await openai.chat.completions.create({
+      const response = await getClient().chat.completions.create({
         model:      process.env.GROK_MODEL || 'grok-4.3',
         max_tokens: 500,
         messages:   [
