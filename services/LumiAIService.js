@@ -99,13 +99,13 @@ You are LUMI AI. You make automotive enterprises smarter.`;
 class LumiAIService {
 
   // ── Main chat method — supports both streaming and non-streaming ──────────
-  static async chat({ messages, sessionId, vehicleContext, enterpriseContext, stream = false }) {
+  static async chat({ messages, sessionId, vehicleContext, enterpriseContext, stream = false, image = null }) {
     try {
       // Build message array with vehicle data injection
-      const enrichedMessages = await this.enrichMessages(messages, vehicleContext);
+      const enrichedMessages = await this.enrichMessages(messages, vehicleContext, image);
 
       const params = {
-        model:      process.env.GROK_MODEL || 'grok-4.3',
+        model:      image ? 'grok-vision-beta' : (process.env.GROK_MODEL || 'grok-4.3'),
         max_tokens: parseInt(process.env.MAX_TOKENS) || 4096,
         messages:   [
           { role: 'system', content: LUMI_SYSTEM_PROMPT },
@@ -382,15 +382,23 @@ Return JSON only with this exact structure:
   }
 
   // ── Enrich messages with vehicle data context ─────────────────────────────
-  static async enrichMessages(messages, vehicleContext) {
-    if (!vehicleContext) return messages;
-
-    // Inject vehicle data into the last user message
+  static async enrichMessages(messages, vehicleContext, image) {
     return messages.map((msg, idx) => {
       if (idx === messages.length - 1 && msg.role === 'user') {
+        const contentStr = vehicleContext ? `${msg.content || ''}\n\n[VEHICLE DATA CONTEXT]\n${JSON.stringify(vehicleContext, null, 2)}` : (msg.content || '');
+        
+        if (image) {
+          return {
+            ...msg,
+            content: [
+              { type: 'text', text: contentStr },
+              { type: 'image_url', image_url: { url: image } }
+            ]
+          };
+        }
         return {
           ...msg,
-          content: `${msg.content}\n\n[VEHICLE DATA CONTEXT]\n${JSON.stringify(vehicleContext, null, 2)}`
+          content: contentStr
         };
       }
       return msg;

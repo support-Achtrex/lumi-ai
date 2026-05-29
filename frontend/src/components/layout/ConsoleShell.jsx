@@ -15,7 +15,7 @@ const CONSOLE_NAV = [
     { to: '/console/batches', icon: 'ti-stack', label: 'Batches' },
   ]},
   { group: 'Platforms', items: [
-    { to: '/console/grok-business', icon: 'ti-briefcase', label: 'Grok Business' },
+    { to: '/console/lumi-business', icon: 'ti-briefcase', label: 'LUMI Business' },
   ]},
 ];
 
@@ -29,7 +29,7 @@ export default function ConsoleShell() {
         {/* Header/Logo area */}
         <div style={{ padding: '24px 24px 12px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span style={{ fontSize: '20px', fontWeight: '700', letterSpacing: '-0.5px' }}>x1</span>
+            <span style={{ fontSize: '20px', fontWeight: '700', letterSpacing: '-0.5px' }}>LUMI</span>
           </div>
           <i className="ti ti-search" style={{ color: '#888', fontSize: '18px', cursor: 'pointer' }} />
         </div>
@@ -86,12 +86,14 @@ export default function ConsoleShell() {
 
         {/* Bottom Actions */}
         <div style={{ padding: '16px', borderTop: '1px solid #EBEBEB', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#555', fontSize: '14px', fontWeight: '500', cursor: 'pointer' }}>
+          <NavLink to="/console/billing" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px', color: '#555', fontSize: '14px', fontWeight: '500' }}>
              <i className="ti ti-coin" style={{ fontSize: '18px', color: '#888' }} />
              Credits
-          </div>
+          </NavLink>
           <div style={{ display: 'flex', gap: '12px' }}>
-             <i className="ti ti-book" style={{ fontSize: '18px', color: '#888', cursor: 'pointer' }} />
+             <NavLink to="/console/docs" style={{ color: '#888' }}>
+               <i className="ti ti-book" style={{ fontSize: '18px', cursor: 'pointer' }} />
+             </NavLink>
              <i className="ti ti-settings" style={{ fontSize: '18px', color: '#888', cursor: 'pointer' }} />
           </div>
         </div>

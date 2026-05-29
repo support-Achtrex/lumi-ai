@@ -40,64 +40,33 @@ class VehicleDataService {
     }
 
     try {
-      const { data } = await apiClient.get(`/vin/${vin.toUpperCase()}`);
-      await set(cacheKey, data, DEFAULT_TTL * 24);
-      return data;
-    } catch (error) {
-      logger.debug(`[DEMO MODE] Falling back to public APIs for global VIN Decode: ${vin}`);
+      // Using live vehicledatabases.com endpoint
+      const response = await axios.get(`https://api.vehicledatabases.com/vin-auction-html/${vin.toUpperCase()}`, {
+        headers: {
+          'x-authkey': 'e9694f64e00e46348041989c0fab704a'
+        }
+      });
+      const data = response.data;
       
-      // 1. Try NHTSA (Great for most global manufacturers selling in US/Canada/Mexico)
-      try {
-        const nhtsaRes = await axios.get(`https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValuesExtended/${vin.toUpperCase()}?format=json`);
-        const v = nhtsaRes.data?.Results?.[0];
-        if (v && (v.Make || v.Manufacturer)) {
-          let makeStr = v.Make;
-          if (!makeStr && v.Manufacturer) {
-            makeStr = v.Manufacturer.split(' ')[0].replace(/,/g, '');
-          }
-          return {
-            vin: vin.toUpperCase(),
-            make: makeStr || 'Unknown Make',
-            model: v.Model || 'Vehicle',
-            year: v.ModelYear ? parseInt(v.ModelYear) : new Date().getFullYear(),
-            trim: v.Trim || 'Base',
-            body_class: v.BodyClass || 'Unknown',
-            engine: v.DisplacementL ? `${v.DisplacementL}L ${v.EngineConfiguration || ''}`.trim() : 'Unknown',
-            plant_country: v.PlantCountry || 'Unknown'
-          };
-        }
-      } catch (e) {
-        logger.warn('NHTSA API fallback failed:', e.message);
-      }
+      // Map the response appropriately for our system
+      // Assuming typical vehicledatabase response structure
+      const mappedData = {
+        vin: vin.toUpperCase(),
+        make: data.basic?.make || data.make || 'Unknown Make',
+        model: data.basic?.model || data.model || 'Vehicle',
+        year: data.basic?.year || data.year || new Date().getFullYear(),
+        trim: data.basic?.trim || data.trim || 'Base',
+        body_class: data.basic?.body_type || 'Unknown',
+        engine: data.engine?.engine_type || data.engine || 'Unknown',
+        plant_country: data.basic?.plant_country || 'Global',
+        raw: data // Keep raw data in case we need it
+      };
 
-      // 2. Try offline vin-decoder (Covers pure European/Asian domestic vehicles)
-      try {
-        const { decode } = require('vin-decoder');
-        const decoded = decode(vin.toUpperCase());
-        if (decoded && decoded.manufacturer) {
-          let y = new Date().getFullYear();
-          if (Array.isArray(decoded.modelYear) && decoded.modelYear.length > 0) {
-            y = Math.max(...decoded.modelYear);
-          } else if (typeof decoded.modelYear === 'number') {
-            y = decoded.modelYear;
-          }
-          return {
-            vin: vin.toUpperCase(),
-            make: decoded.manufacturer.replace(/car|truck|suv|motorcycle/i, '').trim().split(' ')[0] || 'Unknown Make',
-            model: 'Vehicle',
-            year: y,
-            trim: 'Base',
-            body_class: 'Unknown',
-            engine: 'Unknown',
-            plant_country: decoded.country || 'Global'
-          };
-        }
-      } catch (err) {
-        logger.warn('Offline VIN decoder failed:', err.message);
-      }
-
-      // Ultimate fallback
-      return { vin: vin.toUpperCase(), make: 'Unknown', model: 'Vehicle', year: 2024, trim: 'Base', body_class: 'Unknown', engine: 'Unknown', plant_country: 'Global' };
+      await set(cacheKey, mappedData, DEFAULT_TTL * 24);
+      return mappedData;
+    } catch (error) {
+      logger.error('Live VIN decoder API failed:', error.message);
+      throw { statusCode: 500, message: 'Failed to decode VIN' };
     }
   }
 

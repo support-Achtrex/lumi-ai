@@ -12,6 +12,11 @@ import AnalyticsPage from './pages/AnalyticsPage';
 import WorkflowAutomationPage from './pages/WorkflowAutomationPage';
 import ConsoleShell from './components/layout/ConsoleShell';
 import ConsoleDashboard from './pages/ConsoleDashboard';
+import ApiKeysPage from './pages/ApiKeysPage';
+import ModelsPage from './pages/ModelsPage';
+import BillingPage from './pages/BillingPage';
+import DocumentationPage from './pages/DocumentationPage';
+import UsagePage from './pages/UsagePage';
 import './index.css';
 
 function RequireAuth({ children }) {
@@ -40,7 +45,12 @@ export default function App() {
           </Route>
           <Route path="/console" element={<RequireAuth><ConsoleShell /></RequireAuth>}>
             <Route index element={<ConsoleDashboard />} />
-            <Route path="*" element={<Navigate to="/console" replace />} />
+            <Route path="api-keys" element={<ApiKeysPage />} />
+            <Route path="models" element={<ModelsPage />} />
+            <Route path="billing" element={<BillingPage />} />
+            <Route path="docs" element={<DocumentationPage />} />
+            <Route path="usage" element={<UsagePage />} />
+            <Route path="*" element={<ConsoleDashboard />} />
           </Route>
           <Route path="*" element={<Navigate to="/chat" replace />} />
         </Routes>

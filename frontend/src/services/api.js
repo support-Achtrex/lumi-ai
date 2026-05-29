@@ -66,13 +66,16 @@ class APIService {
   }
   static async deleteConversation(id) { return this.del(`/chat/conversations/${id}`); }
 
-  // Streaming — async generator
-  static async* streamMessage(message, conversationId, vin) {
+  // ── Chat ───────────────────────────────────────────────────────────────────
+  static async *streamMessage({ message, conversationId, vin, image, voice }) {
     const token = this.getToken();
     const response = await fetch(`${BASE}/chat/stream`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-      body: JSON.stringify({ message, conversationId, vin })
+      headers: {
+        'Content-Type': 'application/json',
+        ...(token && { Authorization: `Bearer ${token}` })
+      },
+      body: JSON.stringify({ message, conversationId, vin, image, voice })
     });
     const reader  = response.body.getReader();
     const decoder = new TextDecoder();

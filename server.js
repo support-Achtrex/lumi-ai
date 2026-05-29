@@ -22,6 +22,7 @@ const fleetRoutes     = require('./routes/fleet');
 const diagnosticRoutes = require('./routes/diagnostics');
 const workflowRoutes  = require('./routes/workflows');
 const analyticsRoutes = require('./routes/analytics');
+const apiKeysRoutes   = require('./routes/apiKeys');
 
 const app = express();
 const server = http.createServer(app);
@@ -81,6 +82,7 @@ app.use('/api/fleet',       fleetRoutes);
 app.use('/api/diagnostics', diagnosticRoutes);
 app.use('/api/workflows',   workflowRoutes);
 app.use('/api/analytics',   analyticsRoutes);
+app.use('/api/keys',        apiKeysRoutes);
 
 // ── Socket.IO handlers ────────────────────────────────────────────────────────
 const { setupSocketHandlers } = require('./services/SocketService');

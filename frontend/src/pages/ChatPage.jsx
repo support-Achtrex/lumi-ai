@@ -97,6 +97,12 @@ export default function ChatPage() {
   const [streaming,   setStreaming]   = useState(false);
   const [convId,      setConvId]      = useState(id || null);
   const [streamText,  setStreamText]  = useState('');
+  const [imageFile,   setImageFile]   = useState(null);
+  const [isRecording, setIsRecording] = useState(false);
+  const [audioFile,   setAudioFile]   = useState(null);
+  const fileInputRef  = useRef(null);
+  const mediaRecorder = useRef(null);
+  const audioChunks   = useRef([]);
   const bottomRef = useRef(null);
 
   useEffect(() => {
@@ -128,7 +134,19 @@ export default function ChatPage() {
       let full = '';
       let newConvId = convId;
 
-      for await (const chunk of APIService.streamMessage(userMsg, convId, vin || undefined)) {
+      const payload = {
+        message: userMsg,
+        conversationId: convId,
+        vin: vin || undefined,
+        image: imageFile,
+        voice: audioFile
+      };
+
+      // Clear pending attachments after sending
+      setImageFile(null);
+      setAudioFile(null);
+
+      for await (const chunk of APIService.streamMessage(payload)) {
         if (chunk.type === 'conversation_id') {
           newConvId = chunk.id;
           setConvId(chunk.id);
@@ -243,10 +261,76 @@ export default function ChatPage() {
             </button>
           )}
         </div>
-        <form onSubmit={sendMessage} style={{ display:'flex', gap:7 }}>
-          <input value={input} onChange={e => setInput(e.target.value)} placeholder="Ask LUMI AI about any vehicle…" style={{ flex:1, height:36, fontSize:13 }} disabled={loading} />
-          <button type="submit" disabled={!input.trim() || loading}
-            style={{ width:36, height:36, padding:0, background:'#0D2FA3', border:'none', color:'#fff', display:'flex', alignItems:'center', justifyContent:'center', opacity: !input.trim() ? .5 : 1 }}>
+        {/* Attachment Previews */}
+        {(imageFile || audioFile) && (
+          <div style={{ display:'flex', gap:10, marginBottom:8 }}>
+            {imageFile && (
+              <div style={{ position:'relative', display:'inline-block' }}>
+                <img src={imageFile} alt="Upload preview" style={{ height:40, borderRadius:4, border:'1px solid #D0DCE8' }} />
+                <button onClick={() => setImageFile(null)} style={{ position:'absolute', top:-6, right:-6, background:'red', color:'#fff', border:'none', borderRadius:'50%', width:16, height:16, fontSize:10, cursor:'pointer', display:'flex', alignItems:'center', justifyContent:'center' }}>×</button>
+              </div>
+            )}
+            {audioFile && (
+              <div style={{ position:'relative', display:'flex', alignItems:'center', background:'#E1F5EE', color:'#0F6E56', padding:'4px 12px', borderRadius:16, fontSize:12, fontWeight:500 }}>
+                <i className="ti ti-microphone" style={{ marginRight:4 }} /> Voice Note
+                <button onClick={() => setAudioFile(null)} style={{ marginLeft:8, background:'transparent', color:'#0F6E56', border:'none', cursor:'pointer' }}>×</button>
+              </div>
+            )}
+          </div>
+        )}
+
+        <form onSubmit={sendMessage} style={{ display:'flex', gap:7, alignItems:'center' }}>
+          <input 
+            type="file" 
+            accept="image/*" 
+            ref={fileInputRef} 
+            style={{ display: 'none' }} 
+            onChange={(e) => {
+              const file = e.target.files[0];
+              if (file) {
+                const reader = new FileReader();
+                reader.onload = () => setImageFile(reader.result);
+                reader.readAsDataURL(file);
+              }
+            }} 
+          />
+          <button type="button" onClick={() => fileInputRef.current?.click()} style={{ width:36, height:36, padding:0, background:'#F5F8FC', border:'1px solid #D0DCE8', color:'#607D8B', display:'flex', alignItems:'center', justifyContent:'center', borderRadius:'50%', cursor:'pointer' }}>
+            <i className="ti ti-camera" style={{ fontSize:16 }} aria-hidden="true" />
+          </button>
+
+          <button type="button" 
+            onClick={async () => {
+              if (isRecording) {
+                mediaRecorder.current?.stop();
+                mediaRecorder.current?.stream.getTracks().forEach(t => t.stop());
+                setIsRecording(false);
+              } else {
+                try {
+                  const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                  const recorder = new MediaRecorder(stream);
+                  mediaRecorder.current = recorder;
+                  audioChunks.current = [];
+                  recorder.ondataavailable = e => { if (e.data.size > 0) audioChunks.current.push(e.data); };
+                  recorder.onstop = () => {
+                    const blob = new Blob(audioChunks.current, { type: 'audio/webm' });
+                    const reader = new FileReader();
+                    reader.onload = () => setAudioFile(reader.result);
+                    reader.readAsDataURL(blob);
+                  };
+                  recorder.start();
+                  setIsRecording(true);
+                } catch (e) {
+                  console.error('Mic error', e);
+                }
+              }
+            }} 
+            style={{ width:36, height:36, padding:0, background: isRecording ? '#FFE5E5' : '#F5F8FC', border:'1px solid', borderColor: isRecording ? '#FF4D4D' : '#D0DCE8', color: isRecording ? '#FF4D4D' : '#607D8B', display:'flex', alignItems:'center', justifyContent:'center', borderRadius:'50%', cursor:'pointer' }}>
+            <i className="ti ti-microphone" style={{ fontSize:16 }} aria-hidden="true" />
+          </button>
+
+          <input value={input} onChange={e => setInput(e.target.value)} placeholder="Ask LUMI AI about any vehicle…" style={{ flex:1, height:36, fontSize:13, borderRadius:4, border:'1px solid #D0DCE8', padding:'0 10px' }} disabled={loading} />
+          <button type="submit" disabled={(!input.trim() && !imageFile && !audioFile) || loading}
+            style={{ width:36, height:36, padding:0, background:'#0D2FA3', border:'none', color:'#fff', display:'flex', alignItems:'center', justifyContent:'center', borderRadius:'50%', cursor:'pointer', opacity: (!input.trim() && !imageFile && !audioFile) ? .5 : 1 }}>
             <i className="ti ti-arrow-up" style={{ fontSize:15 }} aria-hidden="true" />
           </button>
         </form>

@@ -112,11 +112,24 @@ router.post('/message',
 router.post('/stream',
   authenticate,
   chatRateLimiter,
-  [body('message').notEmpty().isString().isLength({ max: 4000 })],
+  [
+    body('message').optional().isString().isLength({ max: 4000 }),
+    body('image').optional().isString(),
+    body('voice').optional().isString()
+  ],
   async (req, res, next) => {
     try {
-      const { message, conversationId, vin } = req.body;
+      let { message, conversationId, vin, image, voice } = req.body;
       const userId = req.user.id;
+
+      if (voice) {
+        // Placeholder for Whisper API or similar when x.ai supports it
+        message = (message || '') + ' [Voice note received: Transcription pending API support]';
+      }
+      
+      if (!message && !image) {
+        return res.status(400).json({ success: false, error: 'Message, image, or voice is required' });
+      }
 
       // Set up SSE headers
       res.setHeader('Content-Type', 'text/event-stream');
@@ -143,12 +156,13 @@ router.post('/stream',
       await ConversationService.saveMessage({
         conversationId: convId,
         role:    'user',
-        content: message
+        content: message || '[Image Attachment]',
+        metadata: { hasImage: !!image, hasVoice: !!voice }
       });
 
       // Start streaming
       let fullResponse = '';
-      const stream = await LumiAIService.chat({ messages, sessionId: convId, stream: true });
+      const stream = await LumiAIService.chat({ messages, sessionId: convId, stream: true, image });
 
       for await (const chunk of stream) {
         if (chunk.type === 'content_block_delta' && chunk.delta.type === 'text_delta') {
