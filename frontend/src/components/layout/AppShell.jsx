@@ -41,7 +41,7 @@ export default function AppShell() {
 
         {/* Logo */}
         <div style={{ padding:'14px 16px', borderBottom:'0.5px solid #D0DCE8', display:'flex', alignItems:'center' }}>
-          <img src="/logo.png" alt="LUMI AI" style={{ height: 32, objectFit: 'contain' }} />
+          <img src="/logo.png" alt="LUMI AI" style={{ height: 48, objectFit: 'contain' }} />
         </div>
 
         {/* Nav */}
