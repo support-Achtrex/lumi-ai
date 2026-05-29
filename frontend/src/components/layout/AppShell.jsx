@@ -7,6 +7,7 @@ const NAV = [
   { group: 'Intelligence', items: [
     { to: '/chat',        icon: 'ti-message-2',     label: 'Chat' },
     { to: '/vin',         icon: 'ti-car',           label: 'VIN lookup' },
+    { to: '/workflow',    icon: 'ti-bolt',          label: 'Workflow Automation' },
   ]},
   { group: 'Operations', items: [
     { to: '/fleet',       icon: 'ti-truck',         label: 'Fleet',       badge: '3', badgeColor: '#FCEBEB', badgeText: '#A32D2D' },

@@ -9,6 +9,9 @@ import FleetPage from './pages/FleetPage';
 import InspectionPage from './pages/InspectionPage';
 import DiagnosticsPage from './pages/DiagnosticsPage';
 import AnalyticsPage from './pages/AnalyticsPage';
+import WorkflowAutomationPage from './pages/WorkflowAutomationPage';
+import ConsoleShell from './components/layout/ConsoleShell';
+import ConsoleDashboard from './pages/ConsoleDashboard';
 import './index.css';
 
 function RequireAuth({ children }) {
@@ -33,6 +36,11 @@ export default function App() {
             <Route path="inspection/:id" element={<InspectionPage />} />
             <Route path="diagnostics"  element={<DiagnosticsPage />} />
             <Route path="analytics"    element={<AnalyticsPage />} />
+            <Route path="workflow"     element={<WorkflowAutomationPage />} />
+          </Route>
+          <Route path="/console" element={<RequireAuth><ConsoleShell /></RequireAuth>}>
+            <Route index element={<ConsoleDashboard />} />
+            <Route path="*" element={<Navigate to="/console" replace />} />
           </Route>
           <Route path="*" element={<Navigate to="/chat" replace />} />
         </Routes>
