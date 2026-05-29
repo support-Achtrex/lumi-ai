@@ -3,6 +3,7 @@ import { useState, useRef, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import APIService from '../services/api';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 function TCOCard({ data }) {
   if (!data) return null;
@@ -192,17 +193,18 @@ export default function ChatPage() {
               <div style={{ width:32, height:32, borderRadius:'50%', flexShrink:0, display:'flex', alignItems:'center', justifyContent:'center', fontSize:14, fontWeight:600, background:'#E1F5EE', color:'#0F6E56', marginTop:4 }}>L</div>
             )}
             <div style={{ 
-              padding: m.role === 'user' ? '12px 18px' : '18px 24px', 
-              borderRadius: m.role === 'user' ? '16px 16px 4px 16px' : '16px 16px 16px 4px', 
-              background: m.role === 'user' ? 'linear-gradient(135deg, #0D2FA3 0%, #1A44D1 100%)' : '#F4F2EC', 
-              color: m.role === 'user' ? '#fff' : '#1C2B3A', 
-              maxWidth: m.role === 'user' ? 400 : 700, 
+              padding: m.role === 'user' ? '12px 18px' : '20px 28px', 
+              borderRadius: m.role === 'user' ? '20px 20px 4px 20px' : '20px 20px 20px 4px', 
+              background: m.role === 'user' ? 'linear-gradient(135deg, var(--dblu), var(--mid))' : 'rgba(255, 255, 255, 0.85)', 
+              backdropFilter: m.role === 'user' ? 'none' : 'blur(16px)',
+              color: m.role === 'user' ? '#fff' : 'var(--dgray)', 
+              maxWidth: m.role === 'user' ? 400 : 750, 
               fontSize:13.5, 
-              boxShadow: m.role === 'user' ? '0 4px 12px rgba(13,47,163,0.15)' : 'none',
-              border: m.role === 'assistant' ? '1px solid rgba(0,0,0,0.03)' : 'none'
+              boxShadow: m.role === 'user' ? '0 8px 24px rgba(10, 32, 133, 0.25)' : 'var(--shadow-md)',
+              border: m.role === 'assistant' ? '1px solid rgba(255, 255, 255, 0.6)' : 'none'
             }}>
               {m.role === 'assistant'
-                ? <ReactMarkdown components={MarkdownComponents}>{m.content}</ReactMarkdown>
+                ? <ReactMarkdown remarkPlugins={[remarkGfm]} components={MarkdownComponents}>{m.content}</ReactMarkdown>
                 : <span style={{ lineHeight:1.5 }}>{m.content}</span>}
             </div>
           </div>
@@ -211,8 +213,8 @@ export default function ChatPage() {
         {streaming && streamText && (
           <div style={{ display:'flex', gap:14, alignItems:'flex-start', animation:'fadeIn 0.2s ease-out' }}>
             <div style={{ width:32, height:32, borderRadius:'50%', flexShrink:0, display:'flex', alignItems:'center', justifyContent:'center', fontSize:14, fontWeight:600, background:'#E1F5EE', color:'#0F6E56', marginTop:4 }}>L</div>
-            <div style={{ padding:'18px 24px', borderRadius:'16px 16px 16px 4px', background:'#F4F2EC', color:'#1C2B3A', maxWidth:700, fontSize:13.5, border:'1px solid rgba(0,0,0,0.03)' }}>
-              <ReactMarkdown components={MarkdownComponents}>{streamText}</ReactMarkdown>
+            <div style={{ padding:'20px 28px', borderRadius:'20px 20px 20px 4px', background:'rgba(255, 255, 255, 0.85)', backdropFilter:'blur(16px)', color:'var(--dgray)', maxWidth:750, fontSize:13.5, border:'1px solid rgba(255, 255, 255, 0.6)', boxShadow:'var(--shadow-md)' }}>
+              <ReactMarkdown remarkPlugins={[remarkGfm]} components={MarkdownComponents}>{streamText}</ReactMarkdown>
             </div>
           </div>
         )}

@@ -37,7 +37,7 @@ export default function LoginPage() {
 
         {/* Top bar */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 0 }}>
-          <img src="/logo.png" alt="LUMI AI" style={{ height: 48, objectFit: 'contain' }} />
+          <img src="/logo.png" alt="LUMI AI" style={{ height: 96, objectFit: 'contain' }} />
 
           {/* "You are signing into" pill */}
           <div style={{ position: 'relative' }}>

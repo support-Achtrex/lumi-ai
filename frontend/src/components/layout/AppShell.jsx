@@ -40,8 +40,8 @@ export default function AppShell() {
       <aside style={{ width:210, minWidth:210, background:'#fff', borderRight:'0.5px solid #D0DCE8', display:'flex', flexDirection:'column', overflow:'hidden' }}>
 
         {/* Logo */}
-        <div style={{ padding:'14px 16px', borderBottom:'0.5px solid #D0DCE8', display:'flex', alignItems:'center' }}>
-          <img src="/logo.png" alt="LUMI AI" style={{ height: 48, objectFit: 'contain' }} />
+        <div style={{ padding:'20px', borderBottom:'1px solid var(--lgray)', display:'flex', alignItems:'center' }}>
+          <img src="/logo.png" alt="LUMI AI" style={{ height: 96, objectFit: 'contain' }} />
         </div>
 
         {/* Nav */}
