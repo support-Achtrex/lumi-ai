@@ -10,7 +10,7 @@ export default function UsagePage() {
           <div style={{ marginTop: '24px', height: '100px', display: 'flex', alignItems: 'flex-end', gap: '8px' }}>
             {/* Simulated bar chart */}
             {[20, 30, 80, 50, 10, 0, 15, 20].map((h, i) => (
-              <div key={i} style={{ flex: 1, background: '#000', height: \`\${h}%\`, borderRadius: '4px 4px 0 0' }} />
+              <div key={i} style={{ flex: 1, background: '#000', height: `${h}%`, borderRadius: '4px 4px 0 0' }} />
             ))}
           </div>
         </div>
@@ -21,7 +21,7 @@ export default function UsagePage() {
           <div style={{ marginTop: '24px', height: '100px', display: 'flex', alignItems: 'flex-end', gap: '8px' }}>
             {/* Simulated bar chart */}
             {[5, 10, 40, 25, 5, 0, 8, 12].map((h, i) => (
-              <div key={i} style={{ flex: 1, background: '#000', height: \`\${h}%\`, borderRadius: '4px 4px 0 0' }} />
+              <div key={i} style={{ flex: 1, background: '#000', height: `${h}%`, borderRadius: '4px 4px 0 0' }} />
             ))}
           </div>
         </div>
