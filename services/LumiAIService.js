@@ -367,7 +367,7 @@ Return ONLY a valid JSON object and absolutely nothing else. Do not use markdown
 
     try {
       const response = await getOpenAIClient().chat.completions.create({
-        model:      process.env.GROK_MODEL || 'grok-4.3',
+        model:      process.env.GROK_MODEL || 'grok-2-latest',
         max_tokens: 2500,
         messages:   [
           { role: 'system', content: 'You are a strict JSON-only diagnostic reasoning engine. Return only the JSON object without formatting or markdown code blocks.' },
@@ -383,8 +383,24 @@ Return ONLY a valid JSON object and absolutely nothing else. Do not use markdown
       }
       return JSON.parse(responseText);
     } catch (error) {
-      logger.error('Failed to generate diagnostic reasoning nodes:', error);
-      throw error;
+      logger.warn(`Grok failed in generateRepairGuide (${error.message}). Falling back to Gemini.`);
+      try {
+        const model = getGeminiClient().getGenerativeModel({ 
+          model: process.env.GEMINI_MODEL || 'gemini-2.5-flash',
+          systemInstruction: 'You are a strict JSON-only diagnostic reasoning engine. Return only the JSON object without formatting or markdown code blocks.'
+        });
+        const geminiRes = await model.generateContent(prompt);
+        let responseText = geminiRes.response.text().trim();
+        if (responseText.startsWith('```json')) {
+          responseText = responseText.substring(7, responseText.length - 3).trim();
+        } else if (responseText.startsWith('```')) {
+          responseText = responseText.substring(3, responseText.length - 3).trim();
+        }
+        return JSON.parse(responseText);
+      } catch (geminiError) {
+        logger.error('Failed to generate diagnostic reasoning nodes with both models:', geminiError);
+        throw geminiError;
+      }
     }
   }
 
