@@ -10,24 +10,71 @@ export default function HistoryPage() {
   const [historyReport, setHistoryReport] = useState(null);
   
   const [phase, setPhase] = useState('checkout'); // 'checkout', 'processing', 'success', 'report'
-  const [email, setEmail] = useState('');
-  const [zip, setZip] = useState('');
+  const [discountCode, setDiscountCode] = useState('');
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [message, setMessage] = useState('');
 
   useEffect(() => {
+    // Check for Paystack payment callback
+    const params = new URLSearchParams(window.location.search);
+    const paid = params.get('paid');
+    const reference = params.get('reference');
+    const urlVin = params.get('vin');
+
+    if (paid === 'true' && reference) {
+      setPhase('processing');
+      if (urlVin) setVin(urlVin);
+      
+      APIService.verifyPayment(reference)
+        .then(res => {
+          if (res.success) {
+            setPhase('success');
+          } else {
+            setMessage('Payment verification failed.');
+            setPhase('checkout');
+          }
+        })
+        .catch(err => {
+          setMessage(`Error: ${err.message}`);
+          setPhase('checkout');
+        });
+    }
+
     if (vin) {
+      if (!paid) {
+        APIService.checkUnlockedReport(vin.trim().toUpperCase())
+          .then(res => {
+            if (res.success && res.unlocked) {
+              setPhase('report');
+            }
+          })
+          .catch(console.error);
+      }
+
       APIService.getVehicleHistoryReport(vin.trim().toUpperCase())
         .then(report => setHistoryReport(report))
         .catch(console.error);
     }
   }, [vin]);
 
-  function handlePayment(e) {
+  async function handlePayment(e) {
     e.preventDefault();
-    if (!email || !zip) return alert("Please enter email and ZIP code.");
-    setPhase('processing');
-    setTimeout(() => {
-      setPhase('success');
-    }, 2000);
+    setIsProcessing(true);
+    setMessage('');
+    try {
+      const callbackUrl = `${window.location.origin}/history?vin=${vin}&paid=true`;
+      // Passing empty string for plan_id to treat it as a standard vehicle history purchase without failing validation
+      const res = await APIService.initializePayment(44.99, discountCode, '', callbackUrl, vin);
+      if (res.success && res.data?.authorization_url) {
+        window.location.href = res.data.authorization_url;
+      } else {
+        setMessage('Failed to initialize payment.');
+        setIsProcessing(false);
+      }
+    } catch (err) {
+      setMessage(`Error initializing payment: ${err.response?.data?.error || err.message}`);
+      setIsProcessing(false);
+    }
   }
 
   function handleViewReport() {
@@ -385,14 +432,11 @@ export default function HistoryPage() {
           {phase === 'checkout' && (
             <div className="animate-fade-in" style={{ display: 'flex', flexDirection: 'column', gap: 40 }}>
               
-              <div style={{ textAlign: 'center' }}>
-                <button 
-                  onClick={handleViewReport} 
-                  style={{ background: 'transparent', border: '1px solid #0A2085', color: '#0A2085', padding: '8px 16px', borderRadius: 6, cursor: 'pointer', fontWeight: 600 }}
-                >
-                  Skip Checkout & View Report (Dev)
-                </button>
-              </div>
+              {message && (
+                <div style={{ padding: '12px 16px', background: '#FEE2E2', color: '#B91C1C', borderRadius: 8, textAlign: 'center', fontWeight: 600 }}>
+                  {message}
+                </div>
+              )}
 
               {/* Step 1 */}
               <div>
@@ -413,39 +457,16 @@ export default function HistoryPage() {
 
               {/* Step 2 */}
               <div>
-                <h2 style={{ fontSize: 18, fontWeight: 700, color: '#1C2B3A', borderBottom: '1px solid #e0e0e0', paddingBottom: 8, marginBottom: 24 }}>Step 2. Select Method of Payment</h2>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 32 }}>
-                  <label style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer' }}>
-                    <input type="radio" name="payment" defaultChecked style={{ accentColor: '#0A2085' }} />
-                    <span style={{ fontWeight: 600 }}>Credit/Debit Card</span>
-                    <i className="ti ti-credit-card" style={{ fontSize: 24, color: '#1C2B3A' }} />
-                  </label>
-                  <label style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', opacity: 0.5 }}>
-                    <input type="radio" name="payment" disabled />
-                    <span style={{ fontWeight: 600 }}>PayPal</span>
-                    <i className="ti ti-brand-paypal" style={{ fontSize: 24, color: '#003087' }} />
-                  </label>
-                  <label style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', opacity: 0.5 }}>
-                    <input type="radio" name="payment" disabled />
-                    <span style={{ fontWeight: 600 }}>Apple Pay</span>
-                    <i className="ti ti-brand-apple" style={{ fontSize: 24, color: '#000' }} />
-                  </label>
+                <h2 style={{ fontSize: 18, fontWeight: 700, color: '#1C2B3A', borderBottom: '1px solid #e0e0e0', paddingBottom: 8, marginBottom: 24 }}>Step 2. Apply Discount (Optional)</h2>
+                <div style={{ display: 'flex', gap: 12, maxWidth: 400 }}>
+                  <input type="text" value={discountCode} onChange={e=>setDiscountCode(e.target.value)} placeholder="Promo Code" style={{ flex: 1, padding: '12px 16px', border: '1px solid #d0d0d0', borderRadius: 4, fontSize: 15 }} />
                 </div>
               </div>
 
               {/* Step 3 */}
               <form onSubmit={handlePayment}>
-                <h2 style={{ fontSize: 18, fontWeight: 700, color: '#1C2B3A', borderBottom: '1px solid #e0e0e0', paddingBottom: 8, marginBottom: 24 }}>Step 3. Personal Details</h2>
+                <h2 style={{ fontSize: 18, fontWeight: 700, color: '#1C2B3A', borderBottom: '1px solid #e0e0e0', paddingBottom: 8, marginBottom: 24 }}>Step 3. Checkout via Paystack</h2>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 20, maxWidth: 400 }}>
-                  <div>
-                    <label style={{ display: 'block', fontSize: 14, fontWeight: 700, color: '#1C2B3A', marginBottom: 8 }}>Email <span style={{ color: '#EF4444' }}>*</span></label>
-                    <input type="email" required value={email} onChange={e=>setEmail(e.target.value)} placeholder="example@email.com" style={{ width: '100%', padding: '12px 16px', border: '1px solid #d0d0d0', borderRadius: 4, fontSize: 15 }} />
-                  </div>
-                  <div>
-                    <label style={{ display: 'block', fontSize: 14, fontWeight: 700, color: '#1C2B3A', marginBottom: 8 }}>ZIP <span style={{ color: '#EF4444' }}>*</span></label>
-                    <input type="text" required value={zip} onChange={e=>setZip(e.target.value)} placeholder="ZIP" style={{ width: 150, padding: '12px 16px', border: '1px solid #d0d0d0', borderRadius: 4, fontSize: 15 }} />
-                  </div>
-
                   <label style={{ display: 'flex', alignItems: 'flex-start', gap: 12, marginTop: 12, cursor: 'pointer' }}>
                     <input type="checkbox" required style={{ marginTop: 4 }} />
                     <div style={{ fontSize: 13, color: '#607D8B' }}>
@@ -453,14 +474,9 @@ export default function HistoryPage() {
                     </div>
                   </label>
 
-                  <button type="submit" className="btn-primary" style={{ background: '#0A2085', color: '#fff', fontSize: 16, padding: '16px 24px', border: 'none', borderRadius: 4, fontWeight: 700, marginTop: 16, cursor: 'pointer' }}>
-                    Continue to Payment for 1 Report
+                  <button type="submit" disabled={isProcessing} className="btn-primary" style={{ background: '#0A2085', color: '#fff', fontSize: 16, padding: '16px 24px', border: 'none', borderRadius: 4, fontWeight: 700, marginTop: 16, cursor: isProcessing ? 'not-allowed' : 'pointer', opacity: isProcessing ? 0.7 : 1 }}>
+                    {isProcessing ? 'Initializing...' : 'Proceed to Payment ($44.99)'}
                   </button>
-
-                  <label style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 16, cursor: 'pointer' }}>
-                    <input type="checkbox" defaultChecked />
-                    <span style={{ fontSize: 12, color: '#607D8B' }}>Send me special offers and other helpful information from LUMI.</span>
-                  </label>
                 </div>
               </form>
 
@@ -482,20 +498,8 @@ export default function HistoryPage() {
               </div>
               <h2 style={{ fontSize: 28, fontWeight: 700, color: '#1C2B3A', marginBottom: 16 }}>Payment Successful!</h2>
               <p style={{ fontSize: 16, color: '#607D8B', marginBottom: 32, lineHeight: 1.6 }}>
-                Your order for 1 LUMI History Report has been confirmed. We've sent your login credentials to <strong>{email}</strong>.
+                Your order for 1 LUMI History Report has been confirmed. Your report is now ready to view.
               </p>
-              
-              <div style={{ background: '#F5F8FC', border: '1px solid #D0DCE8', borderRadius: 8, padding: 24, marginBottom: 32, textAlign: 'left' }}>
-                <h3 style={{ fontSize: 14, fontWeight: 700, color: '#1C2B3A', marginBottom: 12, textTransform: 'uppercase' }}>Your Login Details</h3>
-                <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid #d0d0d0', paddingBottom: 8, marginBottom: 8 }}>
-                  <span style={{ color: '#607D8B' }}>Email / Username:</span>
-                  <span style={{ fontWeight: 700, color: '#1C2B3A' }}>{email}</span>
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                  <span style={{ color: '#607D8B' }}>Temporary Password:</span>
-                  <span style={{ fontWeight: 700, color: '#1C2B3A', fontFamily: 'monospace' }}>LUMI-{Math.floor(1000 + Math.random() * 9000)}</span>
-                </div>
-              </div>
 
               <button onClick={handleViewReport} className="btn-primary" style={{ background: '#0A2085', padding: '16px 32px', fontSize: 16, borderRadius: 8, width: '100%' }}>
                 View Report Now

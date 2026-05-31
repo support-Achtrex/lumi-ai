@@ -97,6 +97,17 @@ router.get('/:vin/pricing',
   }
 );
 
+// ── GET /api/vehicles/:vin/unlocked ───────────────────────────────────────────
+router.get('/:vin/unlocked', authenticate, async (req, res, next) => {
+  try {
+    const { query } = require('../config/database');
+    const result = await query('SELECT 1 FROM unlocked_reports WHERE user_id = $1 AND vin = $2', [req.user.id, req.params.vin]);
+    res.json({ success: true, unlocked: result.rows.length > 0 });
+  } catch (error) {
+    next(error);
+  }
+});
+
 // ── GET /api/vehicles/:vin/history ────────────────────────────────────────────
 router.get('/:vin/history', authenticate, async (req, res, next) => {
   try {

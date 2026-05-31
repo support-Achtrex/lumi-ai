@@ -216,6 +216,9 @@ router.post('/:id/analyse',
         sessionId: `fleet:${fleetId}:${analysisType}`
       });
 
+      // Log usage for analytics
+      await query(`INSERT INTO api_usage (user_id, endpoint, method, status_code, input_tokens, output_tokens) VALUES ($1, $2, $3, $4, $5, $6)`, [req.user.id, '/api/fleet/analyze', 'POST', 200, analysis?.inputTokens || 500, analysis?.outputTokens || 1000]);
+
       // Store analysis result
       await query(
         `UPDATE fleets SET last_analysis = $1, last_analysis_type = $2, last_analysis_at = NOW()

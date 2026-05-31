@@ -45,6 +45,7 @@ router.post('/assess',
       if (req.user.plan_type !== 'enterprise' && req.user.role !== 'admin') {
         const { query } = require('../config/database');
         await query('UPDATE users SET credits = credits - 3 WHERE id = $1', [req.user.id]);
+        await query(`INSERT INTO api_usage (user_id, endpoint, method, status_code, input_tokens, output_tokens) VALUES ($1, $2, $3, $4, $5, $6)`, [req.user.id, '/api/diagnostics/assess', 'POST', 200, assessment?.inputTokens || 100, assessment?.outputTokens || 500]);
       }
 
       res.json({
@@ -110,6 +111,7 @@ Provide:
       if (req.user.plan_type !== 'enterprise' && req.user.role !== 'admin') {
         const { query } = require('../config/database');
         await query('UPDATE users SET credits = credits - 3 WHERE id = $1', [req.user.id]);
+        await query(`INSERT INTO api_usage (user_id, endpoint, method, status_code, input_tokens, output_tokens) VALUES ($1, $2, $3, $4, $5, $6)`, [req.user.id, '/api/diagnostics/maintenance', 'POST', 200, response?.inputTokens || 100, response?.outputTokens || 500]);
       }
 
       res.json({
@@ -185,6 +187,7 @@ Calculate and break down:
       if (req.user.plan_type !== 'enterprise' && req.user.role !== 'admin') {
         const { query } = require('../config/database');
         await query('UPDATE users SET credits = credits - 3 WHERE id = $1', [req.user.id]);
+        await query(`INSERT INTO api_usage (user_id, endpoint, method, status_code, input_tokens, output_tokens) VALUES ($1, $2, $3, $4, $5, $6)`, [req.user.id, '/api/diagnostics/tco', 'POST', 200, response?.inputTokens || 100, response?.outputTokens || 200]);
       }
 
       res.json({
@@ -242,6 +245,7 @@ router.post('/reasoning',
       if (req.user.plan_type !== 'enterprise' && req.user.role !== 'admin') {
         const { query } = require('../config/database');
         await query('UPDATE users SET credits = credits - 3 WHERE id = $1', [req.user.id]);
+        await query(`INSERT INTO api_usage (user_id, endpoint, method, status_code, input_tokens, output_tokens) VALUES ($1, $2, $3, $4, $5, $6)`, [req.user.id, '/api/diagnostics/reasoning', 'POST', 200, aiResponse?.inputTokens || 100, aiResponse?.outputTokens || 200]);
       }
 
       res.json({

@@ -23,6 +23,32 @@ export default function BillingPage() {
   const [discountCode, setDiscountCode] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
 
+  async function loadData() {
+    try {
+      const [plansRes, invoicesRes, usageRes, meRes] = await Promise.all([
+        APIService.getPlans().catch(() => []),
+        APIService.getInvoices().catch(() => []),
+        APIService.getUsage().catch(() => ({ totals: { total_tokens: 0 }, daily: [] })),
+        APIService.get('/auth/me').catch(() => null)
+      ]);
+      setPlans(plansRes.plans || []);
+      setInvoices(invoicesRes.invoices || []);
+      
+      if (usageRes.success && usageRes.data) {
+        setUsage(usageRes.data);
+      }
+
+      if (meRes && meRes.success && meRes.user) {
+        setUser(meRes.user);
+        localStorage.setItem('lumi_user', JSON.stringify(meRes.user));
+      }
+    } catch (err) {
+      console.error('Failed to load billing data', err);
+    } finally {
+      setLoading(false);
+    }
+  }
+
   useEffect(() => {
     loadData();
     const queryParams = new URLSearchParams(location.search);
@@ -32,23 +58,6 @@ export default function BillingPage() {
       verifyTransaction(reference);
     }
   }, [location]);
-
-  async function loadData() {
-    try {
-      const [pData, iData, uData] = await Promise.all([
-        APIService.getPlans().catch(() => []),
-        APIService.getInvoices().catch(() => []),
-        APIService.getUsage().catch(() => ({ totals: { total_tokens: 0 }, daily: [] }))
-      ]);
-      setPlans(pData || []);
-      setInvoices(iData || []);
-      setUsage(uData || { totals: { total_tokens: 0 }, daily: [] });
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  }
 
   async function verifyTransaction(reference) {
     setVerifying(true);
@@ -157,7 +166,7 @@ export default function BillingPage() {
                   <div style={{ flex: 1, padding: 32, borderRight: '1px solid #EBEBEB' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
                       <div style={{ fontWeight: 600, color: '#1C2B3A' }}>Credits</div>
-                      <div style={{ fontSize: 24, fontWeight: 700, color: '#1C2B3A' }}>${parseFloat(user.credits || 0).toFixed(2)}</div>
+                      <div style={{ fontSize: 24, fontWeight: 700, color: '#1C2B3A' }}>{Math.floor(user.credits || 0)}</div>
                     </div>
                     <div style={{ color: '#888', fontSize: 13, marginBottom: 24 }}>Your total credit balance, including free credits granted to your account.</div>
                     <div style={{ display: 'flex', gap: 12 }}>

@@ -7,6 +7,7 @@ const LumiAIService    = require('../services/LumiAIService');
 const ConversationService = require('../services/ConversationService');
 const VehicleDataService  = require('../services/VehicleDataService');
 const logger = require('../config/logger');
+const { query } = require('../config/database');
 
 // ── POST /api/chat/message — Standard chat (non-streaming) ───────────────────
 router.post('/message',
@@ -88,6 +89,9 @@ router.post('/message',
           model:        aiResponse.model
         }
       });
+
+      // Log usage for analytics
+      await query(`INSERT INTO api_usage (user_id, endpoint, method, status_code, input_tokens, output_tokens) VALUES ($1, $2, $3, $4, $5, $6)`, [req.user.id, '/api/chat', 'POST', 200, aiResponse.inputTokens || 0, aiResponse.outputTokens || 0]);
 
       // Deduct credit
       if (req.user.plan_type !== 'enterprise' && req.user.role !== 'admin') {
@@ -200,9 +204,13 @@ router.post('/stream',
         content: fullResponse
       });
 
+      // Estimate tokens for streaming since Grok API doesn't return them in stream
+      const estimatedInput = Math.round((message.length || 100) / 4);
+      const estimatedOutput = Math.round(fullResponse.length / 4);
+      await query(`INSERT INTO api_usage (user_id, endpoint, method, status_code, input_tokens, output_tokens) VALUES ($1, $2, $3, $4, $5, $6)`, [req.user.id, '/api/chat/stream', 'POST', 200, estimatedInput, estimatedOutput]);
+
       // Deduct credit
       if (req.user.plan_type !== 'enterprise' && req.user.role !== 'admin') {
-        const { query } = require('../config/database');
         await query('UPDATE users SET credits = credits - 1 WHERE id = $1', [req.user.id]);
       }
 

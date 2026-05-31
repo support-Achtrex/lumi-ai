@@ -33,7 +33,7 @@ router.post(
         return res.status(400).json({ success: false, errors: errors.array() });
       }
 
-      let { amount, discountCode, plan_id } = req.body;
+      const { amount, discountCode, plan_id, callback_url, vin } = req.body;
       let finalAmount = amount;
 
       // Check for discount code
@@ -59,14 +59,16 @@ router.post(
         return res.status(500).json({ success: false, error: 'Paystack is not configured on the server.' });
       }
 
+      const callbackUrl = callback_url || `${process.env.FRONTEND_URL || 'http://localhost:3000'}/console/billing`;
+
       const response = await axios.post(
         'https://api.paystack.co/transaction/initialize',
         {
           email: req.user.email,
           amount: Math.round(finalAmount * 12 * 100), // Convert USD to Cedis (* 12), then to Pesewas (* 100)
           currency: 'GHS',
-          callback_url: `${process.env.FRONTEND_URL || 'http://localhost:3000'}/console/billing`,
-          metadata: { plan_id: plan_id || null }
+          callback_url: callbackUrl,
+          metadata: { plan_id: plan_id || null, vin: vin || null }
         },
         {
           headers: {
@@ -105,7 +107,7 @@ router.get('/paystack/verify', authenticate, async (req, res, next) => {
     const paidUsd = paidAmount / 100 / 12;
     const email = req.user.email;
 
-    if (status === 'success') {
+      if (status === 'success') {
       let creditsToAdd = 0;
       let newPlanType = 'free';
 
@@ -122,6 +124,14 @@ router.get('/paystack/verify', authenticate, async (req, res, next) => {
       } else {
         // Fallback or Vehicle History Report
         creditsToAdd = paidUsd;
+      }
+
+      // If a VIN was provided in metadata, this is a history report purchase
+      if (metadata && metadata.vin) {
+        await query(
+          'INSERT INTO unlocked_reports (user_id, vin) VALUES ($1, $2) ON CONFLICT DO NOTHING',
+          [req.user.id, metadata.vin]
+        );
       }
 
       // Update the user's credits and plan

@@ -59,7 +59,7 @@ class APIService {
 
   // ── Billing ──────────────────────────────────────────────────────────────
   static getPlans() { return this.get('/billing/plans').then(res => res.data); }
-  static initializePayment(amount, discountCode = '', plan_id = '') { return this.post('/billing/paystack/initialize', { amount, discountCode, plan_id }).then(res => res); }
+  static initializePayment(amount, discountCode = '', plan_id = '', callback_url = '', vin = '') { return this.post('/billing/paystack/initialize', { amount, discountCode, plan_id, callback_url, vin }).then(res => res); }
   static verifyPayment(reference) { return this.get(`/billing/paystack/verify?reference=${reference}`).then(res => res); }
   static getInvoices() { return this.get('/billing/invoices').then(res => res.data); }
 
@@ -180,6 +180,7 @@ class APIService {
   static async getVehiclePricing(vin, mileage, condition = 'good') {
     return (await this.get(`/vehicles/${vin}/pricing?mileage=${mileage}&condition=${condition}`)).data;
   }
+  static checkUnlockedReport(vin) { return this.get(`/vehicles/${vin}/unlocked`); }
   static async getVehicleHistory(vin)    { return (await this.get(`/vehicles/${vin}/history`)).data; }
   static async getVehicleRecalls(vin)    { return (await this.get(`/vehicles/${vin}/recalls`)).data; }
   static async getDepreciation(vin, mileage, years = 5) {
