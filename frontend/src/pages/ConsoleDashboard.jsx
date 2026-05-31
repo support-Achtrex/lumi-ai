@@ -86,7 +86,7 @@ export default function ConsoleDashboard() {
         <a href="#" style={{ color: '#555', textDecoration: 'none', fontSize: '14px', fontWeight: '500' }}>See all</a>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px', marginBottom: '40px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(1, 1fr)', gap: '20px', marginBottom: '40px' }}>
         {/* Credits Card */}
         <div style={{ background: '#FFF', border: '1px solid #EBEBEB', borderRadius: '16px', padding: '24px', display: 'flex', flexDirection: 'column' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '24px' }}>
@@ -97,24 +97,8 @@ export default function ConsoleDashboard() {
           </div>
           <div style={{ fontSize: '32px', fontWeight: '700', marginBottom: '16px' }}>{remaining}</div>
           <div style={{ display: 'flex', justifyContent: 'space-between', color: '#555', fontSize: '14px', marginTop: 'auto' }}>
-            <span>Tokens generated</span>
-            <span style={{ fontWeight: '600', color: '#000' }}>{cost}</span>
-          </div>
-        </div>
-
-        {/* Tokens Card */}
-        <div style={{ background: '#FFF', border: '1px solid #EBEBEB', borderRadius: '16px', padding: '24px', display: 'flex', flexDirection: 'column' }}>
-          <div style={{ color: '#555', fontSize: '14px', marginBottom: '12px' }}>Tokens</div>
-          <div style={{ fontSize: '24px', fontWeight: '700', marginBottom: '16px' }}>{totalTokens.toLocaleString()}</div>
-          <div style={{ marginTop: 'auto', display: 'flex', alignItems: 'flex-end', height: '40px', gap: '4px', borderBottom: '1px dashed #EBEBEB', paddingBottom: '4px' }}>
-          </div>
-        </div>
-
-        {/* Requests Card */}
-        <div style={{ background: '#FFF', border: '1px solid #EBEBEB', borderRadius: '16px', padding: '24px', display: 'flex', flexDirection: 'column' }}>
-          <div style={{ color: '#555', fontSize: '14px', marginBottom: '12px' }}>Requests</div>
-          <div style={{ fontSize: '24px', fontWeight: '700', marginBottom: '16px' }}>{requests.toLocaleString()}</div>
-          <div style={{ marginTop: 'auto', display: 'flex', alignItems: 'flex-end', height: '40px', gap: '4px', borderBottom: '1px dashed #EBEBEB', paddingBottom: '4px' }}>
+            <span>Total Account Activity</span>
+            <span style={{ fontWeight: '600', color: '#000' }}>{requests.toLocaleString()} requests</span>
           </div>
         </div>
       </div>

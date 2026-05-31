@@ -212,8 +212,8 @@ export default function BillingPage() {
                     )}
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <div style={{ fontSize: 13, color: '#888' }}>Total API Tokens</div>
-                    <div style={{ fontWeight: 600 }}>{parseInt(usage.totals?.total_tokens || 0).toLocaleString()}</div>
+                    <div style={{ fontSize: 13, color: '#888' }}>Total API Requests</div>
+                    <div style={{ fontWeight: 600 }}>{parseInt(usage.totals?.total_requests || 0).toLocaleString()}</div>
                   </div>
                 </div>
               </div>
