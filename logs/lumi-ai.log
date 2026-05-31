@@ -6479,3 +6479,39 @@
 2026-05-31 18:06:15 [http]: ::1 - - [31/May/2026:18:06:15 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 200 - "http://localhost:3000/chat" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
 2026-05-31 18:06:16 [http]: ::1 - - [31/May/2026:18:06:16 +0000] "GET /api/auth/me HTTP/1.1" 304 - "http://localhost:3000/chat" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
 2026-05-31 18:06:16 [http]: ::1 - - [31/May/2026:18:06:16 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/chat" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 18:06:42 [info]: PostgreSQL pool initialised
+2026-05-31 18:06:42 [info]: ✅ PostgreSQL connected
+2026-05-31 18:06:42 [info]: Redis connected
+2026-05-31 18:06:43 [info]: ✅ Redis connected
+2026-05-31 18:06:43 [info]: 🚀 LUMI AI server running on port 3001
+2026-05-31 18:06:43 [info]: 📡 Environment: development
+2026-05-31 18:06:43 [info]: 🌐 Frontend: http://localhost:3000
+2026-05-31 18:06:43 [info]: 🤖 Model: undefined
+2026-05-31 18:27:35 [warn]: Slow query detected (2652ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-05-31 18:27:35 [http]: ::1 - - [31/May/2026:18:27:35 +0000] "GET /api/auth/me HTTP/1.1" 200 262 "http://localhost:3000/chat" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 18:27:35 [warn]: Slow query detected (2908ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-05-31 18:27:36 [http]: ::1 - - [31/May/2026:18:27:36 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 200 - "http://localhost:3000/chat" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 18:27:37 [http]: ::1 - - [31/May/2026:18:27:37 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 200 - "http://localhost:3000/chat" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 18:27:38 [warn]: Grok stream failed (404 "The model grok-2-latest does not exist or your team dcf2db88-6d26-4c04-a850-a824215da840 does not have access to it. If you believe this is a mistake, please contact support and quote your team ID and the model name."). Falling back to Gemini.
+2026-05-31 18:27:38 [warn]: Slow query detected (2762ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-05-31 18:27:38 [http]: ::1 - - [31/May/2026:18:27:38 +0000] "GET /api/auth/me HTTP/1.1" 304 - "http://localhost:3000/chat" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 18:27:39 [http]: ::1 - - [31/May/2026:18:27:39 +0000] "POST /api/chat/stream HTTP/1.1" 200 - "http://localhost:3000/chat" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 18:31:06 [info]: PostgreSQL pool initialised
+2026-05-31 18:31:06 [info]: ✅ PostgreSQL connected
+2026-05-31 18:31:06 [info]: Redis connected
+2026-05-31 18:31:08 [info]: ✅ Redis connected
+2026-05-31 18:31:08 [info]: 🚀 LUMI AI server running on port 3001
+2026-05-31 18:31:08 [info]: 📡 Environment: development
+2026-05-31 18:31:08 [info]: 🌐 Frontend: http://localhost:3000
+2026-05-31 18:31:08 [info]: 🤖 Model: undefined
+2026-05-31 18:31:16 [info]: PostgreSQL pool initialised
+2026-05-31 18:31:16 [info]: ✅ PostgreSQL connected
+2026-05-31 18:31:17 [info]: Redis connected
+2026-05-31 18:31:19 [info]: ✅ Redis connected
+2026-05-31 18:31:19 [info]: 🚀 LUMI AI server running on port 3001
+2026-05-31 18:31:19 [info]: 📡 Environment: development
+2026-05-31 18:31:19 [info]: 🌐 Frontend: http://localhost:3000
+2026-05-31 18:31:19 [info]: 🤖 Model: undefined

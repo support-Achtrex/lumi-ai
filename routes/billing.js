@@ -5,8 +5,6 @@ const { body, validationResult } = require('express-validator');
 const { authenticate } = require('../middleware/auth');
 const { query } = require('../config/database');
 
-const PAYSTACK_SECRET_KEY = process.env.PAYSTACK_SECRET_KEY;
-
 // ── GET /api/billing/plans ─────────────────────────────────────────────────────
 router.get('/plans', async (req, res, next) => {
   try {
@@ -55,7 +53,8 @@ router.post(
         }
       }
 
-      if (!PAYSTACK_SECRET_KEY) {
+      const paystackKey = process.env.PAYSTACK_SECRET_KEY;
+      if (!paystackKey) {
         return res.status(500).json({ success: false, error: 'Paystack is not configured on the server.' });
       }
 
@@ -72,7 +71,7 @@ router.post(
         },
         {
           headers: {
-            Authorization: `Bearer ${PAYSTACK_SECRET_KEY}`,
+            Authorization: `Bearer ${paystackKey}`,
             'Content-Type': 'application/json'
           }
         }
@@ -94,11 +93,16 @@ router.get('/paystack/verify', authenticate, async (req, res, next) => {
       return res.status(400).json({ success: false, error: 'Missing reference' });
     }
 
+    const paystackKey = process.env.PAYSTACK_SECRET_KEY;
+    if (!paystackKey) {
+      return res.status(500).json({ success: false, error: 'Paystack is not configured on the server.' });
+    }
+
     const response = await axios.get(
       `https://api.paystack.co/transaction/verify/${reference}`,
       {
         headers: {
-          Authorization: `Bearer ${PAYSTACK_SECRET_KEY}`
+          Authorization: `Bearer ${paystackKey}`
         }
       }
     );
