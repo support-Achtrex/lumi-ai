@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import APIService from '../services/api';
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+
 
 export default function ConsoleDashboard() {
   const { user, refreshUser } = useAuth();
@@ -17,12 +19,16 @@ export default function ConsoleDashboard() {
     total_input_tokens: 0,
     total_output_tokens: 0
   });
+  const [chartData, setChartData] = useState([]);
 
   useEffect(() => {
     const fetchUsage = async () => {
       try {
         const { data } = await APIService.get('/analytics/usage');
         setUsage(data);
+        
+        const chartRes = await APIService.get('/analytics/chart');
+        setChartData(chartRes.data);
       } catch (e) {
         console.error('Failed to fetch usage', e);
       }
@@ -109,6 +115,31 @@ export default function ConsoleDashboard() {
           <div style={{ fontSize: '24px', fontWeight: '700', marginBottom: '16px' }}>{requests.toLocaleString()}</div>
           <div style={{ marginTop: 'auto', display: 'flex', alignItems: 'flex-end', height: '40px', gap: '4px', borderBottom: '1px dashed #EBEBEB', paddingBottom: '4px' }}>
           </div>
+        </div>
+      </div>
+      
+      {/* Chart Section */}
+      <div style={{ background: '#FFF', border: '1px solid #EBEBEB', borderRadius: '16px', padding: '24px', marginBottom: '40px' }}>
+        <h3 style={{ fontSize: '16px', fontWeight: '600', margin: '0 0 24px 0', color: '#333' }}>API Usage (30 days)</h3>
+        <div style={{ height: '300px', width: '100%' }}>
+          <ResponsiveContainer width="100%" height="100%">
+            <AreaChart data={chartData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+              <defs>
+                <linearGradient id="colorTokens" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="#000000" stopOpacity={0.1}/>
+                  <stop offset="95%" stopColor="#000000" stopOpacity={0}/>
+                </linearGradient>
+              </defs>
+              <XAxis dataKey="date" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#888' }} dy={10} />
+              <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#888' }} />
+              <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#F0F0F0" />
+              <Tooltip 
+                contentStyle={{ borderRadius: '8px', border: '1px solid #EBEBEB', boxShadow: '0 4px 12px rgba(0,0,0,0.05)' }}
+                labelStyle={{ fontWeight: '600', color: '#000', marginBottom: '4px' }}
+              />
+              <Area type="monotone" dataKey="tokens" stroke="#000000" strokeWidth={2} fillOpacity={1} fill="url(#colorTokens)" />
+            </AreaChart>
+          </ResponsiveContainer>
         </div>
       </div>
 

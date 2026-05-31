@@ -191,7 +191,7 @@ router.post('/:id/analyse',
       }
 
       // Dynamic Credit Check & Deduction
-      if (req.user.plan_type !== 'enterprise' && req.user.role !== 'admin') {
+      if (req.user.plan_type !== 'enterprise') {
         if (parseFloat(req.user.credits) < vehicleCount) {
           return res.status(402).json({
             success: false,

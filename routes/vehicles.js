@@ -49,7 +49,7 @@ router.get('/:vin/full',
       ]);
 
       // Deduct credit
-      if (req.user.plan_type !== 'enterprise' && req.user.role !== 'admin') {
+      if (req.user.plan_type !== 'enterprise') {
         const { query } = require('../config/database');
         await query('UPDATE users SET credits = credits - 1 WHERE id = $1', [req.user.id]);
       }

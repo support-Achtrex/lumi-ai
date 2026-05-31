@@ -94,7 +94,7 @@ router.post('/message',
       await query(`INSERT INTO api_usage (user_id, endpoint, method, status_code, input_tokens, output_tokens) VALUES ($1, $2, $3, $4, $5, $6)`, [req.user.id, '/api/chat', 'POST', 200, aiResponse.inputTokens || 0, aiResponse.outputTokens || 0]);
 
       // Deduct credit
-      if (req.user.plan_type !== 'enterprise' && req.user.role !== 'admin') {
+      if (req.user.plan_type !== 'enterprise') {
         const { query } = require('../config/database');
         await query('UPDATE users SET credits = credits - 1 WHERE id = $1', [req.user.id]);
       }
@@ -210,7 +210,7 @@ router.post('/stream',
       await query(`INSERT INTO api_usage (user_id, endpoint, method, status_code, input_tokens, output_tokens) VALUES ($1, $2, $3, $4, $5, $6)`, [req.user.id, '/api/chat/stream', 'POST', 200, estimatedInput, estimatedOutput]);
 
       // Deduct credit
-      if (req.user.plan_type !== 'enterprise' && req.user.role !== 'admin') {
+      if (req.user.plan_type !== 'enterprise') {
         await query('UPDATE users SET credits = credits - 1 WHERE id = $1', [req.user.id]);
       }
 

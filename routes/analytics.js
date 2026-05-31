@@ -8,21 +8,38 @@ router.get('/usage', authenticate, async (req, res, next) => {
   try {
     const stats = await query(
       `SELECT
-         COUNT(DISTINCT c.id)     as total_conversations,
-         COUNT(m.id)              as total_messages,
-         COUNT(CASE WHEN m.role = 'user' THEN 1 END) as user_messages,
-         COUNT(CASE WHEN m.role = 'assistant' THEN 1 END) as ai_responses,
-         SUM((m.metadata->>'inputTokens')::int)  as total_input_tokens,
-         SUM((m.metadata->>'outputTokens')::int) as total_output_tokens,
-         MIN(c.created_at) as first_conversation,
-         MAX(c.updated_at) as last_activity
-       FROM conversations c
-       LEFT JOIN messages m ON c.id = m.conversation_id
-       WHERE c.user_id = $1 AND c.deleted_at IS NULL`,
+         COUNT(*) as total_requests,
+         COUNT(*) as user_messages,
+         COALESCE(SUM(input_tokens), 0) as total_input_tokens,
+         COALESCE(SUM(output_tokens), 0) as total_output_tokens,
+         MIN(created_at) as first_activity,
+         MAX(created_at) as last_activity
+       FROM api_usage
+       WHERE user_id = $1`,
       [req.user.id]
     );
 
     res.json({ success: true, data: stats.rows[0] });
+  } catch (error) {
+    next(error);
+  }
+});
+
+// ── GET /api/analytics/chart — Usage over time ────────────────────────────────
+router.get('/chart', authenticate, async (req, res, next) => {
+  try {
+    const result = await query(
+      `SELECT 
+         TO_CHAR(DATE(created_at), 'Mon DD') as date,
+         COUNT(*)::int as requests,
+         COALESCE(SUM(input_tokens + output_tokens), 0)::int as tokens
+       FROM api_usage
+       WHERE user_id = $1 AND created_at > NOW() - INTERVAL '30 days'
+       GROUP BY DATE(created_at)
+       ORDER BY DATE(created_at) ASC`,
+      [req.user.id]
+    );
+    res.json({ success: true, data: result.rows });
   } catch (error) {
     next(error);
   }

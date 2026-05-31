@@ -6000,3 +6000,28 @@
 2026-05-31 04:36:43 [info]: 📡 Environment: development
 2026-05-31 04:36:43 [info]: 🌐 Frontend: http://localhost:3000
 2026-05-31 04:36:43 [info]: 🤖 Model: undefined
+2026-05-31 04:37:11 [info]: PostgreSQL pool initialised
+2026-05-31 04:37:11 [info]: ✅ PostgreSQL connected
+2026-05-31 04:37:11 [info]: Redis connected
+2026-05-31 04:37:12 [info]: ✅ Redis connected
+2026-05-31 04:37:12 [info]: 🚀 LUMI AI server running on port 3001
+2026-05-31 04:37:12 [info]: 📡 Environment: development
+2026-05-31 04:37:12 [info]: 🌐 Frontend: http://localhost:3000
+2026-05-31 04:37:12 [info]: 🤖 Model: undefined
+2026-05-31 04:45:33 [warn]: Slow query detected (2779ms): SELECT id, email, credits, plan_type, role FROM users
+2026-05-31 04:46:49 [info]: PostgreSQL pool initialised
+2026-05-31 04:46:49 [info]: ✅ PostgreSQL connected
+2026-05-31 04:46:49 [info]: Redis connected
+2026-05-31 04:46:51 [info]: ✅ Redis connected
+2026-05-31 04:46:51 [info]: 🚀 LUMI AI server running on port 3001
+2026-05-31 04:46:51 [info]: 📡 Environment: development
+2026-05-31 04:46:51 [info]: 🌐 Frontend: http://localhost:3000
+2026-05-31 04:46:51 [info]: 🤖 Model: undefined
+2026-05-31 04:47:31 [info]: PostgreSQL pool initialised
+2026-05-31 04:47:31 [info]: ✅ PostgreSQL connected
+2026-05-31 04:47:32 [info]: Redis connected
+2026-05-31 04:47:33 [info]: ✅ Redis connected
+2026-05-31 04:47:33 [info]: 🚀 LUMI AI server running on port 3001
+2026-05-31 04:47:33 [info]: 📡 Environment: development
+2026-05-31 04:47:33 [info]: 🌐 Frontend: http://localhost:3000
+2026-05-31 04:47:33 [info]: 🤖 Model: undefined
