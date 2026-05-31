@@ -5524,3 +5524,479 @@
 2026-05-31 03:00:39 [info]: 🌐 Frontend: http://localhost:3000
 2026-05-31 03:00:39 [info]: 🤖 Model: undefined
 2026-05-31 03:00:50 [http]: ::1 - - [31/May/2026:03:00:50 +0000] "POST /api/chat/stream HTTP/1.1" 200 - "http://localhost:3000/chat" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:01:10 [info]: PostgreSQL pool initialised
+2026-05-31 03:01:10 [info]: ✅ PostgreSQL connected
+2026-05-31 03:01:10 [info]: Redis connected
+2026-05-31 03:01:11 [info]: ✅ Redis connected
+2026-05-31 03:01:11 [info]: 🚀 LUMI AI server running on port 3001
+2026-05-31 03:01:11 [info]: 📡 Environment: development
+2026-05-31 03:01:11 [info]: 🌐 Frontend: http://localhost:3000
+2026-05-31 03:01:11 [info]: 🤖 Model: undefined
+2026-05-31 03:02:01 [warn]: Slow query detected (2256ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-05-31 03:02:06 [http]: ::1 - - [31/May/2026:03:02:06 +0000] "POST /api/chat/stream HTTP/1.1" 200 - "http://localhost:3000/chat" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:02:41 [warn]: Slow query detected (1986ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-05-31 03:02:45 [http]: ::1 - - [31/May/2026:03:02:45 +0000] "POST /api/chat/stream HTTP/1.1" 200 - "http://localhost:3000/chat" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:04:32 [info]: PostgreSQL pool initialised
+2026-05-31 03:04:32 [info]: ✅ PostgreSQL connected
+2026-05-31 03:04:32 [info]: Redis connected
+2026-05-31 03:04:33 [info]: ✅ Redis connected
+2026-05-31 03:04:33 [info]: 🚀 LUMI AI server running on port 3001
+2026-05-31 03:04:33 [info]: 📡 Environment: development
+2026-05-31 03:04:33 [info]: 🌐 Frontend: http://localhost:3000
+2026-05-31 03:04:33 [info]: 🤖 Model: undefined
+2026-05-31 03:06:20 [warn]: Slow query detected (2563ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-05-31 03:06:25 [http]: ::1 - - [31/May/2026:03:06:25 +0000] "POST /api/chat/stream HTTP/1.1" 200 - "http://localhost:3000/chat" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:06:54 [http]: ::1 - - [31/May/2026:03:06:54 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 200 299 "http://localhost:3000/chat" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:06:55 [http]: ::1 - - [31/May/2026:03:06:55 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/chat" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:06:59 [http]: ::1 - - [31/May/2026:03:06:59 +0000] "POST /api/chat/stream HTTP/1.1" 402 124 "http://localhost:3000/chat" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:07:01 [http]: ::1 - - [31/May/2026:03:07:01 +0000] "GET /api/billing/plans HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:07:02 [http]: ::1 - - [31/May/2026:03:07:02 +0000] "GET /api/billing/invoices HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:07:04 [http]: ::1 - - [31/May/2026:03:07:04 +0000] "GET /api/billing/invoices HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:07:04 [warn]: Slow query detected (2077ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-05-31 03:07:04 [warn]: Slow query detected (2238ms): SELECT * FROM plans WHERE is_active = true ORDER BY price_usd ASC
+2026-05-31 03:07:04 [http]: ::1 - - [31/May/2026:03:07:04 +0000] "GET /api/billing/plans HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:07:04 [http]: ::1 - - [31/May/2026:03:07:04 +0000] "GET /api/usage HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:07:06 [http]: ::1 - - [31/May/2026:03:07:06 +0000] "GET /api/usage HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:07:42 [warn]: Slow query detected (1943ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-05-31 03:07:43 [http]: ::1 - - [31/May/2026:03:07:43 +0000] "POST /api/billing/paystack/initialize HTTP/1.1" 200 150 "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:08:10 [http]: ::1 - - [31/May/2026:03:08:10 +0000] "GET /api/billing/plans HTTP/1.1" 304 - "http://localhost:3000/console/billing?trxref=q8i2o8yu3v&reference=q8i2o8yu3v" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:08:10 [http]: ::1 - - [31/May/2026:03:08:10 +0000] "GET /api/billing/invoices HTTP/1.1" 304 - "http://localhost:3000/console/billing?trxref=q8i2o8yu3v&reference=q8i2o8yu3v" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:08:11 [http]: ::1 - - [31/May/2026:03:08:11 +0000] "GET /api/billing/invoices HTTP/1.1" 304 - "http://localhost:3000/console/billing?trxref=q8i2o8yu3v&reference=q8i2o8yu3v" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:08:12 [warn]: Slow query detected (1600ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-05-31 03:08:12 [warn]: Slow query detected (1705ms): SELECT * FROM plans WHERE is_active = true ORDER BY price_usd ASC
+2026-05-31 03:08:12 [http]: ::1 - - [31/May/2026:03:08:12 +0000] "GET /api/billing/plans HTTP/1.1" 304 - "http://localhost:3000/console/billing?trxref=q8i2o8yu3v&reference=q8i2o8yu3v" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:08:12 [warn]: Slow query detected (2058ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-05-31 03:08:12 [http]: ::1 - - [31/May/2026:03:08:12 +0000] "GET /api/usage HTTP/1.1" 304 - "http://localhost:3000/console/billing?trxref=q8i2o8yu3v&reference=q8i2o8yu3v" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:08:13 [http]: ::1 - - [31/May/2026:03:08:13 +0000] "GET /api/billing/paystack/verify?reference=q8i2o8yu3v HTTP/1.1" 200 53 "http://localhost:3000/console/billing?trxref=q8i2o8yu3v&reference=q8i2o8yu3v" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:08:14 [http]: ::1 - - [31/May/2026:03:08:14 +0000] "GET /api/billing/plans HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:08:14 [http]: ::1 - - [31/May/2026:03:08:14 +0000] "GET /api/usage HTTP/1.1" 304 - "http://localhost:3000/console/billing?trxref=q8i2o8yu3v&reference=q8i2o8yu3v" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:08:14 [http]: ::1 - - [31/May/2026:03:08:14 +0000] "GET /api/billing/invoices HTTP/1.1" 200 191 "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:08:14 [http]: ::1 - - [31/May/2026:03:08:14 +0000] "GET /api/billing/plans HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:08:15 [http]: ::1 - - [31/May/2026:03:08:15 +0000] "GET /api/billing/paystack/verify?reference=q8i2o8yu3v HTTP/1.1" 304 - "http://localhost:3000/console/billing?trxref=q8i2o8yu3v&reference=q8i2o8yu3v" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:08:15 [http]: ::1 - - [31/May/2026:03:08:15 +0000] "GET /api/usage HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:08:15 [http]: ::1 - - [31/May/2026:03:08:15 +0000] "GET /api/billing/invoices HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:08:15 [http]: ::1 - - [31/May/2026:03:08:15 +0000] "GET /api/billing/plans HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:08:16 [http]: ::1 - - [31/May/2026:03:08:16 +0000] "GET /api/billing/plans HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:08:16 [http]: ::1 - - [31/May/2026:03:08:16 +0000] "GET /api/usage HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:08:16 [http]: ::1 - - [31/May/2026:03:08:16 +0000] "GET /api/billing/invoices HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:08:18 [http]: ::1 - - [31/May/2026:03:08:18 +0000] "GET /api/billing/invoices HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:08:18 [http]: ::1 - - [31/May/2026:03:08:18 +0000] "GET /api/usage HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:08:20 [http]: ::1 - - [31/May/2026:03:08:20 +0000] "GET /api/usage HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:09:16 [warn]: Slow query detected (1945ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-05-31 03:09:16 [http]: ::1 - - [31/May/2026:03:09:16 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/chat" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:09:18 [http]: ::1 - - [31/May/2026:03:09:18 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/chat" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:09:27 [http]: ::1 - - [31/May/2026:03:09:27 +0000] "POST /api/chat/stream HTTP/1.1" 200 - "http://localhost:3000/chat" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:09:51 [http]: ::1 - - [31/May/2026:03:09:51 +0000] "POST /api/chat/stream HTTP/1.1" 200 - "http://localhost:3000/chat" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:10:34 [warn]: Slow query detected (1652ms): SELECT * FROM plans WHERE is_active = true ORDER BY price_usd ASC
+2026-05-31 03:10:34 [http]: ::1 - - [31/May/2026:03:10:34 +0000] "GET /api/billing/plans HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:10:35 [http]: ::1 - - [31/May/2026:03:10:35 +0000] "GET /api/billing/plans HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:10:35 [warn]: Slow query detected (2041ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-05-31 03:10:35 [warn]: Slow query detected (2115ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-05-31 03:10:35 [http]: ::1 - - [31/May/2026:03:10:35 +0000] "GET /api/billing/invoices HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:10:36 [http]: ::1 - - [31/May/2026:03:10:36 +0000] "GET /api/usage HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:10:37 [http]: ::1 - - [31/May/2026:03:10:37 +0000] "GET /api/billing/invoices HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:10:37 [http]: ::1 - - [31/May/2026:03:10:37 +0000] "GET /api/usage HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:10:47 [http]: ::1 - - [31/May/2026:03:10:47 +0000] "GET /api/billing/plans HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:10:48 [http]: ::1 - - [31/May/2026:03:10:48 +0000] "GET /api/billing/plans HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:10:48 [http]: ::1 - - [31/May/2026:03:10:48 +0000] "GET /api/billing/invoices HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:10:48 [http]: ::1 - - [31/May/2026:03:10:48 +0000] "GET /api/usage HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:10:49 [http]: ::1 - - [31/May/2026:03:10:49 +0000] "GET /api/billing/invoices HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:10:50 [http]: ::1 - - [31/May/2026:03:10:50 +0000] "GET /api/usage HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:12:56 [warn]: Slow query detected (1607ms): SELECT * FROM plans WHERE is_active = true ORDER BY price_usd ASC
+2026-05-31 03:12:56 [http]: ::1 - - [31/May/2026:03:12:56 +0000] "GET /api/billing/plans HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:12:56 [warn]: Slow query detected (1604ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-05-31 03:12:56 [warn]: Slow query detected (1647ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-05-31 03:12:57 [http]: ::1 - - [31/May/2026:03:12:57 +0000] "GET /api/billing/invoices HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:12:57 [http]: ::1 - - [31/May/2026:03:12:57 +0000] "GET /api/usage HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:19:18 [warn]: Slow query detected (1895ms): SELECT * FROM plans WHERE is_active = true ORDER BY price_usd ASC
+2026-05-31 03:19:18 [http]: ::1 - - [31/May/2026:03:19:18 +0000] "GET /api/billing/plans HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:19:19 [http]: ::1 - - [31/May/2026:03:19:19 +0000] "GET /api/billing/plans HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:19:19 [warn]: Slow query detected (2064ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-05-31 03:19:19 [warn]: Slow query detected (2070ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-05-31 03:19:19 [http]: ::1 - - [31/May/2026:03:19:19 +0000] "GET /api/billing/invoices HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:19:19 [warn]: Slow query detected (2374ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-05-31 03:19:19 [http]: ::1 - - [31/May/2026:03:19:19 +0000] "GET /api/auth/me HTTP/1.1" 200 240 "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:19:19 [http]: ::1 - - [31/May/2026:03:19:19 +0000] "GET /api/usage HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:19:20 [http]: ::1 - - [31/May/2026:03:19:20 +0000] "GET /api/auth/me HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:19:20 [http]: ::1 - - [31/May/2026:03:19:20 +0000] "GET /api/billing/invoices HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:19:21 [http]: ::1 - - [31/May/2026:03:19:21 +0000] "GET /api/usage HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:19:50 [info]: PostgreSQL pool initialised
+2026-05-31 03:19:50 [info]: ✅ PostgreSQL connected
+2026-05-31 03:19:51 [info]: Redis connected
+2026-05-31 03:19:52 [info]: ✅ Redis connected
+2026-05-31 03:19:52 [info]: 🚀 LUMI AI server running on port 3001
+2026-05-31 03:19:52 [info]: 📡 Environment: development
+2026-05-31 03:19:52 [info]: 🌐 Frontend: http://localhost:3000
+2026-05-31 03:19:52 [info]: 🤖 Model: undefined
+2026-05-31 03:20:00 [info]: PostgreSQL pool initialised
+2026-05-31 03:20:00 [info]: ✅ PostgreSQL connected
+2026-05-31 03:20:00 [info]: Redis connected
+2026-05-31 03:20:01 [info]: ✅ Redis connected
+2026-05-31 03:20:01 [info]: 🚀 LUMI AI server running on port 3001
+2026-05-31 03:20:01 [info]: 📡 Environment: development
+2026-05-31 03:20:01 [info]: 🌐 Frontend: http://localhost:3000
+2026-05-31 03:20:01 [info]: 🤖 Model: undefined
+2026-05-31 03:23:25 [warn]: Slow query detected (2454ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-05-31 03:23:26 [http]: ::1 - - [31/May/2026:03:23:26 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 200 526 "http://localhost:3000/chat" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:23:28 [http]: ::1 - - [31/May/2026:03:23:28 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/chat" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:23:43 [http]: ::1 - - [31/May/2026:03:23:43 +0000] "POST /api/chat/stream HTTP/1.1" 200 - "http://localhost:3000/chat" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:23:57 [http]: ::1 - - [31/May/2026:03:23:57 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 200 753 "http://localhost:3000/chat" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:23:59 [http]: ::1 - - [31/May/2026:03:23:59 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/chat" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:24:11 [http]: ::1 - - [31/May/2026:03:24:11 +0000] "POST /api/chat/stream HTTP/1.1" 200 - "http://localhost:3000/chat" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:24:50 [warn]: Slow query detected (2149ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-05-31 03:24:51 [http]: ::1 - - [31/May/2026:03:24:51 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 200 978 "http://localhost:3000/diagnostics" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 03:24:59 [info]: PostgreSQL pool initialised
+2026-05-31 03:24:59 [info]: ✅ PostgreSQL connected
+2026-05-31 03:24:59 [info]: Redis connected
+2026-05-31 03:25:01 [info]: ✅ Redis connected
+2026-05-31 03:25:01 [info]: 🚀 LUMI AI server running on port 3001
+2026-05-31 03:25:01 [info]: 📡 Environment: development
+2026-05-31 03:25:01 [info]: 🌐 Frontend: http://localhost:3000
+2026-05-31 03:25:01 [info]: 🤖 Model: undefined
+2026-05-31 03:27:03 [info]: PostgreSQL pool initialised
+2026-05-31 03:27:03 [info]: ✅ PostgreSQL connected
+2026-05-31 03:27:03 [info]: Redis connected
+2026-05-31 03:27:04 [info]: ✅ Redis connected
+2026-05-31 03:27:04 [info]: 🚀 LUMI AI server running on port 3001
+2026-05-31 03:27:04 [info]: 📡 Environment: development
+2026-05-31 03:27:04 [info]: 🌐 Frontend: http://localhost:3000
+2026-05-31 03:27:04 [info]: 🤖 Model: undefined
+2026-05-31 03:27:59 [info]: PostgreSQL pool initialised
+2026-05-31 03:27:59 [info]: ✅ PostgreSQL connected
+2026-05-31 03:27:59 [info]: Redis connected
+2026-05-31 03:28:00 [info]: ✅ Redis connected
+2026-05-31 03:28:00 [info]: 🚀 LUMI AI server running on port 3001
+2026-05-31 03:28:00 [info]: 📡 Environment: development
+2026-05-31 03:28:00 [info]: 🌐 Frontend: http://localhost:3000
+2026-05-31 03:28:00 [info]: 🤖 Model: undefined
+2026-05-31 03:29:12 [warn]: Slow query detected (2235ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-05-31 03:29:20 [http]: ::1 - - [31/May/2026:03:29:20 +0000] "POST /api/diagnostics/reasoning HTTP/1.1" 200 - "http://localhost:3000/diagnostics" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 03:29:58 [warn]: Slow query detected (1957ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-05-31 03:29:58 [warn]: Slow query detected (1964ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-05-31 03:29:58 [http]: ::1 - - [31/May/2026:03:29:58 +0000] "GET /api/fleet HTTP/1.1" 200 26 "http://localhost:3000/fleet" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 03:29:59 [http]: ::1 - - [31/May/2026:03:29:59 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/fleet" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 03:29:59 [http]: ::1 - - [31/May/2026:03:29:59 +0000] "GET /api/fleet HTTP/1.1" 304 - "http://localhost:3000/fleet" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 03:30:00 [http]: ::1 - - [31/May/2026:03:30:00 +0000] "POST /api/fleet HTTP/1.1" 201 356 "http://localhost:3000/fleet" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 03:30:00 [http]: ::1 - - [31/May/2026:03:30:00 +0000] "POST /api/fleet HTTP/1.1" 201 356 "http://localhost:3000/fleet" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 03:30:01 [http]: ::1 - - [31/May/2026:03:30:01 +0000] "GET /api/fleet/28312ce6-8f6d-486e-a895-0a6b59018c5a/vehicles HTTP/1.1" 200 36 "http://localhost:3000/fleet" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 03:30:02 [http]: ::1 - - [31/May/2026:03:30:02 +0000] "GET /api/fleet/3c00f766-9898-4794-bb4b-c67c0c6a93c6/vehicles HTTP/1.1" 200 36 "http://localhost:3000/fleet" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 03:30:21 [http]: ::1 - - [31/May/2026:03:30:21 +0000] "POST /api/fleet/3c00f766-9898-4794-bb4b-c67c0c6a93c6/vehicles/ymmt HTTP/1.1" 200 90 "http://localhost:3000/fleet" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 03:30:22 [http]: ::1 - - [31/May/2026:03:30:22 +0000] "GET /api/fleet/3c00f766-9898-4794-bb4b-c67c0c6a93c6/vehicles HTTP/1.1" 200 484 "http://localhost:3000/fleet" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 03:30:38 [http]: ::1 - - [31/May/2026:03:30:38 +0000] "POST /api/fleet/3c00f766-9898-4794-bb4b-c67c0c6a93c6/analyse HTTP/1.1" 200 - "http://localhost:3000/fleet" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 03:31:22 [warn]: Slow query detected (2049ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-05-31 03:31:22 [http]: ::1 - - [31/May/2026:03:31:22 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/vin" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 03:31:57 [warn]: Slow query detected (1942ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-05-31 03:31:57 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-31 03:31:57 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-31 03:31:59 [http]: ::1 - - [31/May/2026:03:31:59 +0000] "GET /api/vehicles/5YJSA1H2XFF092780/full? HTTP/1.1" 200 - "http://localhost:3000/vin" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 03:32:14 [http]: ::1 - - [31/May/2026:03:32:14 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/history" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 03:32:41 [http]: ::1 - - [31/May/2026:03:32:41 +0000] "GET /api/vehicles/5YJSA1H2XFF092780/html-report HTTP/1.1" 200 - "http://localhost:3000/history" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 03:32:51 [http]: ::1 - - [31/May/2026:03:32:51 +0000] "GET /api/vehicles/5YJSA1H2XFF092780/html-report HTTP/1.1" 200 - "http://localhost:3000/history" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 03:32:57 [warn]: Slow query detected (1884ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-05-31 03:32:57 [warn]: Slow query detected (1895ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-05-31 03:32:58 [http]: ::1 - - [31/May/2026:03:32:58 +0000] "GET /api/fleet HTTP/1.1" 200 - "http://localhost:3000/fleet" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 03:32:58 [http]: ::1 - - [31/May/2026:03:32:58 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/fleet" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 03:32:59 [http]: ::1 - - [31/May/2026:03:32:59 +0000] "GET /api/fleet HTTP/1.1" 304 - "http://localhost:3000/fleet" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 03:32:59 [http]: ::1 - - [31/May/2026:03:32:59 +0000] "GET /api/fleet/3c00f766-9898-4794-bb4b-c67c0c6a93c6/vehicles HTTP/1.1" 304 - "http://localhost:3000/fleet" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 03:33:00 [http]: ::1 - - [31/May/2026:03:33:00 +0000] "GET /api/fleet/3c00f766-9898-4794-bb4b-c67c0c6a93c6/vehicles HTTP/1.1" 304 - "http://localhost:3000/fleet" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 03:33:05 [http]: ::1 - - [31/May/2026:03:33:05 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/vin" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 03:33:13 [debug]: VIN cache hit: 5YJSA1H2XFF092780
+2026-05-31 03:33:13 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-31 03:33:13 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-31 03:33:13 [http]: ::1 - - [31/May/2026:03:33:13 +0000] "GET /api/vehicles/5YJSA1H2XFF092780/full? HTTP/1.1" 304 - "http://localhost:3000/vin" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 03:33:18 [http]: ::1 - - [31/May/2026:03:33:18 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/history" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 03:33:34 [http]: ::1 - - [31/May/2026:03:33:34 +0000] "GET /api/vehicles/5YJSA1H2XFF092780/html-report HTTP/1.1" 200 - "http://localhost:3000/history" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 03:33:54 [http]: ::1 - - [31/May/2026:03:33:54 +0000] "GET /api/vehicles/5YJSA1H2XFF092780/html-report HTTP/1.1" 200 - "http://localhost:3000/history" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 03:37:35 [info]: PostgreSQL pool initialised
+2026-05-31 03:37:35 [info]: ✅ PostgreSQL connected
+2026-05-31 03:37:35 [info]: Redis connected
+2026-05-31 03:37:36 [info]: ✅ Redis connected
+2026-05-31 03:37:36 [info]: 🚀 LUMI AI server running on port 3001
+2026-05-31 03:37:36 [info]: 📡 Environment: development
+2026-05-31 03:37:36 [info]: 🌐 Frontend: http://localhost:3000
+2026-05-31 03:37:36 [info]: 🤖 Model: undefined
+2026-05-31 03:37:42 [info]: PostgreSQL pool initialised
+2026-05-31 03:37:42 [info]: ✅ PostgreSQL connected
+2026-05-31 03:37:42 [info]: Redis connected
+2026-05-31 03:37:43 [info]: ✅ Redis connected
+2026-05-31 03:37:43 [info]: 🚀 LUMI AI server running on port 3001
+2026-05-31 03:37:43 [info]: 📡 Environment: development
+2026-05-31 03:37:43 [info]: 🌐 Frontend: http://localhost:3000
+2026-05-31 03:37:43 [info]: 🤖 Model: undefined
+2026-05-31 03:38:53 [http]: ::1 - - [31/May/2026:03:38:53 +0000] "GET /api/vehicles/5YJSA1H2XFF092780/html-report HTTP/1.1" 200 - "http://localhost:3000/history" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 03:39:03 [http]: ::1 - - [31/May/2026:03:39:03 +0000] "GET /api/vehicles/5YJSA1H2XFF092780/html-report HTTP/1.1" 200 - "http://localhost:3000/history" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 03:40:54 [warn]: Slow query detected (2255ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-05-31 03:40:54 [http]: ::1 - - [31/May/2026:03:40:54 +0000] "POST /api/billing/paystack/initialize HTTP/1.1" 400 115 "http://localhost:3000/history" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 03:41:04 [http]: ::1 - - [31/May/2026:03:41:04 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/history" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 03:41:05 [http]: ::1 - - [31/May/2026:03:41:05 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/history" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 03:41:10 [http]: ::1 - - [31/May/2026:03:41:10 +0000] "GET /api/vehicles/5YJSA1H2XFF092780/html-report HTTP/1.1" 200 - "http://localhost:3000/history" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 03:41:16 [http]: ::1 - - [31/May/2026:03:41:16 +0000] "GET /api/vehicles/5YJSA1H2XFF092780/html-report HTTP/1.1" 200 - "http://localhost:3000/history" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 03:41:20 [http]: ::1 - - [31/May/2026:03:41:20 +0000] "POST /api/billing/paystack/initialize HTTP/1.1" 400 115 "http://localhost:3000/history" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 03:41:57 [warn]: Slow query detected (2077ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-05-31 03:41:58 [warn]: Slow query detected (2062ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-05-31 03:41:58 [http]: ::1 - - [31/May/2026:03:41:58 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/chat/9c74bbef-3821-4253-9440-b6a005a262a2" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:41:59 [http]: ::1 - - [31/May/2026:03:41:59 +0000] "GET /api/chat/conversations/9c74bbef-3821-4253-9440-b6a005a262a2 HTTP/1.1" 200 - "http://localhost:3000/chat/9c74bbef-3821-4253-9440-b6a005a262a2" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:42:00 [http]: ::1 - - [31/May/2026:03:42:00 +0000] "GET /api/chat/conversations/9c74bbef-3821-4253-9440-b6a005a262a2 HTTP/1.1" 304 - "http://localhost:3000/chat/9c74bbef-3821-4253-9440-b6a005a262a2" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:42:06 [http]: ::1 - - [31/May/2026:03:42:06 +0000] "GET /api/billing/plans HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:42:07 [http]: ::1 - - [31/May/2026:03:42:07 +0000] "GET /api/billing/invoices HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:42:08 [http]: ::1 - - [31/May/2026:03:42:08 +0000] "GET /api/usage HTTP/1.1" 200 153 "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:42:08 [http]: ::1 - - [31/May/2026:03:42:08 +0000] "GET /api/billing/invoices HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:42:09 [warn]: Slow query detected (1893ms): SELECT * FROM plans WHERE is_active = true ORDER BY price_usd ASC
+2026-05-31 03:42:09 [http]: ::1 - - [31/May/2026:03:42:09 +0000] "GET /api/billing/plans HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:42:09 [warn]: Slow query detected (1978ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-05-31 03:42:09 [http]: ::1 - - [31/May/2026:03:42:09 +0000] "GET /api/auth/me HTTP/1.1" 200 240 "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:42:09 [http]: ::1 - - [31/May/2026:03:42:09 +0000] "GET /api/usage HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:42:09 [http]: ::1 - - [31/May/2026:03:42:09 +0000] "GET /api/auth/me HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:42:25 [http]: ::1 - - [31/May/2026:03:42:25 +0000] "GET /api/billing/plans HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:42:26 [http]: ::1 - - [31/May/2026:03:42:26 +0000] "GET /api/auth/me HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:42:26 [http]: ::1 - - [31/May/2026:03:42:26 +0000] "GET /api/billing/plans HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:42:26 [http]: ::1 - - [31/May/2026:03:42:26 +0000] "GET /api/billing/invoices HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:42:26 [http]: ::1 - - [31/May/2026:03:42:26 +0000] "GET /api/auth/me HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:42:26 [http]: ::1 - - [31/May/2026:03:42:26 +0000] "GET /api/usage HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:42:27 [http]: ::1 - - [31/May/2026:03:42:27 +0000] "GET /api/billing/invoices HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:42:28 [http]: ::1 - - [31/May/2026:03:42:28 +0000] "GET /api/usage HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:43:05 [warn]: Slow query detected (2424ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-05-31 03:43:05 [http]: ::1 - - [31/May/2026:03:43:05 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/chat" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:43:07 [http]: ::1 - - [31/May/2026:03:43:07 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/chat" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:43:08 [http]: ::1 - - [31/May/2026:03:43:08 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/vin" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:45:28 [warn]: Slow query detected (1786ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-05-31 03:45:28 [debug]: VIN cache hit: 5YJSA1H2XFF092780
+2026-05-31 03:45:28 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-31 03:45:28 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-31 03:45:28 [http]: ::1 - - [31/May/2026:03:45:28 +0000] "GET /api/vehicles/5YJSA1H2XFF092780/full? HTTP/1.1" 304 - "http://localhost:3000/vin" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:45:33 [http]: ::1 - - [31/May/2026:03:45:33 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/history" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:45:39 [http]: ::1 - - [31/May/2026:03:45:39 +0000] "GET /api/vehicles/5YJSA1H2XFF092780/html-report HTTP/1.1" 200 - "http://localhost:3000/history" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:45:45 [http]: ::1 - - [31/May/2026:03:45:45 +0000] "GET /api/vehicles/5YJSA1H2XFF092780/html-report HTTP/1.1" 200 - "http://localhost:3000/history" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:45:48 [http]: ::1 - - [31/May/2026:03:45:48 +0000] "POST /api/billing/paystack/initialize HTTP/1.1" 200 150 "http://localhost:3000/history" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:47:01 [warn]: Slow query detected (2300ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-05-31 03:47:02 [http]: ::1 - - [31/May/2026:03:47:02 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/chat" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:47:03 [http]: ::1 - - [31/May/2026:03:47:03 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/chat" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:47:11 [http]: ::1 - - [31/May/2026:03:47:11 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/vin" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:50:44 [info]: PostgreSQL pool initialised
+2026-05-31 03:50:44 [info]: ✅ PostgreSQL connected
+2026-05-31 03:50:45 [info]: Redis connected
+2026-05-31 03:50:46 [info]: ✅ Redis connected
+2026-05-31 03:50:46 [info]: 🚀 LUMI AI server running on port 3001
+2026-05-31 03:50:46 [info]: 📡 Environment: development
+2026-05-31 03:50:46 [info]: 🌐 Frontend: http://localhost:3000
+2026-05-31 03:50:46 [info]: 🤖 Model: undefined
+2026-05-31 03:51:14 [info]: PostgreSQL pool initialised
+2026-05-31 03:51:14 [info]: ✅ PostgreSQL connected
+2026-05-31 03:51:14 [info]: Redis connected
+2026-05-31 03:51:15 [info]: ✅ Redis connected
+2026-05-31 03:51:15 [info]: 🚀 LUMI AI server running on port 3001
+2026-05-31 03:51:15 [info]: 📡 Environment: development
+2026-05-31 03:51:15 [info]: 🌐 Frontend: http://localhost:3000
+2026-05-31 03:51:15 [info]: 🤖 Model: undefined
+2026-05-31 03:51:23 [info]: PostgreSQL pool initialised
+2026-05-31 03:51:23 [info]: ✅ PostgreSQL connected
+2026-05-31 03:51:24 [info]: Redis connected
+2026-05-31 03:51:24 [info]: ✅ Redis connected
+2026-05-31 03:51:24 [info]: 🚀 LUMI AI server running on port 3001
+2026-05-31 03:51:24 [info]: 📡 Environment: development
+2026-05-31 03:51:24 [info]: 🌐 Frontend: http://localhost:3000
+2026-05-31 03:51:24 [info]: 🤖 Model: undefined
+2026-05-31 03:51:34 [info]: PostgreSQL pool initialised
+2026-05-31 03:51:34 [info]: ✅ PostgreSQL connected
+2026-05-31 03:51:34 [info]: Redis connected
+2026-05-31 03:51:35 [info]: ✅ Redis connected
+2026-05-31 03:51:35 [info]: 🚀 LUMI AI server running on port 3001
+2026-05-31 03:51:35 [info]: 📡 Environment: development
+2026-05-31 03:51:35 [info]: 🌐 Frontend: http://localhost:3000
+2026-05-31 03:51:35 [info]: 🤖 Model: undefined
+2026-05-31 03:51:51 [info]: PostgreSQL pool initialised
+2026-05-31 03:51:51 [info]: ✅ PostgreSQL connected
+2026-05-31 03:51:51 [info]: Redis connected
+2026-05-31 03:51:52 [info]: ✅ Redis connected
+2026-05-31 03:51:52 [info]: 🚀 LUMI AI server running on port 3001
+2026-05-31 03:51:52 [info]: 📡 Environment: development
+2026-05-31 03:51:52 [info]: 🌐 Frontend: http://localhost:3000
+2026-05-31 03:51:52 [info]: 🤖 Model: undefined
+2026-05-31 03:52:09 [http]: ::1 - - [31/May/2026:03:52:09 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/chat" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:52:11 [http]: ::1 - - [31/May/2026:03:52:11 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/chat" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:52:25 [http]: ::1 - - [31/May/2026:03:52:25 +0000] "GET /api/billing/plans HTTP/1.1" 200 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:52:26 [http]: ::1 - - [31/May/2026:03:52:26 +0000] "GET /api/usage HTTP/1.1" 200 153 "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:52:27 [warn]: Slow query detected (1802ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-05-31 03:52:27 [warn]: Slow query detected (1660ms): SELECT * FROM plans WHERE is_active = true ORDER BY price_usd ASC
+2026-05-31 03:52:27 [http]: ::1 - - [31/May/2026:03:52:27 +0000] "GET /api/billing/plans HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:52:27 [http]: ::1 - - [31/May/2026:03:52:27 +0000] "GET /api/billing/invoices HTTP/1.1" 200 191 "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:52:27 [warn]: Slow query detected (1754ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-05-31 03:52:27 [http]: ::1 - - [31/May/2026:03:52:27 +0000] "GET /api/auth/me HTTP/1.1" 200 240 "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:52:28 [http]: ::1 - - [31/May/2026:03:52:28 +0000] "GET /api/usage HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:52:28 [http]: ::1 - - [31/May/2026:03:52:28 +0000] "GET /api/auth/me HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:52:28 [http]: ::1 - - [31/May/2026:03:52:28 +0000] "GET /api/billing/invoices HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 03:55:35 [info]: PostgreSQL pool initialised
+2026-05-31 03:55:35 [info]: ✅ PostgreSQL connected
+2026-05-31 03:55:35 [info]: Redis connected
+2026-05-31 03:55:36 [info]: ✅ Redis connected
+2026-05-31 03:55:36 [info]: 🚀 LUMI AI server running on port 3001
+2026-05-31 03:55:36 [info]: 📡 Environment: development
+2026-05-31 03:55:36 [info]: 🌐 Frontend: http://localhost:3000
+2026-05-31 03:55:36 [info]: 🤖 Model: undefined
+2026-05-31 03:56:04 [info]: PostgreSQL pool initialised
+2026-05-31 03:56:04 [info]: ✅ PostgreSQL connected
+2026-05-31 03:56:04 [info]: Redis connected
+2026-05-31 03:56:05 [info]: ✅ Redis connected
+2026-05-31 03:56:05 [info]: 🚀 LUMI AI server running on port 3001
+2026-05-31 03:56:05 [info]: 📡 Environment: development
+2026-05-31 03:56:05 [info]: 🌐 Frontend: http://localhost:3000
+2026-05-31 03:56:05 [info]: 🤖 Model: undefined
+2026-05-31 04:08:30 [info]: PostgreSQL pool initialised
+2026-05-31 04:08:30 [info]: ✅ PostgreSQL connected
+2026-05-31 04:08:30 [info]: Redis connected
+2026-05-31 04:08:31 [info]: ✅ Redis connected
+2026-05-31 04:08:31 [info]: 🚀 LUMI AI server running on port 3001
+2026-05-31 04:08:31 [info]: 📡 Environment: development
+2026-05-31 04:08:31 [info]: 🌐 Frontend: http://localhost:3000
+2026-05-31 04:08:31 [info]: 🤖 Model: undefined
+2026-05-31 04:11:43 [info]: PostgreSQL pool initialised
+2026-05-31 04:11:43 [info]: ✅ PostgreSQL connected
+2026-05-31 04:11:43 [info]: Redis connected
+2026-05-31 04:11:44 [info]: ✅ Redis connected
+2026-05-31 04:11:44 [info]: 🚀 LUMI AI server running on port 3001
+2026-05-31 04:11:44 [info]: 📡 Environment: development
+2026-05-31 04:11:44 [info]: 🌐 Frontend: http://localhost:3000
+2026-05-31 04:11:44 [info]: 🤖 Model: undefined
+2026-05-31 04:14:31 [warn]: Slow query detected (2124ms): SELECT * FROM plans WHERE is_active = true ORDER BY price_usd ASC
+2026-05-31 04:14:31 [warn]: Slow query detected (1846ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-05-31 04:14:31 [http]: ::1 - - [31/May/2026:04:14:31 +0000] "GET /api/billing/plans HTTP/1.1" 200 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 04:14:31 [http]: ::1 - - [31/May/2026:04:14:31 +0000] "GET /api/billing/invoices HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 04:14:32 [warn]: Slow query detected (2147ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-05-31 04:14:32 [warn]: Slow query detected (2211ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-05-31 04:14:32 [http]: ::1 - - [31/May/2026:04:14:32 +0000] "GET /api/auth/me HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 04:14:32 [http]: ::1 - - [31/May/2026:04:14:32 +0000] "GET /api/usage HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 04:14:58 [http]: ::1 - - [31/May/2026:04:14:58 +0000] "GET /api/billing/plans HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 04:14:59 [http]: ::1 - - [31/May/2026:04:14:59 +0000] "GET /api/billing/invoices HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 04:14:59 [http]: ::1 - - [31/May/2026:04:14:59 +0000] "GET /api/auth/me HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 04:14:59 [http]: ::1 - - [31/May/2026:04:14:59 +0000] "GET /api/billing/plans HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 04:15:00 [http]: ::1 - - [31/May/2026:04:15:00 +0000] "GET /api/usage HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 04:15:00 [http]: ::1 - - [31/May/2026:04:15:00 +0000] "GET /api/auth/me HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 04:15:00 [http]: ::1 - - [31/May/2026:04:15:00 +0000] "GET /api/billing/invoices HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 04:15:01 [http]: ::1 - - [31/May/2026:04:15:01 +0000] "GET /api/auth/me HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 04:15:01 [http]: ::1 - - [31/May/2026:04:15:01 +0000] "GET /api/usage HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 04:17:04 [info]: PostgreSQL pool initialised
+2026-05-31 04:17:04 [info]: ✅ PostgreSQL connected
+2026-05-31 04:17:05 [info]: Redis connected
+2026-05-31 04:17:06 [info]: ✅ Redis connected
+2026-05-31 04:17:06 [info]: 🚀 LUMI AI server running on port 3001
+2026-05-31 04:17:06 [info]: 📡 Environment: development
+2026-05-31 04:17:06 [info]: 🌐 Frontend: http://localhost:3000
+2026-05-31 04:17:06 [info]: 🤖 Model: undefined
+2026-05-31 04:17:51 [info]: PostgreSQL pool initialised
+2026-05-31 04:17:51 [info]: ✅ PostgreSQL connected
+2026-05-31 04:17:52 [info]: Redis connected
+2026-05-31 04:17:53 [info]: ✅ Redis connected
+2026-05-31 04:17:53 [info]: 🚀 LUMI AI server running on port 3001
+2026-05-31 04:17:53 [info]: 📡 Environment: development
+2026-05-31 04:17:53 [info]: 🌐 Frontend: http://localhost:3000
+2026-05-31 04:17:53 [info]: 🤖 Model: undefined
+2026-05-31 04:18:08 [warn]: Slow query detected (2089ms): SELECT id, title, price_usd, is_active FROM plans
+2026-05-31 04:18:33 [warn]: Slow query detected (2404ms): DELETE FROM plans
+2026-05-31 04:20:36 [warn]: Slow query detected (1907ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-05-31 04:20:36 [http]: ::1 - - [31/May/2026:04:20:36 +0000] "GET /api/auth/me HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 04:20:36 [warn]: Slow query detected (2238ms): SELECT * FROM plans WHERE is_active = true ORDER BY price_usd ASC
+2026-05-31 04:20:36 [http]: ::1 - - [31/May/2026:04:20:36 +0000] "GET /api/billing/plans HTTP/1.1" 200 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 04:20:36 [warn]: Slow query detected (1957ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-05-31 04:20:36 [warn]: Slow query detected (2261ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-05-31 04:20:37 [http]: ::1 - - [31/May/2026:04:20:37 +0000] "GET /api/billing/plans HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 04:20:37 [http]: ::1 - - [31/May/2026:04:20:37 +0000] "GET /api/auth/me HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 04:20:37 [http]: ::1 - - [31/May/2026:04:20:37 +0000] "GET /api/billing/invoices HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 04:20:37 [http]: ::1 - - [31/May/2026:04:20:37 +0000] "GET /api/usage HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 04:20:38 [http]: ::1 - - [31/May/2026:04:20:38 +0000] "GET /api/auth/me HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 04:20:38 [http]: ::1 - - [31/May/2026:04:20:38 +0000] "GET /api/billing/invoices HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 04:20:39 [http]: ::1 - - [31/May/2026:04:20:39 +0000] "GET /api/usage HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 04:20:39 [http]: ::1 - - [31/May/2026:04:20:39 +0000] "GET /api/auth/me HTTP/1.1" 304 - "http://localhost:3000/console/billing" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 04:21:05 [http]: ::1 - - [31/May/2026:04:21:05 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/chat" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 04:21:07 [http]: ::1 - - [31/May/2026:04:21:07 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/chat" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 04:21:09 [http]: ::1 - - [31/May/2026:04:21:09 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/vin" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 04:21:14 [http]: ::1 - - [31/May/2026:04:21:14 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/chat" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 04:21:34 [http]: ::1 - - [31/May/2026:04:21:34 +0000] "POST /api/chat/stream HTTP/1.1" 200 - "http://localhost:3000/chat" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 04:23:10 [warn]: Slow query detected (2281ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-05-31 04:23:10 [http]: ::1 - - [31/May/2026:04:23:10 +0000] "GET /api/auth/me HTTP/1.1" 200 240 "http://localhost:3000/chat" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 04:23:11 [http]: ::1 - - [31/May/2026:04:23:11 +0000] "GET /api/auth/me HTTP/1.1" 304 - "http://localhost:3000/chat" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 04:23:11 [warn]: Slow query detected (2085ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-05-31 04:23:12 [http]: ::1 - - [31/May/2026:04:23:12 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 200 - "http://localhost:3000/chat" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 04:23:14 [http]: ::1 - - [31/May/2026:04:23:14 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/chat" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 04:23:20 [info]: PostgreSQL pool initialised
+2026-05-31 04:23:20 [info]: ✅ PostgreSQL connected
+2026-05-31 04:23:20 [info]: Redis connected
+2026-05-31 04:23:21 [info]: ✅ Redis connected
+2026-05-31 04:23:21 [info]: 🚀 LUMI AI server running on port 3001
+2026-05-31 04:23:21 [info]: 📡 Environment: development
+2026-05-31 04:23:21 [info]: 🌐 Frontend: http://localhost:3000
+2026-05-31 04:23:21 [info]: 🤖 Model: undefined
+2026-05-31 04:24:14 [info]: PostgreSQL pool initialised
+2026-05-31 04:24:14 [info]: ✅ PostgreSQL connected
+2026-05-31 04:24:14 [info]: Redis connected
+2026-05-31 04:24:15 [info]: ✅ Redis connected
+2026-05-31 04:24:15 [info]: 🚀 LUMI AI server running on port 3001
+2026-05-31 04:24:15 [info]: 📡 Environment: development
+2026-05-31 04:24:15 [info]: 🌐 Frontend: http://localhost:3000
+2026-05-31 04:24:15 [info]: 🤖 Model: undefined
+2026-05-31 04:35:45 [info]: PostgreSQL pool initialised
+2026-05-31 04:35:45 [info]: ✅ PostgreSQL connected
+2026-05-31 04:35:45 [info]: Redis connected
+2026-05-31 04:35:46 [info]: ✅ Redis connected
+2026-05-31 04:35:46 [info]: 🚀 LUMI AI server running on port 3001
+2026-05-31 04:35:46 [info]: 📡 Environment: development
+2026-05-31 04:35:46 [info]: 🌐 Frontend: http://localhost:3000
+2026-05-31 04:35:46 [info]: 🤖 Model: undefined
+2026-05-31 04:35:49 [http]: ::1 - - [31/May/2026:04:35:49 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/chat" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 04:35:50 [http]: ::1 - - [31/May/2026:04:35:50 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/chat" "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Mobile Safari/537.36"
+2026-05-31 04:36:28 [info]: PostgreSQL pool initialised
+2026-05-31 04:36:28 [info]: ✅ PostgreSQL connected
+2026-05-31 04:36:29 [info]: Redis connected
+2026-05-31 04:36:30 [info]: ✅ Redis connected
+2026-05-31 04:36:30 [info]: 🚀 LUMI AI server running on port 3001
+2026-05-31 04:36:30 [info]: 📡 Environment: development
+2026-05-31 04:36:30 [info]: 🌐 Frontend: http://localhost:3000
+2026-05-31 04:36:30 [info]: 🤖 Model: undefined
+2026-05-31 04:36:42 [info]: PostgreSQL pool initialised
+2026-05-31 04:36:42 [info]: ✅ PostgreSQL connected
+2026-05-31 04:36:42 [info]: Redis connected
+2026-05-31 04:36:43 [info]: ✅ Redis connected
+2026-05-31 04:36:43 [info]: 🚀 LUMI AI server running on port 3001
+2026-05-31 04:36:43 [info]: 📡 Environment: development
+2026-05-31 04:36:43 [info]: 🌐 Frontend: http://localhost:3000
+2026-05-31 04:36:43 [info]: 🤖 Model: undefined

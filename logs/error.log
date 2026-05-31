@@ -3143,3 +3143,9 @@
     at async VehicleDataService.batchDecodeVINs (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\VehicleDataService.js:189:24)
     at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\fleet.js:68:27
 2026-05-31 02:58:33 [error]: ❌ Failed to send welcome email to support@achtrex.com:
+2026-05-31 03:31:57 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-31 03:31:57 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-31 03:33:13 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-31 03:33:13 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-31 03:45:28 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-31 03:45:28 [error]: AutomotiveDataset API error: Invalid URL
