@@ -6610,3 +6610,44 @@
 2026-05-31 19:10:20 [info]: 📡 Environment: development
 2026-05-31 19:10:20 [info]: 🌐 Frontend: http://localhost:3000
 2026-05-31 19:10:20 [info]: 🤖 Model: undefined
+2026-05-31 19:17:57 [info]: PostgreSQL pool initialised
+2026-05-31 19:17:57 [info]: ✅ PostgreSQL connected
+2026-05-31 19:17:57 [info]: Redis connected
+2026-05-31 19:17:59 [info]: ✅ Redis connected
+2026-05-31 19:17:59 [info]: 🚀 LUMI AI server running on port 3001
+2026-05-31 19:17:59 [info]: 📡 Environment: development
+2026-05-31 19:17:59 [info]: 🌐 Frontend: http://localhost:3000
+2026-05-31 19:17:59 [info]: 🤖 Model: undefined
+2026-05-31 19:20:37 [warn]: Grok image analysis failed (400 "Model not found: grok-2-latest"). Falling back to Gemini.
+2026-05-31 19:20:40 [info]: PostgreSQL pool initialised
+2026-05-31 19:20:40 [info]: ✅ PostgreSQL connected
+2026-05-31 19:20:40 [info]: Redis connected
+2026-05-31 19:20:41 [info]: ✅ Redis connected
+2026-05-31 19:20:41 [info]: 🚀 LUMI AI server running on port 3001
+2026-05-31 19:20:41 [info]: 📡 Environment: development
+2026-05-31 19:20:41 [info]: 🌐 Frontend: http://localhost:3000
+2026-05-31 19:20:41 [info]: 🤖 Model: undefined
+2026-05-31 19:21:59 [info]: PostgreSQL pool initialised
+2026-05-31 19:21:59 [info]: ✅ PostgreSQL connected
+2026-05-31 19:22:00 [info]: Redis connected
+2026-05-31 19:22:00 [info]: ✅ Redis connected
+2026-05-31 19:22:00 [info]: 🚀 LUMI AI server running on port 3001
+2026-05-31 19:22:00 [info]: 📡 Environment: development
+2026-05-31 19:22:00 [info]: 🌐 Frontend: http://localhost:3000
+2026-05-31 19:22:00 [info]: 🤖 Model: undefined
+2026-05-31 19:22:11 [info]: PostgreSQL pool initialised
+2026-05-31 19:22:11 [info]: ✅ PostgreSQL connected
+2026-05-31 19:22:11 [info]: Redis connected
+2026-05-31 19:22:13 [info]: ✅ Redis connected
+2026-05-31 19:22:13 [info]: 🚀 LUMI AI server running on port 3001
+2026-05-31 19:22:13 [info]: 📡 Environment: development
+2026-05-31 19:22:13 [info]: 🌐 Frontend: http://localhost:3000
+2026-05-31 19:22:13 [info]: 🤖 Model: undefined
+2026-05-31 19:22:21 [info]: PostgreSQL pool initialised
+2026-05-31 19:22:21 [info]: ✅ PostgreSQL connected
+2026-05-31 19:22:21 [info]: Redis connected
+2026-05-31 19:22:22 [info]: ✅ Redis connected
+2026-05-31 19:22:22 [info]: 🚀 LUMI AI server running on port 3001
+2026-05-31 19:22:22 [info]: 📡 Environment: development
+2026-05-31 19:22:22 [info]: 🌐 Frontend: http://localhost:3000
+2026-05-31 19:22:22 [info]: 🤖 Model: undefined

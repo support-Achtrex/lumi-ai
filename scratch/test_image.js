@@ -1,0 +1,1 @@
+const LumiAIService = require('../services/LumiAIService'); require('dotenv').config(); (async () => { try { const base64 = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='; const res = await LumiAIService.analyzeImage(base64); console.log('RESULT:', res); } catch (e) { console.error('ERROR:', e); } })();

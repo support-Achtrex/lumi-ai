@@ -145,7 +145,7 @@ class LumiAIService {
       } catch (err) {
         logger.warn(`Grok failed (${err.message}). Falling back to Gemini.`);
         const model = getGeminiClient().getGenerativeModel({ 
-          model: process.env.GEMINI_MODEL || 'gemini-2.5-flash',
+          model: 'gemini-2.5-flash',
           systemInstruction: LUMI_SYSTEM_PROMPT
         });
         const contents = enrichedMessages.map(m => ({
@@ -159,7 +159,7 @@ class LumiAIService {
           content:      text,
           inputTokens:  0, // Gemini SDK doesn't always expose this easily
           outputTokens: 0,
-          model:        process.env.GEMINI_MODEL || 'gemini-2.5-flash',
+          model: 'gemini-2.5-flash',
           sessionId
         };
         await this.cacheInteraction(sessionId, messages, result);
@@ -187,7 +187,7 @@ class LumiAIService {
     } catch (err) {
       logger.warn(`Grok stream failed (${err.message}). Falling back to Gemini.`);
       const model = getGeminiClient().getGenerativeModel({ 
-        model: process.env.GEMINI_MODEL || 'gemini-2.5-flash',
+        model: 'gemini-2.5-flash',
         systemInstruction: LUMI_SYSTEM_PROMPT
       });
       const contents = enrichedMessages.map(m => ({
@@ -386,7 +386,7 @@ Return ONLY a valid JSON object and absolutely nothing else. Do not use markdown
       logger.warn(`Grok failed in generateRepairGuide (${error.message}). Falling back to Gemini.`);
       try {
         const model = getGeminiClient().getGenerativeModel({ 
-          model: process.env.GEMINI_MODEL || 'gemini-2.5-flash',
+          model: 'gemini-2.5-flash',
           systemInstruction: 'You are a strict JSON-only diagnostic reasoning engine. Return only the JSON object without formatting or markdown code blocks.'
         });
         const geminiRes = await model.generateContent(prompt);
@@ -481,7 +481,16 @@ Return JSON only with this exact structure:
       try {
         const mimeType = base64Image.substring(5, base64Image.indexOf(';'));
         const data = base64Image.substring(base64Image.indexOf('base64,') + 7);
-        const model = getGeminiClient().getGenerativeModel({ model: process.env.GEMINI_MODEL || 'gemini-2.5-flash' });
+        const { HarmCategory, HarmBlockThreshold } = require('@google/generative-ai');
+        const model = getGeminiClient().getGenerativeModel({ 
+          model: 'gemini-2.5-flash',
+          safetySettings: [
+            { category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT, threshold: HarmBlockThreshold.BLOCK_NONE },
+            { category: HarmCategory.HARM_CATEGORY_HARASSMENT, threshold: HarmBlockThreshold.BLOCK_NONE },
+            { category: HarmCategory.HARM_CATEGORY_HATE_SPEECH, threshold: HarmBlockThreshold.BLOCK_NONE },
+            { category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT, threshold: HarmBlockThreshold.BLOCK_NONE }
+          ]
+        });
         const result = await model.generateContent([
           'Analyze this image in high detail for a text-based AI system. Describe exactly what is shown. If it is a vehicle, identify the make, model, year range, color, and any visible damage. Be objective and extremely descriptive.',
           {
