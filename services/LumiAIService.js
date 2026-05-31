@@ -463,7 +463,7 @@ Return JSON only with this exact structure:
       const data = base64Image.substring(base64Image.indexOf('base64,') + 7);
       
       const response = await getOpenAIClient().chat.completions.create({
-        model: process.env.GROK_MODEL || 'grok-4.3',
+        model: process.env.GROK_MODEL || 'grok-2-latest',
         messages: [
           {
             role: 'user',
@@ -477,8 +477,25 @@ Return JSON only with this exact structure:
       
       return response.choices[0].message.content.trim();
     } catch (error) {
-      logger.error('Gemini image analysis error:', error);
-      return 'Image analysis failed.';
+      logger.warn(`Grok image analysis failed (${error.message}). Falling back to Gemini.`);
+      try {
+        const mimeType = base64Image.substring(5, base64Image.indexOf(';'));
+        const data = base64Image.substring(base64Image.indexOf('base64,') + 7);
+        const model = getGeminiClient().getGenerativeModel({ model: process.env.GEMINI_MODEL || 'gemini-2.5-flash' });
+        const result = await model.generateContent([
+          'Analyze this image in high detail for a text-based AI system. Describe exactly what is shown. If it is a vehicle, identify the make, model, year range, color, and any visible damage. Be objective and extremely descriptive.',
+          {
+            inlineData: {
+              data: data,
+              mimeType: mimeType
+            }
+          }
+        ]);
+        return result.response.text().trim();
+      } catch (geminiError) {
+        logger.error('Gemini image analysis error:', geminiError);
+        return 'Image analysis failed.';
+      }
     }
   }
 
