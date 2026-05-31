@@ -4,8 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import APIService from '../services/api';
 
 export default function ConsoleDashboard() {
-  const { user } = useAuth();
+  const { user, refreshUser } = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    refreshUser();
+  }, []);
   
   const [usage, setUsage] = useState({
     total_messages: 0,

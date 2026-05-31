@@ -11,8 +11,32 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     const u = APIService.getCurrentUser();
     if (u) setUser(u);
+    
+    // Fetch fresh user data in background
+    if (APIService.getToken()) {
+      APIService.get('/auth/me').then(res => {
+        if (res.success && res.user) {
+          setUser(res.user);
+          localStorage.setItem('lumi_user', JSON.stringify(res.user));
+        }
+      }).catch(console.error);
+    }
     setLoading(false);
   }, []);
+
+  async function refreshUser() {
+    if (APIService.getToken()) {
+      try {
+        const res = await APIService.get('/auth/me');
+        if (res.success && res.user) {
+          setUser(res.user);
+          localStorage.setItem('lumi_user', JSON.stringify(res.user));
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    }
+  }
 
   async function login(email, password) {
     const data = await APIService.login(email, password);
@@ -32,7 +56,7 @@ export function AuthProvider({ children }) {
   }
 
   return (
-    <AuthContext.Provider value={{ user, loading, login, register, logout, setUser }}>
+    <AuthContext.Provider value={{ user, loading, login, register, logout, setUser, refreshUser }}>
       {children}
     </AuthContext.Provider>
   );

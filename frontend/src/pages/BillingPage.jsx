@@ -31,8 +31,8 @@ export default function BillingPage() {
         APIService.getUsage().catch(() => ({ totals: { total_tokens: 0 }, daily: [] })),
         APIService.get('/auth/me').catch(() => null)
       ]);
-      setPlans(plansRes.plans || []);
-      setInvoices(invoicesRes.invoices || []);
+      setPlans(Array.isArray(plansRes) ? plansRes : plansRes?.data || plansRes?.plans || []);
+      setInvoices(Array.isArray(invoicesRes) ? invoicesRes : invoicesRes?.data || invoicesRes?.invoices || []);
       
       if (usageRes.success && usageRes.data) {
         setUsage(usageRes.data);
