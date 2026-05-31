@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import APIService from '../services/api';
 import { useAuth } from '../context/AuthContext';
+import { AreaChart, Area, XAxis, Tooltip, ResponsiveContainer } from 'recharts';
 
 export default function BillingPage() {
   const { user, setUser } = useAuth();
@@ -186,10 +187,29 @@ export default function BillingPage() {
                 <div style={{ padding: '20px 24px', fontWeight: 700, fontSize: 16, borderBottom: '1px solid #EBEBEB' }}>API usage</div>
                 <div style={{ padding: 32 }}>
                   <div style={{ textAlign: 'right', fontSize: 12, color: '#888', marginBottom: 16 }}>Accumulated usage ({currentMonthName})</div>
-                  <div style={{ height: 120, display: 'flex', alignItems: 'flex-end', gap: 4, marginBottom: 16, background: '#FAFAFA', padding: 12, borderRadius: 8 }}>
-                    {usage.daily.length === 0 ? <div style={{width:'100%', textAlign:'center', color:'#CCC', alignSelf:'center'}}>No usage yet</div> : usage.daily.map((d, i) => (
-                      <div key={i} title={`${d.day}: ${d.daily_tokens} tokens`} style={{ flex: 1, background: 'linear-gradient(to top, #FF7B00, #FFAE61)', height: `${Math.max((parseInt(d.daily_tokens) / maxTokens) * 100, 2)}%`, borderRadius: '4px 4px 0 0' }} />
-                    ))}
+                  <div style={{ height: 160, marginBottom: 16 }}>
+                    {usage.daily.length === 0 ? (
+                      <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#FAFAFA', borderRadius: 8, color: '#CCC' }}>
+                        No usage yet
+                      </div>
+                    ) : (
+                      <ResponsiveContainer width="100%" height="100%">
+                        <AreaChart data={usage.daily} margin={{ top: 10, right: 0, left: 0, bottom: 0 }}>
+                          <defs>
+                            <linearGradient id="colorDailyTokens" x1="0" y1="0" x2="0" y2="1">
+                              <stop offset="5%" stopColor="#1C2B3A" stopOpacity={0.1}/>
+                              <stop offset="95%" stopColor="#1C2B3A" stopOpacity={0}/>
+                            </linearGradient>
+                          </defs>
+                          <XAxis dataKey="day" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#888' }} dy={10} />
+                          <Tooltip 
+                            contentStyle={{ borderRadius: '8px', border: '1px solid #EBEBEB', boxShadow: '0 4px 12px rgba(0,0,0,0.05)' }}
+                            labelStyle={{ fontWeight: '600', color: '#000', marginBottom: '4px' }}
+                          />
+                          <Area type="monotone" dataKey="daily_tokens" stroke="#1C2B3A" strokeWidth={2} fillOpacity={1} fill="url(#colorDailyTokens)" />
+                        </AreaChart>
+                      </ResponsiveContainer>
+                    )}
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <div style={{ fontSize: 13, color: '#888' }}>Total API Tokens</div>

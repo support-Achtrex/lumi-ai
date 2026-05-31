@@ -3149,3 +3149,5 @@
 2026-05-31 03:33:13 [error]: AutomotiveDataset API error: Invalid URL
 2026-05-31 03:45:28 [error]: AutomotiveDataset API error: Invalid URL
 2026-05-31 03:45:28 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-31 16:33:58 [error]: Error: read ECONNRESET
+    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)
