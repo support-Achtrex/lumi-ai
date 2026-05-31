@@ -112,13 +112,13 @@ You are LUMI AI. You make automotive enterprises smarter.`;
 
 class LumiAIService {
 
-  // ── Main chat method (Grok for reasoning) ──────────────────────────────────
+  // ── Main chat method (Gemini Primary, Grok Fallback) ───────────────────────
   static async chat({ messages, sessionId, vehicleContext, enterpriseContext, stream = false, image = null }) {
     try {
       const enrichedMessages = await this.enrichMessages(messages, vehicleContext, image);
 
       const params = {
-        model:      process.env.GROK_MODEL || 'grok-4.3',
+        model:      process.env.GROK_MODEL || 'grok-2-latest',
         max_tokens: parseInt(process.env.MAX_TOKENS) || 4096,
         messages:   [
           { role: 'system', content: LUMI_SYSTEM_PROMPT },
@@ -130,35 +130,83 @@ class LumiAIService {
         return this.streamResponse(params, sessionId);
       }
 
-      const response = await getOpenAIClient().chat.completions.create(params);
-      
-      const result = {
-        content:      response.choices[0].message.content,
-        inputTokens:  response.usage.prompt_tokens,
-        outputTokens: response.usage.completion_tokens,
-        model:        response.model,
-        sessionId
-      };
-
-      await this.cacheInteraction(sessionId, messages, result);
-
-      return result;
-
+      try {
+        const model = getGeminiClient().getGenerativeModel({
+          model: process.env.GEMINI_MODEL || 'gemini-1.5-flash',
+          systemInstruction: LUMI_SYSTEM_PROMPT
+        });
+        const contents = enrichedMessages.map(m => ({
+          role: m.role === 'assistant' ? 'model' : 'user',
+          parts: [{ text: m.content }]
+        }));
+        const response = await model.generateContent({ contents });
+        const text = response.response.text();
+        
+        const result = {
+          content: text,
+          inputTokens: response.response.usageMetadata?.promptTokenCount || 0,
+          outputTokens: response.response.usageMetadata?.candidatesTokenCount || 0,
+          model: 'gemini',
+          sessionId
+        };
+        await this.cacheInteraction(sessionId, messages, result);
+        return result;
+      } catch (geminiError) {
+        logger.warn('Gemini chat failed, falling back to Grok: ' + geminiError.message);
+        const response = await getOpenAIClient().chat.completions.create(params);
+        const result = {
+          content:      response.choices[0].message.content,
+          inputTokens:  response.usage?.prompt_tokens || 0,
+          outputTokens: response.usage?.completion_tokens || 0,
+          model:        response.model,
+          sessionId
+        };
+        await this.cacheInteraction(sessionId, messages, result);
+        return result;
+      }
     } catch (error) {
       logger.error('LUMI AI chat error:', error);
       throw this.handleAPIError(error);
     }
   }
 
-  // ── Streaming response (Grok via OpenAI SDK) ──────────────────────────────
+  // ── Streaming response (Gemini Primary, Grok Fallback) ────────────────────
   static async* streamResponse(params, sessionId) {
-    const stream = await getOpenAIClient().chat.completions.create({ ...params, stream: true });
-    for await (const chunk of stream) {
-      if (chunk.choices[0]?.delta?.content) {
-        yield { 
-          type: 'content_block_delta', 
-          delta: { type: 'text_delta', text: chunk.choices[0].delta.content } 
-        };
+    try {
+      const model = getGeminiClient().getGenerativeModel({
+        model: process.env.GEMINI_MODEL || 'gemini-1.5-flash',
+        systemInstruction: params.messages.find(m => m.role === 'system')?.content || LUMI_SYSTEM_PROMPT
+      });
+      const contents = params.messages
+        .filter(m => m.role !== 'system')
+        .map(m => ({
+          role: m.role === 'assistant' ? 'model' : 'user',
+          parts: [{ text: m.content }]
+        }));
+        
+      const streamResult = await model.generateContentStream({ contents });
+      let hasTokens = false;
+      for await (const chunk of streamResult.stream) {
+        const text = chunk.text();
+        if (text) {
+          hasTokens = true;
+          yield { 
+            type: 'content_block_delta', 
+            delta: { type: 'text_delta', text } 
+          };
+        }
+      }
+      if (!hasTokens) throw new Error('Gemini returned an empty stream');
+    } catch (geminiError) {
+      logger.warn('Gemini stream failed, falling back to Grok: ' + geminiError.message);
+      const stream = await getOpenAIClient().chat.completions.create({ ...params, stream: true });
+      for await (const chunk of stream) {
+        if (chunk.choices[0]?.delta?.content) {
+          yield { 
+            type: 'content_block_delta', 
+            delta: { type: 'text_delta', text: chunk.choices[0].delta.content } 
+          };
+        }
       }
     }
   }

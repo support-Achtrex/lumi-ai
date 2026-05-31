@@ -6414,3 +6414,35 @@
 2026-05-31 17:52:21 [info]: 📡 Environment: development
 2026-05-31 17:52:21 [info]: 🌐 Frontend: http://localhost:3000
 2026-05-31 17:52:21 [info]: 🤖 Model: undefined
+2026-05-31 17:52:55 [info]: PostgreSQL pool initialised
+2026-05-31 17:52:55 [info]: ✅ PostgreSQL connected
+2026-05-31 17:52:56 [info]: Redis connected
+2026-05-31 17:52:56 [info]: ✅ Redis connected
+2026-05-31 17:52:57 [info]: 🚀 LUMI AI server running on port 3001
+2026-05-31 17:52:57 [info]: 📡 Environment: development
+2026-05-31 17:52:57 [info]: 🌐 Frontend: http://localhost:3000
+2026-05-31 17:52:57 [info]: 🤖 Model: undefined
+2026-05-31 18:03:33 [info]: PostgreSQL pool initialised
+2026-05-31 18:03:33 [info]: ✅ PostgreSQL connected
+2026-05-31 18:03:33 [info]: Redis connected
+2026-05-31 18:03:33 [info]: ✅ Redis connected
+2026-05-31 18:03:33 [info]: 🚀 LUMI AI server running on port 3001
+2026-05-31 18:03:33 [info]: 📡 Environment: development
+2026-05-31 18:03:33 [info]: 🌐 Frontend: http://localhost:3000
+2026-05-31 18:03:33 [info]: 🤖 Model: undefined
+2026-05-31 18:03:45 [info]: PostgreSQL pool initialised
+2026-05-31 18:03:45 [info]: ✅ PostgreSQL connected
+2026-05-31 18:03:45 [info]: Redis connected
+2026-05-31 18:03:46 [info]: ✅ Redis connected
+2026-05-31 18:03:46 [info]: 🚀 LUMI AI server running on port 3001
+2026-05-31 18:03:46 [info]: 📡 Environment: development
+2026-05-31 18:03:46 [info]: 🌐 Frontend: http://localhost:3000
+2026-05-31 18:03:46 [info]: 🤖 Model: undefined
+2026-05-31 18:03:55 [info]: PostgreSQL pool initialised
+2026-05-31 18:03:55 [info]: ✅ PostgreSQL connected
+2026-05-31 18:03:55 [info]: Redis connected
+2026-05-31 18:03:56 [info]: ✅ Redis connected
+2026-05-31 18:03:56 [info]: 🚀 LUMI AI server running on port 3001
+2026-05-31 18:03:56 [info]: 📡 Environment: development
+2026-05-31 18:03:56 [info]: 🌐 Frontend: http://localhost:3000
+2026-05-31 18:03:56 [info]: 🤖 Model: undefined

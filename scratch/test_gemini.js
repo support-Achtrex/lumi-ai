@@ -1,0 +1,1 @@
+const { OpenAI } = require('openai'); require('dotenv').config(); const openai = new OpenAI({ apiKey: process.env.GEMINI_API_KEY, baseURL: 'https://generativelanguage.googleapis.com/v1beta/openai/' }); openai.chat.completions.create({ model: process.env.GEMINI_MODEL, messages: [{role:'user',content:'hi'}]}).then(console.log).catch(console.error);
