@@ -108,47 +108,52 @@ router.get('/paystack/verify', authenticate, async (req, res, next) => {
     const email = req.user.email;
 
       if (status === 'success') {
-      let creditsToAdd = 0;
-      let newPlanType = 'free';
-
-      if (metadata && metadata.plan_id) {
-        // Dynamic Plan Fulfillment
-        const planRes = await query('SELECT * FROM plans WHERE id = $1', [metadata.plan_id]);
-        if (planRes.rows.length > 0) {
-          const plan = planRes.rows[0];
-          creditsToAdd = parseFloat(plan.credits);
-          newPlanType = plan.tab === 'enterprise' ? 'enterprise' : 'pro';
-        } else {
-          creditsToAdd = paidUsd; // Fallback
-        }
-      } else {
-        // Fallback or Vehicle History Report
-        creditsToAdd = paidUsd;
-      }
-
-      // If a VIN was provided in metadata, this is a history report purchase
-      if (metadata && metadata.vin) {
-        await query(
-          'INSERT INTO unlocked_reports (user_id, vin) VALUES ($1, $2) ON CONFLICT DO NOTHING',
-          [req.user.id, metadata.vin]
+        // Prevent double-crediting by inserting the invoice FIRST
+        // If ON CONFLICT DO NOTHING results in 0 rows affected, it means this reference was already processed!
+        const planName = metadata?.plan_id ? 'Pro/Enterprise Plan' : 'Single Purchase';
+        const invoiceInsert = await query(
+          `INSERT INTO invoices (user_id, amount, plan_name, reference, status) VALUES ($1, $2, $3, $4, 'paid') ON CONFLICT (reference) DO NOTHING RETURNING id`,
+          [req.user.id, paidUsd, planName, reference]
         );
+
+        if (invoiceInsert.rows.length === 0) {
+           return res.json({ success: true, message: 'Payment was already verified previously.' });
+        }
+
+        let creditsToAdd = 0;
+        let newPlanType = 'free';
+
+        if (metadata && metadata.plan_id) {
+          const planRes = await query('SELECT * FROM plans WHERE id = $1', [metadata.plan_id]);
+          if (planRes.rows.length > 0) {
+            const plan = planRes.rows[0];
+            creditsToAdd = parseFloat(plan.credits);
+            newPlanType = plan.tab === 'enterprise' ? 'enterprise' : 'pro';
+          } else {
+            creditsToAdd = paidUsd; // Fallback
+          }
+        } else {
+          creditsToAdd = paidUsd;
+        }
+
+        if (metadata && metadata.vin) {
+          await query(
+            'INSERT INTO unlocked_reports (user_id, vin) VALUES ($1, $2) ON CONFLICT DO NOTHING',
+            [req.user.id, metadata.vin]
+          );
+        }
+
+        await query(
+          `UPDATE users SET credits = credits + $1, plan_type = CASE WHEN $2 != 'free' THEN $2 ELSE plan_type END WHERE email = $3`,
+          [creditsToAdd, newPlanType, email]
+        );
+
+        // Update the invoice with the accurate plan name
+        const exactPlanName = newPlanType === 'free' ? 'Single Purchase' : newPlanType.charAt(0).toUpperCase() + newPlanType.slice(1) + ' Plan';
+        await query(`UPDATE invoices SET plan_name = $1 WHERE id = $2`, [exactPlanName, invoiceInsert.rows[0].id]);
+
+        return res.json({ success: true, creditsAdded: creditsToAdd, plan_type: newPlanType });
       }
-
-      // Update the user's credits and plan
-      await query(
-        `UPDATE users SET credits = credits + $1, plan_type = CASE WHEN $2 != 'free' THEN $2 ELSE plan_type END WHERE email = $3`,
-        [creditsToAdd, newPlanType, email]
-      );
-
-      // Create an invoice record
-      const planName = newPlanType === 'free' ? 'Single Purchase' : newPlanType.charAt(0).toUpperCase() + newPlanType.slice(1) + ' Plan';
-      await query(
-        `INSERT INTO invoices (user_id, amount, plan_name, reference, status) VALUES ($1, $2, $3, $4, 'paid') ON CONFLICT (reference) DO NOTHING`,
-        [req.user.id, paidUsd, planName, reference]
-      );
-
-      return res.json({ success: true, creditsAdded: creditsToAdd, plan_type: newPlanType });
-    }
 
     res.status(400).json({ success: false, error: `Payment status: ${status}` });
   } catch (error) {

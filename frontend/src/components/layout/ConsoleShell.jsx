@@ -3,6 +3,9 @@ import { useAuth } from '../../context/AuthContext';
 import { useState, useEffect } from 'react';
 
 const CONSOLE_NAV = [
+  { group: 'Analytics', items: [
+    { to: '/console/dashboard', icon: 'ti-chart-area-line', label: 'Dashboard' },
+  ]},
   { group: 'Account', items: [
     { to: '/console/profile', icon: 'ti-user', label: 'Profile Settings' },
   ]},

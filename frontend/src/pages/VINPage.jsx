@@ -8,6 +8,7 @@ export default function VINPage() {
   const [data,    setData]    = useState(null);
   const [loading, setLoading] = useState(false);
   const [error,   setError]   = useState('');
+  const [isUnlocked, setIsUnlocked] = useState(false);
   const navigate = useNavigate();
 
   async function decode(e) {
@@ -17,9 +18,15 @@ export default function VINPage() {
     try {
       const result = await APIService.getVehicleFull(vin.trim().toUpperCase(), null);
       setData(result);
+      
+      APIService.checkUnlockedReport(vin.trim().toUpperCase())
+        .then(res => setIsUnlocked(!!(res.success && res.unlocked)))
+        .catch(() => setIsUnlocked(false));
+
     } catch (err) {
       setError(err.message || 'VIN not found');
       setData(null);
+      setIsUnlocked(false);
     } finally {
       setLoading(false);
     }
@@ -138,7 +145,11 @@ export default function VINPage() {
                       className="btn-primary" 
                       style={{ background: 'linear-gradient(135deg, #1C2B3A, #3A506B)', border: 'none', boxShadow: '0 4px 12px rgba(28,43,58,0.2)' }}
                     >
-                      <i className="ti ti-shopping-cart" /> Purchase Full Report
+                      {isUnlocked ? (
+                        <><i className="ti ti-file-text" /> View Full Report</>
+                      ) : (
+                        <><i className="ti ti-shopping-cart" /> Purchase Full Report</>
+                      )}
                     </button>
                   </div>
                 </div>
