@@ -1,0 +1,1 @@
+const { OpenAI } = require('openai'); require('dotenv').config(); const openai = new OpenAI({ apiKey: process.env.GROK_API_KEY, baseURL: 'https://api.x.ai/v1' }); openai.chat.completions.create({ model: process.env.GROK_MODEL, messages: [{role:'user',content:'hi'}]}).then(console.log).catch(console.error);
