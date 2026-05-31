@@ -37,8 +37,9 @@ export default function ConsoleDashboard() {
   }, []);
 
   const totalTokens = (parseInt(usage.total_input_tokens) || 0) + (parseInt(usage.total_output_tokens) || 0);
-  const cost = (totalTokens * 0.000002).toFixed(2);
-  const remaining = (10.00 - cost).toFixed(2); // Assuming $10 free tier
+  // Use actual user credits instead of assumed $10 tier
+  const remaining = Math.floor(user?.credits || 0).toLocaleString();
+  const cost = (totalTokens).toLocaleString();
   const requests = parseInt(usage.user_messages) || 0;
 
   return (
@@ -94,10 +95,10 @@ export default function ConsoleDashboard() {
               <i className="ti ti-plus" style={{ fontSize: '12px' }}/> Add
             </button>
           </div>
-          <div style={{ fontSize: '32px', fontWeight: '700', marginBottom: '16px' }}>${remaining}</div>
+          <div style={{ fontSize: '32px', fontWeight: '700', marginBottom: '16px' }}>{remaining}</div>
           <div style={{ display: 'flex', justifyContent: 'space-between', color: '#555', fontSize: '14px', marginTop: 'auto' }}>
-            <span>Credits usage</span>
-            <span style={{ fontWeight: '600', color: '#000' }}>${cost}</span>
+            <span>Tokens generated</span>
+            <span style={{ fontWeight: '600', color: '#000' }}>{cost}</span>
           </div>
         </div>
 
