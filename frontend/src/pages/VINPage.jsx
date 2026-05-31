@@ -48,72 +48,111 @@ export default function VINPage() {
         {data && (
           <>
             <div className="card" style={{ marginBottom:14 }}>
-              <div className="card-header">
-                <div>
-                  <div style={{ fontSize:14, fontWeight:500, color:'#1C2B3A' }}>{specs.year} {specs.make} {specs.model} {specs.trim}</div>
-                  <div style={{ fontSize:11, color:'#90A4AE', fontFamily:'monospace' }}>{vin.toUpperCase()}</div>
+              <div style={{ display:'flex', gap:12, marginBottom:20, alignItems: 'center' }}>
+                <div style={{ width:48, height:48, background:'linear-gradient(135deg, #00C8A8 0%, #0F6E56 100%)', borderRadius:12, display:'flex', alignItems:'center', justifyContent:'center', color:'#fff', flexShrink:0, boxShadow:'0 4px 12px rgba(15,110,86,0.2)' }}>
+                  <i className="ti ti-car" style={{ fontSize:24 }} />
+                </div>
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontSize:18, fontWeight:600, color:'#1C2B3A', letterSpacing:'-0.3px' }}>{specs.year} {specs.make} {specs.model} {specs.trim}</div>
+                  <div style={{ fontSize:13, color:'#607D8B', marginTop:2 }}>VIN: <span style={{ fontFamily:'ui-monospace, monospace', color:'#1C2B3A', fontWeight:500, background:'#F5F8FC', padding:'2px 6px', borderRadius:4, border:'1px solid #EBF1F8' }}>{vin.toUpperCase()}</span></div>
                 </div>
                 <div style={{ display:'flex', gap:5 }}>
-                  <button style={{ width:28, height:28, padding:0, display:'flex', alignItems:'center', justifyContent:'center' }}
-                    onClick={() => navigate('/inspection', { state: { vin } })} aria-label="Start inspection">
-                    <i className="ti ti-clipboard-check" style={{ fontSize:14 }} aria-hidden="true" />
+                  <button style={{ width:32, height:32, padding:0, display:'flex', alignItems:'center', justifyContent:'center', background:'#F5F8FC', border:'1px solid #D0DCE8', borderRadius:'50%', color:'#607D8B' }}
+                    onClick={() => navigate('/inspection', { state: { vin, vehicleContext: { year: specs.year, make: specs.make, model: specs.model, trim: specs.trim, vin } } })} title="Start inspection">
+                    <i className="ti ti-clipboard-check" style={{ fontSize:16 }} aria-hidden="true" />
                   </button>
-                  <button style={{ width:28, height:28, padding:0, display:'flex', alignItems:'center', justifyContent:'center' }}
-                    onClick={() => navigate('/chat', { state: { vin } })} aria-label="Ask LUMI AI">
-                    <i className="ti ti-message-2" style={{ fontSize:14 }} aria-hidden="true" />
+                  <button style={{ width:32, height:32, padding:0, display:'flex', alignItems:'center', justifyContent:'center', background:'#F5F8FC', border:'1px solid #D0DCE8', borderRadius:'50%', color:'#607D8B' }}
+                    onClick={() => navigate('/chat', { state: { vin, vehicleContext: { year: specs.year, make: specs.make, model: specs.model, trim: specs.trim, vin } } })} title="Ask LUMI AI">
+                    <i className="ti ti-message-2" style={{ fontSize:16 }} aria-hidden="true" />
                   </button>
                 </div>
               </div>
-              <div className="grid3">
-                {[['Engine', specs.engine],['Transmission', specs.transmission],['Drive', specs.driveType],
-                  ['Fuel', specs.fuelType],['MPG', specs.cityMpg && `${specs.cityMpg} / ${specs.highwayMpg}`],['Body', specs.bodyStyle]]
-                  .filter(([,v]) => v).map(([l,v]) => (
-                  <div className="gc" key={l}><div className="label">{l}</div><div className="value">{v}</div></div>
-                ))}
+
+              <div style={{ marginBottom: 20 }}>
+                <div style={{ fontSize:14, fontWeight:600, color:'#1C2B3A', marginBottom:10, textTransform:'uppercase', letterSpacing:'0.5px' }}>Specifications</div>
+                <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(150px, 1fr))', gap:12 }}>
+                  {[
+                    ['Trim', specs.trim],
+                    ['Body Style', specs.body_class],
+                    ['Engine', specs.engine],
+                    ['Transmission', specs.transmission],
+                    ['Fuel Type', specs.fuel_type],
+                    ['Drive Type', specs.drive_type],
+                    ['Plant Country', specs.plant_country],
+                    ['Manufacturer', specs.manufacturer]
+                  ].filter(([,v]) => v && v !== 'Unknown' && v !== 'Not Applicable').map(([l,v]) => (
+                    <div key={l} style={{ background:'#fff', border:'1px solid #EBF1F8', padding:'14px', borderRadius:12, boxShadow:'0 2px 8px rgba(0,0,0,0.02)' }}>
+                      <div style={{ fontSize:11, color:'#90A4AE', marginBottom:4, fontWeight:600, textTransform:'uppercase', letterSpacing:'0.5px' }}>{l}</div>
+                      <div style={{ fontSize:14, color:'#1C2B3A', fontWeight:600, lineHeight:1.3 }}>{v}</div>
+                    </div>
+                  ))}
+                </div>
               </div>
+
               {(pricing.tradeIn || pricing.privateParty || pricing.retail) && (
-                <div className="grid3" style={{ borderTop:'0.5px solid #D0DCE8' }}>
-                  <div className="gc"><div className="label">Trade-in</div><div className="value">${pricing.tradeIn?.toLocaleString()}</div></div>
-                  <div className="gc"><div className="label">Private party</div><div className="value" style={{ color:'#27500A' }}>${pricing.privateParty?.toLocaleString()}</div></div>
-                  <div className="gc"><div className="label">Retail est.</div><div className="value">${pricing.retail?.toLocaleString()}</div></div>
+                <div style={{ marginBottom: 20 }}>
+                  <div style={{ fontSize:14, fontWeight:600, color:'#1C2B3A', marginBottom:10, textTransform:'uppercase', letterSpacing:'0.5px' }}>Market Value</div>
+                  <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(150px, 1fr))', gap:12 }}>
+                    <div style={{ background:'#fff', border:'1px solid #EBF1F8', padding:'14px', borderRadius:12, boxShadow:'0 2px 8px rgba(0,0,0,0.02)' }}>
+                      <div style={{ fontSize:11, color:'#90A4AE', marginBottom:4, fontWeight:600, textTransform:'uppercase', letterSpacing:'0.5px' }}>Trade-in</div>
+                      <div style={{ fontSize:18, color:'#1C2B3A', fontWeight:700, letterSpacing:'-0.5px' }}>${pricing.tradeIn?.toLocaleString()}</div>
+                    </div>
+                    <div style={{ background:'#EAF3DE', border:'1px solid #0F6E56', padding:'14px', borderRadius:12, boxShadow:'0 4px 12px rgba(15,110,86,0.1)' }}>
+                      <div style={{ fontSize:11, color:'#0F6E56', marginBottom:4, fontWeight:600, textTransform:'uppercase', letterSpacing:'0.5px' }}>Private Party</div>
+                      <div style={{ fontSize:18, color:'#085041', fontWeight:700, letterSpacing:'-0.5px' }}>${pricing.privateParty?.toLocaleString()}</div>
+                    </div>
+                    <div style={{ background:'#fff', border:'1px solid #EBF1F8', padding:'14px', borderRadius:12, boxShadow:'0 2px 8px rgba(0,0,0,0.02)' }}>
+                      <div style={{ fontSize:11, color:'#90A4AE', marginBottom:4, fontWeight:600, textTransform:'uppercase', letterSpacing:'0.5px' }}>Retail Est.</div>
+                      <div style={{ fontSize:18, color:'#1C2B3A', fontWeight:700, letterSpacing:'-0.5px' }}>${pricing.retail?.toLocaleString()}</div>
+                    </div>
+                  </div>
                 </div>
               )}
+
               {openRecalls.length > 0 && (
-                <div style={{ padding:'9px 14px', background:'#FCEBEB', borderTop:'0.5px solid #F09595', display:'flex', alignItems:'center', gap:7 }}>
-                  <i className="ti ti-alert-triangle" style={{ color:'#A32D2D', fontSize:15 }} aria-hidden="true" />
-                  <span style={{ fontSize:12, color:'#791F1F' }}>{openRecalls.length} open recall{openRecalls.length > 1 ? 's' : ''} — {openRecalls.map(r => r.component).join(' · ')}</span>
+                <div style={{ padding:'12px 16px', background:'#FFF5F5', border:'1px solid #FFE5E5', borderRadius:12, display:'flex', alignItems:'center', gap:10, marginBottom:20 }}>
+                  <div style={{ width:32, height:32, background:'#FFE5E5', borderRadius:8, display:'flex', alignItems:'center', justifyContent:'center', color:'#FF4D4D', flexShrink:0 }}>
+                    <i className="ti ti-alert-triangle" style={{ fontSize:16 }} aria-hidden="true" />
+                  </div>
+                  <span style={{ fontSize:13, color:'#D32F2F', fontWeight:500 }}>
+                    {openRecalls.length} open recall{openRecalls.length > 1 ? 's' : ''} — {openRecalls.map(r => r.component).join(' · ')}
+                  </span>
                 </div>
               )}
+
               {data.history && (
-                <div className="grid3" style={{ borderTop:'0.5px solid #D0DCE8' }}>
-                  <div className="gc">
-                    <div className="label">Accidents</div>
-                    <div className="value" style={{ color: data.history.accidents > 0 ? '#E53935' : '#27500A' }}>
-                      {data.history.accidents > 0 ? `${data.history.accidents} Reported` : '0 Reported'}
+                <div style={{ marginBottom: 20 }}>
+                  <div style={{ fontSize:14, fontWeight:600, color:'#1C2B3A', marginBottom:10, textTransform:'uppercase', letterSpacing:'0.5px' }}>Vehicle History</div>
+                  <div style={{ background: 'linear-gradient(135deg, #ffffff, #F5F8FC)', border: '1px solid #D0DCE8', borderRadius: 12, padding: 20, display: 'flex', alignItems: 'center', justifyContent: 'space-between', boxShadow: '0 4px 12px rgba(0,0,0,0.03)' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+                      <div style={{ width: 48, height: 48, borderRadius: 12, background: 'rgba(239, 68, 68, 0.1)', color: '#EF4444', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <i className="ti ti-alert-triangle" style={{ fontSize: 24 }} />
+                      </div>
+                      <div>
+                        <h3 style={{ fontSize: 16, fontWeight: 700, color: '#1C2B3A', margin: '0 0 4px 0' }}>Multiple Records Found</h3>
+                        <div style={{ fontSize: 13, color: '#607D8B' }}>14 service records, ownership history, and potential title events found for this VIN.</div>
+                      </div>
                     </div>
-                  </div>
-                  <div className="gc">
-                    <div className="label">Owners</div>
-                    <div className="value">{data.history.owners || 1}</div>
-                  </div>
-                  <div className="gc">
-                    <div className="label">Title Status</div>
-                    <div className="value" style={{ color: data.history.title_status === 'Clean' ? '#27500A' : '#E53935' }}>
-                      {data.history.title_status || 'Clean'}
-                    </div>
+                    <button 
+                      onClick={() => navigate('/history', { state:{ vin, vehicleContext: { year: specs.year, make: specs.make, model: specs.model, trim: specs.trim, vin } } })}
+                      className="btn-primary" 
+                      style={{ background: 'linear-gradient(135deg, #1C2B3A, #3A506B)', border: 'none', boxShadow: '0 4px 12px rgba(28,43,58,0.2)' }}
+                    >
+                      <i className="ti ti-shopping-cart" /> Purchase Full Report
+                    </button>
                   </div>
                 </div>
               )}
             </div>
 
             <div style={{ display:'flex', gap:8 }}>
-              <button style={{ flex:1, height:36, fontSize:12 }} onClick={() => navigate('/inspection', { state:{ vin } })}>
+              <button style={{ flex:1, height:36, fontSize:12 }} onClick={() => navigate('/inspection', { state:{ vin, vehicleContext: { year: specs.year, make: specs.make, model: specs.model, trim: specs.trim, vin } } })}>
                 <i className="ti ti-clipboard-check" style={{ fontSize:13 }} aria-hidden="true" /> Start inspection
               </button>
-              <button style={{ flex:1, height:36, fontSize:12 }} onClick={() => navigate('/diagnostics', { state:{ vin } })}>
+              <button style={{ flex:1, height:36, fontSize:12 }} onClick={() => navigate('/diagnostics', { state:{ vin, vehicleContext: { year: specs.year, make: specs.make, model: specs.model, trim: specs.trim, vin } } })}>
                 <i className="ti ti-tool" style={{ fontSize:13 }} aria-hidden="true" /> Diagnostics
               </button>
-              <button className="btn-primary" style={{ flex:1, height:36, fontSize:12 }} onClick={() => navigate('/chat', { state:{ vin } })}>
+              <button className="btn-primary" style={{ flex:1, height:36, fontSize:12 }} onClick={() => navigate('/chat', { state:{ vin, vehicleContext: { year: specs.year, make: specs.make, model: specs.model, trim: specs.trim, vin } } })}>
                 <i className="ti ti-message-2" style={{ fontSize:13 }} aria-hidden="true" /> Ask LUMI AI
               </button>
             </div>

@@ -91,6 +91,64 @@ router.post('/:id/vehicles',
   }
 );
 
+// ── POST /api/fleet/:id/vehicles/ymmt — Add vehicle by YMMT ──────────────────
+router.post('/:id/vehicles/ymmt',
+  authenticate,
+  [
+    body('year').isInt({ min: 1980, max: new Date().getFullYear() + 2 }),
+    body('make').notEmpty().isString(),
+    body('model').notEmpty().isString(),
+    body('trim').optional({ checkFalsy: true }).isString()
+  ],
+  async (req, res, next) => {
+    try {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) return res.status(400).json({ success: false, errors: errors.array() });
+
+      const { year, make, model, trim } = req.body;
+      const fleetId = req.params.id;
+
+      // Verify fleet belongs to user
+      const fleet = await query('SELECT id FROM fleets WHERE id = $1 AND user_id = $2', [fleetId, req.user.id]);
+      if (fleet.rows.length === 0) {
+        return res.status(404).json({ success: false, error: 'Fleet not found' });
+      }
+
+      // Generate Pseudo-VIN (17 chars total: YMMT + 13 random hex chars)
+      const crypto = require('crypto');
+      const randomPart = crypto.randomBytes(7).toString('hex').toUpperCase().substring(0, 13);
+      const pseudoVin = `YMMT${randomPart}`;
+
+      // Construct vehicle data payload mimicking VehicleDataService output
+      const vehicleData = {
+        vin: pseudoVin,
+        year: year,
+        make: make,
+        model: model,
+        trim: trim || '',
+        engine: 'Unknown',
+        type: 'Unknown',
+        isPseudo: true
+      };
+
+      const id = require('uuid').v4();
+      await query(
+        `INSERT INTO fleet_vehicles (id, fleet_id, vin, vehicle_data, added_at)
+         VALUES ($1, $2, $3, $4, NOW())`,
+        [id, fleetId, pseudoVin, JSON.stringify(vehicleData)]
+      );
+
+      res.json({
+        success: true,
+        message: `Vehicle added to fleet`,
+        data: { added: [pseudoVin] }
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
 // ── GET /api/fleet/:id/vehicles — Get fleet vehicles ─────────────────────────
 router.get('/:id/vehicles', authenticate, async (req, res, next) => {
   try {
@@ -127,8 +185,22 @@ router.post('/:id/analyse',
         [fleetId, req.user.id]
       );
 
-      if (vehiclesResult.rows.length === 0) {
+      const vehicleCount = vehiclesResult.rows.length;
+      if (vehicleCount === 0) {
         return res.status(404).json({ success: false, error: 'Fleet not found or empty' });
+      }
+
+      // Dynamic Credit Check & Deduction
+      if (req.user.plan_type !== 'enterprise' && req.user.role !== 'admin') {
+        if (parseFloat(req.user.credits) < vehicleCount) {
+          return res.status(402).json({
+            success: false,
+            error: 'CREDITS_EXHAUSTED',
+            message: `You need ${vehicleCount} credits to analyze this fleet, but you only have ${req.user.credits}. Please upgrade.`
+          });
+        }
+        // Deduct credits dynamically
+        await query('UPDATE users SET credits = credits - $1 WHERE id = $2', [vehicleCount, req.user.id]);
       }
 
       const vehicles = vehiclesResult.rows.map(v => ({

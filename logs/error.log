@@ -1180,3 +1180,1966 @@
     at internalConnectMultiple (node:net:1134:18)
     at afterConnectMultiple (node:net:1715:7)
 2026-05-29 08:19:16 [error]: ⚠️ Redis connection failed. Cache disabled.
+2026-05-29 15:04:56 [error]: ⚠️ PostgreSQL connection failed. Running in degraded/demo mode.
+2026-05-29 15:04:56 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-29 15:04:56 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-29 15:04:56 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-29 15:04:57 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-29 15:04:57 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-29 15:04:58 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-29 15:04:58 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-29 15:04:59 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-29 15:05:00 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-29 15:05:01 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-29 15:05:02 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-29 15:05:02 [error]: ⚠️ Redis connection failed. Cache disabled.
+2026-05-30 12:39:23 [error]: ⚠️ PostgreSQL connection failed. Running in degraded/demo mode.
+2026-05-30 12:39:23 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 12:39:23 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 12:39:23 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 12:39:23 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 12:39:24 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 12:39:24 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 12:39:25 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 12:39:25 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 12:39:26 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 12:39:27 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 12:39:28 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 12:39:28 [error]: ⚠️ Redis connection failed. Cache disabled.
+2026-05-30 12:55:48 [error]: ⚠️ PostgreSQL connection failed. Running in degraded/demo mode.
+2026-05-30 12:55:48 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 12:55:49 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 12:55:49 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 12:55:49 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 12:55:49 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 12:55:50 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 12:55:51 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 12:55:51 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 12:55:52 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 12:55:53 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 12:55:54 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 12:55:54 [error]: ⚠️ Redis connection failed. Cache disabled.
+2026-05-30 13:02:57 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:200:20
+2026-05-30 13:02:57 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:200:20
+2026-05-30 13:07:21 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:200:20
+2026-05-30 13:07:21 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:200:20
+2026-05-30 13:12:49 [error]: ⚠️ PostgreSQL connection failed. Running in degraded/demo mode.
+2026-05-30 13:12:49 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:12:49 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:12:50 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:12:50 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:12:50 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:12:51 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:12:51 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:12:52 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:12:53 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:12:54 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:12:55 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:12:55 [error]: ⚠️ Redis connection failed. Cache disabled.
+2026-05-30 13:12:58 [error]: ⚠️ PostgreSQL connection failed. Running in degraded/demo mode.
+2026-05-30 13:12:58 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:12:58 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:12:58 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:12:58 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:12:59 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:12:59 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:13:00 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:13:01 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:13:02 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:13:02 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:13:03 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:13:03 [error]: ⚠️ Redis connection failed. Cache disabled.
+2026-05-30 13:13:21 [error]: ⚠️ PostgreSQL connection failed. Running in degraded/demo mode.
+2026-05-30 13:13:21 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:13:21 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:13:21 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:13:22 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:13:22 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:13:22 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:13:23 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:13:24 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:13:25 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:13:26 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:13:27 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:13:27 [error]: ⚠️ Redis connection failed. Cache disabled.
+2026-05-30 13:15:12 [error]: ⚠️ PostgreSQL connection failed. Running in degraded/demo mode.
+2026-05-30 13:15:12 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:15:12 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:15:13 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:15:13 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:15:13 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:15:14 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:15:14 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:15:15 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:15:16 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:15:17 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:15:18 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:15:18 [error]: ⚠️ Redis connection failed. Cache disabled.
+2026-05-30 13:16:46 [error]: ⚠️ PostgreSQL connection failed. Running in degraded/demo mode.
+2026-05-30 13:16:46 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:16:46 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:16:46 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:16:47 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:16:47 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:16:48 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:16:48 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:16:49 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:16:50 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:16:51 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:16:52 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:16:52 [error]: ⚠️ Redis connection failed. Cache disabled.
+2026-05-30 13:20:24 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:200:20
+2026-05-30 13:20:25 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:200:20
+2026-05-30 13:23:54 [error]: ⚠️ PostgreSQL connection failed. Running in degraded/demo mode.
+2026-05-30 13:23:54 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:23:54 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:23:55 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:23:55 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:23:55 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:23:56 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:23:56 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:23:57 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:23:58 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:23:59 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:24:00 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:24:00 [error]: ⚠️ Redis connection failed. Cache disabled.
+2026-05-30 13:26:17 [error]: ⚠️ PostgreSQL connection failed. Running in degraded/demo mode.
+2026-05-30 13:26:17 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:26:17 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:26:17 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:26:17 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:26:18 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:26:18 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:26:19 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:26:19 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:26:20 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:26:21 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:26:22 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:26:22 [error]: ⚠️ Redis connection failed. Cache disabled.
+2026-05-30 13:27:19 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:200:20
+2026-05-30 13:27:19 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:200:20
+2026-05-30 13:28:14 [error]: Error: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent: [404 Not Found] models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.
+    at handleResponseNotOk (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\@google\generative-ai\dist\index.js:434:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async makeRequest (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\@google\generative-ai\dist\index.js:403:9)
+    at async generateContent (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\@google\generative-ai\dist\index.js:867:22)
+    at async LumiAIService.analyzeImage (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\LumiAIService.js:404:24)
+    at async LumiAIService.enrichMessages (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\LumiAIService.js:421:27)
+    at async LumiAIService.chat (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\LumiAIService.js:115:32)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:165:22
+2026-05-30 13:31:22 [error]: ⚠️ PostgreSQL connection failed. Running in degraded/demo mode.
+2026-05-30 13:31:22 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:31:22 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:31:22 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:31:22 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:31:23 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:31:23 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:31:24 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:31:24 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:31:25 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:31:26 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:31:27 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:31:27 [error]: ⚠️ Redis connection failed. Cache disabled.
+2026-05-30 13:32:36 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:200:20
+2026-05-30 13:32:36 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:200:20
+2026-05-30 13:33:44 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:200:20
+2026-05-30 13:33:45 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:200:20
+2026-05-30 13:34:33 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:200:20
+2026-05-30 13:34:33 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:200:20
+2026-05-30 13:36:00 [error]: Error: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent: [404 Not Found] models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.
+    at handleResponseNotOk (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\@google\generative-ai\dist\index.js:434:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async makeRequest (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\@google\generative-ai\dist\index.js:403:9)
+    at async generateContent (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\@google\generative-ai\dist\index.js:867:22)
+    at async LumiAIService.analyzeImage (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\LumiAIService.js:402:24)
+    at async LumiAIService.enrichMessages (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\LumiAIService.js:419:27)
+    at async LumiAIService.chat (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\LumiAIService.js:115:32)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:165:22
+2026-05-30 13:39:17 [error]: ⚠️ PostgreSQL connection failed. Running in degraded/demo mode.
+2026-05-30 13:39:17 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:39:17 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:39:18 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:39:18 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:39:18 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:39:19 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:39:19 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:39:20 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:39:21 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:39:22 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:39:23 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:39:23 [error]: ⚠️ Redis connection failed. Cache disabled.
+2026-05-30 13:45:10 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:200:20
+2026-05-30 13:45:10 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:200:20
+2026-05-30 13:47:15 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:200:20
+2026-05-30 13:47:16 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:200:20
+2026-05-30 13:47:16 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:200:20
+2026-05-30 13:48:57 [error]: Error: 400 "Model not found: grok-vision-beta"
+    at APIError.generate (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\openai\core\error.js:45:20)
+    at OpenAI.makeStatusError (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\openai\client.js:258:32)
+    at OpenAI.makeRequest (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\openai\client.js:452:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async LumiAIService.analyzeImage (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\LumiAIService.js:398:24)
+    at async LumiAIService.enrichMessages (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\LumiAIService.js:423:27)
+    at async LumiAIService.chat (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\LumiAIService.js:115:32)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:165:22
+2026-05-30 13:49:33 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:200:20
+2026-05-30 13:49:57 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-30 13:49:57 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-30 13:52:11 [error]: ⚠️ PostgreSQL connection failed. Running in degraded/demo mode.
+2026-05-30 13:52:11 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:52:11 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:52:11 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:52:12 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:52:12 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:52:13 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:52:13 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:52:14 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:52:15 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:52:16 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:52:17 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 13:52:17 [error]: ⚠️ Redis connection failed. Cache disabled.
+2026-05-30 13:53:15 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:200:20
+2026-05-30 13:58:57 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:200:20
+2026-05-30 14:07:56 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:200:20
+2026-05-30 14:09:14 [error]: ⚠️ PostgreSQL connection failed. Running in degraded/demo mode.
+2026-05-30 14:09:14 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:09:14 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:09:14 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:09:14 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:09:15 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:09:15 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:09:16 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:09:17 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:09:18 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:09:18 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:09:19 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:09:19 [error]: ⚠️ Redis connection failed. Cache disabled.
+2026-05-30 14:09:23 [error]: ⚠️ PostgreSQL connection failed. Running in degraded/demo mode.
+2026-05-30 14:09:23 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:09:23 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:09:23 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:09:23 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:09:24 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:09:24 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:09:25 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:09:25 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:09:26 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:09:27 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:09:28 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:09:28 [error]: ⚠️ Redis connection failed. Cache disabled.
+2026-05-30 14:09:44 [error]: ⚠️ PostgreSQL connection failed. Running in degraded/demo mode.
+2026-05-30 14:09:44 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:09:44 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:09:45 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:09:45 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:09:45 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:09:46 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:09:46 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:09:47 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:09:48 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:09:49 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:09:50 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:09:50 [error]: ⚠️ Redis connection failed. Cache disabled.
+2026-05-30 14:13:55 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:214:20
+2026-05-30 14:17:28 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:214:20
+2026-05-30 14:17:30 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-30 14:17:30 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-30 14:17:51 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:214:20
+2026-05-30 14:18:10 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:214:20
+2026-05-30 14:20:49 [error]: ⚠️ PostgreSQL connection failed. Running in degraded/demo mode.
+2026-05-30 14:20:49 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:20:49 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:20:49 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:20:50 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:20:50 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:20:51 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:20:51 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:20:52 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:20:53 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:20:54 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:20:55 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:20:55 [error]: ⚠️ Redis connection failed. Cache disabled.
+2026-05-30 14:21:03 [error]: ⚠️ PostgreSQL connection failed. Running in degraded/demo mode.
+2026-05-30 14:21:03 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:21:04 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:21:04 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:21:04 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:21:04 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:21:05 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:21:06 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:21:06 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:21:07 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:21:08 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:21:09 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:21:09 [error]: ⚠️ Redis connection failed. Cache disabled.
+2026-05-30 14:23:08 [error]: ⚠️ PostgreSQL connection failed. Running in degraded/demo mode.
+2026-05-30 14:23:08 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:23:09 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:23:09 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:23:09 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:23:10 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:23:10 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:23:11 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:23:11 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:23:12 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:23:13 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:23:14 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:23:14 [error]: ⚠️ Redis connection failed. Cache disabled.
+2026-05-30 14:24:49 [error]: ⚠️ PostgreSQL connection failed. Running in degraded/demo mode.
+2026-05-30 14:24:49 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:24:49 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:24:49 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:24:50 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:24:50 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:24:51 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:24:51 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:24:52 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:24:53 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:24:54 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:24:55 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:24:55 [error]: ⚠️ Redis connection failed. Cache disabled.
+2026-05-30 14:29:16 [error]: ⚠️ PostgreSQL connection failed. Running in degraded/demo mode.
+2026-05-30 14:29:16 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:29:16 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:29:17 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:29:17 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:29:17 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:29:18 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:29:18 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:29:19 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:29:20 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:29:21 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:29:22 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:29:22 [error]: ⚠️ Redis connection failed. Cache disabled.
+2026-05-30 14:33:05 [error]: ⚠️ PostgreSQL connection failed. Running in degraded/demo mode.
+2026-05-30 14:33:05 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:33:05 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:33:05 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:33:06 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:33:06 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:33:06 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:33:07 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:33:08 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:33:09 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:33:10 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:33:11 [error]: AggregateError [ECONNREFUSED]: 
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+2026-05-30 14:33:11 [error]: ⚠️ Redis connection failed. Cache disabled.
+2026-05-30 14:39:33 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:213:20
+2026-05-30 14:39:41 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:213:20
+2026-05-30 14:40:19 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:213:20
+2026-05-30 14:40:27 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:213:20
+2026-05-30 14:41:07 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:213:20
+2026-05-30 14:41:13 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:213:20
+2026-05-30 14:44:18 [error]: ⚠️ PostgreSQL connection failed. Running in degraded/demo mode.
+2026-05-30 14:44:18 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:44:18 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:44:18 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:44:18 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:44:19 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:44:19 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:44:19 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:44:20 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:44:20 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:44:20 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:44:21 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:44:22 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:44:22 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:44:23 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:44:24 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:44:24 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:44:25 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:44:26 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:44:27 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:44:28 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:44:29 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:44:29 [error]: ⚠️ Redis connection failed. Cache disabled.
+2026-05-30 14:44:30 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:44:31 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:44:32 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:44:33 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:44:35 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:44:36 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:44:37 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:44:39 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:44:40 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:44:42 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:44:43 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:44:45 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:44:47 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:44:48 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:44:50 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:44:52 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:44:54 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:44:56 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:44:58 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:45:00 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:45:02 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:45:04 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:45:06 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:45:08 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:45:10 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:45:12 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:45:14 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:45:16 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:45:18 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:45:20 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:45:22 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:45:24 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:45:26 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:45:28 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:45:30 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:45:32 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:45:34 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:45:36 [error]: Error: getaddrinfo ENOTFOUND redis.railway.internal
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 14:47:25 [error]: ⚠️ PostgreSQL connection failed. Running in degraded/demo mode.
+2026-05-30 17:03:16 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-30 17:03:16 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-30 17:03:46 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-30 17:03:46 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-30 17:24:32 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-30 17:24:32 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-30 17:24:37 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-30 17:24:37 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-30 17:25:26 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-30 17:25:26 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-30 17:41:35 [error]: ⚠️ PostgreSQL connection failed. Running in degraded/demo mode.
+2026-05-30 17:43:16 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-30 17:43:16 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-30 17:47:25 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-30 17:47:25 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-30 18:00:41 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:213:20
+2026-05-30 18:00:48 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:213:20
+2026-05-30 18:02:34 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:213:20
+2026-05-30 18:02:41 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:213:20
+2026-05-30 18:04:26 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:213:20
+2026-05-30 18:04:32 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:213:20
+2026-05-30 18:04:39 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:213:20
+2026-05-30 18:04:46 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:213:20
+2026-05-30 18:05:14 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:213:20
+2026-05-30 18:05:22 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-30 18:05:22 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-30 18:05:37 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:213:20
+2026-05-30 18:07:18 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:213:20
+2026-05-30 18:07:24 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:213:20
+2026-05-30 18:07:31 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:213:20
+2026-05-30 18:07:50 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:213:20
+2026-05-30 18:07:57 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:213:20
+2026-05-30 18:10:02 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:213:20
+2026-05-30 18:10:12 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-30 18:10:12 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-30 18:10:22 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:213:20
+2026-05-30 18:10:54 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:213:20
+2026-05-30 18:10:57 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-30 18:10:57 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-30 18:11:01 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:213:20
+2026-05-30 18:11:08 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:213:20
+2026-05-30 18:18:30 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:213:20
+2026-05-30 18:18:37 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:213:20
+2026-05-30 18:21:39 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:213:20
+2026-05-30 18:22:06 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-30 18:22:06 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-30 18:22:26 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:213:20
+2026-05-30 18:25:34 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:213:20
+2026-05-30 18:25:40 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:213:20
+2026-05-30 18:32:51 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:213:20
+2026-05-30 18:33:16 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-30 18:33:16 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-30 18:33:25 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:213:20
+2026-05-30 18:42:58 [error]: ⚠️ PostgreSQL connection failed. Running in degraded/demo mode.
+2026-05-30 18:43:08 [error]: Error: connect ETIMEDOUT
+    at Socket.<anonymous> (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\ioredis\built\Redis.js:183:41)
+    at Object.onceWrapper (node:events:633:28)
+    at Socket.emit (node:events:519:28)
+    at Socket._onTimeout (node:net:604:8)
+    at listOnTimeout (node:internal/timers:588:17)
+    at process.processTimers (node:internal/timers:523:7)
+2026-05-30 18:43:19 [error]: Error: connect ETIMEDOUT
+    at Socket.<anonymous> (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\ioredis\built\Redis.js:183:41)
+    at Object.onceWrapper (node:events:633:28)
+    at Socket.emit (node:events:519:28)
+    at Socket._onTimeout (node:net:604:8)
+    at listOnTimeout (node:internal/timers:588:17)
+    at process.processTimers (node:internal/timers:523:7)
+2026-05-30 18:43:29 [error]: Error: connect ETIMEDOUT
+    at Socket.<anonymous> (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\ioredis\built\Redis.js:183:41)
+    at Object.onceWrapper (node:events:633:28)
+    at Socket.emit (node:events:519:28)
+    at Socket._onTimeout (node:net:604:8)
+    at listOnTimeout (node:internal/timers:588:17)
+    at process.processTimers (node:internal/timers:523:7)
+2026-05-30 18:43:39 [error]: Error: connect ETIMEDOUT
+    at Socket.<anonymous> (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\ioredis\built\Redis.js:183:41)
+    at Object.onceWrapper (node:events:633:28)
+    at Socket.emit (node:events:519:28)
+    at Socket._onTimeout (node:net:604:8)
+    at listOnTimeout (node:internal/timers:588:17)
+    at process.processTimers (node:internal/timers:523:7)
+2026-05-30 18:43:49 [error]: Error: connect ETIMEDOUT
+    at Socket.<anonymous> (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\ioredis\built\Redis.js:183:41)
+    at Object.onceWrapper (node:events:633:28)
+    at Socket.emit (node:events:519:28)
+    at Socket._onTimeout (node:net:604:8)
+    at listOnTimeout (node:internal/timers:588:17)
+    at process.processTimers (node:internal/timers:523:7)
+2026-05-30 18:43:59 [error]: Error: connect ETIMEDOUT
+    at Socket.<anonymous> (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\ioredis\built\Redis.js:183:41)
+    at Object.onceWrapper (node:events:633:28)
+    at Socket.emit (node:events:519:28)
+    at Socket._onTimeout (node:net:604:8)
+    at listOnTimeout (node:internal/timers:588:17)
+    at process.processTimers (node:internal/timers:523:7)
+2026-05-30 18:44:10 [error]: Error: connect ETIMEDOUT
+    at Socket.<anonymous> (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\ioredis\built\Redis.js:183:41)
+    at Object.onceWrapper (node:events:633:28)
+    at Socket.emit (node:events:519:28)
+    at Socket._onTimeout (node:net:604:8)
+    at listOnTimeout (node:internal/timers:588:17)
+    at process.processTimers (node:internal/timers:523:7)
+2026-05-30 18:44:20 [error]: Error: connect ETIMEDOUT
+    at Socket.<anonymous> (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\ioredis\built\Redis.js:183:41)
+    at Object.onceWrapper (node:events:633:28)
+    at Socket.emit (node:events:519:28)
+    at Socket._onTimeout (node:net:604:8)
+    at listOnTimeout (node:internal/timers:588:17)
+    at process.processTimers (node:internal/timers:523:7)
+2026-05-30 18:44:30 [error]: Error: connect ETIMEDOUT
+    at Socket.<anonymous> (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\ioredis\built\Redis.js:183:41)
+    at Object.onceWrapper (node:events:633:28)
+    at Socket.emit (node:events:519:28)
+    at Socket._onTimeout (node:net:604:8)
+    at listOnTimeout (node:internal/timers:588:17)
+    at process.processTimers (node:internal/timers:523:7)
+2026-05-30 18:44:41 [error]: Error: connect ETIMEDOUT
+    at Socket.<anonymous> (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\ioredis\built\Redis.js:183:41)
+    at Object.onceWrapper (node:events:633:28)
+    at Socket.emit (node:events:519:28)
+    at Socket._onTimeout (node:net:604:8)
+    at listOnTimeout (node:internal/timers:588:17)
+    at process.processTimers (node:internal/timers:523:7)
+2026-05-30 18:44:51 [error]: Error: connect ETIMEDOUT
+    at Socket.<anonymous> (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\ioredis\built\Redis.js:183:41)
+    at Object.onceWrapper (node:events:633:28)
+    at Socket.emit (node:events:519:28)
+    at Socket._onTimeout (node:net:604:8)
+    at listOnTimeout (node:internal/timers:588:17)
+    at process.processTimers (node:internal/timers:523:7)
+2026-05-30 18:45:02 [error]: Error: connect ETIMEDOUT
+    at Socket.<anonymous> (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\ioredis\built\Redis.js:183:41)
+    at Object.onceWrapper (node:events:633:28)
+    at Socket.emit (node:events:519:28)
+    at Socket._onTimeout (node:net:604:8)
+    at listOnTimeout (node:internal/timers:588:17)
+    at process.processTimers (node:internal/timers:523:7)
+2026-05-30 18:45:13 [error]: Error: connect ETIMEDOUT
+    at Socket.<anonymous> (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\ioredis\built\Redis.js:183:41)
+    at Object.onceWrapper (node:events:633:28)
+    at Socket.emit (node:events:519:28)
+    at Socket._onTimeout (node:net:604:8)
+    at listOnTimeout (node:internal/timers:588:17)
+    at process.processTimers (node:internal/timers:523:7)
+2026-05-30 18:45:15 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:45:24 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:45:24 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:45:25 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:45:26 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:45:27 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:45:28 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:45:29 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:45:29 [error]: ⚠️ Redis connection failed. Cache disabled.
+2026-05-30 18:45:30 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:45:31 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:45:32 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:45:34 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:45:35 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:45:36 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:45:38 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:45:39 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:45:40 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:45:42 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:45:44 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:45:45 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:45:47 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:45:49 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:45:50 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:45:52 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:45:54 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:45:56 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:45:58 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:46:00 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:46:02 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:46:04 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:46:06 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:46:08 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:46:10 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:46:12 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:46:14 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:46:16 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:46:18 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:46:20 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:46:22 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:46:24 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:46:26 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:46:28 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:46:30 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:46:32 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:46:34 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:46:36 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:46:38 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:46:40 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:46:42 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:46:44 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:46:46 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:46:48 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:46:50 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:46:52 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:46:54 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:46:56 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:46:58 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:47:00 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:47:02 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:47:04 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:47:06 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:47:08 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:47:10 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:47:12 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:47:14 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:47:17 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:47:19 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:47:21 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:47:23 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:47:25 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:47:27 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:47:29 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:47:31 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:47:33 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:47:35 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:47:37 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:47:39 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:47:41 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:47:43 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:47:45 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:47:47 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:47:49 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:47:51 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:47:53 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:47:55 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:47:57 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:47:59 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:48:01 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:48:03 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:48:05 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:48:07 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:48:09 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:48:11 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:48:13 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:48:15 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:48:17 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:48:19 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:48:21 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:48:23 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:48:25 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:48:27 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:48:29 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:48:31 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:48:33 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:48:35 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:48:37 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:48:39 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:48:41 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:48:43 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:48:45 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:48:47 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:48:49 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:48:51 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:48:53 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:48:55 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:48:57 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:48:59 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:49:01 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:49:03 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:49:05 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:49:07 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:49:09 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:49:11 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:49:13 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:49:15 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:49:17 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:49:20 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:49:22 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:49:24 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:49:26 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:49:28 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:49:30 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:49:32 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:49:34 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:49:36 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:49:38 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:49:40 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:49:42 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:49:44 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:49:46 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:49:48 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:49:50 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:49:52 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:49:54 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:49:56 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:49:58 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:50:00 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:50:02 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:50:04 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:50:06 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:50:08 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:50:10 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:50:12 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:50:14 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:50:16 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:50:18 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:50:20 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:50:22 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:50:24 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:50:26 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:50:28 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:50:30 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:50:32 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:50:34 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:50:36 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:50:38 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:50:40 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:50:42 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:50:44 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:50:46 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:50:48 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:50:50 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:50:52 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:50:54 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:50:56 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:50:58 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:51:00 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:51:02 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:51:04 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:51:06 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:51:08 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:51:10 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:51:12 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:51:14 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:51:16 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:51:18 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:51:20 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:51:22 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:51:24 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:51:26 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:51:28 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:51:30 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:51:32 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:51:34 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:51:36 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:51:38 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:51:41 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:51:43 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:51:45 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:51:47 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:51:49 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:51:51 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:51:53 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:51:55 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:51:57 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:51:59 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:52:01 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:52:03 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:52:05 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:52:07 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:52:09 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:52:11 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:52:13 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:52:15 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:52:17 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:52:19 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:52:21 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:52:23 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:52:25 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:52:27 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:52:29 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:52:31 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:52:33 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:52:35 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:52:37 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:52:39 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:52:41 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:52:43 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:52:45 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:52:47 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:52:49 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:52:51 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:52:53 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:52:55 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:52:57 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:52:59 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:53:01 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:53:03 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:53:05 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:53:07 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:53:09 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:53:11 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:53:13 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:53:15 [error]: Error: getaddrinfo ENOTFOUND zephyr.proxy.rlwy.net
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)
+2026-05-30 18:55:38 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-30 18:55:38 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-30 19:03:08 [error]: ⚠️ PostgreSQL connection failed. Running in degraded/demo mode.
+2026-05-30 19:03:21 [error]: ⚠️ PostgreSQL connection failed. Running in degraded/demo mode.
+2026-05-30 19:09:55 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-30 19:09:55 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-30 19:15:25 [error]: ⚠️ PostgreSQL connection failed. Running in degraded/demo mode.
+2026-05-30 19:15:49 [error]: ⚠️ PostgreSQL connection failed. Running in degraded/demo mode.
+2026-05-30 19:33:31 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:213:20
+2026-05-30 21:00:43 [error]: Error: read ECONNRESET
+    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)
+2026-05-30 21:06:36 [error]: TypeError: Cannot read properties of undefined (reading 'count')
+    at ConversationService.getUserConversations (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\ConversationService.js:110:43)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\chat.js:213:20
+2026-05-30 21:06:48 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-30 21:06:48 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-30 21:07:16 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-30 21:07:16 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-30 21:30:12 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-30 21:30:12 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-30 21:41:15 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-30 21:41:15 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-30 22:40:11 [error]: ⚠️ PostgreSQL connection failed. Running in degraded/demo mode.
+2026-05-30 23:06:36 [error]: error: relation "api_keys" does not exist
+    at C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\pg-pool\index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async query (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\config\database.js:36:17)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\apiKeys.js:10:20
+2026-05-30 23:06:39 [error]: error: relation "api_keys" does not exist
+    at C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\pg-pool\index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async query (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\config\database.js:36:17)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\apiKeys.js:10:20
+2026-05-30 23:07:06 [error]: error: relation "api_keys" does not exist
+    at C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\pg-pool\index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async query (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\config\database.js:36:17)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\apiKeys.js:10:20
+2026-05-30 23:09:44 [error]: error: relation "api_keys" does not exist
+    at C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\pg-pool\index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async query (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\config\database.js:36:17)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\apiKeys.js:10:20
+2026-05-30 23:09:47 [error]: error: relation "api_keys" does not exist
+    at C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\pg-pool\index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async query (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\config\database.js:36:17)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\apiKeys.js:10:20
+2026-05-30 23:11:18 [error]: error: relation "api_keys" does not exist
+    at C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\pg-pool\index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async query (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\config\database.js:36:17)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\apiKeys.js:10:20
+2026-05-30 23:11:21 [error]: error: relation "api_keys" does not exist
+    at C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\pg-pool\index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async query (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\config\database.js:36:17)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\apiKeys.js:10:20
+2026-05-30 23:17:30 [error]: ⚠️ PostgreSQL connection failed. Running in degraded/demo mode.
+2026-05-30 23:22:08 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-30 23:22:08 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-30 23:23:07 [error]: error: relation "api_keys" does not exist
+    at C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\pg-pool\index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async query (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\config\database.js:36:17)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\apiKeys.js:10:20
+2026-05-30 23:23:18 [error]: error: relation "api_keys" does not exist
+    at C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\pg-pool\index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async query (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\config\database.js:36:17)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\apiKeys.js:26:20
+2026-05-30 23:23:20 [error]: error: relation "api_keys" does not exist
+    at C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\pg-pool\index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async query (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\config\database.js:36:17)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\apiKeys.js:26:20
+2026-05-30 23:30:25 [error]: ⚠️ PostgreSQL connection failed. Running in degraded/demo mode.
+2026-05-30 23:38:20 [error]: error: relation "api_keys" does not exist
+    at C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\pg-pool\index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async query (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\config\database.js:36:17)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\apiKeys.js:10:20
+2026-05-30 23:38:22 [error]: error: relation "api_keys" does not exist
+    at C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\pg-pool\index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async query (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\config\database.js:36:17)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\apiKeys.js:10:20
+2026-05-30 23:38:27 [error]: error: relation "api_keys" does not exist
+    at C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\pg-pool\index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async query (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\config\database.js:36:17)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\apiKeys.js:10:20
+2026-05-30 23:38:32 [error]: error: relation "api_keys" does not exist
+    at C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\pg-pool\index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async query (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\config\database.js:36:17)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\apiKeys.js:10:20
+2026-05-31 00:06:43 [error]: ⚠️ PostgreSQL connection failed. Running in degraded/demo mode.
+2026-05-31 00:07:13 [error]: ⚠️ PostgreSQL connection failed. Running in degraded/demo mode.
+2026-05-31 00:07:30 [error]: ⚠️ PostgreSQL connection failed. Running in degraded/demo mode.
+2026-05-31 00:07:58 [error]: ⚠️ PostgreSQL connection failed. Running in degraded/demo mode.
+2026-05-31 00:09:46 [error]: error: column "plan_type" does not exist
+    at C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\pg-pool\index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async query (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\config\database.js:36:17)
+    at async authenticate (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\middleware\auth.js:32:20)
+2026-05-31 00:11:10 [error]: error: column "plan_type" does not exist
+    at C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\pg-pool\index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async query (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\config\database.js:36:17)
+    at async authenticate (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\middleware\auth.js:32:20)
+2026-05-31 00:11:13 [error]: error: column "plan_type" does not exist
+    at C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\pg-pool\index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async query (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\config\database.js:36:17)
+    at async authenticate (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\middleware\auth.js:32:20)
+2026-05-31 00:11:15 [error]: error: column "plan_type" does not exist
+    at C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\pg-pool\index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async query (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\config\database.js:36:17)
+    at async authenticate (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\middleware\auth.js:32:20)
+2026-05-31 00:11:17 [error]: error: column "plan_type" does not exist
+    at C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\pg-pool\index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async query (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\config\database.js:36:17)
+    at async authenticate (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\middleware\auth.js:32:20)
+2026-05-31 00:11:18 [error]: error: column "plan_type" does not exist
+    at C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\pg-pool\index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async query (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\config\database.js:36:17)
+    at async authenticate (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\middleware\auth.js:32:20)
+2026-05-31 00:11:34 [error]: error: column "plan_type" does not exist
+    at C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\pg-pool\index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async query (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\config\database.js:36:17)
+    at async authenticate (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\middleware\auth.js:32:20)
+2026-05-31 00:12:35 [error]: ⚠️ PostgreSQL connection failed. Running in degraded/demo mode.
+2026-05-31 00:34:28 [error]: ❌ Failed to send welcome email to support@automotivedataset.com:
+2026-05-31 00:51:37 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-31 00:51:37 [error]: TypeError: Invalid URL
+    at new URL (node:internal/url:825:25)
+    at dispatchHttpRequest (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\axios\dist\node\axios.cjs:3365:20)
+    at C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\axios\dist\node\axios.cjs:3209:5
+    at new Promise (<anonymous>)
+    at wrapAsync (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\axios\dist\node\axios.cjs:3193:10)
+    at http (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\axios\dist\node\axios.cjs:3267:10)
+    at Axios.dispatchRequest (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\axios\dist\node\axios.cjs:4843:10)
+    at Axios._request (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\axios\dist\node\axios.cjs:5125:33)
+    at Axios.request (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\axios\dist\node\axios.cjs:4988:25)
+    at Axios.httpMethod [as post] (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\axios\dist\node\axios.cjs:5157:19)
+    at Axios.request (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\axios\dist\node\axios.cjs:4992:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async VehicleDataService.batchDecodeVINs (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\VehicleDataService.js:189:24)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\fleet.js:68:27
+2026-05-31 00:51:52 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-31 00:51:52 [error]: TypeError: Invalid URL
+    at new URL (node:internal/url:825:25)
+    at dispatchHttpRequest (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\axios\dist\node\axios.cjs:3365:20)
+    at C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\axios\dist\node\axios.cjs:3209:5
+    at new Promise (<anonymous>)
+    at wrapAsync (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\axios\dist\node\axios.cjs:3193:10)
+    at http (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\axios\dist\node\axios.cjs:3267:10)
+    at Axios.dispatchRequest (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\axios\dist\node\axios.cjs:4843:10)
+    at Axios._request (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\axios\dist\node\axios.cjs:5125:33)
+    at Axios.request (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\axios\dist\node\axios.cjs:4988:25)
+    at Axios.httpMethod [as post] (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\axios\dist\node\axios.cjs:5157:19)
+    at Axios.request (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\axios\dist\node\axios.cjs:4992:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async VehicleDataService.batchDecodeVINs (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\VehicleDataService.js:189:24)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\fleet.js:68:27
+2026-05-31 00:52:17 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-31 00:52:17 [error]: TypeError: Invalid URL
+    at new URL (node:internal/url:825:25)
+    at dispatchHttpRequest (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\axios\dist\node\axios.cjs:3365:20)
+    at C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\axios\dist\node\axios.cjs:3209:5
+    at new Promise (<anonymous>)
+    at wrapAsync (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\axios\dist\node\axios.cjs:3193:10)
+    at http (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\axios\dist\node\axios.cjs:3267:10)
+    at Axios.dispatchRequest (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\axios\dist\node\axios.cjs:4843:10)
+    at Axios._request (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\axios\dist\node\axios.cjs:5125:33)
+    at Axios.request (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\axios\dist\node\axios.cjs:4988:25)
+    at Axios.httpMethod [as post] (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\axios\dist\node\axios.cjs:5157:19)
+    at Axios.request (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\axios\dist\node\axios.cjs:4992:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async VehicleDataService.batchDecodeVINs (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\VehicleDataService.js:189:24)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\fleet.js:68:27
+2026-05-31 02:58:33 [error]: ❌ Failed to send welcome email to support@achtrex.com:

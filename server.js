@@ -23,6 +23,9 @@ const diagnosticRoutes = require('./routes/diagnostics');
 const workflowRoutes  = require('./routes/workflows');
 const analyticsRoutes = require('./routes/analytics');
 const apiKeysRoutes   = require('./routes/apiKeys');
+const adminRoutes     = require('./routes/admin');
+const billingRoutes   = require('./routes/billing');
+const usageRoutes     = require('./routes/usage');
 
 const app = express();
 const server = http.createServer(app);
@@ -83,6 +86,35 @@ app.use('/api/diagnostics', diagnosticRoutes);
 app.use('/api/workflows',   workflowRoutes);
 app.use('/api/analytics',   analyticsRoutes);
 app.use('/api/keys',        apiKeysRoutes);
+app.use('/api/admin',       adminRoutes);
+app.use('/api/billing',     billingRoutes);
+app.use('/api/usage',       usageRoutes);
+
+// Proxy for the full HTML auction report
+app.get('/api/vehicles/:vin/html-report', async (req, res) => {
+  try {
+    const { vin } = req.params;
+    console.log(`[Proxy] Fetching HTML report for VIN: ${vin}`);
+    const axios = require('axios');
+    const response = await axios.get(`https://api.vehicledatabases.com/vin-auction-html/${vin}`, {
+      headers: { 
+        'x-AuthKey': 'e9694f64e00e46348041989c0fab704a',
+        'Accept': 'text/html,application/xhtml+xml,application/xml',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'
+      },
+      timeout: 60000
+    });
+    
+    res.json(response.data);
+  } catch (error) {
+    console.error(`[Proxy] Error for VIN ${req.params.vin}:`, error.message);
+    if (error.response) {
+      console.error(`[Proxy] Response status:`, error.response.status);
+      console.error(`[Proxy] Response data:`, error.response.data);
+    }
+    res.status(500).json({ error: "Failed to fetch HTML report" });
+  }
+});
 
 // ── Socket.IO handlers ────────────────────────────────────────────────────────
 const { setupSocketHandlers } = require('./services/SocketService');

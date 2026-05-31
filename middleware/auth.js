@@ -30,7 +30,7 @@ async function authenticate(req, res, next) {
 
     // Get fresh user data
     const result = await query(
-      `SELECT id, email, name, role, enterprise_id, is_active, last_login
+      `SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
        FROM users WHERE id = $1 AND is_active = true`,
       [decoded.userId]
     );
@@ -74,6 +74,27 @@ function requireRole(...roles) {
   };
 }
 
+// ── Enforce Credit Limits ─────────────────────────────────────────────────────
+function requireCredits(cost = 1) {
+  return async (req, res, next) => {
+    // If user has an unlimited enterprise plan or is an admin, they bypass credit limits
+    if (req.user.plan_type === 'enterprise' || req.user.role === 'admin') {
+      return next();
+    }
+    
+    // Check if they have enough credits
+    if (parseFloat(req.user.credits) < cost) {
+      return res.status(402).json({
+        success: false,
+        error: 'CREDITS_EXHAUSTED',
+        message: 'You have exhausted your credits. Please upgrade to a premium plan.'
+      });
+    }
+    
+    next();
+  };
+}
+
 // ── Optional auth (for public endpoints that can also be authenticated) ───────
 async function optionalAuth(req, res, next) {
   const authHeader = req.headers.authorization;
@@ -83,4 +104,4 @@ async function optionalAuth(req, res, next) {
   return authenticate(req, res, next);
 }
 
-module.exports = { authenticate, requireRole, optionalAuth };
+module.exports = { authenticate, requireRole, requireCredits, optionalAuth };

@@ -234,8 +234,26 @@ button:active { transform: translateY(0); }
   to { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes slideInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
 .animate-fade-in {
   animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-slide-up {
+  animation: slideInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-right {
+  animation: slideInRight 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* Modern scrollbar */
@@ -253,3 +271,91 @@ button:active { transform: translateY(0); }
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(0,0,0,0.25);
 }
+
+/* Markdown Streaming Stability */
+.markdown-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+}
+.markdown-body th, .markdown-body td {
+  border: 1px solid var(--lgray);
+  padding: 8px 12px;
+}
+.markdown-body th {
+  background: var(--offwh);
+  font-weight: 600;
+}
+.markdown-body img {
+  max-width: 100%;
+  border-radius: var(--radius-md);
+}
+
+/* ── Mobile Responsiveness ─────────────────────────────────────────── */
+@media (max-width: 768px) {
+  /* Ensure form elements and buttons have larger touch targets */
+  button, input, select, textarea {
+    min-height: 44px !important;
+  }
+  
+  /* Tables should be able to scroll horizontally */
+  table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  
+  /* Sidebar Off-canvas Drawer */
+  .mobile-sidebar {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 1000;
+    box-shadow: var(--shadow-lg);
+    transform: translateX(0);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .mobile-sidebar.closed {
+    transform: translateX(-100%);
+  }
+
+  /* Overlay for sidebar */
+  .sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 999;
+    backdrop-filter: blur(2px);
+    transition: opacity 0.3s;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .sidebar-overlay.closed {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* Chat Message Layout Tweaks */
+  .chat-message-bubble {
+    max-width: 95% !important;
+  }
+
+  .main-content-area {
+    padding: 16px !important;
+  }
+  
+  h1 {
+    font-size: 28px !important;
+  }
+  h2 {
+    font-size: 24px !important;
+  }
+}
+

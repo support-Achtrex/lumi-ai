@@ -9,6 +9,7 @@ const { authenticate } = require('../middleware/auth');
 const { authRateLimiter } = require('../middleware/rateLimiter');
 const { v4: uuidv4 } = require('uuid');
 const logger = require('../config/logger');
+const { sendWelcomeEmail } = require('../services/emailService');
 
 // ── POST /api/auth/register ───────────────────────────────────────────────────
 router.post('/register',
@@ -18,16 +19,19 @@ router.post('/register',
     body('password').isLength({ min: 8 }).matches(/^(?=.*[A-Za-z])(?=.*\d)/),
     body('name').notEmpty().isString().isLength({ min: 2, max: 100 }),
     body('role').optional().isIn(['user', 'admin', 'enterprise', 'developer']),
-    body('enterpriseId').optional().isUUID()
+    body('enterpriseId').optional().isUUID(),
+    body('company').optional().isString(),
+    body('phone').optional().isString()
   ],
   async (req, res, next) => {
     try {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
-        return res.status(400).json({ success: false, errors: errors.array() });
+        const errorMsg = errors.array().map(e => e.msg === 'Invalid value' ? `${e.path} is invalid` : e.msg).join(', ');
+        return res.status(400).json({ success: false, error: errorMsg, errors: errors.array() });
       }
 
-      const { email, password, name, role = 'user', enterpriseId } = req.body;
+      const { email, password, name, role = 'user', enterpriseId, company, phone } = req.body;
 
       // Check if email already exists
       const existing = await query('SELECT id FROM users WHERE email = $1', [email]);
@@ -39,16 +43,19 @@ router.post('/register',
       const id = uuidv4();
 
       const result = await query(
-        `INSERT INTO users (id, email, password, name, role, enterprise_id, is_active, created_at)
-         VALUES ($1, $2, $3, $4, $5, $6, true, NOW())
-         RETURNING id, email, name, role, enterprise_id, created_at`,
-        [id, email, hashedPassword, name, role, enterpriseId || null]
+        `INSERT INTO users (id, email, password, name, role, enterprise_id, company, phone, is_active, credits, plan_type, created_at)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, true, 5.00, 'free', NOW())
+         RETURNING id, email, name, role, enterprise_id, company, phone, credits, plan_type, created_at`,
+        [id, email, hashedPassword, name, role, enterpriseId || null, company || null, phone || null]
       );
 
       const user = result.rows[0];
       const token = generateToken(user.id);
 
       logger.info(`New user registered: ${email} (${role})`);
+      
+      // Fire and forget welcome email
+      sendWelcomeEmail(email, name).catch(err => logger.error('Error sending welcome email:', err));
 
       res.status(201).json({
         success: true,
@@ -78,7 +85,7 @@ router.post('/login',
       const { email, password } = req.body;
 
       const result = await query(
-        `SELECT id, email, password, name, role, enterprise_id, is_active
+        `SELECT id, email, password, name, role, enterprise_id, is_active, credits, plan_type
          FROM users WHERE email = $1`,
         [email]
       );
@@ -115,7 +122,10 @@ router.post('/login',
 
       res.json({
         success: true,
-        data: { user, token }
+        data: {
+          user: { id: user.id, email: user.email, name: user.name, role: user.role, credits: user.credits, plan_type: user.plan_type },
+          token
+        }
       });
 
     } catch (error) {

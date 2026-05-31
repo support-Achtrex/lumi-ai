@@ -1,20 +1,31 @@
+const { GoogleGenerativeAI } = require('@google/generative-ai');
 const { OpenAI } = require('openai');
 const logger = require('../config/logger');
 const { get, set, DEFAULT_TTL } = require('../config/redis');
 const VehicleDataService = require('./VehicleDataService');
 
+let _gemini = null;
 let _openai = null;
-function getClient() {
+
+function getGeminiClient() {
+  if (!_gemini) {
+    const key = process.env.GEMINI_API_KEY;
+    if (!key) throw new Error('GEMINI_API_KEY environment variable is not set.');
+    _gemini = new GoogleGenerativeAI(key);
+  }
+  return _gemini;
+}
+
+function getOpenAIClient() {
   if (!_openai) {
     const key = process.env.GROK_API_KEY;
-    if (!key) throw new Error('GROK_API_KEY environment variable is not set. Add it to your Railway/production environment.');
+    if (!key) throw new Error('GROK_API_KEY environment variable is not set.');
     _openai = new OpenAI({ apiKey: key, baseURL: 'https://api.x.ai/v1' });
   }
   return _openai;
 }
 
 // ── LUMI AI Core System Prompt ────────────────────────────────────────────────
-// This is the heart of LUMI AI — the automotive-domain reasoning layer
 const LUMI_SYSTEM_PROMPT = `You are LUMI AI, the automotive intelligence engine built by Achtrex.
 
 You are the world's first LLM-powered automotive reasoning engine purpose-built for enterprise clients — dealerships, insurance companies, fleet operators, and automotive developers.
@@ -75,7 +86,7 @@ RESPONSE FORMATTING:
 - Keep responses concise but complete — enterprise users value precision over length
 
 UI COMPONENTS (CRITICAL):
-If the user asks for a "TCO breakdown" or a "Comparison", you MUST embed a structured JSON code block in your markdown.
+If the user asks for a "TCO breakdown", "Comparison", or "VIN lookup", you MUST embed a structured JSON code block in your markdown.
 For TCO:
 \`\`\`json
 { "type": "tco_breakdown", "vin": "...", "vehicle": "...", "depreciation": 0, "fuel": 0, "maintenance": 0, "insurance": "...", "total": 0, "costPerMile": 0.0, "comparisonText": "...", "verdict": "..." }
@@ -83,6 +94,10 @@ For TCO:
 For Comparisons:
 \`\`\`json
 { "type": "comparison", "summary": "...", "winner": { "name": "...", "total": 0, "costPerMile": 0.0 }, "loser": { "name": "...", "total": 0, "costPerMile": 0.0 } }
+\`\`\`
+For VIN Lookups:
+\`\`\`json
+{ "type": "vin_lookup", "vin": "...", "make": "...", "model": "...", "year": 2022, "trim": "...", "bodyClass": "...", "engine": "...", "transmission": "...", "fuelType": "...", "plantCountry": "...", "manufacturer": "...", "driveType": "..." }
 \`\`\`
 
 LIMITATIONS — BE TRANSPARENT ABOUT THESE:
@@ -98,14 +113,13 @@ You are LUMI AI. You make automotive enterprises smarter.`;
 
 class LumiAIService {
 
-  // ── Main chat method — supports both streaming and non-streaming ──────────
+  // ── Main chat method (Grok for reasoning) ──────────────────────────────────
   static async chat({ messages, sessionId, vehicleContext, enterpriseContext, stream = false, image = null }) {
     try {
-      // Build message array with vehicle data injection
       const enrichedMessages = await this.enrichMessages(messages, vehicleContext, image);
 
       const params = {
-        model:      image ? 'grok-vision-beta' : (process.env.GROK_MODEL || 'grok-4.3'),
+        model:      process.env.GROK_MODEL || 'grok-4.3',
         max_tokens: parseInt(process.env.MAX_TOKENS) || 4096,
         messages:   [
           { role: 'system', content: LUMI_SYSTEM_PROMPT },
@@ -117,8 +131,8 @@ class LumiAIService {
         return this.streamResponse(params, sessionId);
       }
 
-      const response = await getClient().chat.completions.create(params);
-
+      const response = await getOpenAIClient().chat.completions.create(params);
+      
       const result = {
         content:      response.choices[0].message.content,
         inputTokens:  response.usage.prompt_tokens,
@@ -127,7 +141,6 @@ class LumiAIService {
         sessionId
       };
 
-      // Cache the response for analytics
       await this.cacheInteraction(sessionId, messages, result);
 
       return result;
@@ -138,12 +151,11 @@ class LumiAIService {
     }
   }
 
-  // ── Streaming response using Server-Sent Events ───────────────────────────
+  // ── Streaming response (Grok via OpenAI SDK) ──────────────────────────────
   static async* streamResponse(params, sessionId) {
-    const stream = await getClient().chat.completions.create({ ...params, stream: true });
+    const stream = await getOpenAIClient().chat.completions.create({ ...params, stream: true });
     for await (const chunk of stream) {
       if (chunk.choices[0]?.delta?.content) {
-        // Yield in the format expected by the existing routes/chat.js (Anthropic style)
         yield { 
           type: 'content_block_delta', 
           delta: { type: 'text_delta', text: chunk.choices[0].delta.content } 
@@ -155,7 +167,6 @@ class LumiAIService {
   // ── Vehicle-context aware query ───────────────────────────────────────────
   static async vehicleQuery({ vin, question, sessionId }) {
     try {
-      // Fetch vehicle data from AutomotiveDataset.com
       let vehicleData = null;
       if (vin) {
         vehicleData = await VehicleDataService.decodeVIN(vin);
@@ -235,7 +246,7 @@ FLEET:\n${fleetSummary}`,
   }
 
   // ── Damage assessment ─────────────────────────────────────────────────────
-  static async assessDamage({ damageDescription, vehicleInfo, location, sessionId }) {
+  static async assessDamage({ damageDescription, vehicleInfo, location, image, sessionId }) {
     const context = `
 VEHICLE: ${vehicleInfo?.year || ''} ${vehicleInfo?.make || ''} ${vehicleInfo?.model || ''} ${vehicleInfo?.trim || ''}
 VIN: ${vehicleInfo?.vin || 'Not provided'}
@@ -271,11 +282,12 @@ ${context}`;
 
     return this.chat({
       messages: [{ role: 'user', content: prompt }],
+      image,
       sessionId
     });
   }
 
-  // ── Diagnostic reasoning & repair guide generation (Node Editor) ────────────
+  // ── Diagnostic reasoning & repair guide generation (Grok) ─────────────────
   static async generateRepairGuide({ symptoms, vehicleInfo, dtcCodes, sessionId }) {
     const context = `
 VEHICLE: ${vehicleInfo?.year || ''} ${vehicleInfo?.make || ''} ${vehicleInfo?.model || ''}
@@ -286,41 +298,45 @@ SYMPTOMS: ${symptoms}`;
 
     const prompt = `Act as an advanced automotive diagnostic reasoning engine. Based on the provided symptoms and vehicle context, generate a structured, step-by-step repair guide and parts list.
 
-Format your response as a JSON array representing diagnostic "nodes" in a decision tree. Each node should have this exact structure:
-[
-  {
-    "id": "node-1",
-    "type": "diagnostic_step|repair_action|verification",
-    "title": "Short title of the step",
-    "description": "Detailed explanation of what to check or do",
-    "requiredTools": ["Tool 1", "Tool 2"],
-    "requiredParts": [
-      { "name": "Part Name", "partNumber": "OEM Part Number if known", "estimatedCost": "$XX.XX" }
-    ],
-    "safetyWarnings": ["Warning 1"],
-    "estimatedTime": "XX minutes",
-    "nextNodeIds": ["node-2", "node-3"] // Branching logic depending on findings
-  }
-]
+Format your response as a strictly formatted JSON object with this exact structure:
+{
+  "dtcDefinition": "If a DTC is provided, provide its full technical definition here. Otherwise leave empty.",
+  "detailedSummary": "Provide a comprehensive, highly detailed executive summary of the issue, potential causes, and overall diagnostic strategy. Explain the symptoms in depth.",
+  "nodes": [
+    {
+      "id": "node-1",
+      "type": "diagnostic_step|repair_action|verification",
+      "title": "Short title of the step",
+      "description": "Highly detailed explanation of what to check or do, providing clear technical depth.",
+      "requiredTools": ["Tool 1", "Tool 2"],
+      "requiredParts": [
+        { "name": "Part Name", "partNumber": "OEM Part Number if known", "estimatedCost": "$XX.XX" }
+      ],
+      "safetyWarnings": ["Warning 1"],
+      "estimatedTime": "XX minutes",
+      "nextNodeIds": ["node-2", "node-3"]
+    }
+  ]
+}
 
 ${context}
 
-Return ONLY a valid JSON array and absolutely nothing else. Do not use markdown blocks.`;
+Return ONLY a valid JSON object and absolutely nothing else. Do not use markdown blocks.`;
 
     try {
-      const response = await getClient().chat.completions.create({
+      const response = await getOpenAIClient().chat.completions.create({
         model:      process.env.GROK_MODEL || 'grok-4.3',
         max_tokens: 2500,
         messages:   [
-          { role: 'system', content: 'You are a strict JSON-only diagnostic reasoning engine. Return only the JSON array of nodes without formatting or markdown code blocks.' },
+          { role: 'system', content: 'You are a strict JSON-only diagnostic reasoning engine. Return only the JSON object without formatting or markdown code blocks.' },
           { role: 'user', content: prompt }
         ]
       });
 
       let responseText = response.choices[0].message.content.trim();
-      if (responseText.startsWith('\`\`\`json')) {
+      if (responseText.startsWith('```json')) {
         responseText = responseText.substring(7, responseText.length - 3).trim();
-      } else if (responseText.startsWith('\`\`\`')) {
+      } else if (responseText.startsWith('```')) {
         responseText = responseText.substring(3, responseText.length - 3).trim();
       }
       return JSON.parse(responseText);
@@ -330,7 +346,7 @@ Return ONLY a valid JSON array and absolutely nothing else. Do not use markdown 
     }
   }
 
-  // ── Workflow automation intent detection ──────────────────────────────────
+  // ── Workflow automation intent detection (Grok) ───────────────────────────
   static async detectIntent(message) {
     const prompt = `Analyse this automotive business message and classify the user's intent.
 
@@ -354,7 +370,7 @@ Return JSON only with this exact structure:
 }`;
 
     try {
-      const response = await getClient().chat.completions.create({
+      const response = await getOpenAIClient().chat.completions.create({
         model:      process.env.GROK_MODEL || 'grok-4.3',
         max_tokens: 500,
         messages:   [
@@ -364,9 +380,9 @@ Return JSON only with this exact structure:
       });
 
       let responseText = response.choices[0].message.content.trim();
-      if (responseText.startsWith('\`\`\`json')) {
+      if (responseText.startsWith('```json')) {
         responseText = responseText.substring(7, responseText.length - 3).trim();
-      } else if (responseText.startsWith('\`\`\`')) {
+      } else if (responseText.startsWith('```')) {
         responseText = responseText.substring(3, responseText.length - 3).trim();
       }
       return JSON.parse(responseText);
@@ -381,33 +397,77 @@ Return JSON only with this exact structure:
     }
   }
 
-  // ── Enrich messages with vehicle data context ─────────────────────────────
-  static async enrichMessages(messages, vehicleContext, image) {
-    return messages.map((msg, idx) => {
-      if (idx === messages.length - 1 && msg.role === 'user') {
-        const contentStr = vehicleContext ? `${msg.content || ''}\n\n[VEHICLE DATA CONTEXT]\n${JSON.stringify(vehicleContext, null, 2)}` : (msg.content || '');
-        
-        if (image) {
-          const contentArr = [];
-          if (contentStr && contentStr.trim() !== '') {
-            contentArr.push({ type: 'text', text: contentStr });
-          } else {
-            contentArr.push({ type: 'text', text: 'Please analyze this image.' });
+  static async analyzeImage(base64Image) {
+    try {
+      if (!base64Image.startsWith('data:')) return null;
+      
+      const mimeType = base64Image.substring(5, base64Image.indexOf(';'));
+      const data = base64Image.substring(base64Image.indexOf('base64,') + 7);
+      
+      const response = await getOpenAIClient().chat.completions.create({
+        model: process.env.GROK_MODEL || 'grok-4.3',
+        messages: [
+          {
+            role: 'user',
+            content: [
+              { type: 'text', text: 'Analyze this image in high detail for a text-based AI system. Describe exactly what is shown. If it is a vehicle, identify the make, model, year range, color, and any visible damage. Be objective and extremely descriptive.' },
+              { type: 'image_url', image_url: { url: base64Image, detail: 'low' } }
+            ]
           }
-          contentArr.push({ type: 'image_url', image_url: { url: image } });
-          
-          return {
-            ...msg,
-            content: contentArr
-          };
+        ]
+      });
+      
+      return response.choices[0].message.content.trim();
+    } catch (error) {
+      logger.error('Gemini image analysis error:', error);
+      return 'Image analysis failed.';
+    }
+  }
+
+  // ── Enrich messages with vehicle data and Gemini analysis ─────────────────
+  static async enrichMessages(messages, vehicleContext, image) {
+    // 1. Analyze the image using Gemini if present
+    let imageAnalysisText = '';
+    if (image) {
+      imageAnalysisText = await this.analyzeImage(image);
+    }
+
+    return messages.map((msg, idx, arr) => {
+      // We pass messages transparently to Grok via OpenAI SDK
+      if (msg.role === 'system') return null;
+      
+      if (idx === arr.length - 1 && msg.role === 'user') {
+        let contentStr = msg.content || '';
+        
+        if (imageAnalysisText) {
+          contentStr += `\n\n[USER UPLOADED AN IMAGE - AI ANALYSIS]\n${imageAnalysisText}`;
         }
+        
+        if (vehicleContext) {
+          contentStr += `\n\n[VEHICLE DATA CONTEXT]\n${JSON.stringify(vehicleContext, null, 2)}`;
+        }
+        
         return {
           ...msg,
           content: contentStr || ' '
         };
       }
       return msg;
-    });
+    }).filter(Boolean);
+  }
+
+  static async transcribeAudio(base64Audio) {
+    try {
+      if (!base64Audio.startsWith('data:')) return '[Audio note received: Invalid format]';
+      
+      const mimeType = base64Audio.substring(5, base64Audio.indexOf(';'));
+      const data = base64Audio.substring(base64Audio.indexOf('base64,') + 7);
+      
+      return '[Voice transcription unavailable: API region blocked]';
+    } catch (error) {
+      logger.error('Audio transcription error:', error);
+      return '[Audio note received: Transcription failed]';
+    }
   }
 
   // ── Cache interaction for analytics ──────────────────────────────────────
@@ -427,7 +487,7 @@ Return JSON only with this exact structure:
       return { statusCode: 429, message: 'Rate limit reached. Please wait before sending another request.' };
     }
     if (error.status === 401) {
-      return { statusCode: 401, message: 'Invalid Grok API key. Check your configuration.' };
+      return { statusCode: 401, message: 'Invalid API key. Check your configuration.' };
     }
     if (error.status === 500) {
       return { statusCode: 503, message: 'AI service temporarily unavailable. Please retry.' };

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { body, validationResult } = require('express-validator');
-const { authenticate } = require('../middleware/auth');
+const { authenticate, requireCredits } = require('../middleware/auth');
 const { chatRateLimiter } = require('../middleware/rateLimiter');
 const LumiAIService    = require('../services/LumiAIService');
 const ConversationService = require('../services/ConversationService');
@@ -11,6 +11,7 @@ const logger = require('../config/logger');
 // ── POST /api/chat/message — Standard chat (non-streaming) ───────────────────
 router.post('/message',
   authenticate,
+  requireCredits(1),
   chatRateLimiter,
   [
     body('message').notEmpty().isString().isLength({ max: 4000 }),
@@ -88,6 +89,12 @@ router.post('/message',
         }
       });
 
+      // Deduct credit
+      if (req.user.plan_type !== 'enterprise' && req.user.role !== 'admin') {
+        const { query } = require('../config/database');
+        await query('UPDATE users SET credits = credits - 1 WHERE id = $1', [req.user.id]);
+      }
+
       res.json({
         success: true,
         data: {
@@ -111,6 +118,7 @@ router.post('/message',
 // ── POST /api/chat/stream — Streaming chat (SSE) ──────────────────────────────
 router.post('/stream',
   authenticate,
+  requireCredits(1),
   chatRateLimiter,
   [
     body('message').optional().isString().isLength({ max: 4000 }),
@@ -119,12 +127,13 @@ router.post('/stream',
   ],
   async (req, res, next) => {
     try {
-      let { message, conversationId, vin, image, voice } = req.body;
+      let { message, conversationId, vin, image, voice, vehicleContext } = req.body;
       const userId = req.user.id;
+      const VehicleDataService = require('../services/VehicleDataService');
 
       if (voice) {
-        // Placeholder for Whisper API or similar when x.ai supports it
-        message = (message || '') + ' [Voice note received: Transcription pending API support]';
+        const transcript = await LumiAIService.transcribeAudio(voice);
+        message = (message || '') + (message ? '\n\n' : '') + `[Voice Transcription]\n${transcript}`;
       }
       
       if (!message && !image) {
@@ -160,9 +169,21 @@ router.post('/stream',
         metadata: { hasImage: !!image, hasVoice: !!voice }
       });
 
+      // Detect VIN in message if vehicleContext not already provided
+      if (!vehicleContext && message) {
+        const vinMatch = message.match(/\b[A-HJ-NPR-Z0-9]{17}\b/i);
+        if (vinMatch) {
+          try {
+            vehicleContext = await VehicleDataService.decodeVIN(vinMatch[0]);
+          } catch (e) {
+            console.error('Failed to decode detected VIN:', e);
+          }
+        }
+      }
+
       // Start streaming
       let fullResponse = '';
-      const stream = await LumiAIService.chat({ messages, sessionId: convId, stream: true, image });
+      const stream = await LumiAIService.chat({ messages, sessionId: convId, stream: true, image, vehicleContext });
 
       for await (const chunk of stream) {
         if (chunk.type === 'content_block_delta' && chunk.delta.type === 'text_delta') {
@@ -178,6 +199,12 @@ router.post('/stream',
         role:    'assistant',
         content: fullResponse
       });
+
+      // Deduct credit
+      if (req.user.plan_type !== 'enterprise' && req.user.role !== 'admin') {
+        const { query } = require('../config/database');
+        await query('UPDATE users SET credits = credits - 1 WHERE id = $1', [req.user.id]);
+      }
 
       res.write(`data: ${JSON.stringify({ type: 'done', conversationId: convId })}\n\n`);
       res.end();

@@ -2,7 +2,7 @@ const { Pool } = require('pg');
 const logger = require('./logger');
 
 const poolConfig = process.env.DATABASE_URL 
-  ? { connectionString: process.env.DATABASE_URL, max: 20, idleTimeoutMillis: 30000, connectionTimeoutMillis: 2000, ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false }
+  ? { connectionString: process.env.DATABASE_URL, max: 20, idleTimeoutMillis: 30000, connectionTimeoutMillis: 10000, ssl: { rejectUnauthorized: false } }
   : {
       host:     process.env.DB_HOST     || 'localhost',
       port:     parseInt(process.env.DB_PORT) || 5432,
@@ -12,7 +12,7 @@ const poolConfig = process.env.DATABASE_URL
       ssl:      process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : false,
       max: 20,
       idleTimeoutMillis: 30000,
-      connectionTimeoutMillis: 2000,
+      connectionTimeoutMillis: 10000,
     };
 
 const pool = new Pool(poolConfig);

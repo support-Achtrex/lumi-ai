@@ -41,7 +41,12 @@ export default function InspectionPage() {
           AI Visual Inspection
           <span className="pill pill-blue">360° Computer Vision</span>
         </div>
-        <div style={{ display:'flex', gap:12 }}>
+        <div style={{ display:'flex', gap:12, alignItems: 'center' }}>
+          {state?.vehicleContext && (
+            <div style={{ padding: '6px 12px', background: 'var(--teal-lt)', color: 'var(--teal-dk)', borderRadius: 8, fontSize: 13, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 6 }}>
+              <i className="ti ti-car" /> {state.vehicleContext.year} {state.vehicleContext.make} {state.vehicleContext.model}
+            </div>
+          )}
           <input value={vin} onChange={e=>setVin(e.target.value)} placeholder="Vehicle VIN" style={{ width: 220 }} />
           {phase === 'result' && (
             <button className="btn-primary" onClick={() => setPhase('selection')}>

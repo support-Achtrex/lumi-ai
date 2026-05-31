@@ -1,4 +1,5 @@
 // src/App.jsx
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import AppShell from './components/layout/AppShell';
@@ -8,15 +9,18 @@ import VINPage from './pages/VINPage';
 import FleetPage from './pages/FleetPage';
 import InspectionPage from './pages/InspectionPage';
 import DiagnosticsPage from './pages/DiagnosticsPage';
+import HistoryPage from './pages/HistoryPage';
 import AnalyticsPage from './pages/AnalyticsPage';
 import WorkflowAutomationPage from './pages/WorkflowAutomationPage';
+import AdminUsersPage from './pages/AdminUsersPage';
 import ConsoleShell from './components/layout/ConsoleShell';
-import ConsoleDashboard from './pages/ConsoleDashboard';
+import ProfileSettingsPage from './pages/ProfileSettingsPage';
 import ApiKeysPage from './pages/ApiKeysPage';
 import ModelsPage from './pages/ModelsPage';
 import BillingPage from './pages/BillingPage';
 import DocumentationPage from './pages/DocumentationPage';
-import UsagePage from './pages/UsagePage';
+
+import UpgradeModal from './components/layout/UpgradeModal';
 import './index.css';
 
 function RequireAuth({ children }) {
@@ -25,10 +29,19 @@ function RequireAuth({ children }) {
   return user ? children : <Navigate to="/login" replace />;
 }
 
-export default function App() {
+function AppContainer() {
+  const [showUpgrade, setShowUpgrade] = useState(false);
+
+  useEffect(() => {
+    const handler = () => setShowUpgrade(true);
+    window.addEventListener('creditsExhausted', handler);
+    return () => window.removeEventListener('creditsExhausted', handler);
+  }, []);
+
   return (
-    <AuthProvider>
+    <>
       <BrowserRouter>
+        {showUpgrade && <UpgradeModal onClose={() => setShowUpgrade(false)} />}
         <Routes>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/" element={<RequireAuth><AppShell /></RequireAuth>}>
@@ -40,21 +53,32 @@ export default function App() {
             <Route path="inspection"   element={<InspectionPage />} />
             <Route path="inspection/:id" element={<InspectionPage />} />
             <Route path="diagnostics"  element={<DiagnosticsPage />} />
+            <Route path="history"      element={<HistoryPage />} />
             <Route path="analytics"    element={<AnalyticsPage />} />
             <Route path="workflow"     element={<WorkflowAutomationPage />} />
+            <Route path="admin/users"  element={<AdminUsersPage />} />
           </Route>
           <Route path="/console" element={<RequireAuth><ConsoleShell /></RequireAuth>}>
-            <Route index element={<ConsoleDashboard />} />
+            <Route index element={<Navigate to="/console/profile" replace />} />
+            <Route path="profile" element={<ProfileSettingsPage />} />
             <Route path="api-keys" element={<ApiKeysPage />} />
             <Route path="models" element={<ModelsPage />} />
             <Route path="billing" element={<BillingPage />} />
             <Route path="docs" element={<DocumentationPage />} />
-            <Route path="usage" element={<UsagePage />} />
-            <Route path="*" element={<ConsoleDashboard />} />
+
+            <Route path="*" element={<Navigate to="/console/profile" replace />} />
           </Route>
           <Route path="*" element={<Navigate to="/chat" replace />} />
         </Routes>
       </BrowserRouter>
+    </>
+  );
+}
+
+export default function App() {
+  return (
+    <AuthProvider>
+      <AppContainer />
     </AuthProvider>
   );
 }

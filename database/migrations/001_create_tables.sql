@@ -18,6 +18,8 @@ CREATE TABLE IF NOT EXISTS users (
                   CHECK (role IN ('user','admin','enterprise','developer')),
   enterprise_id UUID,
   is_active     BOOLEAN NOT NULL DEFAULT true,
+  credits       DECIMAL(10,2) DEFAULT 5.00,
+  plan_type     VARCHAR(50) DEFAULT 'free',
   last_login    TIMESTAMP WITH TIME ZONE,
   created_at    TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
   updated_at    TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW()
@@ -159,6 +161,19 @@ CREATE TABLE IF NOT EXISTS damage_assessments (
 
 CREATE INDEX idx_damage_user ON damage_assessments(user_id);
 CREATE INDEX idx_damage_vin  ON damage_assessments(vin);
+
+-- ── INVOICES ──────────────────────────────────────────────────────────────────
+CREATE TABLE IF NOT EXISTS invoices (
+  id              UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  user_id         UUID REFERENCES users(id) ON DELETE CASCADE,
+  amount          NUMERIC(10, 2) NOT NULL,
+  plan_name       VARCHAR(100) NOT NULL,
+  reference       VARCHAR(255) UNIQUE NOT NULL,
+  status          VARCHAR(50) DEFAULT 'paid',
+  created_at      TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW()
+);
+
+CREATE INDEX idx_invoices_user ON invoices(user_id);
 
 -- ── UPDATED_AT TRIGGER ────────────────────────────────────────────────────────
 CREATE OR REPLACE FUNCTION update_updated_at_column()

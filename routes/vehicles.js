@@ -1,7 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 const { param, query, body, validationResult } = require('express-validator');
-const { authenticate } = require('../middleware/auth');
+const { authenticate, requireCredits } = require('../middleware/auth');
 const { vehicleRateLimiter } = require('../middleware/rateLimiter');
 const VehicleDataService = require('../services/VehicleDataService');
 const LumiAIService      = require('../services/LumiAIService');
@@ -29,6 +29,7 @@ router.get('/decode/:vin',
 // ── GET /api/vehicles/:vin/full — Decode + history + pricing in one call ──────
 router.get('/:vin/full',
   authenticate,
+  requireCredits(1),
   vehicleRateLimiter,
   async (req, res, next) => {
     try {
@@ -46,6 +47,12 @@ router.get('/:vin/full',
         VehicleDataService.getRecalls(vin),
         mileage ? VehicleDataService.getMarketPricing(vin, parseInt(mileage), condition || 'good', zipCode) : Promise.resolve(null)
       ]);
+
+      // Deduct credit
+      if (req.user.plan_type !== 'enterprise' && req.user.role !== 'admin') {
+        const { query } = require('../config/database');
+        await query('UPDATE users SET credits = credits - 1 WHERE id = $1', [req.user.id]);
+      }
 
       res.json({
         success: true,

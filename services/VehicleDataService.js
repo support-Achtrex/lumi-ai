@@ -28,7 +28,7 @@ apiClient.interceptors.response.use(
 class VehicleDataService {
 
   static async decodeVIN(vin) {
-    if (!vin || vin.length < 5) {
+    if (!vin || vin.length !== 17) {
       throw { statusCode: 400, message: 'Invalid VIN' };
     }
 
@@ -40,32 +40,66 @@ class VehicleDataService {
     }
 
     try {
-      // Using live vehicledatabases.com endpoint
-      const response = await axios.get(`https://api.vehicledatabases.com/vin-auction-html/${vin.toUpperCase()}`, {
-        headers: {
-          'x-authkey': 'e9694f64e00e46348041989c0fab704a'
+      // 1. Try Global API (auto.dev - Covers EU/Asia) if API key is provided
+      let globalData = null;
+      if (process.env.AUTODEV_API_KEY) {
+        try {
+          const globalRes = await axios.get(`https://api.auto.dev/vin/${vin.toUpperCase()}`, {
+            headers: { 'Authorization': `Bearer ${process.env.AUTODEV_API_KEY}` }
+          });
+          if (globalRes.data && globalRes.data.make) {
+            globalData = globalRes.data;
+          }
+        } catch (globalErr) {
+          logger.debug(`Global VIN decoder (auto.dev) failed, falling back to NHTSA...`);
         }
-      });
-      const data = response.data;
+      }
+
+      if (globalData) {
+        const eng = globalData.engine || {};
+        const mappedData = {
+          vin: vin.toUpperCase(),
+          make: globalData.make?.name || globalData.make || 'Unknown Make',
+          model: globalData.model?.name || globalData.model || 'Vehicle',
+          year: globalData.year || new Date().getFullYear(),
+          trim: globalData.trim || 'Base',
+          body_class: globalData.body_type || globalData.body_class || 'Unknown',
+          engine: eng.type || eng.configuration || 'Unknown',
+          plant_country: globalData.plant_country || globalData.country || 'Global',
+          manufacturer: globalData.manufacturer?.name || globalData.manufacturer || 'Unknown',
+          drive_type: globalData.driven_wheels || globalData.drive_type || 'Unknown',
+          fuel_type: eng.fuel_type || 'Unknown',
+          transmission: globalData.transmission || 'Unknown',
+          raw: globalData
+        };
+        await set(cacheKey, mappedData, DEFAULT_TTL * 24);
+        return mappedData;
+      }
+
+      // 2. Fallback to NHTSA vPIC API (Highly accurate for US)
+      const response = await axios.get(`https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValues/${vin.toUpperCase()}?format=json`);
+      const results = response.data.Results[0];
       
-      // Map the response appropriately for our system
-      // Assuming typical vehicledatabase response structure
       const mappedData = {
         vin: vin.toUpperCase(),
-        make: data.basic?.make || data.make || 'Unknown Make',
-        model: data.basic?.model || data.model || 'Vehicle',
-        year: data.basic?.year || data.year || new Date().getFullYear(),
-        trim: data.basic?.trim || data.trim || 'Base',
-        body_class: data.basic?.body_type || 'Unknown',
-        engine: data.engine?.engine_type || data.engine || 'Unknown',
-        plant_country: data.basic?.plant_country || 'Global',
-        raw: data // Keep raw data in case we need it
+        make: results.Make || 'Unknown Make',
+        model: results.Model || 'Vehicle',
+        year: results.ModelYear || new Date().getFullYear(),
+        trim: results.Trim || 'Base',
+        body_class: results.BodyClass || 'Unknown',
+        engine: results.EngineConfiguration ? `${results.EngineConfiguration} ${results.EngineCylinders} Cyl${results.DisplacementL ? ` ${results.DisplacementL}L` : ''}` : 'Unknown',
+        plant_country: results.PlantCountry || 'Global',
+        manufacturer: results.Manufacturer || 'Unknown',
+        drive_type: results.DriveType || 'Unknown',
+        fuel_type: results.FuelTypePrimary || 'Unknown',
+        transmission: results.TransmissionStyle || 'Unknown',
+        raw: results
       };
 
       await set(cacheKey, mappedData, DEFAULT_TTL * 24);
       return mappedData;
     } catch (error) {
-      logger.error('Live VIN decoder API failed:', error.message);
+      logger.error('NHTSA VIN decoder API failed:', error.message);
       throw { statusCode: 500, message: 'Failed to decode VIN' };
     }
   }

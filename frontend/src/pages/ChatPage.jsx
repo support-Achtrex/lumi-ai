@@ -1,6 +1,6 @@
 // src/pages/ChatPage.jsx
 import { useState, useRef, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import APIService from '../services/api';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -8,7 +8,7 @@ import remarkGfm from 'remark-gfm';
 function TCOCard({ data }) {
   if (!data) return null;
   return (
-    <div style={{ fontFamily:'Inter, sans-serif', color:'#1C2B3A', marginBottom:16, marginTop:8 }}>
+    <div className="animate-slide-up" style={{ fontFamily:'Inter, sans-serif', color:'#1C2B3A', marginBottom:16, marginTop:8 }}>
       <div style={{ display:'flex', gap:8, marginBottom:16 }}>
         <span style={{ background:'#E1F5EE', color:'#0F6E56', padding:'4px 8px', borderRadius:6, fontSize:12, fontWeight:600, display:'flex', alignItems:'center', gap:4 }}>
           <i className="ti ti-car" /> {data.vin || 'VIN N/A'}
@@ -31,8 +31,8 @@ function TCOCard({ data }) {
       <div style={{ background:'#fff', border:'1px solid #E0E0E0', padding:24, borderRadius:16, boxShadow:'0 4px 12px rgba(0,0,0,0.03)' }}>
         <div style={{ fontSize:14, color:'#607D8B', marginBottom:6 }}>5-year estimated total</div>
         <div style={{ fontSize:32, fontWeight:600, color:'#1C2B3A', marginBottom:12, letterSpacing:'-0.5px' }}>${data.total?.toLocaleString() || '25,250'}</div>
-        <div style={{ fontSize:13.5, color:'#607D8B', display:'flex', alignItems:'center', gap:6 }}>
-          ${data.costPerMile}/mi · {data.comparisonText} <span style={{ color:'#0F6E56', fontWeight:500, background:'#EAF3DE', padding:'2px 8px', borderRadius:12 }}>✓ {data.verdict}</span>
+        <div style={{ fontSize:13.5, color:'#607D8B', display:'flex', alignItems:'center', gap:6, flexWrap:'wrap' }}>
+          ${data.costPerMile}/mi · {data.comparisonText} <span style={{ color:'#0F6E56', fontWeight:500, background:'#EAF3DE', padding:'2px 8px', borderRadius:12, whiteSpace:'nowrap' }}>✓ {data.verdict}</span>
         </div>
       </div>
     </div>
@@ -42,28 +42,70 @@ function TCOCard({ data }) {
 function ComparisonCard({ data }) {
   if (!data) return null;
   return (
-    <div style={{ fontFamily:'Inter, sans-serif', color:'#1C2B3A', marginBottom:16, marginTop:8 }}>
+    <div className="animate-slide-up" style={{ fontFamily:'Inter, sans-serif', color:'#1C2B3A', marginBottom:16, marginTop:8 }}>
       <p style={{ margin:'0 0 16px 0', fontSize:14.5, color:'#1C2B3A', fontWeight:500, lineHeight:1.5 }}>{data.summary}</p>
-      <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:12 }}>
+      <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:12, alignItems:'stretch' }}>
         {/* Winner */}
-        <div style={{ background:'#E1F5EE', border:'1px solid #0F6E56', padding:20, borderRadius:16, position:'relative', overflow:'hidden', boxShadow:'0 4px 12px rgba(15,110,86,0.1)' }}>
-          <div style={{ position:'absolute', top:0, left:0, width:'100%', height:4, background:'#0F6E56' }} />
-          <div style={{ fontSize:14, color:'#0F6E56', fontWeight:600, marginBottom:10 }}>{data.winner?.name} · winner</div>
-          <div style={{ fontSize:28, fontWeight:600, color:'#085041', marginBottom:6, letterSpacing:'-0.5px' }}>${data.winner?.total?.toLocaleString()}</div>
-          <div style={{ fontSize:13.5, color:'#0F6E56', fontWeight:500 }}>${data.winner?.costPerMile}/mi</div>
+        <div style={{ display:'flex', flexDirection:'column', background:'#E1F5EE', border:'1px solid #0F6E56', borderTop:'4px solid #0F6E56', padding:16, borderRadius:12, boxShadow:'0 4px 12px rgba(15,110,86,0.1)' }}>
+          <div style={{ fontSize:13, color:'#0F6E56', fontWeight:600, textTransform:'uppercase', letterSpacing:'0.5px', marginBottom:12, display:'flex', alignItems:'center', gap:6 }}>
+            <i className="ti ti-trophy" /> Winner
+          </div>
+          <div style={{ fontSize:14, color:'#0F6E56', fontWeight:600, marginBottom:8 }}>{data.winner?.name}</div>
+          <div style={{ fontSize:28, fontWeight:700, color:'#085041', marginBottom:6, letterSpacing:'-0.5px' }}>${data.winner?.total?.toLocaleString()}</div>
+          <div style={{ fontSize:13.5, color:'#0F6E56', fontWeight:500, marginTop:'auto' }}>${data.winner?.costPerMile}/mi</div>
         </div>
         {/* Loser */}
-        <div style={{ background:'#fff', border:'1px solid #E0E0E0', padding:20, borderRadius:16, boxShadow:'0 2px 8px rgba(0,0,0,0.04)' }}>
-          <div style={{ fontSize:14, color:'#607D8B', marginBottom:10 }}>{data.loser?.name}</div>
-          <div style={{ fontSize:28, fontWeight:600, color:'#1C2B3A', marginBottom:6, letterSpacing:'-0.5px' }}>${data.loser?.total?.toLocaleString()}</div>
-          <div style={{ fontSize:13.5, color:'#607D8B' }}>${data.loser?.costPerMile}/mi</div>
+        <div style={{ display:'flex', flexDirection:'column', background:'#fff', border:'1px solid #E0E0E0', borderTop:'4px solid #E0E0E0', padding:16, borderRadius:12, boxShadow:'0 2px 8px rgba(0,0,0,0.04)' }}>
+          <div style={{ fontSize:13, color:'#90A4AE', fontWeight:600, textTransform:'uppercase', letterSpacing:'0.5px', marginBottom:12 }}>Alternative</div>
+          <div style={{ fontSize:14, color:'#607D8B', fontWeight:600, marginBottom:8 }}>{data.loser?.name}</div>
+          <div style={{ fontSize:28, fontWeight:700, color:'#1C2B3A', marginBottom:6, letterSpacing:'-0.5px' }}>${data.loser?.total?.toLocaleString()}</div>
+          <div style={{ fontSize:13.5, color:'#607D8B', fontWeight:500, marginTop:'auto' }}>${data.loser?.costPerMile}/mi</div>
         </div>
       </div>
     </div>
   );
 }
 
+function VINCard({ data }) {
+  if (!data) return null;
+  return (
+    <div className="animate-slide-up" style={{ fontFamily:'Inter, sans-serif', color:'#1C2B3A', marginBottom:16, marginTop:8 }}>
+      <div style={{ display:'flex', gap:12, marginBottom:16, alignItems: 'center' }}>
+        <div style={{ width:40, height:40, background:'linear-gradient(135deg, #00C8A8 0%, #0F6E56 100%)', borderRadius:10, display:'flex', alignItems:'center', justifyContent:'center', color:'#fff', flexShrink:0, boxShadow:'0 4px 12px rgba(15,110,86,0.2)' }}>
+          <i className="ti ti-car" style={{ fontSize:20 }} />
+        </div>
+        <div>
+          <div style={{ fontSize:16, fontWeight:600, color:'#1C2B3A', letterSpacing:'-0.3px' }}>{data.year} {data.make} {data.model}</div>
+          <div style={{ fontSize:13, color:'#607D8B' }}>VIN: <span style={{ fontFamily:'ui-monospace, monospace', color:'#1C2B3A', fontWeight:500, background:'#F5F8FC', padding:'2px 6px', borderRadius:4, border:'1px solid #EBF1F8' }}>{data.vin}</span></div>
+        </div>
+      </div>
+      
+      <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(150px, 1fr))', gap:12 }}>
+        {[
+          { label: 'Trim', value: data.trim },
+          { label: 'Body Style', value: data.bodyClass },
+          { label: 'Engine', value: data.engine },
+          { label: 'Transmission', value: data.transmission },
+          { label: 'Fuel Type', value: data.fuelType },
+          { label: 'Drive Type', value: data.driveType },
+          { label: 'Plant Country', value: data.plantCountry },
+          { label: 'Manufacturer', value: data.manufacturer }
+        ].map(item => (
+          <div key={item.label} style={{ background:'#fff', border:'1px solid #EBF1F8', padding:'14px', borderRadius:12, boxShadow:'0 2px 8px rgba(0,0,0,0.02)', transition:'transform 0.2s' }}>
+            <div style={{ fontSize:11, color:'#90A4AE', marginBottom:4, fontWeight:600, textTransform:'uppercase', letterSpacing:'0.5px' }}>{item.label}</div>
+            <div style={{ fontSize:14, color:'#1C2B3A', fontWeight:600, lineHeight:1.3 }}>{item.value && item.value !== 'Unknown' && item.value !== 'Not Applicable' ? item.value : '—'}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 const MarkdownComponents = {
+  pre({children}) {
+    // ReactMarkdown wraps code blocks in <pre>. We remove the <pre> styling because we render custom React components instead of raw text.
+    return <div className="markdown-pre-wrapper" style={{ marginBottom: 16 }}>{children}</div>;
+  },
   code({node, inline, className, children, ...props}) {
     const match = /language-(\w+)/.exec(className || '');
     if (!inline && match && match[1] === 'json') {
@@ -71,6 +113,7 @@ const MarkdownComponents = {
         const parsed = JSON.parse(String(children).replace(/\n$/, ''));
         if (parsed.type === 'tco_breakdown') return <TCOCard data={parsed} />;
         if (parsed.type === 'comparison') return <ComparisonCard data={parsed} />;
+        if (parsed.type === 'vin_lookup') return <VINCard data={parsed} />;
       } catch (e) {}
     }
     return <code className={className} style={{ background:'rgba(0,0,0,0.06)', padding:'2px 5px', borderRadius:4, fontFamily:'ui-monospace, monospace', fontSize:'0.9em' }} {...props}>{children}</code>;
@@ -90,19 +133,17 @@ const MarkdownComponents = {
 
 export default function ChatPage() {
   const { id } = useParams();
+  const location = useLocation();
   const [messages,    setMessages]    = useState([]);
   const [input,       setInput]       = useState('');
-  const [vin,         setVin]         = useState('');
   const [loading,     setLoading]     = useState(false);
   const [streaming,   setStreaming]   = useState(false);
   const [convId,      setConvId]      = useState(id || null);
   const [streamText,  setStreamText]  = useState('');
   const [imageFile,   setImageFile]   = useState(null);
   const [isRecording, setIsRecording] = useState(false);
-  const [audioFile,   setAudioFile]   = useState(null);
   const fileInputRef  = useRef(null);
-  const mediaRecorder = useRef(null);
-  const audioChunks   = useRef([]);
+  const recognitionRef = useRef(null);
   const bottomRef = useRef(null);
 
   useEffect(() => {
@@ -110,7 +151,7 @@ export default function ChatPage() {
   }, [id]);
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+    bottomRef.current?.scrollIntoView({ behavior: 'auto' });
   }, [messages, streamText]);
 
   async function loadConversation(cid) {
@@ -122,11 +163,11 @@ export default function ChatPage() {
 
   async function sendMessage(e) {
     e.preventDefault();
-    if (!input.trim() || loading) return;
+    if ((!input.trim() && !imageFile) || loading) return;
 
     const userMsg = input.trim();
     setInput('');
-    setMessages(prev => [...prev, { role: 'user', content: userMsg }]);
+    setMessages(prev => [...prev, { role: 'user', content: userMsg, image: imageFile }]);
     setStreaming(true);
     setStreamText('');
 
@@ -137,14 +178,12 @@ export default function ChatPage() {
       const payload = {
         message: userMsg,
         conversationId: convId,
-        vin: vin || undefined,
         image: imageFile,
-        voice: audioFile
+        vehicleContext: location.state?.vehicleContext || null
       };
 
       // Clear pending attachments after sending
       setImageFile(null);
-      setAudioFile(null);
 
       for await (const chunk of APIService.streamMessage(payload)) {
         if (chunk.type === 'conversation_id') {
@@ -180,7 +219,7 @@ export default function ChatPage() {
           {convId ? 'Active Diagnostic Session' : 'New Intelligence Session'}
         </div>
         <div style={{ display:'flex', gap:8 }}>
-          <button style={{ height:32, padding:'0 12px', background:'#F5F8FC', border:'1px solid #D0DCE8', borderRadius:8, fontSize:12, fontWeight:500, color:'#607D8B', display:'flex', alignItems:'center', gap:6 }}>
+          <button onClick={() => window.print()} style={{ height:32, padding:'0 12px', background:'#F5F8FC', border:'1px solid #D0DCE8', borderRadius:8, fontSize:12, fontWeight:500, color:'#607D8B', display:'flex', alignItems:'center', gap:6, cursor: 'pointer' }} onMouseOver={e => e.currentTarget.style.borderColor = '#00C8A8'} onMouseOut={e => e.currentTarget.style.borderColor = '#D0DCE8'}>
             <i className="ti ti-download" style={{ fontSize:14 }} /> Export Report
           </button>
         </div>
@@ -193,7 +232,7 @@ export default function ChatPage() {
           <div style={{ flex:1, display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', gap:16, color:'#90A4AE', textAlign:'center', animation:'fadeIn 0.5s ease-out' }}>
             <div style={{ width:64, height:64, background:'linear-gradient(135deg, #00C8A8 0%, #0F6E56 100%)', borderRadius:16, display:'flex', alignItems:'center', justifyContent:'center', fontSize:32, fontWeight:600, color:'#fff', boxShadow:'0 8px 24px rgba(15,110,86,0.2)' }}>L</div>
             <div style={{ fontSize:18, fontWeight:600, color:'#1C2B3A', letterSpacing:'-0.3px' }}>Ask LUMI AI anything automotive</div>
-            <div style={{ fontSize:13, color:'#607D8B', maxWidth:400 }}>Enter a VIN below to ground responses in real vehicle data, or ask general questions about fleet management, compliance, or diagnostics.</div>
+            <div style={{ fontSize:13, color:'#607D8B', maxWidth:400 }}>Ask general questions about fleet management, compliance, or diagnostics, or upload an image to analyze.</div>
             <div style={{ display:'flex', gap:10, flexWrap:'wrap', justifyContent:'center', marginTop:12, maxWidth:700 }}>
               {['What is the TCO for a 2022 Toyota Camry over 5 years?', 'Compare Ford F-150 vs Chevy Silverado for fleet use', 'What maintenance is due at 90,000 miles on a Honda CR-V?'].map(q => (
                 <button key={q} onClick={() => setInput(q)} style={{ padding:'10px 16px', fontSize:13, fontWeight:500, background:'#fff', border:'1px solid #D0DCE8', borderRadius:24, color:'#1C2B3A', cursor:'pointer', transition:'all 0.2s', boxShadow:'0 2px 4px rgba(0,0,0,0.02)' }}
@@ -223,7 +262,11 @@ export default function ChatPage() {
             }}>
               {m.role === 'assistant'
                 ? <ReactMarkdown remarkPlugins={[remarkGfm]} components={MarkdownComponents}>{m.content}</ReactMarkdown>
-                : <span style={{ lineHeight:1.5 }}>{m.content}</span>}
+                : <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                    {m.image && <img src={m.image} alt="Uploaded attachment" style={{ maxWidth: 200, borderRadius: 8 }} />}
+                    {m.voice && <audio src={m.voice} controls style={{ height: 32, maxWidth: 250 }} />}
+                    {m.content && <span style={{ lineHeight:1.5 }}>{m.content}</span>}
+                  </div>}
             </div>
           </div>
         ))}
@@ -252,30 +295,12 @@ export default function ChatPage() {
 
       {/* Input area */}
       <div style={{ padding:'12px 18px', borderTop:'0.5px solid #D0DCE8', background:'#fff', flexShrink:0 }}>
-        <div style={{ display:'flex', gap:7, marginBottom:7 }}>
-          <input value={vin} onChange={e => setVin(e.target.value)} placeholder="VIN (optional) — grounds LUMI AI in real vehicle data" style={{ flex:1, height:31, fontSize:12, background:'#F5F8FC' }} />
-          {vin && (
-            <button style={{ height:31, padding:'0 11px', background:'#00C8A8', border:'none', color:'#04342C', fontWeight:500, fontSize:12 }}
-              onClick={() => setInput(`Tell me everything about VIN ${vin}`)}>
-              <i className="ti ti-search" style={{ fontSize:12 }} aria-hidden="true" /> Look up
-            </button>
-          )}
-        </div>
-        {/* Attachment Previews */}
-        {(imageFile || audioFile) && (
+        {imageFile && (
           <div style={{ display:'flex', gap:10, marginBottom:8 }}>
-            {imageFile && (
-              <div style={{ position:'relative', display:'inline-block' }}>
-                <img src={imageFile} alt="Upload preview" style={{ height:40, borderRadius:4, border:'1px solid #D0DCE8' }} />
-                <button onClick={() => setImageFile(null)} style={{ position:'absolute', top:-6, right:-6, background:'red', color:'#fff', border:'none', borderRadius:'50%', width:16, height:16, fontSize:10, cursor:'pointer', display:'flex', alignItems:'center', justifyContent:'center' }}>×</button>
-              </div>
-            )}
-            {audioFile && (
-              <div style={{ position:'relative', display:'flex', alignItems:'center', background:'#E1F5EE', color:'#0F6E56', padding:'4px 12px', borderRadius:16, fontSize:12, fontWeight:500 }}>
-                <i className="ti ti-microphone" style={{ marginRight:4 }} /> Voice Note
-                <button onClick={() => setAudioFile(null)} style={{ marginLeft:8, background:'transparent', color:'#0F6E56', border:'none', cursor:'pointer' }}>×</button>
-              </div>
-            )}
+            <div style={{ position:'relative', display:'inline-block' }}>
+              <img src={imageFile} alt="Upload preview" style={{ height:40, borderRadius:4, border:'1px solid #D0DCE8' }} />
+              <button onClick={() => setImageFile(null)} style={{ position:'absolute', top:-6, right:-6, background:'red', color:'#fff', border:'none', borderRadius:'50%', width:16, height:16, fontSize:10, cursor:'pointer', display:'flex', alignItems:'center', justifyContent:'center' }}>×</button>
+            </div>
           </div>
         )}
 
@@ -289,7 +314,30 @@ export default function ChatPage() {
               const file = e.target.files[0];
               if (file) {
                 const reader = new FileReader();
-                reader.onload = () => setImageFile(reader.result);
+                reader.onload = () => {
+                  const img = new Image();
+                  img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    let width = img.width;
+                    let height = img.height;
+                    const max_size = 1024;
+                    if (width > max_size || height > max_size) {
+                      if (width > height) {
+                        height = Math.round((height * max_size) / width);
+                        width = max_size;
+                      } else {
+                        width = Math.round((width * max_size) / height);
+                        height = max_size;
+                      }
+                    }
+                    canvas.width = width;
+                    canvas.height = height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, width, height);
+                    setImageFile(canvas.toDataURL('image/jpeg', 0.8));
+                  };
+                  img.src = reader.result;
+                };
                 reader.readAsDataURL(file);
               }
             }} 
@@ -299,29 +347,37 @@ export default function ChatPage() {
           </button>
 
           <button type="button" 
-            onClick={async () => {
+            onClick={() => {
               if (isRecording) {
-                mediaRecorder.current?.stop();
-                mediaRecorder.current?.stream.getTracks().forEach(t => t.stop());
+                recognitionRef.current?.stop();
                 setIsRecording(false);
               } else {
-                try {
-                  const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-                  const recorder = new MediaRecorder(stream);
-                  mediaRecorder.current = recorder;
-                  audioChunks.current = [];
-                  recorder.ondataavailable = e => { if (e.data.size > 0) audioChunks.current.push(e.data); };
-                  recorder.onstop = () => {
-                    const blob = new Blob(audioChunks.current, { type: 'audio/webm' });
-                    const reader = new FileReader();
-                    reader.onload = () => setAudioFile(reader.result);
-                    reader.readAsDataURL(blob);
-                  };
-                  recorder.start();
-                  setIsRecording(true);
-                } catch (e) {
-                  console.error('Mic error', e);
+                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                if (!SpeechRecognition) {
+                  alert("Your browser does not support Speech Recognition.");
+                  return;
                 }
+                if (!recognitionRef.current) {
+                  recognitionRef.current = new SpeechRecognition();
+                  recognitionRef.current.continuous = true;
+                  recognitionRef.current.interimResults = true;
+                  
+                  recognitionRef.current.onstart = () => setIsRecording(true);
+                  recognitionRef.current.onerror = (e) => { console.error(e); setIsRecording(false); };
+                  recognitionRef.current.onend = () => setIsRecording(false);
+                }
+                
+                recognitionRef.current.startText = input; // Capture existing input
+                
+                recognitionRef.current.onresult = (e) => {
+                  let transcript = '';
+                  for (let i = 0; i < e.results.length; i++) {
+                    transcript += e.results[i][0].transcript;
+                  }
+                  setInput(recognitionRef.current.startText + (recognitionRef.current.startText ? ' ' : '') + transcript);
+                };
+                
+                recognitionRef.current.start();
               }
             }} 
             style={{ width:36, height:36, padding:0, background: isRecording ? '#FFE5E5' : '#F5F8FC', border:'1px solid', borderColor: isRecording ? '#FF4D4D' : '#D0DCE8', color: isRecording ? '#FF4D4D' : '#607D8B', display:'flex', alignItems:'center', justifyContent:'center', borderRadius:'50%', cursor:'pointer' }}>
@@ -329,8 +385,8 @@ export default function ChatPage() {
           </button>
 
           <input value={input} onChange={e => setInput(e.target.value)} placeholder="Ask LUMI AI about any vehicle…" style={{ flex:1, height:36, fontSize:13, borderRadius:4, border:'1px solid #D0DCE8', padding:'0 10px' }} disabled={loading} />
-          <button type="submit" disabled={(!input.trim() && !imageFile && !audioFile) || loading}
-            style={{ width:36, height:36, padding:0, background:'#0D2FA3', border:'none', color:'#fff', display:'flex', alignItems:'center', justifyContent:'center', borderRadius:'50%', cursor:'pointer', opacity: (!input.trim() && !imageFile && !audioFile) ? .5 : 1 }}>
+          <button type="submit" disabled={(!input.trim() && !imageFile) || loading}
+            style={{ width:36, height:36, padding:0, background:'#0D2FA3', border:'none', color:'#fff', display:'flex', alignItems:'center', justifyContent:'center', borderRadius:'50%', cursor:'pointer', opacity: (!input.trim() && !imageFile) ? .5 : 1 }}>
             <i className="ti ti-arrow-up" style={{ fontSize:15 }} aria-hidden="true" />
           </button>
         </form>

@@ -1,16 +1,17 @@
 const express = require('express');
 const router  = express.Router();
 const { body, validationResult } = require('express-validator');
-const { authenticate } = require('../middleware/auth');
+const { authenticate, requireCredits } = require('../middleware/auth');
 const LumiAIService = require('../services/LumiAIService');
 const VehicleDataService = require('../services/VehicleDataService');
 
 // ── POST /api/diagnostics/assess — Damage assessment ─────────────────────────
 router.post('/assess',
   authenticate,
+  requireCredits(3),
   [
     body('damageDescription').notEmpty().isString().isLength({ max: 2000 }),
-    body('vin').optional().matches(/^[A-HJ-NPR-Z0-9]{17}$/i),
+    body('vin').optional({ checkFalsy: true }).matches(/^[A-HJ-NPR-Z0-9]{17}$/i),
     body('location').optional().isString()
   ],
   async (req, res, next) => {
@@ -20,7 +21,7 @@ router.post('/assess',
         return res.status(400).json({ success: false, errors: errors.array() });
       }
 
-      const { damageDescription, vin, location } = req.body;
+      const { damageDescription, vin, location, image } = req.body;
 
       // Fetch vehicle info if VIN provided
       let vehicleInfo = null;
@@ -36,8 +37,15 @@ router.post('/assess',
         damageDescription,
         vehicleInfo,
         location,
+        image,
         sessionId: `damage:${req.user.id}:${Date.now()}`
       });
+
+      // Deduct credit
+      if (req.user.plan_type !== 'enterprise' && req.user.role !== 'admin') {
+        const { query } = require('../config/database');
+        await query('UPDATE users SET credits = credits - 3 WHERE id = $1', [req.user.id]);
+      }
 
       res.json({
         success: true,
@@ -58,6 +66,7 @@ router.post('/assess',
 // ── POST /api/diagnostics/maintenance — Maintenance recommendation ────────────
 router.post('/maintenance',
   authenticate,
+  requireCredits(3),
   [
     body('vin').notEmpty().matches(/^[A-HJ-NPR-Z0-9]{17}$/i),
     body('mileage').isInt({ min: 0 }),
@@ -97,6 +106,12 @@ Provide:
         sessionId: `maintenance:${vin}:${req.user.id}`
       });
 
+      // Deduct credit
+      if (req.user.plan_type !== 'enterprise' && req.user.role !== 'admin') {
+        const { query } = require('../config/database');
+        await query('UPDATE users SET credits = credits - 3 WHERE id = $1', [req.user.id]);
+      }
+
       res.json({
         success: true,
         data: {
@@ -117,6 +132,7 @@ Provide:
 // ── POST /api/diagnostics/tco — Total Cost of Ownership calculation ───────────
 router.post('/tco',
   authenticate,
+  requireCredits(3),
   [
     body('vin').notEmpty().matches(/^[A-HJ-NPR-Z0-9]{17}$/i),
     body('currentMileage').isInt({ min: 0 }),
@@ -165,6 +181,12 @@ Calculate and break down:
         sessionId: `tco:${vin}:${req.user.id}`
       });
 
+      // Deduct credit
+      if (req.user.plan_type !== 'enterprise' && req.user.role !== 'admin') {
+        const { query } = require('../config/database');
+        await query('UPDATE users SET credits = credits - 3 WHERE id = $1', [req.user.id]);
+      }
+
       res.json({
         success: true,
         data: {
@@ -185,9 +207,10 @@ Calculate and break down:
 // ── POST /api/diagnostics/reasoning — Diagnostic Node Editor ──────────────────
 router.post('/reasoning',
   authenticate,
+  requireCredits(3),
   [
     body('symptoms').notEmpty().isString(),
-    body('vin').optional().matches(/^[A-HJ-NPR-Z0-9]{17}$/i),
+    body('vin').optional({ checkFalsy: true }).matches(/^[A-HJ-NPR-Z0-9]{17}$/i),
     body('dtcCodes').optional().isArray()
   ],
   async (req, res, next) => {
@@ -208,17 +231,25 @@ router.post('/reasoning',
         }
       }
 
-      const reasoningNodes = await LumiAIService.generateRepairGuide({
+      const aiResponse = await LumiAIService.generateRepairGuide({
         symptoms,
         vehicleInfo,
         dtcCodes,
         sessionId: `reasoning:${req.user.id}:${Date.now()}`
       });
 
+      // Deduct credit
+      if (req.user.plan_type !== 'enterprise' && req.user.role !== 'admin') {
+        const { query } = require('../config/database');
+        await query('UPDATE users SET credits = credits - 3 WHERE id = $1', [req.user.id]);
+      }
+
       res.json({
         success: true,
         data: {
-          nodes: reasoningNodes,
+          dtcDefinition: aiResponse.dtcDefinition,
+          detailedSummary: aiResponse.detailedSummary,
+          nodes: aiResponse.nodes || [],
           vehicleInfo,
           generatedAt: new Date().toISOString()
         }

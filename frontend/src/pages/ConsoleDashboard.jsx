@@ -96,10 +96,6 @@ export default function ConsoleDashboard() {
           <div style={{ color: '#555', fontSize: '14px', marginBottom: '12px' }}>Tokens</div>
           <div style={{ fontSize: '24px', fontWeight: '700', marginBottom: '16px' }}>{totalTokens.toLocaleString()}</div>
           <div style={{ marginTop: 'auto', display: 'flex', alignItems: 'flex-end', height: '40px', gap: '4px', borderBottom: '1px dashed #EBEBEB', paddingBottom: '4px' }}>
-            {/* Mock chart bars removed as they are static. For a real dashboard we'd use recharts here. */}
-            <div style={{ width: '100%', height: '100%', background: '#F5F5F5', borderRadius: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px', color: '#888' }}>
-              Real-time chart pending
-            </div>
           </div>
         </div>
 
@@ -108,9 +104,6 @@ export default function ConsoleDashboard() {
           <div style={{ color: '#555', fontSize: '14px', marginBottom: '12px' }}>Requests</div>
           <div style={{ fontSize: '24px', fontWeight: '700', marginBottom: '16px' }}>{requests.toLocaleString()}</div>
           <div style={{ marginTop: 'auto', display: 'flex', alignItems: 'flex-end', height: '40px', gap: '4px', borderBottom: '1px dashed #EBEBEB', paddingBottom: '4px' }}>
-             <div style={{ width: '100%', height: '100%', background: '#F5F5F5', borderRadius: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px', color: '#888' }}>
-              Real-time chart pending
-            </div>
           </div>
         </div>
       </div>
