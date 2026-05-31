@@ -6446,3 +6446,36 @@
 2026-05-31 18:03:56 [info]: 📡 Environment: development
 2026-05-31 18:03:56 [info]: 🌐 Frontend: http://localhost:3000
 2026-05-31 18:03:56 [info]: 🤖 Model: undefined
+2026-05-31 18:04:26 [info]: PostgreSQL pool initialised
+2026-05-31 18:04:26 [info]: ✅ PostgreSQL connected
+2026-05-31 18:04:26 [info]: Redis connected
+2026-05-31 18:04:28 [info]: ✅ Redis connected
+2026-05-31 18:04:28 [info]: 🚀 LUMI AI server running on port 3001
+2026-05-31 18:04:28 [info]: 📡 Environment: development
+2026-05-31 18:04:28 [info]: 🌐 Frontend: http://localhost:3000
+2026-05-31 18:04:28 [info]: 🤖 Model: undefined
+2026-05-31 18:05:01 [warn]: Slow query detected (2071ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-05-31 18:05:01 [http]: ::1 - - [31/May/2026:18:05:01 +0000] "GET /api/auth/me HTTP/1.1" 200 262 "http://localhost:3000/chat" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 18:05:01 [warn]: Slow query detected (2498ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-05-31 18:05:01 [http]: ::1 - - [31/May/2026:18:05:01 +0000] "GET /api/auth/me HTTP/1.1" 304 - "http://localhost:3000/chat" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 18:05:02 [http]: ::1 - - [31/May/2026:18:05:02 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 200 - "http://localhost:3000/chat" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 18:05:03 [http]: ::1 - - [31/May/2026:18:05:03 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 200 - "http://localhost:3000/chat" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 18:05:05 [warn]: Gemini stream failed, falling back to Grok: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:streamGenerateContent?alt=sse: [404 Not Found] models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ModelService.ListModels to see the list of available models and their supported methods.
+2026-05-31 18:05:39 [info]: PostgreSQL pool initialised
+2026-05-31 18:05:39 [info]: ✅ PostgreSQL connected
+2026-05-31 18:05:39 [info]: Redis connected
+2026-05-31 18:05:40 [info]: ✅ Redis connected
+2026-05-31 18:05:40 [info]: 🚀 LUMI AI server running on port 3001
+2026-05-31 18:05:40 [info]: 📡 Environment: development
+2026-05-31 18:05:40 [info]: 🌐 Frontend: http://localhost:3000
+2026-05-31 18:05:40 [info]: 🤖 Model: undefined
+2026-05-31 18:06:14 [warn]: Slow query detected (2196ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-05-31 18:06:15 [warn]: Slow query detected (2626ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-05-31 18:06:15 [http]: ::1 - - [31/May/2026:18:06:15 +0000] "GET /api/auth/me HTTP/1.1" 304 - "http://localhost:3000/chat" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 18:06:15 [http]: ::1 - - [31/May/2026:18:06:15 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 200 - "http://localhost:3000/chat" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 18:06:16 [http]: ::1 - - [31/May/2026:18:06:16 +0000] "GET /api/auth/me HTTP/1.1" 304 - "http://localhost:3000/chat" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 18:06:16 [http]: ::1 - - [31/May/2026:18:06:16 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/chat" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
