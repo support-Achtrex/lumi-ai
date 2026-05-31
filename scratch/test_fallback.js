@@ -1,0 +1,1 @@
+const LumiAIService = require('../services/LumiAIService'); require('dotenv').config(); (async () => { try { const gen = await LumiAIService.streamResponse({ model: 'grok-2-latest', messages: [] }, 'test', [{role:'user',content:'Hello'}]); for await (let c of gen) { console.log(c); } } catch (e) { console.error('ERROR:', e); } })();

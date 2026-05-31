@@ -145,7 +145,7 @@ class LumiAIService {
       } catch (err) {
         logger.warn(`Grok failed (${err.message}). Falling back to Gemini.`);
         const model = getGeminiClient().getGenerativeModel({ 
-          model: process.env.GEMINI_MODEL || 'gemini-1.5-flash',
+          model: process.env.GEMINI_MODEL || 'gemini-2.5-flash',
           systemInstruction: LUMI_SYSTEM_PROMPT
         });
         const contents = enrichedMessages.map(m => ({
@@ -159,7 +159,7 @@ class LumiAIService {
           content:      text,
           inputTokens:  0, // Gemini SDK doesn't always expose this easily
           outputTokens: 0,
-          model:        process.env.GEMINI_MODEL || 'gemini-1.5-flash',
+          model:        process.env.GEMINI_MODEL || 'gemini-2.5-flash',
           sessionId
         };
         await this.cacheInteraction(sessionId, messages, result);
@@ -187,15 +187,15 @@ class LumiAIService {
     } catch (err) {
       logger.warn(`Grok stream failed (${err.message}). Falling back to Gemini.`);
       const model = getGeminiClient().getGenerativeModel({ 
-        model: process.env.GEMINI_MODEL || 'gemini-1.5-flash',
+        model: process.env.GEMINI_MODEL || 'gemini-2.5-flash',
         systemInstruction: LUMI_SYSTEM_PROMPT
       });
       const contents = enrichedMessages.map(m => ({
         role: m.role === 'assistant' ? 'model' : 'user',
         parts: [{ text: m.content }]
       }));
-      const stream = await model.generateContentStream({ contents });
-      for await (const chunk of stream) {
+      const result = await model.generateContentStream({ contents });
+      for await (const chunk of result.stream) {
         if (chunk.text()) {
           yield { 
             type: 'content_block_delta', 

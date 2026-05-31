@@ -6515,3 +6515,82 @@
 2026-05-31 18:31:19 [info]: 📡 Environment: development
 2026-05-31 18:31:19 [info]: 🌐 Frontend: http://localhost:3000
 2026-05-31 18:31:19 [info]: 🤖 Model: undefined
+2026-05-31 18:31:39 [info]: PostgreSQL pool initialised
+2026-05-31 18:31:39 [info]: ✅ PostgreSQL connected
+2026-05-31 18:31:39 [info]: Redis connected
+2026-05-31 18:31:40 [info]: ✅ Redis connected
+2026-05-31 18:31:40 [info]: 🚀 LUMI AI server running on port 3001
+2026-05-31 18:31:40 [info]: 📡 Environment: development
+2026-05-31 18:31:40 [info]: 🌐 Frontend: http://localhost:3000
+2026-05-31 18:31:40 [info]: 🤖 Model: undefined
+2026-05-31 18:34:52 [warn]: Slow query detected (2648ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-05-31 18:34:53 [http]: ::1 - - [31/May/2026:18:34:53 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 200 - "http://localhost:3000/vin" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 18:35:01 [debug]: VIN cache hit: JT3GN86R220238847
+2026-05-31 18:35:01 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-31 18:35:01 [error]: AutomotiveDataset API error: Invalid URL
+2026-05-31 18:35:01 [http]: ::1 - - [31/May/2026:18:35:01 +0000] "GET /api/vehicles/JT3GN86R220238847/full? HTTP/1.1" 304 - "http://localhost:3000/vin" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 18:35:02 [error]: error: relation "unlocked_reports" does not exist
+    at C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\pg-pool\index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async query (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\config\database.js:36:17)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\vehicles.js:104:20
+2026-05-31 18:35:02 [http]: ::1 - - [31/May/2026:18:35:02 +0000] "GET /api/vehicles/JT3GN86R220238847/unlocked HTTP/1.1" 500 491 "http://localhost:3000/vin" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 18:35:06 [warn]: Slow query detected (2245ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-05-31 18:35:06 [error]: error: relation "unlocked_reports" does not exist
+    at C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\pg-pool\index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async query (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\config\database.js:36:17)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\vehicles.js:104:20
+2026-05-31 18:35:06 [http]: ::1 - - [31/May/2026:18:35:06 +0000] "GET /api/vehicles/JT3GN86R220238847/unlocked HTTP/1.1" 500 491 "http://localhost:3000/history" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 18:35:06 [warn]: Slow query detected (2158ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-05-31 18:35:07 [http]: ::1 - - [31/May/2026:18:35:07 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/history" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 18:35:08 [error]: error: relation "unlocked_reports" does not exist
+    at C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\pg-pool\index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async query (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\config\database.js:36:17)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\vehicles.js:104:20
+2026-05-31 18:35:08 [http]: ::1 - - [31/May/2026:18:35:08 +0000] "GET /api/vehicles/JT3GN86R220238847/unlocked HTTP/1.1" 500 491 "http://localhost:3000/history" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 18:35:11 [http]: ::1 - - [31/May/2026:18:35:11 +0000] "GET /api/vehicles/JT3GN86R220238847/html-report HTTP/1.1" 200 - "http://localhost:3000/history" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 18:35:16 [warn]: Slow query detected (2207ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-05-31 18:35:18 [http]: ::1 - - [31/May/2026:18:35:18 +0000] "POST /api/billing/paystack/initialize HTTP/1.1" 200 150 "http://localhost:3000/history" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 18:35:24 [http]: ::1 - - [31/May/2026:18:35:24 +0000] "GET /api/vehicles/JT3GN86R220238847/html-report HTTP/1.1" 200 - "http://localhost:3000/history" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 18:54:08 [info]: PostgreSQL pool initialised
+2026-05-31 18:54:08 [info]: ✅ PostgreSQL connected
+2026-05-31 18:54:08 [info]: Redis connected
+2026-05-31 18:54:09 [info]: ✅ Redis connected
+2026-05-31 18:54:09 [info]: 🚀 LUMI AI server running on port 3001
+2026-05-31 18:54:09 [info]: 📡 Environment: development
+2026-05-31 18:54:09 [info]: 🌐 Frontend: http://localhost:3000
+2026-05-31 18:54:09 [info]: 🤖 Model: undefined
+2026-05-31 18:54:11 [warn]: Grok stream failed (400 "Bad data: Messages cannot be empty"). Falling back to Gemini.
+2026-05-31 18:54:14 [info]: PostgreSQL pool initialised
+2026-05-31 18:54:14 [info]: ✅ PostgreSQL connected
+2026-05-31 18:54:14 [info]: Redis connected
+2026-05-31 18:54:15 [info]: ✅ Redis connected
+2026-05-31 18:54:15 [info]: 🚀 LUMI AI server running on port 3001
+2026-05-31 18:54:15 [info]: 📡 Environment: development
+2026-05-31 18:54:15 [info]: 🌐 Frontend: http://localhost:3000
+2026-05-31 18:54:15 [info]: 🤖 Model: undefined
+2026-05-31 18:55:05 [info]: PostgreSQL pool initialised
+2026-05-31 18:55:05 [info]: ✅ PostgreSQL connected
+2026-05-31 18:55:05 [info]: Redis connected
+2026-05-31 18:55:06 [info]: ✅ Redis connected
+2026-05-31 18:55:06 [info]: 🚀 LUMI AI server running on port 3001
+2026-05-31 18:55:06 [info]: 📡 Environment: development
+2026-05-31 18:55:06 [info]: 🌐 Frontend: http://localhost:3000
+2026-05-31 18:55:06 [info]: 🤖 Model: undefined
+2026-05-31 18:55:15 [warn]: Grok stream failed (400 "Bad data: Messages cannot be empty"). Falling back to Gemini.
+2026-05-31 18:55:38 [warn]: Grok stream failed (400 "Bad data: Messages cannot be empty"). Falling back to Gemini.
+2026-05-31 18:55:53 [info]: PostgreSQL pool initialised
+2026-05-31 18:55:53 [info]: ✅ PostgreSQL connected
+2026-05-31 18:55:54 [info]: Redis connected
+2026-05-31 18:55:55 [info]: ✅ Redis connected
+2026-05-31 18:55:55 [info]: 🚀 LUMI AI server running on port 3001
+2026-05-31 18:55:55 [info]: 📡 Environment: development
+2026-05-31 18:55:55 [info]: 🌐 Frontend: http://localhost:3000
+2026-05-31 18:55:55 [info]: 🤖 Model: undefined
+2026-05-31 18:56:05 [warn]: Grok stream failed (400 "Bad data: Messages cannot be empty"). Falling back to Gemini.
