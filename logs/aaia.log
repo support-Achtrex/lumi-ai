@@ -339,3 +339,56 @@
 2026-07-05 15:55:08 [info]: ✅ PostgreSQL connected
 2026-07-05 15:55:09 [info]: Redis connected
 2026-07-05 15:55:10 [info]: ✅ Redis connected
+2026-07-05 15:55:38 [warn]: Slow query detected (1870ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-07-05 15:55:38 [warn]: Slow query detected (2239ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-07-05 15:55:38 [http]: ::1 - - [05/Jul/2026:15:55:38 +0000] "GET /api/vehicles/ymmt/years HTTP/1.1" 304 - "http://localhost:3000/parts" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 15:55:38 [warn]: Slow query detected (2346ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-07-05 15:55:39 [http]: ::1 - - [05/Jul/2026:15:55:39 +0000] "GET /api/vehicles/ymmt/makes?year=2024 HTTP/1.1" 304 - "http://localhost:3000/parts" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 15:55:39 [http]: ::1 - - [05/Jul/2026:15:55:39 +0000] "GET /api/vehicles/ymmt/models?make=TOYOTA&year=2024 HTTP/1.1" 304 - "http://localhost:3000/parts" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 16:00:17 [warn]: Slow query detected (2332ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-07-05 16:00:17 [http]: ::1 - - [05/Jul/2026:16:00:17 +0000] "GET /api/auth/me HTTP/1.1" 304 - "http://localhost:3000/parts" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 16:00:18 [warn]: Slow query detected (2254ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-07-05 16:00:18 [warn]: Slow query detected (2283ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-07-05 16:00:18 [http]: ::1 - - [05/Jul/2026:16:00:18 +0000] "GET /api/vehicles/ymmt/years HTTP/1.1" 304 - "http://localhost:3000/parts" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 16:00:18 [http]: ::1 - - [05/Jul/2026:16:00:18 +0000] "GET /api/auth/me HTTP/1.1" 304 - "http://localhost:3000/parts" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 16:00:18 [http]: ::1 - - [05/Jul/2026:16:00:18 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/parts" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 16:00:18 [http]: ::1 - - [05/Jul/2026:16:00:18 +0000] "GET /api/vehicles/ymmt/years HTTP/1.1" 304 - "http://localhost:3000/parts" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 16:00:20 [http]: ::1 - - [05/Jul/2026:16:00:20 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/parts" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 16:00:24 [http]: ::1 - - [05/Jul/2026:16:00:24 +0000] "GET /api/vehicles/ymmt/makes?year=2025 HTTP/1.1" 200 - "http://localhost:3000/parts" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 16:00:27 [http]: ::1 - - [05/Jul/2026:16:00:27 +0000] "GET /api/vehicles/ymmt/models?make=AUDI&year=2025 HTTP/1.1" 200 259 "http://localhost:3000/parts" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 16:00:31 [info]: [Parts AI] Suggest requested. Mode: ymmt, Query: {"year":"2025","make":"AUDI","model":"RS 3","trim":""}
+2026-07-05 16:00:31 [error]: Error: 400 "Model not found: grok-2-latest"
+    at APIError.generate (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\openai\core\error.js:45:20)
+    at OpenAI.makeStatusError (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\openai\client.js:258:32)
+    at OpenAI.makeRequest (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\openai\client.js:452:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async AAIAService.getPartSuggestions (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\AAIAService.js:534:24)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\parts.js:34:24
+2026-07-05 16:00:31 [http]: ::1 - - [05/Jul/2026:16:00:31 +0000] "POST /api/parts/suggest HTTP/1.1" 200 196 "http://localhost:3000/parts" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 16:00:35 [info]: [Parts AI] Details requested. Query: Oil Filter
+2026-07-05 16:00:35 [error]: Error: 400 "Model not found: grok-2-latest"
+    at APIError.generate (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\openai\core\error.js:45:20)
+    at OpenAI.makeStatusError (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\openai\client.js:258:32)
+    at OpenAI.makeRequest (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\openai\client.js:452:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async AAIAService.getPartDetails (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\AAIAService.js:586:24)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\parts.js:49:24
+2026-07-05 16:00:35 [http]: ::1 - - [05/Jul/2026:16:00:35 +0000] "POST /api/parts/details HTTP/1.1" 200 175 "http://localhost:3000/parts" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 16:07:15 [info]: PostgreSQL pool initialised
+2026-07-05 16:07:15 [info]: ✅ PostgreSQL connected
+2026-07-05 16:07:16 [info]: Redis connected
+2026-07-05 16:07:18 [info]: PostgreSQL pool initialised
+2026-07-05 16:07:18 [info]: ✅ PostgreSQL connected
+2026-07-05 16:07:18 [info]: Redis connected
+2026-07-05 16:07:20 [info]: ✅ Redis connected
+2026-07-05 16:07:20 [info]: 🚀 AAIA server running on port 3001
+2026-07-05 16:07:20 [info]: 📡 Environment: development
+2026-07-05 16:07:20 [info]: 🌐 Frontend: http://localhost:3000
+2026-07-05 16:07:20 [info]: 🤖 Model: undefined
+2026-07-05 16:07:20 [info]: ✅ Redis connected

@@ -107,11 +107,27 @@ export default function PartsPage() {
       </div>
 
       <div style={{ padding: 40, flex: 1, overflowY: 'auto' }}>
-        <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap' }}>
-          
-          {/* Search Panel */}
-          <div style={{ flex: '1 1 350px', background: 'var(--card)', borderRadius: 12, padding: 24, boxShadow: 'var(--shadow-sm)', alignSelf: 'flex-start' }}>
-            <div style={{ display: 'flex', gap: 10, marginBottom: 24, background: '#F5F8FC', padding: 4, borderRadius: 8 }}>
+        
+        {/* Step 1: Centered Search Form */}
+        {step === 1 && (
+          <div style={{ 
+            maxWidth: 600, 
+            margin: '40px auto', 
+            background: 'var(--card)', 
+            borderRadius: 16, 
+            padding: 40, 
+            boxShadow: '0 10px 40px rgba(0,0,0,0.08)',
+            border: '1px solid rgba(0,0,0,0.05)'
+          }}>
+            <div style={{ textAlign: 'center', marginBottom: 32 }}>
+              <div style={{ width: 64, height: 64, background: 'linear-gradient(135deg, var(--dblu), var(--mid))', borderRadius: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: 28, margin: '0 auto 16px' }}>
+                <i className="ti ti-search" />
+              </div>
+              <h2 style={{ fontSize: 24, color: 'var(--dgray)', margin: '0 0 8px 0' }}>Find Your Part</h2>
+              <p style={{ color: 'var(--gray)', fontSize: 14, margin: 0 }}>Search our intelligent database by VIN, YMMT, or OEM.</p>
+            </div>
+
+            <div style={{ display: 'flex', gap: 8, marginBottom: 32, background: '#F5F8FC', padding: 6, borderRadius: 12 }}>
               {['vin', 'ymmt', 'oem'].map((m) => (
                 <button
                   key={m}
@@ -173,17 +189,26 @@ export default function PartsPage() {
                 </>
               )}
 
-              <button type="submit" className="btn-primary" style={{ marginTop: 8 }} disabled={loading}>
-                {loading && step === 1 ? <span className="loading-dot" /> : 'Search'}
+              <button type="submit" className="btn-primary" style={{ marginTop: 16, padding: '14px', fontSize: 16, borderRadius: 8 }} disabled={loading}>
+                {loading && step === 1 ? <span className="loading-dot" /> : 'Search Database'}
               </button>
             </form>
           </div>
+        )}
 
-          {/* Results Panel */}
-          <div style={{ flex: '2 1 500px' }}>
+        {/* Step 2 & 3: Results Panel */}
+        {step >= 2 && (
+          <div style={{ maxWidth: 1000, margin: '0 auto' }}>
+            <button 
+              className="btn-outline" 
+              style={{ marginBottom: 24, padding: '8px 16px', borderRadius: 20, fontSize: 13 }}
+              onClick={() => { setStep(1); setPartDetails(null); setSuggestions([]); }}
+            >
+              <i className="ti ti-arrow-left" style={{ marginRight: 6 }} /> Back to Search
+            </button>
             
             {/* Step 2: AI Conversational Suggestions */}
-            {step >= 2 && vehicleInfo && (
+            {step === 2 && vehicleInfo && (
               <div style={{ background: 'var(--card)', borderRadius: 12, padding: 30, boxShadow: 'var(--shadow-sm)', marginBottom: 24 }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
                   <div style={{ width: 32, height: 32, background: 'linear-gradient(135deg, var(--dblu), var(--mid))', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff' }}>
@@ -298,9 +323,10 @@ export default function PartsPage() {
               </div>
             )}
             
+            
           </div>
+        )}
 
-        </div>
       </div>
     </div>
   );

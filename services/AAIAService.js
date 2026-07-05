@@ -532,7 +532,7 @@ Return a STRICT JSON object in this exact format, with no markdown code blocks:
 
     try {
       const response = await getOpenAIClient().chat.completions.create({
-        model: process.env.GROK_MODEL || 'grok-2-latest',
+        model: process.env.GROK_MODEL || 'grok-2-1212',
         max_tokens: 1000,
         messages: [
           { role: 'system', content: 'You are a JSON-only API. Return only valid JSON.' },
@@ -584,7 +584,7 @@ Important: Generate 3-5 parts in the array. Use Unsplash URLs as placeholder ima
 
     try {
       const response = await getOpenAIClient().chat.completions.create({
-        model: process.env.GROK_MODEL || 'grok-2-latest',
+        model: process.env.GROK_MODEL || 'grok-2-1212',
         max_tokens: 2000,
         messages: [
           { role: 'system', content: 'You are a JSON-only API. Return only valid JSON.' },
