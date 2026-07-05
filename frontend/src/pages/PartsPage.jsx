@@ -1,62 +1,44 @@
 import React, { useState, useEffect } from 'react';
 import APIService from '../services/api';
-import ReactMarkdown from 'react-markdown';
 
-export default function PartsPage() {
-  const [mode, setMode] = useState('vin'); // 'vin', 'oem', 'ymmt'
-  
-  // Form state
+const PartsPage = () => {
+  const [step, setStep] = useState(1);
+  const [mode, setMode] = useState('ymmt'); // vin, ymmt, oem
   const [vin, setVin] = useState('');
   const [oem, setOem] = useState('');
-  
-  // YMMT State
-  const [years, setYears] = useState([]);
-  const [makes, setMakes] = useState([]);
-  const [models, setModels] = useState([]);
-  
   const [year, setYear] = useState('');
   const [make, setMake] = useState('');
   const [model, setModel] = useState('');
   const [trim, setTrim] = useState('');
-  
-  // AI Flow State
   const [loading, setLoading] = useState(false);
-  const [step, setStep] = useState(1); // 1: Vehicle, 2: AI Suggestions, 3: Part Details
-  
   const [vehicleInfo, setVehicleInfo] = useState(null);
   const [aiPrompt, setAiPrompt] = useState('');
   const [suggestions, setSuggestions] = useState([]);
-  
   const [partSearch, setPartSearch] = useState('');
   const [partDetails, setPartDetails] = useState(null);
 
-  // Load Years on mount
+  // YMMT State
+  const [years, setYears] = useState([]);
+  const [makes, setMakes] = useState([]);
+  const [models, setModels] = useState([]);
+
   useEffect(() => {
-    APIService.getYears().then(setYears).catch(console.error);
+    APIService.getYears().then(y => setYears(y || [])).catch(console.error);
   }, []);
 
-  // Cascade Make
   useEffect(() => {
-    if (year) {
-      setMake(''); setModel(''); setModels([]);
-      APIService.getMakes(year).then(setMakes).catch(console.error);
-    }
+    if (year) APIService.getMakes(year).then(m => setMakes(m || [])).catch(console.error);
+    setMake(''); setModel(''); setTrim('');
   }, [year]);
 
-  // Cascade Model
   useEffect(() => {
-    if (year && make) {
-      setModel('');
-      APIService.getModels(make, year).then(setModels).catch(console.error);
-    }
+    if (year && make) APIService.getModels(make, year).then(m => setModels(m || [])).catch(console.error);
+    setModel(''); setTrim('');
   }, [year, make]);
 
   const handleVehicleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setStep(1);
-    setPartDetails(null);
-    setSuggestions([]);
     
     let query = {};
     if (mode === 'vin') query = { vin };
@@ -65,12 +47,10 @@ export default function PartsPage() {
 
     try {
       if (mode === 'oem') {
-        // Direct to details
         const res = await APIService.getPartDetails(oem, null);
         setPartDetails(res.data);
         setStep(3);
       } else {
-        // Vehicle decode & suggestions
         const res = await APIService.suggestParts(mode, query);
         setVehicleInfo(res.vehicleInfo);
         setAiPrompt(res.prompt);
@@ -87,6 +67,7 @@ export default function PartsPage() {
 
   const handlePartSearch = async (query) => {
     setLoading(true);
+    setPartSearch('');
     try {
       const res = await APIService.getPartDetails(query, vehicleInfo);
       setPartDetails(res.data);
@@ -100,234 +81,270 @@ export default function PartsPage() {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', background: 'transparent' }}>
-      <div style={{ padding: '32px 40px', borderBottom: '1px solid var(--bord)', background: 'var(--card)' }}>
-        <h1 style={{ fontSize: 24, fontWeight: 700, margin: '0 0 8px 0', color: 'var(--dgray)' }}>AI Parts Lookup</h1>
-        <p style={{ margin: 0, color: 'var(--gray)', fontSize: 14 }}>Powered by Grok & Gemini. Search by VIN, YMMT, or OEM.</p>
-      </div>
-
-      <div style={{ padding: 40, flex: 1, overflowY: 'auto' }}>
-        
-        {/* Step 1: Centered Search Form */}
-        {step === 1 && (
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', background: '#F4F7FB' }}>
+      
+      {/* ─────────────────────────────────────────────────────────────────
+          STEP 1: IMMERSIVE HERO SEARCH
+      ───────────────────────────────────────────────────────────────── */}
+      {step === 1 && (
+        <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 40, animation: 'fadeIn 0.5s ease-out' }}>
           <div style={{ 
-            maxWidth: 600, 
-            margin: '40px auto', 
-            background: 'var(--card)', 
-            borderRadius: 16, 
-            padding: 40, 
-            boxShadow: '0 10px 40px rgba(0,0,0,0.08)',
-            border: '1px solid rgba(0,0,0,0.05)'
+            maxWidth: 800, width: '100%', background: '#fff', borderRadius: 24, 
+            boxShadow: '0 24px 60px rgba(0,0,0,0.08)', overflow: 'hidden', display: 'flex', flexDirection: 'column' 
           }}>
-            <div style={{ textAlign: 'center', marginBottom: 32 }}>
-              <div style={{ width: 64, height: 64, background: 'linear-gradient(135deg, var(--dblu), var(--mid))', borderRadius: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: 28, margin: '0 auto 16px' }}>
-                <i className="ti ti-search" />
+            <div style={{ padding: '60px 40px', background: 'linear-gradient(135deg, var(--dblu), var(--mid))', color: '#fff', textAlign: 'center' }}>
+              <div style={{ width: 80, height: 80, background: 'rgba(255,255,255,0.1)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 36, margin: '0 auto 20px', backdropFilter: 'blur(10px)' }}>
+                <i className="ti ti-settings" />
               </div>
-              <h2 style={{ fontSize: 24, color: 'var(--dgray)', margin: '0 0 8px 0' }}>Find Your Part</h2>
-              <p style={{ color: 'var(--gray)', fontSize: 14, margin: 0 }}>Search our intelligent database by VIN, YMMT, or OEM.</p>
+              <h1 style={{ fontSize: 36, fontWeight: 800, margin: '0 0 16px 0', letterSpacing: '-0.5px' }}>Find Your Part</h1>
+              <p style={{ fontSize: 16, margin: 0, opacity: 0.9 }}>Connect to AAIA's global automotive database to identify, source, and analyze parts in seconds.</p>
             </div>
 
-            <div style={{ display: 'flex', gap: 8, marginBottom: 32, background: '#F5F8FC', padding: 6, borderRadius: 12 }}>
-              {['vin', 'ymmt', 'oem'].map((m) => (
-                <button
-                  key={m}
-                  onClick={() => { setMode(m); setStep(1); }}
-                  style={{
-                    flex: 1, padding: '8px', border: 'none', borderRadius: 6, cursor: 'pointer',
-                    background: mode === m ? '#fff' : 'transparent',
-                    color: mode === m ? 'var(--dblu)' : 'var(--gray)',
-                    fontWeight: mode === m ? 600 : 500,
-                    boxShadow: mode === m ? '0 1px 3px rgba(0,0,0,0.1)' : 'none',
-                    transition: 'all 0.2s'
-                  }}
-                >
-                  {m.toUpperCase()}
+            <div style={{ padding: 40 }}>
+              <div style={{ display: 'flex', gap: 12, marginBottom: 32, background: '#F5F8FC', padding: 8, borderRadius: 16 }}>
+                {['vin', 'ymmt', 'oem'].map((m) => (
+                  <button
+                    key={m}
+                    onClick={() => { setMode(m); }}
+                    style={{
+                      flex: 1, padding: '12px', border: 'none', borderRadius: 12, cursor: 'pointer',
+                      background: mode === m ? '#fff' : 'transparent',
+                      color: mode === m ? 'var(--dblu)' : 'var(--gray)',
+                      fontWeight: mode === m ? 700 : 500,
+                      boxShadow: mode === m ? '0 4px 12px rgba(0,0,0,0.05)' : 'none',
+                      transition: 'all 0.2s', fontSize: 14
+                    }}
+                  >
+                    {m === 'vin' ? 'VIN Decode' : m === 'ymmt' ? 'Make & Model' : 'OEM Number'}
+                  </button>
+                ))}
+              </div>
+
+              <form onSubmit={handleVehicleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+                {mode === 'vin' && (
+                  <div>
+                    <label style={{ display: 'block', fontSize: 13, fontWeight: 700, color: 'var(--dgray)', marginBottom: 8, letterSpacing: '0.5px' }}>VEHICLE IDENTIFICATION NUMBER</label>
+                    <input type="text" style={{ width: '100%', padding: '16px 20px', fontSize: 16, border: '2px solid #E2E8F0', borderRadius: 12, outline: 'none', transition: 'border-color 0.2s' }} placeholder="Enter 17-character VIN..." value={vin} onChange={e => setVin(e.target.value)} required />
+                  </div>
+                )}
+                {mode === 'oem' && (
+                  <div>
+                    <label style={{ display: 'block', fontSize: 13, fontWeight: 700, color: 'var(--dgray)', marginBottom: 8, letterSpacing: '0.5px' }}>OEM PART NUMBER</label>
+                    <input type="text" style={{ width: '100%', padding: '16px 20px', fontSize: 16, border: '2px solid #E2E8F0', borderRadius: 12, outline: 'none', transition: 'border-color 0.2s' }} placeholder="e.g. 90915-YZZF1" value={oem} onChange={e => setOem(e.target.value)} required />
+                  </div>
+                )}
+                {mode === 'ymmt' && (
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
+                    <div>
+                      <label style={{ display: 'block', fontSize: 13, fontWeight: 700, color: 'var(--dgray)', marginBottom: 8, letterSpacing: '0.5px' }}>YEAR</label>
+                      <select style={{ width: '100%', padding: '16px 20px', fontSize: 16, border: '2px solid #E2E8F0', borderRadius: 12, outline: 'none', appearance: 'none', background: '#fff' }} value={year} onChange={e => setYear(e.target.value)} required>
+                        <option value="">Select Year...</option>
+                        {years.map(y => <option key={y} value={y}>{y}</option>)}
+                      </select>
+                    </div>
+                    <div>
+                      <label style={{ display: 'block', fontSize: 13, fontWeight: 700, color: 'var(--dgray)', marginBottom: 8, letterSpacing: '0.5px' }}>MAKE</label>
+                      <select style={{ width: '100%', padding: '16px 20px', fontSize: 16, border: '2px solid #E2E8F0', borderRadius: 12, outline: 'none', appearance: 'none', background: '#fff' }} value={make} onChange={e => setMake(e.target.value)} required disabled={!year}>
+                        <option value="">Select Make...</option>
+                        {makes.map(m => <option key={m} value={m}>{m}</option>)}
+                      </select>
+                    </div>
+                    <div>
+                      <label style={{ display: 'block', fontSize: 13, fontWeight: 700, color: 'var(--dgray)', marginBottom: 8, letterSpacing: '0.5px' }}>MODEL</label>
+                      <select style={{ width: '100%', padding: '16px 20px', fontSize: 16, border: '2px solid #E2E8F0', borderRadius: 12, outline: 'none', appearance: 'none', background: '#fff' }} value={model} onChange={e => setModel(e.target.value)} required disabled={!make}>
+                        <option value="">Select Model...</option>
+                        {models.map(m => <option key={m} value={m}>{m}</option>)}
+                      </select>
+                    </div>
+                    <div>
+                      <label style={{ display: 'block', fontSize: 13, fontWeight: 700, color: 'var(--dgray)', marginBottom: 8, letterSpacing: '0.5px' }}>TRIM (Optional)</label>
+                      <input type="text" style={{ width: '100%', padding: '16px 20px', fontSize: 16, border: '2px solid #E2E8F0', borderRadius: 12, outline: 'none' }} placeholder="e.g. SE, Limited" value={trim} onChange={e => setTrim(e.target.value)} />
+                    </div>
+                  </div>
+                )}
+
+                <button type="submit" style={{ 
+                  marginTop: 20, padding: '18px', fontSize: 18, fontWeight: 700, borderRadius: 12, border: 'none',
+                  background: 'var(--dblu)', color: '#fff', cursor: 'pointer', transition: 'all 0.2s',
+                  boxShadow: '0 8px 24px rgba(23,107,255,0.3)', opacity: loading ? 0.7 : 1
+                }} disabled={loading}>
+                  {loading ? <span className="loading-dot" /> : 'Search Database'}
                 </button>
-              ))}
+              </form>
             </div>
-
-            <form onSubmit={handleVehicleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-              {mode === 'vin' && (
-                <div>
-                  <label style={{ display: 'block', fontSize: 12, fontWeight: 600, color: 'var(--gray)', marginBottom: 6 }}>VEHICLE IDENTIFICATION NUMBER</label>
-                  <input type="text" className="input-field" placeholder="Enter 17-character VIN" value={vin} onChange={e => setVin(e.target.value)} required />
-                </div>
-              )}
-              {mode === 'oem' && (
-                <div>
-                  <label style={{ display: 'block', fontSize: 12, fontWeight: 600, color: 'var(--gray)', marginBottom: 6 }}>OEM PART NUMBER</label>
-                  <input type="text" className="input-field" placeholder="e.g. 90915-YZZF1" value={oem} onChange={e => setOem(e.target.value)} required />
-                </div>
-              )}
-              {mode === 'ymmt' && (
-                <>
-                  <div>
-                    <label style={{ display: 'block', fontSize: 12, fontWeight: 600, color: 'var(--gray)', marginBottom: 6 }}>YEAR</label>
-                    <select className="input-field" value={year} onChange={e => setYear(e.target.value)} required>
-                      <option value="">Select Year</option>
-                      {years.map(y => <option key={y} value={y}>{y}</option>)}
-                    </select>
-                  </div>
-                  <div>
-                    <label style={{ display: 'block', fontSize: 12, fontWeight: 600, color: 'var(--gray)', marginBottom: 6 }}>MAKE</label>
-                    <select className="input-field" value={make} onChange={e => setMake(e.target.value)} required disabled={!year}>
-                      <option value="">Select Make</option>
-                      {makes.map(m => <option key={m} value={m}>{m}</option>)}
-                    </select>
-                  </div>
-                  <div>
-                    <label style={{ display: 'block', fontSize: 12, fontWeight: 600, color: 'var(--gray)', marginBottom: 6 }}>MODEL</label>
-                    <select className="input-field" value={model} onChange={e => setModel(e.target.value)} required disabled={!make}>
-                      <option value="">Select Model</option>
-                      {models.map(m => <option key={m} value={m}>{m}</option>)}
-                    </select>
-                  </div>
-                  <div>
-                    <label style={{ display: 'block', fontSize: 12, fontWeight: 600, color: 'var(--gray)', marginBottom: 6 }}>TRIM (Optional)</label>
-                    <input type="text" className="input-field" placeholder="e.g. SE, Limited" value={trim} onChange={e => setTrim(e.target.value)} />
-                  </div>
-                </>
-              )}
-
-              <button type="submit" className="btn-primary" style={{ marginTop: 16, padding: '14px', fontSize: 16, borderRadius: 8 }} disabled={loading}>
-                {loading && step === 1 ? <span className="loading-dot" /> : 'Search Database'}
-              </button>
-            </form>
           </div>
-        )}
+        </div>
+      )}
 
-        {/* Step 2 & 3: Results Panel */}
-        {step >= 2 && (
-          <div style={{ maxWidth: 1000, margin: '0 auto' }}>
+      {/* ─────────────────────────────────────────────────────────────────
+          STEP 2 & 3: NEW PAGE DASHBOARD (CHAT + RESULTS)
+      ───────────────────────────────────────────────────────────────── */}
+      {step >= 2 && (
+        <div style={{ display: 'flex', flexDirection: 'column', height: '100%', animation: 'slideUp 0.4s ease-out' }}>
+          {/* Header Bar */}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '20px 40px', background: '#fff', borderBottom: '1px solid var(--bord)' }}>
+            <div>
+              <h2 style={{ fontSize: 20, fontWeight: 700, margin: 0, color: 'var(--dgray)' }}>Parts Workspace</h2>
+              <div style={{ fontSize: 13, color: 'var(--gray)', marginTop: 4 }}>
+                {vehicleInfo ? `${vehicleInfo.year} ${vehicleInfo.make} ${vehicleInfo.model} ${vehicleInfo.trim}` : `OEM: ${oem}`}
+              </div>
+            </div>
             <button 
-              className="btn-outline" 
-              style={{ marginBottom: 24, padding: '8px 16px', borderRadius: 20, fontSize: 13 }}
               onClick={() => { setStep(1); setPartDetails(null); setSuggestions([]); }}
+              style={{ background: '#F5F8FC', border: 'none', padding: '10px 20px', borderRadius: 8, color: 'var(--dblu)', fontWeight: 600, cursor: 'pointer', transition: '0.2s', display: 'flex', alignItems: 'center', gap: 8 }}
             >
-              <i className="ti ti-arrow-left" style={{ marginRight: 6 }} /> Back to Search
+              <i className="ti ti-arrow-left" /> Start Over
             </button>
+          </div>
+
+          <div style={{ flex: 1, display: 'flex', overflow: 'hidden' }}>
             
-            {/* Step 2: AI Conversational Suggestions */}
-            {step === 2 && vehicleInfo && (
-              <div style={{ background: 'var(--card)', borderRadius: 12, padding: 30, boxShadow: 'var(--shadow-sm)', marginBottom: 24 }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
-                  <div style={{ width: 32, height: 32, background: 'linear-gradient(135deg, var(--dblu), var(--mid))', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff' }}>
-                    <i className="ti ti-robot" />
+            {/* Left Side: AI Parts Assistant Chat */}
+            <div style={{ width: 400, background: '#fff', borderRight: '1px solid var(--bord)', display: 'flex', flexDirection: 'column' }}>
+              <div style={{ padding: 24, borderBottom: '1px solid var(--bord)', background: '#FAFCFF' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                  <div style={{ width: 40, height: 40, background: 'linear-gradient(135deg, var(--dblu), var(--mid))', borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff' }}>
+                    <i className="ti ti-robot" style={{ fontSize: 20 }} />
                   </div>
                   <div>
-                    <div style={{ fontSize: 16, fontWeight: 600, color: 'var(--dgray)' }}>AAIA Parts Assistant</div>
-                    <div style={{ fontSize: 12, color: 'var(--gray)' }}>Vehicle: {vehicleInfo.year} {vehicleInfo.make} {vehicleInfo.model}</div>
+                    <div style={{ fontSize: 16, fontWeight: 700, color: 'var(--dgray)' }}>AAIA Parts Assistant</div>
+                    <div style={{ fontSize: 12, color: 'var(--gray)' }}>Active Session</div>
                   </div>
                 </div>
+              </div>
+              
+              <div style={{ flex: 1, overflowY: 'auto', padding: 24, display: 'flex', flexDirection: 'column', gap: 20 }}>
+                {aiPrompt && (
+                  <div style={{ display: 'flex', gap: 12 }}>
+                    <div style={{ width: 32, height: 32, background: 'var(--dblu)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', flexShrink: 0 }}>
+                      <i className="ti ti-robot" style={{ fontSize: 16 }} />
+                    </div>
+                    <div style={{ background: '#F5F8FC', padding: 16, borderRadius: '0 16px 16px 16px', fontSize: 14, color: 'var(--dgray)', lineHeight: 1.5 }}>
+                      {aiPrompt}
+                    </div>
+                  </div>
+                )}
                 
-                <p style={{ fontSize: 14, color: '#444', lineHeight: 1.5, marginBottom: 20 }}>{aiPrompt}</p>
-                
-                <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 24 }}>
-                  {suggestions.map((sug, idx) => (
-                    <button key={idx} className="btn-outline" style={{ fontSize: 12, padding: '6px 12px', borderRadius: 20 }} onClick={() => handlePartSearch(sug)}>
-                      {sug}
-                    </button>
-                  ))}
-                </div>
+                {suggestions.length > 0 && (
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, paddingLeft: 44 }}>
+                    {suggestions.map((sug, idx) => (
+                      <button 
+                        key={idx} 
+                        onClick={() => handlePartSearch(sug)}
+                        style={{ background: '#fff', border: '1px solid var(--bord)', padding: '8px 16px', borderRadius: 20, fontSize: 12, color: 'var(--dblu)', cursor: 'pointer', transition: 'all 0.2s', fontWeight: 600 }}
+                        onMouseOver={e => { e.currentTarget.style.borderColor = 'var(--dblu)'; e.currentTarget.style.background = '#F5F8FC'; }}
+                        onMouseOut={e => { e.currentTarget.style.borderColor = 'var(--bord)'; e.currentTarget.style.background = '#fff'; }}
+                      >
+                        {sug}
+                      </button>
+                    ))}
+                  </div>
+                )}
 
-                <div style={{ display: 'flex', gap: 10 }}>
+                {loading && (
+                   <div style={{ display: 'flex', gap: 12 }}>
+                     <div style={{ width: 32, height: 32, background: 'var(--dblu)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', flexShrink: 0 }}>
+                       <i className="ti ti-robot" style={{ fontSize: 16 }} />
+                     </div>
+                     <div style={{ background: '#F5F8FC', padding: 16, borderRadius: '0 16px 16px 16px', fontSize: 14, color: 'var(--dgray)', display: 'flex', alignItems: 'center' }}>
+                       <span className="loading-dot" />
+                     </div>
+                   </div>
+                )}
+              </div>
+              
+              <div style={{ padding: 24, borderTop: '1px solid var(--bord)', background: '#fff' }}>
+                <div style={{ display: 'flex', gap: 12, background: '#F5F8FC', padding: 8, borderRadius: 12, border: '1px solid #E2E8F0' }}>
                   <input 
                     type="text" 
-                    className="input-field" 
-                    placeholder="Or type the exact part you need..." 
+                    placeholder="Search any part (e.g. Brake Pads)..." 
+                    style={{ flex: 1, border: 'none', background: 'transparent', outline: 'none', padding: '0 12px', fontSize: 14 }}
                     value={partSearch} 
                     onChange={e => setPartSearch(e.target.value)}
                     onKeyDown={e => e.key === 'Enter' && handlePartSearch(partSearch)}
+                    disabled={loading}
                   />
-                  <button className="btn-primary" onClick={() => handlePartSearch(partSearch)} disabled={loading}>
-                    {loading && step === 2 ? <span className="loading-dot" /> : <i className="ti ti-arrow-right" />}
+                  <button 
+                    onClick={() => handlePartSearch(partSearch)} 
+                    disabled={loading || !partSearch.trim()}
+                    style={{ width: 40, height: 40, background: 'var(--dblu)', border: 'none', borderRadius: 8, color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: '0.2s', opacity: (loading || !partSearch.trim()) ? 0.5 : 1 }}
+                  >
+                    <i className="ti ti-arrow-up" style={{ fontSize: 20 }} />
                   </button>
                 </div>
               </div>
-            )}
+            </div>
 
-            {/* Step 3: Part Details */}
-            {step === 3 && partDetails && (
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-                <div style={{ background: 'var(--card)', borderRadius: 12, padding: 20, boxShadow: 'var(--shadow-sm)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <div>
-                    <h2 style={{ margin: '0 0 4px 0', fontSize: 18, color: 'var(--dgray)' }}>{partDetails.year} {partDetails.make} {partDetails.model} {partDetails.trim}</h2>
-                    <div style={{ fontSize: 13, color: 'var(--gray)' }}>{partDetails.category} {partDetails.sub_category ? `> ${partDetails.sub_category}` : ''}</div>
-                  </div>
-                  <div style={{ background: '#E3F2FD', color: '#1976D2', padding: '6px 12px', borderRadius: 20, fontSize: 12, fontWeight: 600 }}>
-                    {partDetails.parts?.length || 0} Parts Found
-                  </div>
+            {/* Right Side: Visual Parts Display */}
+            <div style={{ flex: 1, padding: 40, overflowY: 'auto', background: '#F4F7FB' }}>
+              {!partDetails && step === 2 && !loading && (
+                <div style={{ height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', opacity: 0.5 }}>
+                  <i className="ti ti-shopping-cart-search" style={{ fontSize: 64, color: 'var(--dblu)', marginBottom: 16 }} />
+                  <h3 style={{ fontSize: 20, color: 'var(--dgray)', margin: 0 }}>Select a part to view details</h3>
+                  <p style={{ color: 'var(--gray)', marginTop: 8 }}>Use the chat assistant on the left to find parts.</p>
                 </div>
-                
-                {partDetails.parts && partDetails.parts.map((part, idx) => (
-                  <div key={idx} style={{ background: 'var(--card)', borderRadius: 12, overflow: 'hidden', boxShadow: 'var(--shadow-sm)' }}>
-                    <div style={{ display: 'flex', gap: 24, padding: 24, flexWrap: 'wrap' }}>
-                      
-                      {/* Image section */}
-                      <div style={{ width: 240, flexShrink: 0, display: 'flex', flexDirection: 'column', gap: 8 }}>
-                        {part.images && part.images[0] ? (
-                          <div style={{ height: 160, background: '#f5f5f5', borderRadius: 8, overflow: 'hidden', position: 'relative' }}>
-                            <img src={part.images[0]} alt={part.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                          </div>
-                        ) : (
-                          <div style={{ height: 160, background: '#f5f5f5', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#ccc' }}>
-                            <i className="ti ti-photo" style={{ fontSize: 32 }} />
-                          </div>
-                        )}
-                        {/* Thumbnail strip */}
-                        <div style={{ display: 'flex', gap: 8 }}>
-                          {part.images && part.images.slice(1, 5).map((img, i) => (
-                            <div key={i} style={{ width: 50, height: 50, background: '#f5f5f5', borderRadius: 4, overflow: 'hidden' }}>
-                              <img src={img} alt="thumb" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                            </div>
-                          ))}
-                        </div>
-                      </div>
+              )}
 
-                      {/* Details section */}
-                      <div style={{ flex: 1, minWidth: 280 }}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 16 }}>
-                          <div>
-                            <h3 style={{ margin: '0 0 6px 0', color: 'var(--dgray)', fontSize: 18, lineHeight: 1.3 }}>{part.title}</h3>
-                            <div style={{ fontSize: 13, color: 'var(--gray)' }}>Part Number: <span style={{ fontWeight: 600, color: 'var(--dgray)' }}>{part.part_number}</span></div>
-                            {part.alternate_names && (
-                               <div style={{ fontSize: 12, color: '#888', marginTop: 4 }}>Alt: {part.alternate_names}</div>
-                            )}
-                          </div>
-                          
-                          <div style={{ textAlign: 'right', marginLeft: 16 }}>
-                            <div style={{ fontSize: 24, fontWeight: 700, color: 'var(--dblu)', whiteSpace: 'nowrap' }}>{part.price}</div>
-                          </div>
-                        </div>
-
-                        <div className="markdown-body" style={{ fontSize: 14, color: '#444', lineHeight: 1.6, marginBottom: 24, borderTop: '1px solid var(--bord)', paddingTop: 16 }}>
-                          <ReactMarkdown>{part.description || ''}</ReactMarkdown>
-                        </div>
-                        
-                        <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                          <button className="btn-primary">
-                            <i className="ti ti-shopping-cart" /> Add to Order
-                          </button>
-                        </div>
-                      </div>
-                    </div>
+              {partDetails && (
+                <div style={{ animation: 'fadeIn 0.3s ease-out' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 24 }}>
+                    <h3 style={{ fontSize: 24, fontWeight: 800, margin: 0, color: 'var(--dgray)' }}>Detailed Specifications</h3>
+                    {partDetails.category && (
+                      <span style={{ background: 'var(--lmid)', color: 'var(--dblu)', padding: '6px 12px', borderRadius: 20, fontSize: 12, fontWeight: 700 }}>
+                        {partDetails.category} {partDetails.sub_category ? ` / ${partDetails.sub_category}` : ''}
+                      </span>
+                    )}
                   </div>
-                ))}
-              </div>
-            )}
-            
-            {loading && step === 3 && (
-              <div style={{ background: 'var(--card)', borderRadius: 12, padding: 40, textAlign: 'center', boxShadow: 'var(--shadow-sm)' }}>
-                <span className="loading-dot" style={{ width: 30, height: 30, borderWidth: 3 }} />
-                <p style={{ marginTop: 16, color: 'var(--gray)', fontSize: 14 }}>AAIA is retrieving part schemas and pricing...</p>
-              </div>
-            )}
-            
-            
-          </div>
-        )}
 
-      </div>
+                  {partDetails.parts ? (
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))', gap: 24 }}>
+                      {partDetails.parts.map((p, idx) => (
+                        <div key={idx} style={{ background: '#fff', borderRadius: 16, overflow: 'hidden', boxShadow: '0 4px 20px rgba(0,0,0,0.04)', display: 'flex', flexDirection: 'column', transition: 'transform 0.2s', cursor: 'pointer' }} onMouseOver={e => e.currentTarget.style.transform = 'translateY(-4px)'} onMouseOut={e => e.currentTarget.style.transform = 'translateY(0)'}>
+                          <div style={{ height: 200, background: '#f0f0f0', position: 'relative' }}>
+                            {p.images && p.images[0] ? (
+                              <img src={p.images[0]} alt={p.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                            ) : (
+                              <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#ccc' }}>
+                                <i className="ti ti-photo" style={{ fontSize: 48 }} />
+                              </div>
+                            )}
+                            <div style={{ position: 'absolute', top: 16, right: 16, background: '#fff', padding: '6px 12px', borderRadius: 20, fontSize: 14, fontWeight: 800, color: 'var(--dgray)', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
+                              {p.price || 'N/A'}
+                            </div>
+                          </div>
+                          <div style={{ padding: 24, flex: 1, display: 'flex', flexDirection: 'column' }}>
+                            <h4 style={{ fontSize: 18, fontWeight: 700, margin: '0 0 8px 0', color: 'var(--dgray)', lineHeight: 1.3 }}>{p.title}</h4>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
+                              <span style={{ fontSize: 12, color: 'var(--gray)', fontWeight: 600 }}>OEM: {p.part_number}</span>
+                            </div>
+                            <p style={{ fontSize: 14, color: '#555', margin: '0 0 20px 0', lineHeight: 1.5, flex: 1 }}>{p.description}</p>
+                            
+                            <button style={{ width: '100%', padding: '12px', background: '#F5F8FC', border: '1px solid var(--bord)', borderRadius: 10, color: 'var(--dblu)', fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, cursor: 'pointer', transition: '0.2s' }} onMouseOver={e => { e.currentTarget.style.background = 'var(--dblu)'; e.currentTarget.style.color = '#fff'; }} onMouseOut={e => { e.currentTarget.style.background = '#F5F8FC'; e.currentTarget.style.color = 'var(--dblu)'; }}>
+                              <i className="ti ti-file-analytics" /> View Schematics
+                            </button>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div style={{ background: '#fff', padding: 40, borderRadius: 16, textAlign: 'center', color: 'var(--gray)' }}>
+                      No parts data available for this query.
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* CSS Animations */}
+      <style>{`
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+      `}</style>
     </div>
   );
-}
+};
+
+export default PartsPage;

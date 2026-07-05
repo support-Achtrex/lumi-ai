@@ -3265,3 +3265,55 @@
     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
     at async AAIAService.getPartDetails (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\AAIAService.js:586:24)
     at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\parts.js:49:24
+2026-07-05 16:31:11 [error]: ❌ Failed to send welcome email to test1783269068583@achtrex.com:
+2026-07-05 16:31:41 [error]: ❌ Failed to send welcome email to test1783269098637@achtrex.com:
+2026-07-05 21:09:16 [error]: Error: read ECONNRESET
+    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)
+2026-07-05 21:09:26 [error]: Error: connect ETIMEDOUT
+    at Socket.<anonymous> (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\ioredis\built\Redis.js:183:41)
+    at Object.onceWrapper (node:events:633:28)
+    at Socket.emit (node:events:519:28)
+    at Socket._onTimeout (node:net:604:8)
+    at listOnTimeout (node:internal/timers:588:17)
+    at process.processTimers (node:internal/timers:523:7)
+2026-07-05 21:09:36 [error]: Error: connect ETIMEDOUT
+    at Socket.<anonymous> (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\ioredis\built\Redis.js:183:41)
+    at Object.onceWrapper (node:events:633:28)
+    at Socket.emit (node:events:519:28)
+    at Socket._onTimeout (node:net:604:8)
+    at listOnTimeout (node:internal/timers:588:17)
+    at process.processTimers (node:internal/timers:523:7)
+2026-07-05 21:09:47 [error]: Error: connect ETIMEDOUT
+    at Socket.<anonymous> (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\ioredis\built\Redis.js:183:41)
+    at Object.onceWrapper (node:events:633:28)
+    at Socket.emit (node:events:519:28)
+    at Socket._onTimeout (node:net:604:8)
+    at listOnTimeout (node:internal/timers:588:17)
+    at process.processTimers (node:internal/timers:523:7)
+2026-07-05 21:12:05 [error]: ❌ Failed to send welcome email to test1783285923394@achtrex.com:
+2026-07-05 21:12:27 [error]: ❌ Failed to send welcome email to test1783285945469@achtrex.com:
+2026-07-05 21:13:41 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at async makeRequest (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\@google\generative-ai\dist\index.js:397:20)
+    at async generateContent (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\@google\generative-ai\dist\index.js:867:22)
+    at async AAIAService.generateRepairGuide (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\AAIAService.js:392:27)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\diagnostics.js:237:26
+2026-07-05 21:13:41 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at async makeRequest (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\@google\generative-ai\dist\index.js:397:20)
+    at async generateContent (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\@google\generative-ai\dist\index.js:867:22)
+    at async AAIAService.generateRepairGuide (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\AAIAService.js:392:27)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\diagnostics.js:237:26
+2026-07-05 21:31:18 [error]: ❌ Failed to send welcome email to test1783287073887@achtrex.com:
+2026-07-05 21:32:30 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at async makeRequest (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\@google\generative-ai\dist\index.js:397:20)
+    at async generateContent (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\@google\generative-ai\dist\index.js:867:22)
+    at async AAIAService.generateRepairGuide (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\AAIAService.js:392:27)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\diagnostics.js:237:26
+2026-07-05 21:32:30 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at async makeRequest (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\@google\generative-ai\dist\index.js:397:20)
+    at async generateContent (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\@google\generative-ai\dist\index.js:867:22)
+    at async AAIAService.generateRepairGuide (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\AAIAService.js:392:27)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\diagnostics.js:237:26

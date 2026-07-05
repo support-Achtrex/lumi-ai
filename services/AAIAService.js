@@ -541,12 +541,27 @@ Return a STRICT JSON object in this exact format, with no markdown code blocks:
       });
 
       let responseText = response.choices[0].message.content.trim();
-      if (responseText.startsWith('\`\`\`json')) responseText = responseText.substring(7, responseText.length - 3).trim();
-      else if (responseText.startsWith('\`\`\`')) responseText = responseText.substring(3, responseText.length - 3).trim();
+      const match = responseText.match(/\{[\s\S]*\}/);
+      if (match) {
+        responseText = match[0];
+      }
       return JSON.parse(responseText);
     } catch (err) {
-      logger.error('AAIA getPartSuggestions error:', err);
-      return { prompt: "What part are you looking for?", suggestions: ["Brake Pads", "Oil Filter", "Battery", "Alternator"] };
+      logger.warn(`Grok failed for getPartSuggestions (${err.message}). Falling back to Gemini.`);
+      try {
+        const model = getGeminiClient().getGenerativeModel({ 
+          model: 'gemini-2.5-flash',
+          systemInstruction: 'You are a JSON-only API. Return only valid JSON.'
+        });
+        const geminiRes = await model.generateContent([prompt]);
+        let text = geminiRes.response.text().trim();
+        const match = text.match(/\{[\s\S]*\}/);
+        if (match) text = match[0];
+        return JSON.parse(text);
+      } catch (geminiErr) {
+        logger.error('AAIA getPartSuggestions Gemini error:', geminiErr);
+        return { prompt: "What part are you looking for?", suggestions: ["Brake Pads", "Oil Filter", "Battery", "Alternator"] };
+      }
     }
   }
 
@@ -599,16 +614,29 @@ Important: Generate 3-5 parts in the array. Use Unsplash URLs as placeholder ima
       }
       return JSON.parse(responseText);
     } catch (err) {
-      logger.error('AAIA getPartDetails error:', err);
-      return { 
-        status: "error", 
-        data: { 
-          parts: [{ 
-            title: partQuery, part_number: "UNKNOWN", price: "$0.00", 
-            description: "Details unavailable. API Error.", images: [] 
-          }] 
-        } 
-      };
+      logger.warn(`Grok failed for getPartDetails (${err.message}). Falling back to Gemini.`);
+      try {
+        const model = getGeminiClient().getGenerativeModel({ 
+          model: 'gemini-2.5-flash',
+          systemInstruction: 'You are a JSON-only API. Return only valid JSON.'
+        });
+        const geminiRes = await model.generateContent([prompt]);
+        let text = geminiRes.response.text().trim();
+        const match = text.match(/\{[\s\S]*\}/);
+        if (match) text = match[0];
+        return JSON.parse(text);
+      } catch (geminiErr) {
+        logger.error('AAIA getPartDetails error:', geminiErr);
+        return { 
+          status: "error", 
+          data: { 
+            parts: [{ 
+              title: partQuery, part_number: "UNKNOWN", price: "$0.00", 
+              description: "Details unavailable. API Error.", images: [] 
+            }] 
+          } 
+        };
+      }
     }
   }
 

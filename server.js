@@ -64,7 +64,7 @@ app.use(cors({
 app.use(compression());
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
-app.use(morgan('combined', { stream: { write: msg => logger.http(msg.trim()) } }));
+app.use(morgan('combined', { stream: { write: msg => logger.info(msg.trim()) } }));
 app.use(globalRateLimiter);
 
 // ── Health Check ──────────────────────────────────────────────────────────────

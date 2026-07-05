@@ -392,3 +392,159 @@
 2026-07-05 16:07:20 [info]: 🌐 Frontend: http://localhost:3000
 2026-07-05 16:07:20 [info]: 🤖 Model: undefined
 2026-07-05 16:07:20 [info]: ✅ Redis connected
+2026-07-05 16:07:58 [info]: PostgreSQL pool initialised
+2026-07-05 16:07:58 [info]: ✅ PostgreSQL connected
+2026-07-05 16:07:58 [info]: Redis connected
+2026-07-05 16:08:00 [info]: ✅ Redis connected
+2026-07-05 16:08:00 [info]: 🚀 AAIA server running on port 3001
+2026-07-05 16:08:00 [info]: 📡 Environment: development
+2026-07-05 16:08:00 [info]: 🌐 Frontend: http://localhost:3000
+2026-07-05 16:08:00 [info]: 🤖 Model: undefined
+2026-07-05 16:19:43 [info]: PostgreSQL pool initialised
+2026-07-05 16:19:43 [info]: ✅ PostgreSQL connected
+2026-07-05 16:19:43 [info]: Redis connected
+2026-07-05 16:19:44 [info]: ✅ Redis connected
+2026-07-05 16:19:44 [info]: 🚀 AAIA server running on port 3001
+2026-07-05 16:19:44 [info]: 📡 Environment: development
+2026-07-05 16:19:44 [info]: 🌐 Frontend: http://localhost:3000
+2026-07-05 16:19:44 [info]: 🤖 Model: undefined
+2026-07-05 16:23:02 [http]: ::1 - - [05/Jul/2026:16:23:02 +0000] "GET /api/vehicles/ymmt/years HTTP/1.1" 401 60 "-" "Mozilla/5.0 (Windows NT; Windows NT 10.0; en-GB) WindowsPowerShell/5.1.22621.6133"
+2026-07-05 16:26:54 [info]: PostgreSQL pool initialised
+2026-07-05 16:26:54 [info]: ✅ PostgreSQL connected
+2026-07-05 16:26:54 [info]: Redis connected
+2026-07-05 16:26:55 [info]: ✅ Redis connected
+2026-07-05 16:26:55 [info]: 🚀 AAIA server running on port 3001
+2026-07-05 16:26:55 [info]: 📡 Environment: development
+2026-07-05 16:26:55 [info]: 🌐 Frontend: http://localhost:3000
+2026-07-05 16:26:55 [info]: 🤖 Model: undefined
+2026-07-05 16:27:03 [info]: PostgreSQL pool initialised
+2026-07-05 16:27:03 [info]: ✅ PostgreSQL connected
+2026-07-05 16:27:03 [info]: Redis connected
+2026-07-05 16:27:04 [info]: ✅ Redis connected
+2026-07-05 16:27:04 [info]: 🚀 AAIA server running on port 3001
+2026-07-05 16:27:04 [info]: 📡 Environment: development
+2026-07-05 16:27:04 [info]: 🌐 Frontend: http://localhost:3000
+2026-07-05 16:27:04 [info]: 🤖 Model: undefined
+2026-07-05 16:28:10 [info]: PostgreSQL pool initialised
+2026-07-05 16:28:10 [info]: ✅ PostgreSQL connected
+2026-07-05 16:28:10 [info]: Redis connected
+2026-07-05 16:28:11 [info]: ✅ Redis connected
+2026-07-05 16:28:11 [info]: 🚀 AAIA server running on port 3001
+2026-07-05 16:28:11 [info]: 📡 Environment: development
+2026-07-05 16:28:11 [info]: 🌐 Frontend: http://localhost:3000
+2026-07-05 16:28:11 [info]: 🤖 Model: undefined
+2026-07-05 16:29:09 [info]: PostgreSQL pool initialised
+2026-07-05 16:29:09 [info]: ✅ PostgreSQL connected
+2026-07-05 16:29:09 [info]: Redis connected
+2026-07-05 16:29:10 [info]: ✅ Redis connected
+2026-07-05 16:29:10 [info]: 🚀 AAIA server running on port 3001
+2026-07-05 16:29:10 [info]: 📡 Environment: development
+2026-07-05 16:29:10 [info]: 🌐 Frontend: http://localhost:3000
+2026-07-05 16:29:10 [info]: 🤖 Model: undefined
+2026-07-05 16:30:28 [warn]: Client error: Expected property name or '}' in JSON at position 1 (line 1 column 2)
+2026-07-05 16:30:41 [info]: ::1 - - [05/Jul/2026:16:30:41 +0000] "POST /api/parts/suggest HTTP/1.1" 401 60 "-" "node"
+2026-07-05 16:30:57 [warn]: Slow query detected (2696ms): SELECT id, email, password, name, role, enterprise_id, is_active, credits, plan_type
+         FROM users WHERE email = $1
+2026-07-05 16:30:57 [warn]: Failed login attempt for: admin@achtrex.com
+2026-07-05 16:30:57 [info]: ::1 - - [05/Jul/2026:16:30:57 +0000] "POST /api/auth/login HTTP/1.1" 401 47 "-" "node"
+2026-07-05 16:31:10 [info]: New user registered: test1783269068583@achtrex.com (user)
+2026-07-05 16:31:10 [info]: ::1 - - [05/Jul/2026:16:31:10 +0000] "POST /api/auth/register HTTP/1.1" 201 477 "-" "node"
+2026-07-05 16:31:10 [info]: [Parts AI] Suggest requested. Mode: ymmt, Query: {"year":"2020","make":"Honda","model":"Accord"}
+2026-07-05 16:31:11 [warn]: Grok failed for getPartSuggestions (400 "Model not found: grok-2-1212"). Falling back to Gemini.
+2026-07-05 16:31:11 [error]: ❌ Failed to send welcome email to test1783269068583@achtrex.com:
+2026-07-05 16:31:16 [info]: ::1 - - [05/Jul/2026:16:31:16 +0000] "POST /api/parts/suggest HTTP/1.1" 200 366 "-" "node"
+2026-07-05 16:31:40 [info]: New user registered: test1783269098637@achtrex.com (user)
+2026-07-05 16:31:40 [info]: ::1 - - [05/Jul/2026:16:31:40 +0000] "POST /api/auth/register HTTP/1.1" 201 477 "-" "node"
+2026-07-05 16:31:41 [error]: ❌ Failed to send welcome email to test1783269098637@achtrex.com:
+2026-07-05 16:31:43 [warn]: Grok stream failed (404 "The model grok-2-1212 was deprecated on 2025-09-15 and is no longer accessible via the API. Please use grok-3 instead."). Falling back to Gemini.
+2026-07-05 16:31:46 [info]: ::1 - - [05/Jul/2026:16:31:46 +0000] "POST /api/chat/stream HTTP/1.1" 200 - "-" "node"
+2026-07-05 16:34:14 [info]: PostgreSQL pool initialised
+2026-07-05 16:34:14 [info]: ✅ PostgreSQL connected
+2026-07-05 16:34:14 [info]: Redis connected
+2026-07-05 16:34:16 [info]: ✅ Redis connected
+2026-07-05 16:34:16 [info]: 🚀 AAIA server running on port 3001
+2026-07-05 16:34:16 [info]: 📡 Environment: development
+2026-07-05 16:34:16 [info]: 🌐 Frontend: http://localhost:3000
+2026-07-05 16:34:16 [info]: 🤖 Model: undefined
+2026-07-05 16:50:24 [info]: PostgreSQL pool initialised
+2026-07-05 16:50:24 [info]: ✅ PostgreSQL connected
+2026-07-05 16:50:26 [info]: Redis connected
+2026-07-05 16:50:27 [info]: ✅ Redis connected
+2026-07-05 16:50:27 [info]: 🚀 AAIA server running on port 3001
+2026-07-05 16:50:27 [info]: 📡 Environment: development
+2026-07-05 16:50:27 [info]: 🌐 Frontend: http://localhost:3000
+2026-07-05 16:50:27 [info]: 🤖 Model: undefined
+2026-07-05 21:09:16 [error]: Error: read ECONNRESET
+    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)
+2026-07-05 21:09:26 [error]: Error: connect ETIMEDOUT
+    at Socket.<anonymous> (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\ioredis\built\Redis.js:183:41)
+    at Object.onceWrapper (node:events:633:28)
+    at Socket.emit (node:events:519:28)
+    at Socket._onTimeout (node:net:604:8)
+    at listOnTimeout (node:internal/timers:588:17)
+    at process.processTimers (node:internal/timers:523:7)
+2026-07-05 21:09:36 [error]: Error: connect ETIMEDOUT
+    at Socket.<anonymous> (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\ioredis\built\Redis.js:183:41)
+    at Object.onceWrapper (node:events:633:28)
+    at Socket.emit (node:events:519:28)
+    at Socket._onTimeout (node:net:604:8)
+    at listOnTimeout (node:internal/timers:588:17)
+    at process.processTimers (node:internal/timers:523:7)
+2026-07-05 21:09:47 [error]: Error: connect ETIMEDOUT
+    at Socket.<anonymous> (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\ioredis\built\Redis.js:183:41)
+    at Object.onceWrapper (node:events:633:28)
+    at Socket.emit (node:events:519:28)
+    at Socket._onTimeout (node:net:604:8)
+    at listOnTimeout (node:internal/timers:588:17)
+    at process.processTimers (node:internal/timers:523:7)
+2026-07-05 21:09:48 [info]: Redis connected
+2026-07-05 21:11:33 [warn]: Slow query detected (2446ms): SELECT id, email, password, name, role, enterprise_id, is_active, credits, plan_type
+         FROM users WHERE email = $1
+2026-07-05 21:11:33 [warn]: Failed login attempt for: admin@achtrex.com
+2026-07-05 21:11:33 [info]: ::1 - - [05/Jul/2026:21:11:33 +0000] "POST /api/auth/login HTTP/1.1" 401 47 "-" "node"
+2026-07-05 21:12:04 [info]: New user registered: test1783285923394@achtrex.com (user)
+2026-07-05 21:12:04 [info]: ::1 - - [05/Jul/2026:21:12:04 +0000] "POST /api/auth/register HTTP/1.1" 201 477 "-" "node"
+2026-07-05 21:12:04 [info]: ::1 - - [05/Jul/2026:21:12:04 +0000] "GET /api/vehicles/decode/1HGCM82633A004 HTTP/1.1" 400 46 "-" "node"
+2026-07-05 21:12:05 [error]: ❌ Failed to send welcome email to test1783285923394@achtrex.com:
+2026-07-05 21:12:05 [info]: ::1 - - [05/Jul/2026:21:12:05 +0000] "POST /api/diagnostics/reasoning HTTP/1.1" 400 123 "-" "node"
+2026-07-05 21:12:06 [info]: ::1 - - [05/Jul/2026:21:12:06 +0000] "GET /api/fleet HTTP/1.1" 200 26 "-" "node"
+2026-07-05 21:12:26 [info]: New user registered: test1783285945469@achtrex.com (user)
+2026-07-05 21:12:26 [info]: ::1 - - [05/Jul/2026:21:12:26 +0000] "POST /api/auth/register HTTP/1.1" 201 477 "-" "node"
+2026-07-05 21:12:27 [error]: ❌ Failed to send welcome email to test1783285945469@achtrex.com:
+2026-07-05 21:12:28 [info]: ::1 - - [05/Jul/2026:21:12:28 +0000] "GET /api/vehicles/decode/1HGCM82633A004123 HTTP/1.1" 200 - "-" "node"
+2026-07-05 21:12:29 [debug]: VIN cache hit: 1HGCM82633A004123
+2026-07-05 21:12:30 [warn]: Grok failed in generateRepairGuide (400 "Model not found: grok-2-1212"). Falling back to Gemini.
+2026-07-05 21:13:41 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at async makeRequest (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\@google\generative-ai\dist\index.js:397:20)
+    at async generateContent (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\@google\generative-ai\dist\index.js:867:22)
+    at async AAIAService.generateRepairGuide (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\AAIAService.js:392:27)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\diagnostics.js:237:26
+2026-07-05 21:13:41 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at async makeRequest (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\@google\generative-ai\dist\index.js:397:20)
+    at async generateContent (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\@google\generative-ai\dist\index.js:867:22)
+    at async AAIAService.generateRepairGuide (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\AAIAService.js:392:27)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\diagnostics.js:237:26
+2026-07-05 21:13:41 [info]: ::1 - - [05/Jul/2026:21:13:41 +0000] "POST /api/diagnostics/reasoning HTTP/1.1" 500 750 "-" "node"
+2026-07-05 21:31:16 [warn]: Slow query detected (2455ms): SELECT id FROM users WHERE email = $1
+2026-07-05 21:31:17 [info]: New user registered: test1783287073887@achtrex.com (user)
+2026-07-05 21:31:17 [info]: ::1 - - [05/Jul/2026:21:31:17 +0000] "POST /api/auth/register HTTP/1.1" 201 477 "-" "node"
+2026-07-05 21:31:18 [debug]: VIN cache hit: 1HGCM82633A004123
+2026-07-05 21:31:18 [info]: ::1 - - [05/Jul/2026:21:31:18 +0000] "GET /api/vehicles/decode/1HGCM82633A004123 HTTP/1.1" 200 - "-" "node"
+2026-07-05 21:31:18 [error]: ❌ Failed to send welcome email to test1783287073887@achtrex.com:
+2026-07-05 21:31:19 [debug]: VIN cache hit: 1HGCM82633A004123
+2026-07-05 21:31:20 [warn]: Grok failed in generateRepairGuide (400 "Model not found: grok-2-1212"). Falling back to Gemini.
+2026-07-05 21:32:30 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at async makeRequest (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\@google\generative-ai\dist\index.js:397:20)
+    at async generateContent (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\@google\generative-ai\dist\index.js:867:22)
+    at async AAIAService.generateRepairGuide (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\AAIAService.js:392:27)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\diagnostics.js:237:26
+2026-07-05 21:32:30 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at async makeRequest (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\@google\generative-ai\dist\index.js:397:20)
+    at async generateContent (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\@google\generative-ai\dist\index.js:867:22)
+    at async AAIAService.generateRepairGuide (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\AAIAService.js:392:27)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\diagnostics.js:237:26
+2026-07-05 21:32:30 [info]: ::1 - - [05/Jul/2026:21:32:30 +0000] "POST /api/diagnostics/reasoning HTTP/1.1" 500 750 "-" "node"
