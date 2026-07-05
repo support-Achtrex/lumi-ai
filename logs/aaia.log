@@ -548,3 +548,18 @@
     at async AAIAService.generateRepairGuide (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\AAIAService.js:392:27)
     at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\diagnostics.js:237:26
 2026-07-05 21:32:30 [info]: ::1 - - [05/Jul/2026:21:32:30 +0000] "POST /api/diagnostics/reasoning HTTP/1.1" 500 750 "-" "node"
+2026-07-05 21:33:33 [info]: PostgreSQL pool initialised
+2026-07-05 21:33:33 [info]: ✅ PostgreSQL connected
+2026-07-05 21:33:33 [info]: Redis connected
+2026-07-05 21:33:34 [info]: ✅ Redis connected
+2026-07-05 21:33:34 [info]: 🚀 AAIA server running on port 3001
+2026-07-05 21:33:34 [info]: 📡 Environment: development
+2026-07-05 21:33:34 [info]: 🌐 Frontend: http://localhost:3000
+2026-07-05 21:33:34 [info]: 🤖 Model: undefined
+2026-07-05 21:33:40 [info]: New user registered: test1783287218840@achtrex.com (user)
+2026-07-05 21:33:40 [info]: ::1 - - [05/Jul/2026:21:33:40 +0000] "POST /api/auth/register HTTP/1.1" 201 477 "-" "node"
+2026-07-05 21:33:40 [debug]: VIN cache hit: 1HGCM82633A004123
+2026-07-05 21:33:40 [info]: ::1 - - [05/Jul/2026:21:33:40 +0000] "GET /api/vehicles/decode/1HGCM82633A004123 HTTP/1.1" 200 - "-" "node"
+2026-07-05 21:33:41 [error]: ❌ Failed to send welcome email to test1783287218840@achtrex.com:
+2026-07-05 21:33:41 [debug]: VIN cache hit: 1HGCM82633A004123
+2026-07-05 21:33:53 [info]: ::1 - - [05/Jul/2026:21:33:53 +0000] "POST /api/diagnostics/reasoning HTTP/1.1" 200 - "-" "node"

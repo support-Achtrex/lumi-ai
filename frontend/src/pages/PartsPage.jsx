@@ -16,6 +16,7 @@ const PartsPage = () => {
   const [suggestions, setSuggestions] = useState([]);
   const [partSearch, setPartSearch] = useState('');
   const [partDetails, setPartDetails] = useState(null);
+  const [selectedSchemaPart, setSelectedSchemaPart] = useState(null);
 
   // YMMT State
   const [years, setYears] = useState([]);
@@ -137,21 +138,21 @@ const PartsPage = () => {
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
                     <div>
                       <label style={{ display: 'block', fontSize: 13, fontWeight: 700, color: 'var(--dgray)', marginBottom: 8, letterSpacing: '0.5px' }}>YEAR</label>
-                      <select style={{ width: '100%', padding: '16px 20px', fontSize: 16, border: '2px solid #E2E8F0', borderRadius: 12, outline: 'none', appearance: 'none', background: '#fff' }} value={year} onChange={e => setYear(e.target.value)} required>
+                      <select style={{ width: '100%', padding: '16px 20px', fontSize: 16, border: '2px solid #E2E8F0', borderRadius: 12, outline: 'none', background: '#fff', cursor: 'pointer' }} value={year} onChange={e => setYear(e.target.value)} required>
                         <option value="">Select Year...</option>
                         {years.map(y => <option key={y} value={y}>{y}</option>)}
                       </select>
                     </div>
                     <div>
                       <label style={{ display: 'block', fontSize: 13, fontWeight: 700, color: 'var(--dgray)', marginBottom: 8, letterSpacing: '0.5px' }}>MAKE</label>
-                      <select style={{ width: '100%', padding: '16px 20px', fontSize: 16, border: '2px solid #E2E8F0', borderRadius: 12, outline: 'none', appearance: 'none', background: '#fff' }} value={make} onChange={e => setMake(e.target.value)} required disabled={!year}>
+                      <select style={{ width: '100%', padding: '16px 20px', fontSize: 16, border: '2px solid #E2E8F0', borderRadius: 12, outline: 'none', background: '#fff', cursor: 'pointer' }} value={make} onChange={e => setMake(e.target.value)} required disabled={!year}>
                         <option value="">Select Make...</option>
                         {makes.map(m => <option key={m} value={m}>{m}</option>)}
                       </select>
                     </div>
                     <div>
                       <label style={{ display: 'block', fontSize: 13, fontWeight: 700, color: 'var(--dgray)', marginBottom: 8, letterSpacing: '0.5px' }}>MODEL</label>
-                      <select style={{ width: '100%', padding: '16px 20px', fontSize: 16, border: '2px solid #E2E8F0', borderRadius: 12, outline: 'none', appearance: 'none', background: '#fff' }} value={model} onChange={e => setModel(e.target.value)} required disabled={!make}>
+                      <select style={{ width: '100%', padding: '16px 20px', fontSize: 16, border: '2px solid #E2E8F0', borderRadius: 12, outline: 'none', background: '#fff', cursor: 'pointer' }} value={model} onChange={e => setModel(e.target.value)} required disabled={!make}>
                         <option value="">Select Model...</option>
                         {models.map(m => <option key={m} value={m}>{m}</option>)}
                       </select>
@@ -319,7 +320,11 @@ const PartsPage = () => {
                             </div>
                             <p style={{ fontSize: 14, color: '#555', margin: '0 0 20px 0', lineHeight: 1.5, flex: 1 }}>{p.description}</p>
                             
-                            <button style={{ width: '100%', padding: '12px', background: '#F5F8FC', border: '1px solid var(--bord)', borderRadius: 10, color: 'var(--dblu)', fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, cursor: 'pointer', transition: '0.2s' }} onMouseOver={e => { e.currentTarget.style.background = 'var(--dblu)'; e.currentTarget.style.color = '#fff'; }} onMouseOut={e => { e.currentTarget.style.background = '#F5F8FC'; e.currentTarget.style.color = 'var(--dblu)'; }}>
+                            <button 
+                              onClick={() => setSelectedSchemaPart(p)}
+                              style={{ width: '100%', padding: '12px', background: '#F5F8FC', border: '1px solid var(--bord)', borderRadius: 10, color: 'var(--dblu)', fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, cursor: 'pointer', transition: '0.2s' }} 
+                              onMouseOver={e => { e.currentTarget.style.background = 'var(--dblu)'; e.currentTarget.style.color = '#fff'; }} 
+                              onMouseOut={e => { e.currentTarget.style.background = '#F5F8FC'; e.currentTarget.style.color = 'var(--dblu)'; }}>
                               <i className="ti ti-file-analytics" /> View Schematics
                             </button>
                           </div>
@@ -333,6 +338,66 @@ const PartsPage = () => {
                   )}
                 </div>
               )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ─────────────────────────────────────────────────────────────────
+          SCHEMA MODAL
+      ───────────────────────────────────────────────────────────────── */}
+      {selectedSchemaPart && (
+        <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(5px)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20, animation: 'fadeIn 0.3s ease-out' }}>
+          <div style={{ background: '#fff', borderRadius: 24, width: '100%', maxWidth: 900, maxHeight: '90vh', overflow: 'hidden', display: 'flex', flexDirection: 'column', boxShadow: '0 24px 60px rgba(0,0,0,0.2)' }}>
+            <div style={{ padding: '24px 32px', borderBottom: '1px solid var(--bord)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <h2 style={{ margin: 0, fontSize: 24, fontWeight: 800, color: 'var(--dgray)' }}>Part Schematics & Details</h2>
+              <button onClick={() => setSelectedSchemaPart(null)} style={{ background: 'transparent', border: 'none', fontSize: 24, color: 'var(--gray)', cursor: 'pointer' }}>&times;</button>
+            </div>
+            <div style={{ padding: 32, overflowY: 'auto', flex: 1 }}>
+              <div style={{ display: 'flex', gap: 32, flexDirection: 'column' }}>
+                {/* Images */}
+                <div style={{ display: 'flex', gap: 16, overflowX: 'auto', paddingBottom: 16 }}>
+                  {selectedSchemaPart.images && selectedSchemaPart.images.length > 0 ? (
+                    selectedSchemaPart.images.map((img, i) => (
+                      <img key={i} src={img} alt={`Schema ${i}`} style={{ height: 240, borderRadius: 12, objectFit: 'cover', border: '1px solid var(--bord)' }} />
+                    ))
+                  ) : (
+                    <div style={{ width: '100%', height: 240, background: '#f0f0f0', borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#ccc' }}>
+                      <i className="ti ti-photo" style={{ fontSize: 48 }} />
+                    </div>
+                  )}
+                </div>
+                
+                {/* Info */}
+                <div>
+                  <h3 style={{ fontSize: 28, margin: '0 0 16px 0', color: 'var(--dblu)', fontWeight: 800 }}>{selectedSchemaPart.title}</h3>
+                  <div style={{ display: 'flex', gap: 24, marginBottom: 24, flexWrap: 'wrap' }}>
+                    <div style={{ background: '#F5F8FC', padding: '16px 24px', borderRadius: 12, flex: 1, minWidth: 200 }}>
+                      <div style={{ fontSize: 12, color: 'var(--gray)', fontWeight: 700, marginBottom: 4 }}>PRICE</div>
+                      <div style={{ fontSize: 24, color: 'var(--dgray)', fontWeight: 800 }}>{selectedSchemaPart.price || 'N/A'}</div>
+                    </div>
+                    <div style={{ background: '#F5F8FC', padding: '16px 24px', borderRadius: 12, flex: 1, minWidth: 200 }}>
+                      <div style={{ fontSize: 12, color: 'var(--gray)', fontWeight: 700, marginBottom: 4 }}>OEM PART #</div>
+                      <div style={{ fontSize: 20, color: 'var(--dgray)', fontWeight: 700 }}>{selectedSchemaPart.part_number}</div>
+                    </div>
+                  </div>
+                  
+                  {selectedSchemaPart.alternate_names && (
+                    <div style={{ marginBottom: 24 }}>
+                      <h4 style={{ fontSize: 14, color: 'var(--gray)', fontWeight: 700, marginBottom: 8 }}>ALTERNATE NAMES</h4>
+                      <p style={{ margin: 0, fontSize: 16, color: 'var(--dgray)' }}>{selectedSchemaPart.alternate_names}</p>
+                    </div>
+                  )}
+                  
+                  <div>
+                    <h4 style={{ fontSize: 14, color: 'var(--gray)', fontWeight: 700, marginBottom: 8 }}>TECHNICAL DESCRIPTION</h4>
+                    <p style={{ margin: 0, fontSize: 16, lineHeight: 1.6, color: 'var(--dgray)' }}>{selectedSchemaPart.description}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div style={{ padding: '24px 32px', borderTop: '1px solid var(--bord)', background: '#FAFCFF', textAlign: 'right' }}>
+              <button onClick={() => setSelectedSchemaPart(null)} style={{ padding: '12px 32px', background: 'var(--dblu)', color: '#fff', border: 'none', borderRadius: 12, fontSize: 16, fontWeight: 700, cursor: 'pointer' }}>Close</button>
             </div>
           </div>
         </div>
