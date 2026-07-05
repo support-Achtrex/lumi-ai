@@ -563,3 +563,48 @@
 2026-07-05 21:33:41 [error]: ❌ Failed to send welcome email to test1783287218840@achtrex.com:
 2026-07-05 21:33:41 [debug]: VIN cache hit: 1HGCM82633A004123
 2026-07-05 21:33:53 [info]: ::1 - - [05/Jul/2026:21:33:53 +0000] "POST /api/diagnostics/reasoning HTTP/1.1" 200 - "-" "node"
+2026-07-05 22:35:10 [info]: PostgreSQL pool initialised
+2026-07-05 22:35:10 [info]: ✅ PostgreSQL connected
+2026-07-05 22:35:10 [info]: Redis connected
+2026-07-05 22:35:11 [info]: ✅ Redis connected
+2026-07-05 22:35:11 [info]: 🚀 AAIA server running on port 3001
+2026-07-05 22:35:11 [info]: 📡 Environment: development
+2026-07-05 22:35:11 [info]: 🌐 Frontend: http://localhost:3000
+2026-07-05 22:35:11 [info]: 🤖 Model: undefined
+2026-07-05 23:13:21 [warn]: Slow query detected (2855ms): SELECT id FROM users WHERE email = $1
+2026-07-05 23:13:22 [info]: New user registered: test1783293198373@test.com (user)
+2026-07-05 23:13:22 [info]: ::1 - - [05/Jul/2026:23:13:22 +0000] "POST /api/auth/register HTTP/1.1" 201 475 "-" "node"
+2026-07-05 23:13:23 [info]: ::1 - - [05/Jul/2026:23:13:23 +0000] "POST /api/chat/message HTTP/1.1" 401 41 "-" "node"
+2026-07-05 23:13:23 [info]: ::1 - - [05/Jul/2026:23:13:23 +0000] "POST /api/diagnostics/reasoning HTTP/1.1" 401 41 "-" "node"
+2026-07-05 23:13:23 [info]: ::1 - - [05/Jul/2026:23:13:23 +0000] "GET /api/fleet/vehicles HTTP/1.1" 404 68 "-" "node"
+2026-07-05 23:13:23 [info]: ::1 - - [05/Jul/2026:23:13:23 +0000] "GET /api/vin/decode/1HGCM82633A004123 HTTP/1.1" 404 82 "-" "node"
+2026-07-05 23:13:24 [info]: ::1 - - [05/Jul/2026:23:13:24 +0000] "POST /api/parts/suggestions HTTP/1.1" 401 41 "-" "node"
+2026-07-05 23:13:25 [info]: ::1 - - [05/Jul/2026:23:13:25 +0000] "POST /api/parts/details HTTP/1.1" 401 41 "-" "node"
+2026-07-05 23:13:25 [info]: ::1 - - [05/Jul/2026:23:13:25 +0000] "POST /api/keys/generate HTTP/1.1" 401 41 "-" "node"
+2026-07-05 23:13:26 [error]: ❌ Failed to send welcome email to test1783293198373@test.com:
+2026-07-05 23:15:05 [warn]: Slow query detected (2457ms): SELECT id FROM users WHERE email = $1
+2026-07-05 23:15:06 [info]: New user registered: test1783293302791@test.com (user)
+2026-07-05 23:15:06 [info]: ::1 - - [05/Jul/2026:23:15:06 +0000] "POST /api/auth/register HTTP/1.1" 201 475 "-" "node"
+2026-07-05 23:15:07 [info]: ::1 - - [05/Jul/2026:23:15:07 +0000] "POST /api/chat/message HTTP/1.1" 400 112 "-" "node"
+2026-07-05 23:15:07 [info]: ::1 - - [05/Jul/2026:23:15:07 +0000] "POST /api/diagnostics/reasoning HTTP/1.1" 400 112 "-" "node"
+2026-07-05 23:15:08 [error]: ❌ Failed to send welcome email to test1783293302791@test.com:
+2026-07-05 23:15:08 [info]: ::1 - - [05/Jul/2026:23:15:08 +0000] "GET /api/fleet HTTP/1.1" 200 26 "-" "node"
+2026-07-05 23:15:09 [debug]: VIN cache hit: 1HGCM82633A004123
+2026-07-05 23:15:09 [info]: ::1 - - [05/Jul/2026:23:15:09 +0000] "GET /api/vehicles/decode/1HGCM82633A004123 HTTP/1.1" 200 - "-" "node"
+2026-07-05 23:15:10 [info]: ::1 - - [05/Jul/2026:23:15:10 +0000] "POST /api/parts/suggestions HTTP/1.1" 404 72 "-" "node"
+2026-07-05 23:15:10 [info]: [Parts AI] Details requested. Query: Alternator
+2026-07-05 23:15:25 [info]: ::1 - - [05/Jul/2026:23:15:25 +0000] "POST /api/parts/details HTTP/1.1" 200 - "-" "node"
+2026-07-05 23:15:26 [info]: ::1 - - [05/Jul/2026:23:15:26 +0000] "POST /api/keys/generate HTTP/1.1" 200 220 "-" "node"
+2026-07-05 23:15:27 [info]: ::1 - - [05/Jul/2026:23:15:27 +0000] "GET /api/keys HTTP/1.1" 200 222 "-" "node"
+2026-07-05 23:15:28 [info]: ::1 - - [05/Jul/2026:23:15:28 +0000] "DELETE /api/keys/d2db4dc1-bf42-4397-b069-92c1f1f9703b HTTP/1.1" 200 53 "-" "node"
+2026-07-05 23:15:34 [info]: New user registered: test1783293333043@test.com (user)
+2026-07-05 23:15:34 [info]: ::1 - - [05/Jul/2026:23:15:34 +0000] "POST /api/auth/register HTTP/1.1" 201 475 "-" "node"
+2026-07-05 23:15:40 [debug]: VIN cache hit: 1HGCM82633A004123
+2026-07-05 23:15:47 [info]: ::1 - - [05/Jul/2026:23:15:47 +0000] "POST /api/chat/message HTTP/1.1" 200 - "-" "node"
+2026-07-05 23:15:49 [debug]: VIN cache hit: 1HGCM82633A004123
+2026-07-05 23:16:02 [info]: ::1 - - [05/Jul/2026:23:16:02 +0000] "POST /api/diagnostics/reasoning HTTP/1.1" 200 - "-" "node"
+2026-07-05 23:16:03 [info]: [Parts AI] Suggest requested. Mode: ymmt, Query: {"year":2014,"make":"Honda","model":"Accord"}
+2026-07-05 23:16:04 [error]: ❌ Failed to send welcome email to test1783293333043@test.com:
+2026-07-05 23:16:08 [info]: ::1 - - [05/Jul/2026:23:16:08 +0000] "POST /api/parts/suggest HTTP/1.1" 200 513 "-" "node"
+2026-07-05 23:16:09 [info]: [Parts AI] Details requested. Query: Alternator
+2026-07-05 23:16:19 [info]: ::1 - - [05/Jul/2026:23:16:19 +0000] "POST /api/parts/details HTTP/1.1" 200 - "-" "node"

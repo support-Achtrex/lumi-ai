@@ -118,7 +118,7 @@ class AAIAService {
       const enrichedMessages = await this.enrichMessages(messages, vehicleContext, image);
 
       const params = {
-        model:      process.env.GROK_MODEL || 'grok-2-latest',
+        model:      process.env.GROK_MODEL || 'grok-4.3',
         max_tokens: parseInt(process.env.MAX_TOKENS) || 4096,
         messages:   [
           { role: 'system', content: AAIA_SYSTEM_PROMPT },
@@ -367,7 +367,7 @@ Return ONLY a valid JSON object and absolutely nothing else. Do not use markdown
 
     try {
       const response = await getOpenAIClient().chat.completions.create({
-        model:      process.env.GROK_MODEL || 'grok-2-latest',
+        model:      process.env.GROK_MODEL || 'grok-4.3',
         max_tokens: 2500,
         messages:   [
           { role: 'system', content: 'You are a strict JSON-only diagnostic reasoning engine. Return only the JSON object without formatting or markdown code blocks.' },
@@ -463,7 +463,7 @@ Return JSON only with this exact structure:
       const data = base64Image.substring(base64Image.indexOf('base64,') + 7);
       
       const response = await getOpenAIClient().chat.completions.create({
-        model: process.env.GROK_MODEL || 'grok-2-latest',
+        model: process.env.GROK_MODEL || 'grok-4.3',
         messages: [
           {
             role: 'user',
@@ -532,7 +532,7 @@ Return a STRICT JSON object in this exact format, with no markdown code blocks:
 
     try {
       const response = await getOpenAIClient().chat.completions.create({
-        model: process.env.GROK_MODEL || 'grok-2-1212',
+        model: process.env.GROK_MODEL || 'grok-4.3',
         max_tokens: 1000,
         messages: [
           { role: 'system', content: 'You are a JSON-only API. Return only valid JSON.' },
@@ -599,7 +599,7 @@ Important: Generate 8-12 parts in the array. For images, use 'https://placehold.
 
     try {
       const response = await getOpenAIClient().chat.completions.create({
-        model: process.env.GROK_MODEL || 'grok-2-1212',
+        model: process.env.GROK_MODEL || 'grok-4.3',
         max_tokens: 2000,
         messages: [
           { role: 'system', content: 'You are a JSON-only API. Return only valid JSON.' },

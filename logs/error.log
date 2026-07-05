@@ -3318,3 +3318,6 @@
     at async AAIAService.generateRepairGuide (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\AAIAService.js:392:27)
     at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\diagnostics.js:237:26
 2026-07-05 21:33:41 [error]: ❌ Failed to send welcome email to test1783287218840@achtrex.com:
+2026-07-05 23:13:26 [error]: ❌ Failed to send welcome email to test1783293198373@test.com:
+2026-07-05 23:15:08 [error]: ❌ Failed to send welcome email to test1783293302791@test.com:
+2026-07-05 23:16:04 [error]: ❌ Failed to send welcome email to test1783293333043@test.com:
