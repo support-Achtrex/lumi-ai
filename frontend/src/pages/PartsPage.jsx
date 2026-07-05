@@ -67,7 +67,7 @@ export default function PartsPage() {
       if (mode === 'oem') {
         // Direct to details
         const res = await APIService.getPartDetails(oem, null);
-        setPartDetails(res.partDetails);
+        setPartDetails(res.data);
         setStep(3);
       } else {
         // Vehicle decode & suggestions
@@ -89,7 +89,7 @@ export default function PartsPage() {
     setLoading(true);
     try {
       const res = await APIService.getPartDetails(query, vehicleInfo);
-      setPartDetails(res.partDetails);
+      setPartDetails(res.data);
       setStep(3);
     } catch (err) {
       console.error(err);
@@ -223,44 +223,71 @@ export default function PartsPage() {
 
             {/* Step 3: Part Details */}
             {step === 3 && partDetails && (
-              <div style={{ background: 'var(--card)', borderRadius: 12, overflow: 'hidden', boxShadow: 'var(--shadow-sm)' }}>
-                {partDetails.schemaImage && (
-                  <div style={{ width: '100%', height: 250, background: '#f0f0f0', position: 'relative' }}>
-                    <img src={partDetails.schemaImage} alt="Part Schema" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                    <div style={{ position: 'absolute', bottom: 12, right: 12, background: 'rgba(0,0,0,0.6)', color: '#fff', padding: '4px 8px', fontSize: 10, borderRadius: 4 }}>
-                      AI Generated Schema
-                    </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+                <div style={{ background: 'var(--card)', borderRadius: 12, padding: 20, boxShadow: 'var(--shadow-sm)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <div>
+                    <h2 style={{ margin: '0 0 4px 0', fontSize: 18, color: 'var(--dgray)' }}>{partDetails.year} {partDetails.make} {partDetails.model} {partDetails.trim}</h2>
+                    <div style={{ fontSize: 13, color: 'var(--gray)' }}>{partDetails.category} {partDetails.sub_category ? `> ${partDetails.sub_category}` : ''}</div>
                   </div>
-                )}
-                
-                <div style={{ padding: 30 }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 16 }}>
-                    <div>
-                      <div style={{ display: 'inline-block', padding: '2px 8px', background: '#E3F2FD', color: '#1976D2', fontSize: 10, fontWeight: 700, borderRadius: 4, marginBottom: 8, letterSpacing: 0.5 }}>
-                        {partDetails.category?.toUpperCase() || 'PART'}
-                      </div>
-                      <h2 style={{ margin: '0 0 4px 0', color: 'var(--dgray)', fontSize: 22 }}>{partDetails.name}</h2>
-                      <div style={{ fontSize: 13, color: 'var(--gray)' }}>OEM Number: <span style={{ fontWeight: 600, color: 'var(--dgray)' }}>{partDetails.oem}</span></div>
-                    </div>
-                    
-                    <div style={{ textAlign: 'right' }}>
-                      <div style={{ fontSize: 24, fontWeight: 700, color: 'var(--dblu)' }}>${(partDetails.price || 0).toFixed(2)}</div>
-                      <div style={{ fontSize: 11, color: partDetails.stock > 0 ? '#4CAF50' : '#F44336', fontWeight: 600 }}>
-                        {partDetails.stock > 0 ? `${partDetails.stock} IN STOCK` : 'OUT OF STOCK'}
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="markdown-body" style={{ fontSize: 14, color: '#444', lineHeight: 1.6, marginBottom: 24, borderTop: '1px solid var(--bord)', paddingTop: 16 }}>
-                    <ReactMarkdown>{partDetails.description || ''}</ReactMarkdown>
-                  </div>
-                  
-                  <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                    <button className="btn-primary" disabled={partDetails.stock === 0}>
-                      <i className="ti ti-shopping-cart" /> Add to Order
-                    </button>
+                  <div style={{ background: '#E3F2FD', color: '#1976D2', padding: '6px 12px', borderRadius: 20, fontSize: 12, fontWeight: 600 }}>
+                    {partDetails.parts?.length || 0} Parts Found
                   </div>
                 </div>
+                
+                {partDetails.parts && partDetails.parts.map((part, idx) => (
+                  <div key={idx} style={{ background: 'var(--card)', borderRadius: 12, overflow: 'hidden', boxShadow: 'var(--shadow-sm)' }}>
+                    <div style={{ display: 'flex', gap: 24, padding: 24, flexWrap: 'wrap' }}>
+                      
+                      {/* Image section */}
+                      <div style={{ width: 240, flexShrink: 0, display: 'flex', flexDirection: 'column', gap: 8 }}>
+                        {part.images && part.images[0] ? (
+                          <div style={{ height: 160, background: '#f5f5f5', borderRadius: 8, overflow: 'hidden', position: 'relative' }}>
+                            <img src={part.images[0]} alt={part.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                          </div>
+                        ) : (
+                          <div style={{ height: 160, background: '#f5f5f5', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#ccc' }}>
+                            <i className="ti ti-photo" style={{ fontSize: 32 }} />
+                          </div>
+                        )}
+                        {/* Thumbnail strip */}
+                        <div style={{ display: 'flex', gap: 8 }}>
+                          {part.images && part.images.slice(1, 5).map((img, i) => (
+                            <div key={i} style={{ width: 50, height: 50, background: '#f5f5f5', borderRadius: 4, overflow: 'hidden' }}>
+                              <img src={img} alt="thumb" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Details section */}
+                      <div style={{ flex: 1, minWidth: 280 }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 16 }}>
+                          <div>
+                            <h3 style={{ margin: '0 0 6px 0', color: 'var(--dgray)', fontSize: 18, lineHeight: 1.3 }}>{part.title}</h3>
+                            <div style={{ fontSize: 13, color: 'var(--gray)' }}>Part Number: <span style={{ fontWeight: 600, color: 'var(--dgray)' }}>{part.part_number}</span></div>
+                            {part.alternate_names && (
+                               <div style={{ fontSize: 12, color: '#888', marginTop: 4 }}>Alt: {part.alternate_names}</div>
+                            )}
+                          </div>
+                          
+                          <div style={{ textAlign: 'right', marginLeft: 16 }}>
+                            <div style={{ fontSize: 24, fontWeight: 700, color: 'var(--dblu)', whiteSpace: 'nowrap' }}>{part.price}</div>
+                          </div>
+                        </div>
+
+                        <div className="markdown-body" style={{ fontSize: 14, color: '#444', lineHeight: 1.6, marginBottom: 24, borderTop: '1px solid var(--bord)', paddingTop: 16 }}>
+                          <ReactMarkdown>{part.description || ''}</ReactMarkdown>
+                        </div>
+                        
+                        <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                          <button className="btn-primary">
+                            <i className="ti ti-shopping-cart" /> Add to Order
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
             )}
             

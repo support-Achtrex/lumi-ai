@@ -254,3 +254,88 @@
 2026-07-05 15:41:08 [info]: 📡 Environment: development
 2026-07-05 15:41:08 [info]: 🌐 Frontend: http://localhost:3000
 2026-07-05 15:41:08 [info]: 🤖 Model: undefined
+2026-07-05 15:41:16 [info]: PostgreSQL pool initialised
+2026-07-05 15:41:16 [info]: ✅ PostgreSQL connected
+2026-07-05 15:41:16 [info]: Redis connected
+2026-07-05 15:41:17 [info]: ✅ Redis connected
+2026-07-05 15:41:17 [info]: 🚀 AAIA server running on port 3001
+2026-07-05 15:41:17 [info]: 📡 Environment: development
+2026-07-05 15:41:17 [info]: 🌐 Frontend: http://localhost:3000
+2026-07-05 15:41:17 [info]: 🤖 Model: undefined
+2026-07-05 15:41:38 [http]: ::1 - - [05/Jul/2026:15:41:38 +0000] "GET /api/vehicles/ymmt/years HTTP/1.1" 200 176 "http://localhost:3000/parts" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 15:41:39 [http]: ::1 - - [05/Jul/2026:15:41:39 +0000] "GET /api/vehicles/ymmt/years HTTP/1.1" 304 - "http://localhost:3000/parts" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 15:50:50 [warn]: Slow query detected (2271ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-07-05 15:50:50 [http]: ::1 - - [05/Jul/2026:15:50:50 +0000] "GET /api/auth/me HTTP/1.1" 200 276 "http://localhost:3000/parts" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 15:50:51 [http]: ::1 - - [05/Jul/2026:15:50:51 +0000] "GET /api/auth/me HTTP/1.1" 304 - "http://localhost:3000/parts" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 15:50:51 [warn]: Slow query detected (2921ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-07-05 15:50:51 [warn]: Slow query detected (3336ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-07-05 15:50:51 [http]: ::1 - - [05/Jul/2026:15:50:51 +0000] "GET /api/vehicles/ymmt/years HTTP/1.1" 304 - "http://localhost:3000/parts" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 15:50:52 [http]: ::1 - - [05/Jul/2026:15:50:52 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/parts" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 15:50:52 [http]: ::1 - - [05/Jul/2026:15:50:52 +0000] "GET /api/vehicles/ymmt/years HTTP/1.1" 304 - "http://localhost:3000/parts" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 15:50:54 [http]: ::1 - - [05/Jul/2026:15:50:54 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/parts" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 15:50:56 [http]: ::1 - - [05/Jul/2026:15:50:56 +0000] "GET /api/vehicles/ymmt/makes?year=2024 HTTP/1.1" 200 - "http://localhost:3000/parts" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 15:51:04 [http]: ::1 - - [05/Jul/2026:15:51:04 +0000] "GET /api/vehicles/ymmt/models?make=TOYOTA&year=2024 HTTP/1.1" 200 313 "http://localhost:3000/parts" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 15:51:13 [info]: [Parts AI] Suggest requested. Mode: ymmt, Query: {"year":"2024","make":"TOYOTA","model":"Land Cruiser","trim":""}
+2026-07-05 15:51:14 [error]: Error: 400 "Model not found: grok-2-latest"
+    at APIError.generate (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\openai\core\error.js:45:20)
+    at OpenAI.makeStatusError (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\openai\client.js:258:32)
+    at OpenAI.makeRequest (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\openai\client.js:452:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async AAIAService.getPartSuggestions (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\AAIAService.js:534:24)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\parts.js:34:24
+2026-07-05 15:51:14 [http]: ::1 - - [05/Jul/2026:15:51:14 +0000] "POST /api/parts/suggest HTTP/1.1" 200 206 "http://localhost:3000/parts" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 15:51:19 [info]: [Parts AI] Details requested. Query: Brake Pads
+2026-07-05 15:51:20 [error]: Error: 400 "Model not found: grok-2-latest"
+    at APIError.generate (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\openai\core\error.js:45:20)
+    at OpenAI.makeStatusError (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\openai\client.js:258:32)
+    at OpenAI.makeRequest (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\openai\client.js:452:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async AAIAService.getPartDetails (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\AAIAService.js:574:24)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\parts.js:49:24
+2026-07-05 15:51:20 [http]: ::1 - - [05/Jul/2026:15:51:20 +0000] "POST /api/parts/details HTTP/1.1" 200 163 "http://localhost:3000/parts" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 15:51:38 [info]: [Parts AI] Details requested. Query: Oil Filter
+2026-07-05 15:51:38 [error]: Error: 400 "Model not found: grok-2-latest"
+    at APIError.generate (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\openai\core\error.js:45:20)
+    at OpenAI.makeStatusError (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\openai\client.js:258:32)
+    at OpenAI.makeRequest (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\openai\client.js:452:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async AAIAService.getPartDetails (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\AAIAService.js:574:24)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\parts.js:49:24
+2026-07-05 15:51:38 [http]: ::1 - - [05/Jul/2026:15:51:38 +0000] "POST /api/parts/details HTTP/1.1" 200 163 "http://localhost:3000/parts" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 15:51:42 [info]: [Parts AI] Details requested. Query: Oil Filter
+2026-07-05 15:51:42 [error]: Error: 400 "Model not found: grok-2-latest"
+    at APIError.generate (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\openai\core\error.js:45:20)
+    at OpenAI.makeStatusError (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\openai\client.js:258:32)
+    at OpenAI.makeRequest (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\openai\client.js:452:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async AAIAService.getPartDetails (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\AAIAService.js:574:24)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\parts.js:49:24
+2026-07-05 15:51:42 [http]: ::1 - - [05/Jul/2026:15:51:42 +0000] "POST /api/parts/details HTTP/1.1" 200 163 "http://localhost:3000/parts" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 15:51:44 [info]: [Parts AI] Details requested. Query: Oil Filter
+2026-07-05 15:51:44 [error]: Error: 400 "Model not found: grok-2-latest"
+    at APIError.generate (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\openai\core\error.js:45:20)
+    at OpenAI.makeStatusError (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\openai\client.js:258:32)
+    at OpenAI.makeRequest (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\openai\client.js:452:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async AAIAService.getPartDetails (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\AAIAService.js:574:24)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\parts.js:49:24
+2026-07-05 15:51:44 [http]: ::1 - - [05/Jul/2026:15:51:44 +0000] "POST /api/parts/details HTTP/1.1" 200 163 "http://localhost:3000/parts" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 15:54:41 [info]: PostgreSQL pool initialised
+2026-07-05 15:54:41 [info]: ✅ PostgreSQL connected
+2026-07-05 15:54:42 [info]: Redis connected
+2026-07-05 15:54:42 [info]: ✅ Redis connected
+2026-07-05 15:55:04 [info]: PostgreSQL pool initialised
+2026-07-05 15:55:04 [info]: ✅ PostgreSQL connected
+2026-07-05 15:55:04 [info]: Redis connected
+2026-07-05 15:55:05 [info]: ✅ Redis connected
+2026-07-05 15:55:05 [info]: 🚀 AAIA server running on port 3001
+2026-07-05 15:55:05 [info]: 📡 Environment: development
+2026-07-05 15:55:05 [info]: 🌐 Frontend: http://localhost:3000
+2026-07-05 15:55:05 [info]: 🤖 Model: undefined
+2026-07-05 15:55:08 [info]: PostgreSQL pool initialised
+2026-07-05 15:55:08 [info]: ✅ PostgreSQL connected
+2026-07-05 15:55:09 [info]: Redis connected
+2026-07-05 15:55:10 [info]: ✅ Redis connected

@@ -3216,3 +3216,38 @@
     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
     at async query (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\config\database.js:36:17)
     at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\vehicles.js:104:20
+2026-07-05 15:51:14 [error]: Error: 400 "Model not found: grok-2-latest"
+    at APIError.generate (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\openai\core\error.js:45:20)
+    at OpenAI.makeStatusError (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\openai\client.js:258:32)
+    at OpenAI.makeRequest (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\openai\client.js:452:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async AAIAService.getPartSuggestions (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\AAIAService.js:534:24)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\parts.js:34:24
+2026-07-05 15:51:20 [error]: Error: 400 "Model not found: grok-2-latest"
+    at APIError.generate (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\openai\core\error.js:45:20)
+    at OpenAI.makeStatusError (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\openai\client.js:258:32)
+    at OpenAI.makeRequest (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\openai\client.js:452:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async AAIAService.getPartDetails (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\AAIAService.js:574:24)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\parts.js:49:24
+2026-07-05 15:51:38 [error]: Error: 400 "Model not found: grok-2-latest"
+    at APIError.generate (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\openai\core\error.js:45:20)
+    at OpenAI.makeStatusError (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\openai\client.js:258:32)
+    at OpenAI.makeRequest (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\openai\client.js:452:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async AAIAService.getPartDetails (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\AAIAService.js:574:24)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\parts.js:49:24
+2026-07-05 15:51:42 [error]: Error: 400 "Model not found: grok-2-latest"
+    at APIError.generate (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\openai\core\error.js:45:20)
+    at OpenAI.makeStatusError (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\openai\client.js:258:32)
+    at OpenAI.makeRequest (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\openai\client.js:452:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async AAIAService.getPartDetails (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\AAIAService.js:574:24)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\parts.js:49:24
+2026-07-05 15:51:44 [error]: Error: 400 "Model not found: grok-2-latest"
+    at APIError.generate (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\openai\core\error.js:45:20)
+    at OpenAI.makeStatusError (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\openai\client.js:258:32)
+    at OpenAI.makeRequest (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\openai\client.js:452:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async AAIAService.getPartDetails (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\AAIAService.js:574:24)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\parts.js:49:24

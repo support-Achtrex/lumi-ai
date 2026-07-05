@@ -551,29 +551,41 @@ Return a STRICT JSON object in this exact format, with no markdown code blocks:
   }
 
   static async getPartDetails(partQuery, vehicleInfo) {
-    const context = vehicleInfo ? `VEHICLE: ${vehicleInfo?.year || ''} ${vehicleInfo?.make || ''} ${vehicleInfo?.model || ''}` : `SEARCH QUERY: ${partQuery}`;
-    const prompt = `You are an expert parts catalog system. The user wants details for: "${partQuery}" for vehicle: ${context}.
+    const context = vehicleInfo ? `VEHICLE: ${vehicleInfo?.year || ''} ${vehicleInfo?.make || ''} ${vehicleInfo?.model || ''} ${vehicleInfo?.trim || ''}` : `SEARCH QUERY: ${partQuery}`;
+    const prompt = `You are an expert parts catalog system. The user wants detailed information for: "${partQuery}" for vehicle: ${context}.
 
-Generate highly realistic technical details for this part.
+Generate highly realistic technical details and a list of specific parts that match this query.
 Return a STRICT JSON object with this exact structure (no markdown blocks):
 {
-  "partDetails": {
-    "name": "Full descriptive name of the part",
-    "oem": "Realistic OEM or Part Number (e.g. 90915-YZZF1)",
-    "price": 45.99,
-    "stock": 14,
-    "category": "Engine / Brakes / Electrical etc.",
-    "description": "Detailed technical description of the part, its function, and compatibility.",
-    "schemaImage": "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&q=80&w=600&h=400"
+  "status": "success",
+  "data": {
+    "year": "${vehicleInfo?.year || 'Unknown'}",
+    "make": "${vehicleInfo?.make || 'Unknown'}",
+    "model": "${vehicleInfo?.model || 'Unknown'}",
+    "trim": "${vehicleInfo?.trim || 'Unknown'}",
+    "category": "e.g. Engine / Brakes",
+    "sub_category": "e.g. Engine Parts",
+    "parts": [
+      {
+        "title": "Full descriptive name of the part",
+        "price": "$45.99",
+        "part_number": "12345678",
+        "alternate_names": "Other common names",
+        "description": "Detailed technical description and compatibility.",
+        "images": [
+          "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&q=80&w=600&h=400"
+        ]
+      }
+    ]
   }
 }
 
-Use the provided Unsplash URL as a placeholder for the schemaImage, or a highly relevant car part image from Unsplash.`;
+Important: Generate 3-5 parts in the array. Use Unsplash URLs as placeholder images (at least 1 image per part). Return ONLY valid JSON.`;
 
     try {
       const response = await getOpenAIClient().chat.completions.create({
         model: process.env.GROK_MODEL || 'grok-2-latest',
-        max_tokens: 1000,
+        max_tokens: 2000,
         messages: [
           { role: 'system', content: 'You are a JSON-only API. Return only valid JSON.' },
           { role: 'user', content: prompt }
@@ -581,12 +593,22 @@ Use the provided Unsplash URL as a placeholder for the schemaImage, or a highly 
       });
 
       let responseText = response.choices[0].message.content.trim();
-      if (responseText.startsWith('\`\`\`json')) responseText = responseText.substring(7, responseText.length - 3).trim();
-      else if (responseText.startsWith('\`\`\`')) responseText = responseText.substring(3, responseText.length - 3).trim();
+      const match = responseText.match(/\{[\s\S]*\}/);
+      if (match) {
+        responseText = match[0];
+      }
       return JSON.parse(responseText);
     } catch (err) {
       logger.error('AAIA getPartDetails error:', err);
-      return { partDetails: { name: partQuery, oem: "UNKNOWN", price: 0, stock: 0, category: "General", description: "Details unavailable.", schemaImage: "" } };
+      return { 
+        status: "error", 
+        data: { 
+          parts: [{ 
+            title: partQuery, part_number: "UNKNOWN", price: "$0.00", 
+            description: "Details unavailable. API Error.", images: [] 
+          }] 
+        } 
+      };
     }
   }
 
