@@ -93,16 +93,16 @@ const PartsPage = () => {
             maxWidth: 800, width: '100%', background: '#fff', borderRadius: 24, 
             boxShadow: '0 24px 60px rgba(0,0,0,0.08)', overflow: 'hidden', display: 'flex', flexDirection: 'column' 
           }}>
-            <div style={{ padding: '60px 40px', background: 'linear-gradient(135deg, var(--dblu), var(--mid))', color: '#fff', textAlign: 'center' }}>
-              <div style={{ width: 80, height: 80, background: 'rgba(255,255,255,0.1)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 36, margin: '0 auto 20px', backdropFilter: 'blur(10px)' }}>
+            <div style={{ padding: '24px 40px', background: 'linear-gradient(135deg, var(--dblu), var(--mid))', color: '#fff', textAlign: 'center' }}>
+              <div style={{ width: 48, height: 48, background: 'rgba(255,255,255,0.1)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24, margin: '0 auto 12px', backdropFilter: 'blur(10px)' }}>
                 <i className="ti ti-settings" />
               </div>
-              <h1 style={{ fontSize: 36, fontWeight: 800, margin: '0 0 16px 0', letterSpacing: '-0.5px' }}>Find Your Part</h1>
-              <p style={{ fontSize: 16, margin: 0, opacity: 0.9 }}>Connect to AAIA's global automotive database to identify, source, and analyze parts in seconds.</p>
+              <h1 style={{ fontSize: 28, fontWeight: 800, margin: '0 0 8px 0', letterSpacing: '-0.5px' }}>Find Your Part</h1>
+              <p style={{ fontSize: 15, margin: 0, opacity: 0.9 }}>Connect to AAIA's global automotive database to identify, source, and analyze parts in seconds.</p>
             </div>
 
-            <div style={{ padding: 40 }}>
-              <div style={{ display: 'flex', gap: 12, marginBottom: 32, background: '#F5F8FC', padding: 8, borderRadius: 16 }}>
+            <div style={{ padding: '24px 40px' }}>
+              <div style={{ display: 'flex', gap: 12, marginBottom: 24, background: '#F5F8FC', padding: 8, borderRadius: 16 }}>
                 {['vin', 'ymmt', 'oem'].map((m) => (
                   <button
                     key={m}

@@ -514,7 +514,7 @@ Return JSON only with this exact structure:
     const prompt = `Act as an expert automotive parts specialist. The user is looking for parts for this vehicle:
 ${context}
 
-Based on this specific vehicle, generate a list of 5 common maintenance or replacement parts that owners often need (e.g. specific oil filters, brake pads, alternators). 
+Based on this specific vehicle, generate a list of 12-15 common maintenance or replacement parts that owners often need (e.g. specific oil filters, brake pads, alternators). 
 
 Also provide a friendly conversational prompt asking them which part they are looking for.
 
@@ -588,14 +588,14 @@ Return a STRICT JSON object with this exact structure (no markdown blocks):
         "alternate_names": "Other common names",
         "description": "Detailed technical description and compatibility.",
         "images": [
-          "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&q=80&w=600&h=400"
+          "https://placehold.co/600x400/e2e8f0/475569?text=Auto+Part"
         ]
       }
     ]
   }
 }
 
-Important: Generate 3-5 parts in the array. Use Unsplash URLs as placeholder images (at least 1 image per part). Return ONLY valid JSON.`;
+Important: Generate 8-12 parts in the array. For images, use 'https://placehold.co/600x400/e2e8f0/475569?text=Auto+Part' or similar placehold.co URLs. Do not use unsplash URLs. Return ONLY valid JSON.`;
 
     try {
       const response = await getOpenAIClient().chat.completions.create({
