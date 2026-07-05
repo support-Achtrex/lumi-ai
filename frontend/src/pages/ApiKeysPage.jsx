@@ -51,7 +51,7 @@ export default function ApiKeysPage() {
   const docSnippets = {
     chat: {
       title: 'Chat API',
-      endpoint: 'POST https://api.aaia.com/v1/chat/message',
+      endpoint: 'POST https://aaia.achtrex.com/api/chat',
       body: JSON.stringify({
         "message": "My engine is making a clicking noise.",
         "vin": "1HGCM82633A004123"
@@ -65,7 +65,7 @@ export default function ApiKeysPage() {
     },
     diagnostics: {
       title: 'Diagnostics API',
-      endpoint: 'POST https://api.aaia.com/v1/diagnostics/reasoning',
+      endpoint: 'POST https://aaia.achtrex.com/api/diagnostics',
       body: JSON.stringify({
         "symptoms": "engine misfire",
         "vin": "1HGCM82633A004123"
@@ -80,7 +80,7 @@ export default function ApiKeysPage() {
     },
     parts: {
       title: 'Part Lookup API',
-      endpoint: 'POST https://api.aaia.com/v1/parts/details',
+      endpoint: 'POST https://aaia.achtrex.com/api/parts',
       body: JSON.stringify({
         "partQuery": "Alternator",
         "vehicleInfo": {
