@@ -216,3 +216,41 @@
 2026-07-05 15:33:28 [info]: 📡 Environment: development
 2026-07-05 15:33:28 [info]: 🌐 Frontend: http://localhost:3000
 2026-07-05 15:33:28 [info]: 🤖 Model: undefined
+2026-07-05 15:33:40 [info]: PostgreSQL pool initialised
+2026-07-05 15:33:40 [info]: ✅ PostgreSQL connected
+2026-07-05 15:33:40 [info]: Redis connected
+2026-07-05 15:33:41 [info]: ✅ Redis connected
+2026-07-05 15:33:41 [info]: 🚀 AAIA server running on port 3001
+2026-07-05 15:33:41 [info]: 📡 Environment: development
+2026-07-05 15:33:41 [info]: 🌐 Frontend: http://localhost:3000
+2026-07-05 15:33:41 [info]: 🤖 Model: undefined
+2026-07-05 15:33:44 [http]: ::1 - - [05/Jul/2026:15:33:44 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/fleet" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 15:35:18 [warn]: Slow query detected (4047ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-07-05 15:35:19 [http]: ::1 - - [05/Jul/2026:15:35:19 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/parts" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 15:35:47 [info]: [Parts] Lookup requested. Mode: ymmt, Query: {"year":"2003","make":"Toyota","model":"Land crusier"}
+2026-07-05 15:35:47 [http]: ::1 - - [05/Jul/2026:15:35:47 +0000] "POST /api/parts/search HTTP/1.1" 200 619 "http://localhost:3000/parts" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 15:40:34 [info]: PostgreSQL pool initialised
+2026-07-05 15:40:34 [info]: ✅ PostgreSQL connected
+2026-07-05 15:40:34 [info]: Redis connected
+2026-07-05 15:40:35 [info]: ✅ Redis connected
+2026-07-05 15:40:35 [info]: 🚀 AAIA server running on port 3001
+2026-07-05 15:40:35 [info]: 📡 Environment: development
+2026-07-05 15:40:35 [info]: 🌐 Frontend: http://localhost:3000
+2026-07-05 15:40:35 [info]: 🤖 Model: undefined
+2026-07-05 15:40:56 [info]: PostgreSQL pool initialised
+2026-07-05 15:40:56 [info]: ✅ PostgreSQL connected
+2026-07-05 15:40:56 [info]: Redis connected
+2026-07-05 15:40:58 [info]: ✅ Redis connected
+2026-07-05 15:40:58 [info]: 🚀 AAIA server running on port 3001
+2026-07-05 15:40:58 [info]: 📡 Environment: development
+2026-07-05 15:40:58 [info]: 🌐 Frontend: http://localhost:3000
+2026-07-05 15:40:58 [info]: 🤖 Model: undefined
+2026-07-05 15:41:06 [info]: PostgreSQL pool initialised
+2026-07-05 15:41:06 [info]: ✅ PostgreSQL connected
+2026-07-05 15:41:07 [info]: Redis connected
+2026-07-05 15:41:08 [info]: ✅ Redis connected
+2026-07-05 15:41:08 [info]: 🚀 AAIA server running on port 3001
+2026-07-05 15:41:08 [info]: 📡 Environment: development
+2026-07-05 15:41:08 [info]: 🌐 Frontend: http://localhost:3000
+2026-07-05 15:41:08 [info]: 🤖 Model: undefined

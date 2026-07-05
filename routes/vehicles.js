@@ -204,4 +204,37 @@ router.get('/:vin/depreciation',
   }
 );
 
+// ── YMMT Dropdowns (NHTSA API) ──────────────────────────────────────────────
+router.get('/ymmt/years', authenticate, (req, res) => {
+  const currentYear = new Date().getFullYear() + 1;
+  const years = Array.from({ length: 30 }, (_, i) => currentYear - i);
+  res.json({ success: true, years });
+});
+
+router.get('/ymmt/makes', authenticate, async (req, res, next) => {
+  try {
+    const axios = require('axios');
+    const { year } = req.query;
+    // Using NHTSA API
+    const response = await axios.get('https://vpic.nhtsa.dot.gov/api/vehicles/GetMakesForVehicleType/car?format=json');
+    let makes = response.data.Results.map(m => m.MakeName).sort();
+    res.json({ success: true, makes });
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.get('/ymmt/models', authenticate, async (req, res, next) => {
+  try {
+    const axios = require('axios');
+    const { make, year } = req.query;
+    if (!make || !year) return res.status(400).json({ success: false, error: 'Make and Year are required' });
+    const response = await axios.get(`https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeYear/make/${encodeURIComponent(make)}/modelyear/${year}?format=json`);
+    let models = response.data.Results.map(m => m.Model_Name).sort();
+    res.json({ success: true, models });
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;

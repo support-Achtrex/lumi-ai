@@ -237,8 +237,14 @@ class APIService {
   static async getReport(id)               { return (await this.get(`/reports/${id}`)).report; }
   static async saveReport(name, type, content) { return (await this.post('/reports', { name, type, content })).report; }
 
-  // ── Parts ─────────────────────────────────────────────────────────────────
-  static async searchParts(mode, query)    { return (await this.post('/parts/search', { mode, query })).parts; }
+  // ── Parts (AI-Powered) ────────────────────────────────────────────────────
+  static async suggestParts(mode, query)   { return await this.post('/parts/suggest', { mode, query }); }
+  static async getPartDetails(partQuery, vehicleInfo) { return await this.post('/parts/details', { partQuery, vehicleInfo }); }
+
+  // ── YMMT ──────────────────────────────────────────────────────────────────
+  static async getYears()                  { return (await this.get('/vehicles/ymmt/years')).years; }
+  static async getMakes(year)              { return (await this.get(`/vehicles/ymmt/makes?year=${year}`)).makes; }
+  static async getModels(make, year)       { return (await this.get(`/vehicles/ymmt/models?make=${make}&year=${year}`)).models; }
 }
 
 export default APIService;

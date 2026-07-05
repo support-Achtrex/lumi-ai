@@ -508,6 +508,88 @@ Return JSON only with this exact structure:
     }
   }
 
+  // ── AI Parts Lookup ─────────────────────────────────────────────────────────
+  static async getPartSuggestions(vehicleInfo) {
+    const context = `VEHICLE: ${vehicleInfo?.year || ''} ${vehicleInfo?.make || ''} ${vehicleInfo?.model || ''} ${vehicleInfo?.trim || ''} (VIN: ${vehicleInfo?.vin || 'N/A'})`;
+    const prompt = `Act as an expert automotive parts specialist. The user is looking for parts for this vehicle:
+${context}
+
+Based on this specific vehicle, generate a list of 5 common maintenance or replacement parts that owners often need (e.g. specific oil filters, brake pads, alternators). 
+
+Also provide a friendly conversational prompt asking them which part they are looking for.
+
+Return a STRICT JSON object in this exact format, with no markdown code blocks:
+{
+  "prompt": "Hi! I see you are looking for parts for your [Vehicle]. Here are some common items. Which specific part do you need?",
+  "suggestions": [
+    "Premium Ceramic Brake Pads",
+    "Cabin Air Filter",
+    "Spark Plugs",
+    "Alternator",
+    "Synthetic Oil Filter"
+  ]
+}`;
+
+    try {
+      const response = await getOpenAIClient().chat.completions.create({
+        model: process.env.GROK_MODEL || 'grok-2-latest',
+        max_tokens: 1000,
+        messages: [
+          { role: 'system', content: 'You are a JSON-only API. Return only valid JSON.' },
+          { role: 'user', content: prompt }
+        ]
+      });
+
+      let responseText = response.choices[0].message.content.trim();
+      if (responseText.startsWith('\`\`\`json')) responseText = responseText.substring(7, responseText.length - 3).trim();
+      else if (responseText.startsWith('\`\`\`')) responseText = responseText.substring(3, responseText.length - 3).trim();
+      return JSON.parse(responseText);
+    } catch (err) {
+      logger.error('AAIA getPartSuggestions error:', err);
+      return { prompt: "What part are you looking for?", suggestions: ["Brake Pads", "Oil Filter", "Battery", "Alternator"] };
+    }
+  }
+
+  static async getPartDetails(partQuery, vehicleInfo) {
+    const context = vehicleInfo ? `VEHICLE: ${vehicleInfo?.year || ''} ${vehicleInfo?.make || ''} ${vehicleInfo?.model || ''}` : `SEARCH QUERY: ${partQuery}`;
+    const prompt = `You are an expert parts catalog system. The user wants details for: "${partQuery}" for vehicle: ${context}.
+
+Generate highly realistic technical details for this part.
+Return a STRICT JSON object with this exact structure (no markdown blocks):
+{
+  "partDetails": {
+    "name": "Full descriptive name of the part",
+    "oem": "Realistic OEM or Part Number (e.g. 90915-YZZF1)",
+    "price": 45.99,
+    "stock": 14,
+    "category": "Engine / Brakes / Electrical etc.",
+    "description": "Detailed technical description of the part, its function, and compatibility.",
+    "schemaImage": "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&q=80&w=600&h=400"
+  }
+}
+
+Use the provided Unsplash URL as a placeholder for the schemaImage, or a highly relevant car part image from Unsplash.`;
+
+    try {
+      const response = await getOpenAIClient().chat.completions.create({
+        model: process.env.GROK_MODEL || 'grok-2-latest',
+        max_tokens: 1000,
+        messages: [
+          { role: 'system', content: 'You are a JSON-only API. Return only valid JSON.' },
+          { role: 'user', content: prompt }
+        ]
+      });
+
+      let responseText = response.choices[0].message.content.trim();
+      if (responseText.startsWith('\`\`\`json')) responseText = responseText.substring(7, responseText.length - 3).trim();
+      else if (responseText.startsWith('\`\`\`')) responseText = responseText.substring(3, responseText.length - 3).trim();
+      return JSON.parse(responseText);
+    } catch (err) {
+      logger.error('AAIA getPartDetails error:', err);
+      return { partDetails: { name: partQuery, oem: "UNKNOWN", price: 0, stock: 0, category: "General", description: "Details unavailable.", schemaImage: "" } };
+    }
+  }
+
   // ── Enrich messages with vehicle data and Gemini analysis ─────────────────
   static async enrichMessages(messages, vehicleContext, image) {
     // 1. Analyze the image using Gemini if present
