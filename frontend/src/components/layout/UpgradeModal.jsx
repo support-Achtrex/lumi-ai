@@ -28,7 +28,7 @@ export default function UpgradeModal({ onClose }) {
 
         <h2 style={{ fontSize: 28, fontWeight: 700, color: '#1C2B3A', marginBottom: 16 }}>You've reached your limit</h2>
         <p style={{ fontSize: 16, color: '#607D8B', marginBottom: 32, lineHeight: 1.5 }}>
-          You have exhausted your available LUMI credits. Upgrade to a premium plan to continue using advanced intelligence, deep diagnostics, and automation tools.
+          You have exhausted your available AAIA credits. Upgrade to a premium plan to continue using advanced intelligence, deep diagnostics, and automation tools.
         </p>
 
         <button 

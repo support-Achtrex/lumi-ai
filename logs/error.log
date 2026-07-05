@@ -3195,3 +3195,24 @@
     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
     at async query (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\config\database.js:36:17)
     at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\vehicles.js:104:20
+2026-05-31 21:02:56 [error]: Error: read ECONNRESET
+    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)
+2026-06-01 10:22:17 [error]: Error: read ECONNRESET
+    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)
+2026-07-05 14:53:02 [error]: AutomotiveDataset API error: Invalid URL
+2026-07-05 14:53:02 [error]: AutomotiveDataset API error: Invalid URL
+2026-07-05 14:53:04 [error]: error: relation "unlocked_reports" does not exist
+    at C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\pg-pool\index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async query (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\config\database.js:36:17)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\vehicles.js:104:20
+2026-07-05 14:53:13 [error]: error: relation "unlocked_reports" does not exist
+    at C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\pg-pool\index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async query (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\config\database.js:36:17)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\vehicles.js:104:20
+2026-07-05 14:53:14 [error]: error: relation "unlocked_reports" does not exist
+    at C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\pg-pool\index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async query (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\config\database.js:36:17)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\vehicles.js:104:20

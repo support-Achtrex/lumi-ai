@@ -17,7 +17,7 @@ export default function AnalyticsPage() {
           <div style={{ width:36, height:36, background:'linear-gradient(135deg, var(--teal), var(--dblu))', borderRadius:10, display:'flex', alignItems:'center', justifyContent:'center', color:'#fff', boxShadow:'var(--shadow-md)' }}>
             <i className="ti ti-chart-bar" style={{ fontSize:18 }} aria-hidden="true" />
           </div>
-          LUMI Platform Analytics
+          AAIA Platform Analytics
         </div>
         <div className="pill pill-blue">Phase 02: Conversational Analytics</div>
       </div>

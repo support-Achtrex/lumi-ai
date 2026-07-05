@@ -231,7 +231,7 @@ export default function ChatPage() {
         {messages.length === 0 && !streaming && (
           <div style={{ flex:1, display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', gap:16, color:'#90A4AE', textAlign:'center', animation:'fadeIn 0.5s ease-out' }}>
             <div style={{ width:64, height:64, background:'linear-gradient(135deg, #00C8A8 0%, #0F6E56 100%)', borderRadius:16, display:'flex', alignItems:'center', justifyContent:'center', fontSize:32, fontWeight:600, color:'#fff', boxShadow:'0 8px 24px rgba(15,110,86,0.2)' }}>L</div>
-            <div style={{ fontSize:18, fontWeight:600, color:'#1C2B3A', letterSpacing:'-0.3px' }}>Ask LUMI AI anything automotive</div>
+            <div style={{ fontSize:18, fontWeight:600, color:'#1C2B3A', letterSpacing:'-0.3px' }}>Ask AAIA anything automotive</div>
             <div style={{ fontSize:13, color:'#607D8B', maxWidth:400 }}>Ask general questions about fleet management, compliance, or diagnostics, or upload an image to analyze.</div>
             <div style={{ display:'flex', gap:10, flexWrap:'wrap', justifyContent:'center', marginTop:12, maxWidth:700 }}>
               {['What is the TCO for a 2022 Toyota Camry over 5 years?', 'Compare Ford F-150 vs Chevy Silverado for fleet use', 'What maintenance is due at 90,000 miles on a Honda CR-V?'].map(q => (
@@ -384,7 +384,7 @@ export default function ChatPage() {
             <i className="ti ti-microphone" style={{ fontSize:16 }} aria-hidden="true" />
           </button>
 
-          <input value={input} onChange={e => setInput(e.target.value)} placeholder="Ask LUMI AI about any vehicle…" style={{ flex:1, height:36, fontSize:13, borderRadius:4, border:'1px solid #D0DCE8', padding:'0 10px' }} disabled={loading} />
+          <input value={input} onChange={e => setInput(e.target.value)} placeholder="Ask AAIA about any vehicle…" style={{ flex:1, height:36, fontSize:13, borderRadius:4, border:'1px solid #D0DCE8', padding:'0 10px' }} disabled={loading} />
           <button type="submit" disabled={(!input.trim() && !imageFile) || loading}
             style={{ width:36, height:36, padding:0, background:'#0D2FA3', border:'none', color:'#fff', display:'flex', alignItems:'center', justifyContent:'center', borderRadius:'50%', cursor:'pointer', opacity: (!input.trim() && !imageFile) ? .5 : 1 }}>
             <i className="ti ti-arrow-up" style={{ fontSize:15 }} aria-hidden="true" />

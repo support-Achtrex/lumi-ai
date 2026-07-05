@@ -26,6 +26,7 @@ const apiKeysRoutes   = require('./routes/apiKeys');
 const adminRoutes     = require('./routes/admin');
 const billingRoutes   = require('./routes/billing');
 const usageRoutes     = require('./routes/usage');
+const reportsRoutes   = require('./routes/reports');
 
 const app = express();
 const server = http.createServer(app);
@@ -69,7 +70,7 @@ app.use(globalRateLimiter);
 app.get('/health', (req, res) => {
   res.json({
     status: 'healthy',
-    product: 'LUMI AI',
+    product: 'AAIA',
     company: 'Achtrex',
     version: process.env.PRODUCT_VERSION || '1.0.0',
     timestamp: new Date().toISOString(),
@@ -89,6 +90,7 @@ app.use('/api/keys',        apiKeysRoutes);
 app.use('/api/admin',       adminRoutes);
 app.use('/api/billing',     billingRoutes);
 app.use('/api/usage',       usageRoutes);
+app.use('/api/reports',     reportsRoutes);
 
 // Proxy for the full HTML auction report
 app.get('/api/vehicles/:vin/html-report', async (req, res) => {
@@ -154,7 +156,7 @@ async function start() {
     }
 
     server.listen(PORT, () => {
-      logger.info(`🚀 LUMI AI server running on port ${PORT}`);
+      logger.info(`🚀 AAIA server running on port ${PORT}`);
       logger.info(`📡 Environment: ${process.env.NODE_ENV}`);
       logger.info(`🌐 Frontend: ${process.env.FRONTEND_URL}`);
       logger.info(`🤖 Model: ${process.env.ANTHROPIC_MODEL}`);

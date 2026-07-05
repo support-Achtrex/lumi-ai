@@ -11,6 +11,7 @@ import InspectionPage from './pages/InspectionPage';
 import DiagnosticsPage from './pages/DiagnosticsPage';
 import HistoryPage from './pages/HistoryPage';
 import AnalyticsPage from './pages/AnalyticsPage';
+import ReportsPage from './pages/ReportsPage';
 import WorkflowAutomationPage from './pages/WorkflowAutomationPage';
 import AdminUsersPage from './pages/AdminUsersPage';
 import ConsoleShell from './components/layout/ConsoleShell';
@@ -20,13 +21,14 @@ import ModelsPage from './pages/ModelsPage';
 import BillingPage from './pages/BillingPage';
 import DocumentationPage from './pages/DocumentationPage';
 import ConsoleDashboard from './pages/ConsoleDashboard';
+import LandingPage from './pages/LandingPage';
 
 import UpgradeModal from './components/layout/UpgradeModal';
 import './index.css';
 
 function RequireAuth({ children }) {
   const { user, loading } = useAuth();
-  if (loading) return <div style={{ display:'flex', alignItems:'center', justifyContent:'center', height:'100vh', color:'#607D8B' }}>Loading LUMI AI…</div>;
+  if (loading) return <div style={{ display:'flex', alignItems:'center', justifyContent:'center', height:'100vh', color:'#607D8B' }}>Loading AAIA…</div>;
   return user ? children : <Navigate to="/login" replace />;
 }
 
@@ -66,20 +68,21 @@ function AppContainer() {
         <GlobalRedirectHandler />
         {showUpgrade && <UpgradeModal onClose={() => setShowUpgrade(false)} />}
         <Routes>
+          <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/" element={<RequireAuth><AppShell /></RequireAuth>}>
-            <Route index element={<Navigate to="/chat" replace />} />
-            <Route path="chat"         element={<ChatPage />} />
-            <Route path="chat/:id"     element={<ChatPage />} />
-            <Route path="vin"          element={<VINPage />} />
-            <Route path="fleet"        element={<FleetPage />} />
-            <Route path="inspection"   element={<InspectionPage />} />
-            <Route path="inspection/:id" element={<InspectionPage />} />
-            <Route path="diagnostics"  element={<DiagnosticsPage />} />
-            <Route path="history"      element={<HistoryPage />} />
-            <Route path="analytics"    element={<AnalyticsPage />} />
-            <Route path="workflow"     element={<WorkflowAutomationPage />} />
-            <Route path="admin/users"  element={<AdminUsersPage />} />
+          <Route element={<RequireAuth><AppShell /></RequireAuth>}>
+            <Route path="/chat"         element={<ChatPage />} />
+            <Route path="/chat/:id"     element={<ChatPage />} />
+            <Route path="/vin"          element={<VINPage />} />
+            <Route path="/fleet"        element={<FleetPage />} />
+            <Route path="/inspection"   element={<InspectionPage />} />
+            <Route path="/inspection/:id" element={<InspectionPage />} />
+            <Route path="/diagnostics"  element={<DiagnosticsPage />} />
+            <Route path="/history"      element={<HistoryPage />} />
+            <Route path="/analytics"    element={<AnalyticsPage />} />
+            <Route path="/reports"      element={<ReportsPage />} />
+            <Route path="/workflow"     element={<WorkflowAutomationPage />} />
+            <Route path="/admin/users"  element={<AdminUsersPage />} />
           </Route>
           <Route path="/console" element={<RequireAuth><ConsoleShell /></RequireAuth>}>
             <Route index element={<Navigate to="/console/dashboard" replace />} />

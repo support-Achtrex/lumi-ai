@@ -126,7 +126,7 @@ export default function InspectionPage() {
             </div>
             <div style={{ textAlign: 'center' }}>
               <h2 style={{ fontSize: 24, fontFamily: 'var(--display)', color: 'var(--dgray)', marginBottom: 8 }}>360° Computer Vision Processing</h2>
-              <p style={{ color: 'var(--mgray)', fontSize: 14, maxWidth: 400 }}>LUMI AI is mapping surface geometry, detecting micro-scratches, and assessing structural integrity. Assessment completing in under 5 minutes...</p>
+              <p style={{ color: 'var(--mgray)', fontSize: 14, maxWidth: 400 }}>AAIA is mapping surface geometry, detecting micro-scratches, and assessing structural integrity. Assessment completing in under 5 minutes...</p>
             </div>
             <style>{`@keyframes scan { from { top: -10%; } to { top: 100%; } }`}</style>
           </div>

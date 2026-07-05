@@ -14,7 +14,9 @@ const NAV = [
     { to: '/fleet',       icon: 'ti-truck',         label: 'Fleet' },
     { to: '/diagnostics', icon: 'ti-tool',          label: 'Diagnostics' },
   ]},
-
+  { group: 'Reports', items: [
+    { to: '/reports',     icon: 'ti-file-report',   label: 'Reports Center' },
+  ]},
   { group: 'Administration', role: 'admin', items: [
     { to: '/admin/users', icon: 'ti-users',         label: 'User Management' },
   ]},
@@ -88,7 +90,7 @@ export default function AppShell() {
 
         {/* Logo */}
         <div style={{ padding:'20px 16px 10px', borderBottom:'1px solid var(--lgray)', display:'flex', alignItems:'center', justifyContent: isSidebarOpen ? 'space-between' : 'center' }}>
-          {isSidebarOpen && <img src="/logo.png" alt="LUMI AI" style={{ height: 32, objectFit: 'contain' }} />}
+          {isSidebarOpen && <img src="/logo.png" alt="AAIA" style={{ height: 32, objectFit: 'contain' }} />}
           <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} style={{ background:'transparent', border:'none', cursor:'pointer', color:'#607D8B', padding: 6, borderRadius: 8 }} onMouseOver={e => e.currentTarget.style.background = '#F5F8FC'} onMouseOut={e => e.currentTarget.style.background = 'transparent'}>
             <i className="ti ti-menu-2" style={{ fontSize: 20 }} />
           </button>
@@ -188,7 +190,7 @@ export default function AppShell() {
             <button onClick={() => setIsSidebarOpen(true)} style={{ background: 'transparent', border: 'none', color: '#1C2B3A', padding: '4px' }}>
               <i className="ti ti-menu-2" style={{ fontSize: 24 }} />
             </button>
-            <img src="/logo.png" alt="LUMI AI" style={{ height: 24 }} />
+            <img src="/logo.png" alt="AAIA" style={{ height: 24 }} />
           </div>
         )}
         <Outlet />

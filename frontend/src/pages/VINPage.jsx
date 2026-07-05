@@ -69,7 +69,7 @@ export default function VINPage() {
                     <i className="ti ti-clipboard-check" style={{ fontSize:16 }} aria-hidden="true" />
                   </button>
                   <button style={{ width:32, height:32, padding:0, display:'flex', alignItems:'center', justifyContent:'center', background:'#F5F8FC', border:'1px solid #D0DCE8', borderRadius:'50%', color:'#607D8B' }}
-                    onClick={() => navigate('/chat', { state: { vin, vehicleContext: { year: specs.year, make: specs.make, model: specs.model, trim: specs.trim, vin } } })} title="Ask LUMI AI">
+                    onClick={() => navigate('/chat', { state: { vin, vehicleContext: { year: specs.year, make: specs.make, model: specs.model, trim: specs.trim, vin } } })} title="Ask AAIA">
                     <i className="ti ti-message-2" style={{ fontSize:16 }} aria-hidden="true" />
                   </button>
                 </div>
@@ -164,7 +164,7 @@ export default function VINPage() {
                 <i className="ti ti-tool" style={{ fontSize:13 }} aria-hidden="true" /> Diagnostics
               </button>
               <button className="btn-primary" style={{ flex:1, height:36, fontSize:12 }} onClick={() => navigate('/chat', { state:{ vin, vehicleContext: { year: specs.year, make: specs.make, model: specs.model, trim: specs.trim, vin } } })}>
-                <i className="ti ti-message-2" style={{ fontSize:13 }} aria-hidden="true" /> Ask LUMI AI
+                <i className="ti ti-message-2" style={{ fontSize:13 }} aria-hidden="true" /> Ask AAIA
               </button>
             </div>
           </>

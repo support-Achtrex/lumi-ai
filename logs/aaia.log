@@ -1,0 +1,153 @@
+2026-07-05 13:02:47 [info]: PostgreSQL pool initialised
+2026-07-05 13:02:47 [info]: ✅ PostgreSQL connected
+2026-07-05 13:02:47 [info]: Redis connected
+2026-07-05 13:02:48 [info]: ✅ Redis connected
+2026-07-05 13:02:48 [info]: 🚀 AAIA server running on port 3001
+2026-07-05 13:02:48 [info]: 📡 Environment: development
+2026-07-05 13:02:48 [info]: 🌐 Frontend: http://localhost:3000
+2026-07-05 13:02:48 [info]: 🤖 Model: undefined
+2026-07-05 13:05:01 [info]: PostgreSQL pool initialised
+2026-07-05 13:05:01 [info]: ✅ PostgreSQL connected
+2026-07-05 13:05:01 [info]: Redis connected
+2026-07-05 13:05:03 [info]: ✅ Redis connected
+2026-07-05 13:05:03 [info]: 🚀 AAIA server running on port 3001
+2026-07-05 13:05:03 [info]: 📡 Environment: development
+2026-07-05 13:05:03 [info]: 🌐 Frontend: http://localhost:3000
+2026-07-05 13:05:03 [info]: 🤖 Model: undefined
+2026-07-05 13:05:45 [http]: ::1 - - [05/Jul/2026:13:05:45 +0000] "GET /images/slide3_foreground.png HTTP/1.1" 404 78 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:152.0) Gecko/20100101 Firefox/152.0"
+2026-07-05 13:05:45 [http]: ::1 - - [05/Jul/2026:13:05:45 +0000] "GET /images/sim_phone_isolated.png HTTP/1.1" 404 79 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:152.0) Gecko/20100101 Firefox/152.0"
+2026-07-05 13:06:13 [http]: ::1 - - [05/Jul/2026:13:06:13 +0000] "GET /AAIA_video.mp4 HTTP/1.1" 404 64 "http://localhost:3000/login" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:152.0) Gecko/20100101 Firefox/152.0"
+2026-07-05 13:08:32 [http]: ::1 - - [05/Jul/2026:13:08:32 +0000] "GET /AAIA_video.mp4 HTTP/1.1" 404 64 "http://localhost:3000/login" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:152.0) Gecko/20100101 Firefox/152.0"
+2026-07-05 13:09:41 [warn]: Slow query detected (3435ms): SELECT id, email, password, name, role, enterprise_id, is_active, credits, plan_type
+         FROM users WHERE email = $1
+2026-07-05 13:09:41 [http]: ::1 - - [05/Jul/2026:13:09:41 +0000] "POST /api/auth/login HTTP/1.1" 401 47 "http://localhost:3000/login" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:152.0) Gecko/20100101 Firefox/152.0"
+2026-07-05 13:09:49 [http]: ::1 - - [05/Jul/2026:13:09:49 +0000] "POST /api/auth/login HTTP/1.1" 401 47 "http://localhost:3000/login" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:152.0) Gecko/20100101 Firefox/152.0"
+2026-07-05 13:10:13 [info]: User logged in: demo@achtrex.com
+2026-07-05 13:10:13 [http]: ::1 - - [05/Jul/2026:13:10:13 +0000] "POST /api/auth/login HTTP/1.1" 200 376 "http://localhost:3000/login" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 13:10:15 [http]: ::1 - - [05/Jul/2026:13:10:15 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 200 - "http://localhost:3000/chat" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 13:10:17 [http]: ::1 - - [05/Jul/2026:13:10:17 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/chat" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 13:11:27 [warn]: Slow query detected (2668ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-07-05 13:11:28 [http]: ::1 - - [05/Jul/2026:13:11:28 +0000] "POST /api/auth/logout HTTP/1.1" 200 52 "http://localhost:3000/chat" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 14:51:32 [warn]: Slow query detected (2604ms): SELECT id, email, password, name, role, enterprise_id, is_active, credits, plan_type
+         FROM users WHERE email = $1
+2026-07-05 14:51:35 [info]: User logged in: demo@achtrex.com
+2026-07-05 14:51:35 [http]: ::1 - - [05/Jul/2026:14:51:35 +0000] "POST /api/auth/login HTTP/1.1" 200 376 "http://localhost:3000/login" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 14:51:36 [http]: ::1 - - [05/Jul/2026:14:51:36 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 200 - "http://localhost:3000/chat" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 14:51:38 [http]: ::1 - - [05/Jul/2026:14:51:38 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/chat" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 14:51:49 [warn]: Grok stream failed (404 "The model grok-2-latest does not exist or your team dcf2db88-6d26-4c04-a850-a824215da840 does not have access to it. If you believe this is a mistake, please contact support and quote your team ID and the model name."). Falling back to Gemini.
+2026-07-05 14:52:08 [http]: ::1 - - [05/Jul/2026:14:52:08 +0000] "POST /api/chat/stream HTTP/1.1" 200 - "http://localhost:3000/chat" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 14:52:29 [warn]: Grok stream failed (404 "The model grok-2-latest does not exist or your team dcf2db88-6d26-4c04-a850-a824215da840 does not have access to it. If you believe this is a mistake, please contact support and quote your team ID and the model name."). Falling back to Gemini.
+2026-07-05 14:52:36 [http]: ::1 - - [05/Jul/2026:14:52:36 +0000] "POST /api/chat/stream HTTP/1.1" 200 - "http://localhost:3000/chat" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 14:53:00 [http]: ::1 - - [05/Jul/2026:14:53:00 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 200 - "http://localhost:3000/vin" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 14:53:02 [debug]: VIN cache hit: WDDJK6FA2FF035099
+2026-07-05 14:53:02 [error]: AutomotiveDataset API error: Invalid URL
+2026-07-05 14:53:02 [error]: AutomotiveDataset API error: Invalid URL
+2026-07-05 14:53:02 [http]: ::1 - - [05/Jul/2026:14:53:02 +0000] "GET /api/vehicles/WDDJK6FA2FF035099/full? HTTP/1.1" 200 - "http://localhost:3000/vin" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 14:53:04 [error]: error: relation "unlocked_reports" does not exist
+    at C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\pg-pool\index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async query (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\config\database.js:36:17)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\vehicles.js:104:20
+2026-07-05 14:53:04 [http]: ::1 - - [05/Jul/2026:14:53:04 +0000] "GET /api/vehicles/WDDJK6FA2FF035099/unlocked HTTP/1.1" 500 491 "http://localhost:3000/vin" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 14:53:12 [warn]: Slow query detected (2002ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-07-05 14:53:13 [warn]: Slow query detected (2501ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-07-05 14:53:13 [error]: error: relation "unlocked_reports" does not exist
+    at C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\pg-pool\index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async query (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\config\database.js:36:17)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\vehicles.js:104:20
+2026-07-05 14:53:13 [http]: ::1 - - [05/Jul/2026:14:53:13 +0000] "GET /api/vehicles/WDDJK6FA2FF035099/unlocked HTTP/1.1" 500 491 "http://localhost:3000/history" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 14:53:13 [http]: ::1 - - [05/Jul/2026:14:53:13 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/history" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 14:53:14 [error]: error: relation "unlocked_reports" does not exist
+    at C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\pg-pool\index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async query (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\config\database.js:36:17)
+    at async C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\routes\vehicles.js:104:20
+2026-07-05 14:53:14 [http]: ::1 - - [05/Jul/2026:14:53:14 +0000] "GET /api/vehicles/WDDJK6FA2FF035099/unlocked HTTP/1.1" 500 491 "http://localhost:3000/history" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 14:53:21 [warn]: Slow query detected (2040ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-07-05 14:53:21 [http]: ::1 - - [05/Jul/2026:14:53:21 +0000] "POST /api/billing/paystack/initialize HTTP/1.1" 200 150 "http://localhost:3000/history" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 14:53:30 [http]: ::1 - - [05/Jul/2026:14:53:30 +0000] "GET /api/vehicles/WDDJK6FA2FF035099/html-report HTTP/1.1" 200 - "http://localhost:3000/history" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 14:53:39 [http]: ::1 - - [05/Jul/2026:14:53:39 +0000] "GET /api/vehicles/WDDJK6FA2FF035099/html-report HTTP/1.1" 200 - "http://localhost:3000/history" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 14:53:46 [http]: ::1 - - [05/Jul/2026:14:53:46 +0000] "GET /api/auth/me HTTP/1.1" 200 276 "http://localhost:3000/console/dashboard" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 14:53:46 [http]: ::1 - - [05/Jul/2026:14:53:46 +0000] "GET /api/auth/me HTTP/1.1" 304 - "http://localhost:3000/console/dashboard" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 14:53:48 [warn]: Slow query detected (2350ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-07-05 14:53:48 [http]: ::1 - - [05/Jul/2026:14:53:48 +0000] "GET /api/analytics/usage HTTP/1.1" 200 211 "http://localhost:3000/console/dashboard" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 14:53:49 [http]: ::1 - - [05/Jul/2026:14:53:49 +0000] "GET /api/analytics/chart HTTP/1.1" 200 70 "http://localhost:3000/console/dashboard" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 14:53:49 [http]: ::1 - - [05/Jul/2026:14:53:49 +0000] "GET /api/analytics/usage HTTP/1.1" 304 - "http://localhost:3000/console/dashboard" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 14:53:51 [http]: ::1 - - [05/Jul/2026:14:53:51 +0000] "GET /api/analytics/chart HTTP/1.1" 304 - "http://localhost:3000/console/dashboard" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 14:54:04 [http]: ::1 - - [05/Jul/2026:14:54:04 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/chat" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 14:54:06 [http]: ::1 - - [05/Jul/2026:14:54:06 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/chat" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 14:54:07 [http]: ::1 - - [05/Jul/2026:14:54:07 +0000] "GET /api/admin/users HTTP/1.1" 200 845 "http://localhost:3000/admin/users" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 14:54:08 [http]: ::1 - - [05/Jul/2026:14:54:08 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/admin/users" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 14:54:08 [http]: ::1 - - [05/Jul/2026:14:54:08 +0000] "GET /api/admin/users HTTP/1.1" 304 - "http://localhost:3000/admin/users" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 14:54:17 [http]: ::1 - - [05/Jul/2026:14:54:17 +0000] "GET /api/admin/plans HTTP/1.1" 200 - "http://localhost:3000/admin/users" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 14:54:18 [http]: ::1 - - [05/Jul/2026:14:54:18 +0000] "GET /api/admin/plans HTTP/1.1" 304 - "http://localhost:3000/admin/users" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 14:54:22 [http]: ::1 - - [05/Jul/2026:14:54:22 +0000] "GET /api/admin/users HTTP/1.1" 304 - "http://localhost:3000/admin/users" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 14:54:23 [http]: ::1 - - [05/Jul/2026:14:54:23 +0000] "GET /api/admin/users HTTP/1.1" 304 - "http://localhost:3000/admin/users" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 14:54:27 [http]: ::1 - - [05/Jul/2026:14:54:27 +0000] "GET /api/fleet HTTP/1.1" 200 799 "http://localhost:3000/fleet" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 14:54:28 [http]: ::1 - - [05/Jul/2026:14:54:28 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/fleet" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 14:54:28 [http]: ::1 - - [05/Jul/2026:14:54:28 +0000] "GET /api/fleet HTTP/1.1" 304 - "http://localhost:3000/fleet" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 14:54:29 [http]: ::1 - - [05/Jul/2026:14:54:29 +0000] "GET /api/fleet/fabec341-14dc-41de-b132-5e5ca543df08/vehicles HTTP/1.1" 200 - "http://localhost:3000/fleet" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 14:54:30 [http]: ::1 - - [05/Jul/2026:14:54:30 +0000] "GET /api/fleet/fabec341-14dc-41de-b132-5e5ca543df08/vehicles HTTP/1.1" 304 - "http://localhost:3000/fleet" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 14:54:31 [http]: ::1 - - [05/Jul/2026:14:54:31 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/diagnostics" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 14:54:43 [warn]: Grok failed in generateRepairGuide (400 "Model not found: grok-2-latest"). Falling back to Gemini.
+2026-07-05 14:55:11 [http]: ::1 - - [05/Jul/2026:14:55:11 +0000] "POST /api/diagnostics/reasoning HTTP/1.1" 200 - "http://localhost:3000/diagnostics" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 14:55:47 [warn]: Slow query detected (2045ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-07-05 14:55:47 [warn]: Slow query detected (2043ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-07-05 14:55:48 [http]: ::1 - - [05/Jul/2026:14:55:48 +0000] "GET /api/fleet HTTP/1.1" 304 - "http://localhost:3000/fleet" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 14:55:48 [http]: ::1 - - [05/Jul/2026:14:55:48 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/fleet" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 14:55:49 [http]: ::1 - - [05/Jul/2026:14:55:49 +0000] "GET /api/fleet HTTP/1.1" 304 - "http://localhost:3000/fleet" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 14:55:49 [http]: ::1 - - [05/Jul/2026:14:55:49 +0000] "GET /api/fleet/fabec341-14dc-41de-b132-5e5ca543df08/vehicles HTTP/1.1" 304 - "http://localhost:3000/diagnostics" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 14:55:50 [http]: ::1 - - [05/Jul/2026:14:55:50 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/diagnostics" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 14:55:50 [http]: ::1 - - [05/Jul/2026:14:55:50 +0000] "GET /api/fleet/fabec341-14dc-41de-b132-5e5ca543df08/vehicles HTTP/1.1" 304 - "http://localhost:3000/diagnostics" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 14:56:40 [warn]: Slow query detected (2251ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-07-05 14:56:42 [warn]: Grok image analysis failed (400 "Model not found: grok-2-latest"). Falling back to Gemini.
+2026-07-05 14:56:58 [warn]: Grok failed (400 "Model not found: grok-2-latest"). Falling back to Gemini.
+2026-07-05 14:57:17 [warn]: Slow query detected (2098ms): UPDATE users SET credits = credits - 3 WHERE id = $1
+2026-07-05 14:57:17 [http]: ::1 - - [05/Jul/2026:14:57:17 +0000] "POST /api/diagnostics/assess HTTP/1.1" 200 - "http://localhost:3000/diagnostics" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 14:57:53 [warn]: Slow query detected (3195ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-07-05 14:57:53 [warn]: Slow query detected (3508ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-07-05 14:57:53 [http]: ::1 - - [05/Jul/2026:14:57:53 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/fleet" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 14:57:53 [http]: ::1 - - [05/Jul/2026:14:57:53 +0000] "GET /api/fleet HTTP/1.1" 304 - "http://localhost:3000/fleet" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 14:57:54 [http]: ::1 - - [05/Jul/2026:14:57:54 +0000] "GET /api/fleet HTTP/1.1" 304 - "http://localhost:3000/fleet" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 14:57:55 [http]: ::1 - - [05/Jul/2026:14:57:55 +0000] "GET /api/fleet/fabec341-14dc-41de-b132-5e5ca543df08/vehicles HTTP/1.1" 304 - "http://localhost:3000/fleet" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 14:57:56 [http]: ::1 - - [05/Jul/2026:14:57:56 +0000] "GET /api/fleet/fabec341-14dc-41de-b132-5e5ca543df08/vehicles HTTP/1.1" 304 - "http://localhost:3000/fleet" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 14:58:03 [http]: ::1 - - [05/Jul/2026:14:58:03 +0000] "POST /api/fleet/fabec341-14dc-41de-b132-5e5ca543df08/vehicles HTTP/1.1" 200 93 "http://localhost:3000/fleet" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 14:58:05 [http]: ::1 - - [05/Jul/2026:14:58:05 +0000] "GET /api/fleet/fabec341-14dc-41de-b132-5e5ca543df08/vehicles HTTP/1.1" 200 - "http://localhost:3000/fleet" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 14:58:23 [http]: ::1 - - [05/Jul/2026:14:58:23 +0000] "POST /api/fleet/fabec341-14dc-41de-b132-5e5ca543df08/analyse HTTP/1.1" 402 141 "http://localhost:3000/fleet" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 15:09:36 [warn]: Slow query detected (1943ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-07-05 15:09:36 [http]: ::1 - - [05/Jul/2026:15:09:36 +0000] "GET /api/auth/me HTTP/1.1" 200 276 "http://localhost:3000/fleet" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 15:09:37 [http]: ::1 - - [05/Jul/2026:15:09:37 +0000] "GET /api/auth/me HTTP/1.1" 304 - "http://localhost:3000/fleet" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 15:09:37 [warn]: Slow query detected (1892ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-07-05 15:09:37 [http]: ::1 - - [05/Jul/2026:15:09:37 +0000] "GET /api/fleet HTTP/1.1" 200 799 "http://localhost:3000/fleet" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 15:09:37 [warn]: Slow query detected (2333ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-07-05 15:09:38 [http]: ::1 - - [05/Jul/2026:15:09:38 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/fleet" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 15:09:42 [http]: ::1 - - [05/Jul/2026:15:09:42 +0000] "GET /api/fleet HTTP/1.1" 304 - "http://localhost:3000/fleet" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 15:09:42 [http]: ::1 - - [05/Jul/2026:15:09:42 +0000] "GET /api/fleet/fabec341-14dc-41de-b132-5e5ca543df08/vehicles HTTP/1.1" 304 - "http://localhost:3000/fleet" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 15:09:42 [http]: ::1 - - [05/Jul/2026:15:09:42 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/fleet" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 15:09:44 [http]: ::1 - - [05/Jul/2026:15:09:44 +0000] "GET /api/fleet/fabec341-14dc-41de-b132-5e5ca543df08/vehicles HTTP/1.1" 304 - "http://localhost:3000/reports" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 15:09:44 [http]: ::1 - - [05/Jul/2026:15:09:44 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/reports" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 15:15:28 [info]: PostgreSQL pool initialised
+2026-07-05 15:15:28 [info]: ✅ PostgreSQL connected
+2026-07-05 15:15:28 [info]: Redis connected
+2026-07-05 15:15:29 [info]: ✅ Redis connected
+2026-07-05 15:15:29 [info]: 🚀 AAIA server running on port 3001
+2026-07-05 15:15:29 [info]: 📡 Environment: development
+2026-07-05 15:15:29 [info]: 🌐 Frontend: http://localhost:3000
+2026-07-05 15:15:29 [info]: 🤖 Model: undefined
+2026-07-05 15:15:39 [info]: PostgreSQL pool initialised
+2026-07-05 15:15:39 [info]: ✅ PostgreSQL connected
+2026-07-05 15:15:39 [info]: Redis connected

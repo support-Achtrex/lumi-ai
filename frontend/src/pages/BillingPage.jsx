@@ -41,7 +41,7 @@ export default function BillingPage() {
 
       if (meRes && meRes.success && meRes.user) {
         setUser(meRes.user);
-        localStorage.setItem('lumi_user', JSON.stringify(meRes.user));
+        localStorage.setItem('aaia_user', JSON.stringify(meRes.user));
       }
     } catch (err) {
       console.error('Failed to load billing data', err);
@@ -68,7 +68,7 @@ export default function BillingPage() {
         setMessage(`Payment successful! Upgraded to ${res.plan_type.toUpperCase()} plan.`);
         const updatedUser = { ...user, credits: Number(user.credits || 0) + Number(res.creditsAdded), plan_type: res.plan_type };
         setUser(updatedUser);
-        localStorage.setItem('lumi_user', JSON.stringify(updatedUser));
+        localStorage.setItem('aaia_user', JSON.stringify(updatedUser));
         navigate('/console/billing', { replace: true });
         loadData(); // Reload invoices
       } else {

@@ -2,7 +2,7 @@ const express = require('express');
 const router  = express.Router();
 const { body, validationResult } = require('express-validator');
 const { authenticate, requireCredits } = require('../middleware/auth');
-const LumiAIService = require('../services/LumiAIService');
+const AAIAService = require('../services/AAIAService');
 const VehicleDataService = require('../services/VehicleDataService');
 
 // ── POST /api/diagnostics/assess — Damage assessment ─────────────────────────
@@ -33,7 +33,7 @@ router.post('/assess',
         }
       }
 
-      const assessment = await LumiAIService.assessDamage({
+      const assessment = await AAIAService.assessDamage({
         damageDescription,
         vehicleInfo,
         location,
@@ -102,7 +102,7 @@ Provide:
 4. ESTIMATED TOTAL COST for all recommended services
 5. PRIORITY ranking: CRITICAL / HIGH / MEDIUM / LOW for each item`;
 
-      const response = await LumiAIService.chat({
+      const response = await AAIAService.chat({
         messages: [{ role: 'user', content: prompt }],
         sessionId: `maintenance:${vin}:${req.user.id}`
       });
@@ -178,7 +178,7 @@ Calculate and break down:
 6. COMPARISON: Is this vehicle above/below average TCO for its class?
 7. RECOMMENDATION: Keep, sell now, or replacement timeline`;
 
-      const response = await LumiAIService.chat({
+      const response = await AAIAService.chat({
         messages: [{ role: 'user', content: prompt }],
         sessionId: `tco:${vin}:${req.user.id}`
       });
@@ -234,7 +234,7 @@ router.post('/reasoning',
         }
       }
 
-      const aiResponse = await LumiAIService.generateRepairGuide({
+      const aiResponse = await AAIAService.generateRepairGuide({
         symptoms,
         vehicleInfo,
         dtcCodes,

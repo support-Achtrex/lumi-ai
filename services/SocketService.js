@@ -1,6 +1,6 @@
 const logger = require('../config/logger');
 const jwt    = require('jsonwebtoken');
-const LumiAIService = require('./LumiAIService');
+const AAIAService = require('./AAIAService');
 const ConversationService = require('./ConversationService');
 
 function setupSocketHandlers(io) {
@@ -52,11 +52,11 @@ function setupSocketHandlers(io) {
           role: 'user', content: message
         });
 
-        // Stream LUMI AI response
+        // Stream AAIA response
         socket.emit('chat:stream_start', { conversationId: convId });
 
         let fullResponse = '';
-        const stream = await LumiAIService.chat({ messages, sessionId: convId, stream: true });
+        const stream = await AAIAService.chat({ messages, sessionId: convId, stream: true });
 
         for await (const chunk of stream) {
           if (chunk.type === 'content_block_delta' && chunk.delta.type === 'text_delta') {

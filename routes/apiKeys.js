@@ -21,7 +21,7 @@ router.get('/', authenticate, async (req, res, next) => {
 router.post('/generate', authenticate, async (req, res, next) => {
   try {
     const { name = 'Default Key' } = req.body;
-    const rawKey = 'lumi_live_' + crypto.randomBytes(24).toString('hex');
+    const rawKey = 'aaia_live_' + crypto.randomBytes(24).toString('hex');
     
     const result = await query(
       'INSERT INTO api_keys (user_id, name, key_value) VALUES ($1, $2, $3) RETURNING id, name, key_value, created_at, last_used_at',

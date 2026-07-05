@@ -1,8 +1,8 @@
 export default function ModelsPage() {
   const models = [
-    { name: 'LUMI 1.0', context: '128K', speed: 'Ultra-fast', description: 'Our fastest and most capable model. Perfect for coding, reasoning, and complex tool-calling.' },
-    { name: 'LUMI Vision', context: '64K', speed: 'Fast', description: 'Designed specifically for visual comprehension and image analysis tasks.' },
-    { name: 'LUMI Voice', context: '32K', speed: 'Real-time', description: 'Optimized for speech-to-text and conversational voice interactions.' },
+    { name: 'AAIA 1.0', context: '128K', speed: 'Ultra-fast', description: 'Our fastest and most capable model. Perfect for coding, reasoning, and complex tool-calling.' },
+    { name: 'AAIA Vision', context: '64K', speed: 'Fast', description: 'Designed specifically for visual comprehension and image analysis tasks.' },
+    { name: 'AAIA Voice', context: '32K', speed: 'Real-time', description: 'Optimized for speech-to-text and conversational voice interactions.' },
   ];
 
   return (

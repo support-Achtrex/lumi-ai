@@ -145,7 +145,7 @@ export default function ConsoleDashboard() {
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontWeight: '600' }}>
                <i className="ti ti-message-circle" style={{ fontSize: '18px', color: '#555' }} /> Chat API
             </div>
-            <span style={{ background: '#FFF0E5', color: '#E85D04', fontSize: '12px', padding: '2px 8px', borderRadius: '12px', fontWeight: '600' }}>LUMI 1.0</span>
+            <span style={{ background: '#FFF0E5', color: '#E85D04', fontSize: '12px', padding: '2px 8px', borderRadius: '12px', fontWeight: '600' }}>AAIA 1.0</span>
           </div>
           <div style={{ color: '#555', fontSize: '13px', lineHeight: '1.5' }}>
             Strong agentic tool calling with minimal hallucinations. Supports non-reasoning mode.
@@ -206,9 +206,9 @@ export default function ConsoleDashboard() {
       {/* Bottom Banner */}
       <div style={{ background: '#FFF', border: '1px solid #EBEBEB', borderRadius: '16px', padding: '24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-          <span style={{ fontWeight: '700', fontSize: '16px' }}>LUMI <span style={{ color: '#888', fontWeight: '400' }}>Business</span></span>
+          <span style={{ fontWeight: '700', fontSize: '16px' }}>AAIA <span style={{ color: '#888', fontWeight: '400' }}>Business</span></span>
           <div style={{ width: '1px', height: '24px', background: '#EBEBEB' }}></div>
-          <span style={{ color: '#555', fontSize: '15px' }}>Subscribe to LUMI for your team, get free API credits.</span>
+          <span style={{ color: '#555', fontSize: '15px' }}>Subscribe to AAIA for your team, get free API credits.</span>
         </div>
         <button style={{ background: '#000', color: '#FFF', border: 'none', padding: '10px 24px', borderRadius: '24px', fontWeight: '600', fontSize: '14px', cursor: 'pointer' }}>
           Learn more

@@ -1,10 +1,12 @@
 {
-  "name": "lumi-ai-frontend",
+  "name": "aaia-frontend",
   "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@tabler/icons-webfont": "^2.44.0",
     "axios": "^1.7.2",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^4.2.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-markdown": "^9.0.1",

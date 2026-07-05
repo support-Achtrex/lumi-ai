@@ -29,7 +29,7 @@ export default function ProfileSettingsPage() {
       // Update local context
       const updatedUser = { ...user, name };
       setUser(updatedUser);
-      localStorage.setItem('lumi_user', JSON.stringify(updatedUser));
+      localStorage.setItem('aaia_user', JSON.stringify(updatedUser));
       
       setNameMessage('Profile updated successfully.');
       setTimeout(() => setNameMessage(''), 3000);

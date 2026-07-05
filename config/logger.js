@@ -25,7 +25,7 @@ const logger = winston.createLogger({
       maxFiles: 5
     }),
     new winston.transports.File({
-      filename: process.env.LOG_FILE || path.join('logs', 'lumi-ai.log'),
+      filename: process.env.LOG_FILE || path.join('logs', 'aaia.log'),
       maxsize: 10485760,
       maxFiles: 10
     })

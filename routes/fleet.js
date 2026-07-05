@@ -3,7 +3,7 @@ const router  = express.Router();
 const { body, validationResult } = require('express-validator');
 const { authenticate, requireRole } = require('../middleware/auth');
 const { query } = require('../config/database');
-const LumiAIService      = require('../services/LumiAIService');
+const AAIAService      = require('../services/AAIAService');
 const VehicleDataService = require('../services/VehicleDataService');
 const { v4: uuidv4 } = require('uuid');
 
@@ -167,7 +167,7 @@ router.get('/:id/vehicles', authenticate, async (req, res, next) => {
   }
 });
 
-// ── POST /api/fleet/:id/analyse — LUMI AI fleet intelligence ─────────────────
+// ── POST /api/fleet/:id/analyse — AAIA fleet intelligence ─────────────────
 router.post('/:id/analyse',
   authenticate,
   [body('analysisType').isIn(['maintenance', 'tco', 'performance', 'risk'])],
@@ -210,7 +210,7 @@ router.post('/:id/analyse',
         ...v.vehicle_data
       }));
 
-      const analysis = await LumiAIService.fleetAnalysis({
+      const analysis = await AAIAService.fleetAnalysis({
         vehicles,
         analysisType,
         sessionId: `fleet:${fleetId}:${analysisType}`

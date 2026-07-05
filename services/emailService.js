@@ -26,15 +26,15 @@ if (process.env.SMTP_HOST && process.env.SMTP_USER) {
  */
 async function sendWelcomeEmail(email, name) {
   const mailOptions = {
-    from: process.env.EMAIL_FROM || '"LUMI AI" <no-reply@lumi-ai.com>',
+    from: process.env.EMAIL_FROM || '"AAIA" <no-reply@aaia.com>',
     to: email,
-    subject: 'Welcome to LUMI AI',
-    text: `Hello ${name},\n\nWelcome to LUMI AI! We are thrilled to have you on board.\n\nLUMI is your intelligent automotive reasoning engine, built to help you decode VINs, analyze vehicle history, and manage your fleet seamlessly.\n\nBest,\nThe Achtrex Team`,
+    subject: 'Welcome to AAIA',
+    text: `Hello ${name},\n\nWelcome to AAIA! We are thrilled to have you on board.\n\nAAIA is your intelligent automotive reasoning engine, built to help you decode VINs, analyze vehicle history, and manage your fleet seamlessly.\n\nBest,\nThe Achtrex Team`,
     html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #18181B;">
-        <h2 style="color: #0D2FA3;">Welcome to LUMI AI, ${name}!</h2>
+        <h2 style="color: #0D2FA3;">Welcome to AAIA, ${name}!</h2>
         <p>We are thrilled to have you on board.</p>
-        <p>LUMI is your intelligent automotive reasoning engine, built to help you decode VINs, analyze vehicle history, and manage your fleet seamlessly.</p>
+        <p>AAIA is your intelligent automotive reasoning engine, built to help you decode VINs, analyze vehicle history, and manage your fleet seamlessly.</p>
         <br />
         <p>Best regards,<br/><strong>The Achtrex Team</strong></p>
       </div>

@@ -1,7 +1,7 @@
 -- ============================================================
--- LUMI AI — PostgreSQL Database Schema
+-- AAIA — PostgreSQL Database Schema
 -- Achtrex | achtrex.com
--- Run: psql -U postgres -d lumi_ai -f 001_create_tables.sql
+-- Run: psql -U postgres -d aaia -f 001_create_tables.sql
 -- ============================================================
 
 -- Enable UUID extension
@@ -197,6 +197,6 @@ VALUES (
   uuid_generate_v4(),
   'admin@achtrex.com',
   '$2b$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/LewdBpj2hNGBbhMnS',
-  'LUMI AI Admin',
+  'AAIA Admin',
   'admin'
 ) ON CONFLICT (email) DO NOTHING;

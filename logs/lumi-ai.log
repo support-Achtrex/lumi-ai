@@ -6651,3 +6651,21 @@
 2026-05-31 19:22:22 [info]: 📡 Environment: development
 2026-05-31 19:22:22 [info]: 🌐 Frontend: http://localhost:3000
 2026-05-31 19:22:22 [info]: 🤖 Model: undefined
+2026-05-31 19:22:27 [info]: PostgreSQL pool initialised
+2026-05-31 19:22:27 [info]: ✅ PostgreSQL connected
+2026-05-31 19:22:28 [info]: Redis connected
+2026-05-31 19:22:29 [info]: ✅ Redis connected
+2026-05-31 19:22:29 [info]: 🚀 LUMI AI server running on port 3001
+2026-05-31 19:22:29 [info]: 📡 Environment: development
+2026-05-31 19:22:29 [info]: 🌐 Frontend: http://localhost:3000
+2026-05-31 19:22:29 [info]: 🤖 Model: undefined
+2026-05-31 21:02:56 [error]: Error: read ECONNRESET
+    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)
+2026-05-31 21:02:56 [info]: Redis connected
+2026-05-31 22:37:37 [http]: ::1 - - [31/May/2026:22:37:37 +0000] "GET / HTTP/1.1" 404 50 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 22:37:38 [http]: ::1 - - [31/May/2026:22:37:38 +0000] "GET /favicon.ico HTTP/1.1" 404 61 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 22:39:18 [http]: ::1 - - [31/May/2026:22:39:18 +0000] "GET / HTTP/1.1" 404 50 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-05-31 22:39:19 [http]: ::1 - - [31/May/2026:22:39:19 +0000] "GET / HTTP/1.1" 404 50 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+2026-06-01 10:22:17 [error]: Error: read ECONNRESET
+    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)
+2026-06-01 10:22:18 [info]: Redis connected

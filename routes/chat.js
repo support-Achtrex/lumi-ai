@@ -3,7 +3,7 @@ const router = express.Router();
 const { body, validationResult } = require('express-validator');
 const { authenticate, requireCredits } = require('../middleware/auth');
 const { chatRateLimiter } = require('../middleware/rateLimiter');
-const LumiAIService    = require('../services/LumiAIService');
+const AAIAService    = require('../services/AAIAService');
 const ConversationService = require('../services/ConversationService');
 const VehicleDataService  = require('../services/VehicleDataService');
 const logger = require('../config/logger');
@@ -30,7 +30,7 @@ router.post('/message',
       const userId = req.user.id;
 
       // Detect user intent for better context
-      const intent = await LumiAIService.detectIntent(message);
+      const intent = await AAIAService.detectIntent(message);
 
       // Get or create conversation
       let convId = conversationId;
@@ -63,8 +63,8 @@ router.post('/message',
         { role: 'user', content: message }
       ];
 
-      // Call LUMI AI
-      const aiResponse = await LumiAIService.chat({
+      // Call AAIA
+      const aiResponse = await AAIAService.chat({
         messages,
         sessionId:       convId,
         vehicleContext,
@@ -136,7 +136,7 @@ router.post('/stream',
       const VehicleDataService = require('../services/VehicleDataService');
 
       if (voice) {
-        const transcript = await LumiAIService.transcribeAudio(voice);
+        const transcript = await AAIAService.transcribeAudio(voice);
         message = (message || '') + (message ? '\n\n' : '') + `[Voice Transcription]\n${transcript}`;
       }
       
@@ -188,7 +188,7 @@ router.post('/stream',
 
       // Start streaming
       let fullResponse = '';
-      const stream = await LumiAIService.chat({ messages, sessionId: convId, stream: true, image, vehicleContext });
+      const stream = await AAIAService.chat({ messages, sessionId: convId, stream: true, image, vehicleContext });
 
       for await (const chunk of stream) {
         if (chunk.type === 'content_block_delta' && chunk.delta.type === 'text_delta') {

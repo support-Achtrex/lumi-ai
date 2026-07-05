@@ -3,7 +3,7 @@ const express = require('express');
 const router  = express.Router();
 const { authenticate } = require('../middleware/auth');
 const { body, validationResult } = require('express-validator');
-const LumiAIService = require('../services/LumiAIService');
+const AAIAService = require('../services/AAIAService');
 
 // ── POST /api/workflows/automate — Detect intent and route to workflow ────────
 router.post('/automate',
@@ -13,8 +13,8 @@ router.post('/automate',
     try {
       const { input } = req.body;
 
-      // Use LUMI AI to detect intent and determine workflow
-      const intent = await LumiAIService.detectIntent(input);
+      // Use AAIA to detect intent and determine workflow
+      const intent = await AAIAService.detectIntent(input);
 
       // Route to appropriate handler based on intent
       const workflows = {
@@ -24,7 +24,7 @@ router.post('/automate',
         pricing_query:      'Routing to market pricing module',
         maintenance_schedule: 'Routing to maintenance scheduler',
         inventory_search:   'Routing to inventory search module',
-        general_query:      'Routing to general LUMI AI chat'
+        general_query:      'Routing to general AAIA chat'
       };
 
       res.json({

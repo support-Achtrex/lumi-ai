@@ -65,7 +65,7 @@ export default function ConsoleShell() {
         {/* Header/Logo area */}
         <div style={{ padding: '24px 24px 12px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <img src="/logo.png" alt="LUMI" style={{ height: '28px', objectFit: 'contain' }} />
+            <img src="/logo.png" alt="AAIA" style={{ height: '28px', objectFit: 'contain' }} />
           </div>
           <i className="ti ti-search" style={{ color: '#888', fontSize: '18px', cursor: 'pointer' }} />
         </div>

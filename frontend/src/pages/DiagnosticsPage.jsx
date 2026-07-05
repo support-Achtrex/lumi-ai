@@ -140,7 +140,7 @@ export default function DiagnosticsPage() {
             <div style={{ maxWidth: 800, width: '100%', display: 'flex', flexDirection: 'column', gap: 32 }}>
               
               <div style={{ textAlign: 'center' }}>
-                <h1 style={{ fontSize: 32, fontFamily: 'var(--display)', color: 'var(--dgray)', marginBottom: 12 }}>How can LUMI help diagnose?</h1>
+                <h1 style={{ fontSize: 32, fontFamily: 'var(--display)', color: 'var(--dgray)', marginBottom: 12 }}>How can AAIA help diagnose?</h1>
                 <p style={{ fontSize: 15, color: 'var(--mgray)' }}>Provide an OBD2 Trouble Code or describe the symptoms the vehicle is experiencing.</p>
               </div>
 
@@ -169,7 +169,7 @@ export default function DiagnosticsPage() {
                       <i className="ti ti-microphone" style={{ fontSize: 18 }} />
                     </button>
                   </div>
-                  <p style={{ fontSize: 13, color: 'var(--mgray)', lineHeight: 1.5 }}>Describe what you hear, feel, or see. LUMI's NLP will extract the mechanical context automatically.</p>
+                  <p style={{ fontSize: 13, color: 'var(--mgray)', lineHeight: 1.5 }}>Describe what you hear, feel, or see. AAIA's NLP will extract the mechanical context automatically.</p>
                   <div style={{ position: 'relative' }}>
                     <textarea 
                       value={symptoms} onChange={e => setSymptoms(e.target.value)}

@@ -75,7 +75,7 @@ export default function WorkflowAutomationPage() {
           
           <div style={{ marginBottom: 32 }}>
             <h1 style={{ fontSize: 24, fontWeight: 700, color: 'var(--dgray)', marginBottom: 8 }}>Active Rules & Automations</h1>
-            <p style={{ color: 'var(--mgray)', fontSize: 15 }}>Configure LUMI AI to autonomously monitor your fleet telemetry and trigger actions when conditions are met.</p>
+            <p style={{ color: 'var(--mgray)', fontSize: 15 }}>Configure AAIA to autonomously monitor your fleet telemetry and trigger actions when conditions are met.</p>
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
@@ -143,7 +143,7 @@ export default function WorkflowAutomationPage() {
                 <label style={{ display: 'block', fontSize: 13, fontWeight: 600, marginBottom: 8 }}>Do this (Action)</label>
                 <select value={actionType} onChange={e=>setActionType(e.target.value)} style={{ width: '100%', height: 44, borderRadius: 8, border: '1px solid var(--bord)', padding: '0 16px' }}>
                   <option value="send_alert">Send Alert to Fleet Manager</option>
-                  <option value="run_analysis">Run LUMI AI Diagnostics</option>
+                  <option value="run_analysis">Run AAIA Diagnostics</option>
                   <option value="schedule_maintenance">Schedule Maintenance Task</option>
                 </select>
               </div>

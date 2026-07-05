@@ -1,7 +1,7 @@
 {
-  "name": "lumi-ai",
+  "name": "aaia",
   "version": "1.0.0",
-  "description": "LUMI AI — LLM-Powered Automotive Reasoning Engine by Achtrex",
+  "description": "AAIA — LLM-Powered Automotive Reasoning Engine by Achtrex",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

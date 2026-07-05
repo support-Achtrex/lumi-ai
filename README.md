@@ -1,4 +1,4 @@
-# LUMI AI — LLM-Powered Automotive Reasoning Engine
+# AAIA — LLM-Powered Automotive Reasoning Engine
 ### Built by Achtrex | achtrex.com
 
 > The automotive industry's first enterprise-grade LLM automotive reasoning engine.
@@ -8,7 +8,7 @@
 ## Architecture Overview
 
 ```
-lumi-ai/
+aaia/
 ├── server.js                    # Entry point — Express + Socket.IO
 ├── .env.example                 # Copy to .env and fill in keys
 │
@@ -24,7 +24,7 @@ lumi-ai/
 │
 ├── routes/
 │   ├── auth.js                  # Register, login, logout, profile
-│   ├── chat.js                  # LUMI AI chat (stream + standard)
+│   ├── chat.js                  # AAIA chat (stream + standard)
 │   ├── vehicles.js              # VIN decode, pricing, history, recalls
 │   ├── fleet.js                 # Fleet management + AI analysis
 │   ├── diagnostics.js           # Damage assessment, maintenance, TCO
@@ -32,7 +32,7 @@ lumi-ai/
 │   └── analytics.js             # Usage stats and reporting
 │
 ├── services/
-│   ├── LumiAIService.js         # Core Claude API integration + system prompt
+│   ├── AAIAService.js         # Core Claude API integration + system prompt
 │   ├── VehicleDataService.js    # AutomotiveDataset.com API integration
 │   ├── ConversationService.js   # Conversation history management
 │   └── SocketService.js         # Real-time WebSocket handlers
@@ -64,8 +64,8 @@ lumi-ai/
 ### 1. Clone and install
 
 ```bash
-git clone https://github.com/achtrex/lumi-ai.git
-cd lumi-ai
+git clone https://github.com/achtrex/aaia.git
+cd aaia
 npm install
 ```
 
@@ -87,8 +87,8 @@ JWT_SECRET=your-random-32-char-secret
 ### 3. Create database
 
 ```bash
-psql -U postgres -c "CREATE DATABASE lumi_ai;"
-psql -U postgres -d lumi_ai -f database/migrations/001_create_tables.sql
+psql -U postgres -c "CREATE DATABASE aaia;"
+psql -U postgres -d aaia -f database/migrations/001_create_tables.sql
 ```
 
 ### 4. Start Redis
@@ -104,7 +104,7 @@ sudo systemctl start redis
 docker run -d -p 6379:6379 redis:7-alpine
 ```
 
-### 5. Start LUMI AI
+### 5. Start AAIA
 
 ```bash
 npm run dev        # Development (nodemon)
@@ -128,7 +128,7 @@ Health check: `GET http://localhost:3001/health`
 | POST | `/api/auth/logout` | Logout — blacklists token |
 | GET  | `/api/auth/me` | Get current user |
 
-### Chat (LUMI AI)
+### Chat (AAIA)
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
@@ -150,7 +150,7 @@ Health check: `GET http://localhost:3001/health`
 | GET | `/api/vehicles/:vin/depreciation` | Depreciation forecast |
 | POST | `/api/vehicles/batch` | Batch VIN decode (max 50) |
 | GET | `/api/vehicles/search` | Search by make/model/year |
-| POST | `/api/vehicles/:vin/ask` | Ask LUMI AI about a vehicle |
+| POST | `/api/vehicles/:vin/ask` | Ask AAIA about a vehicle |
 
 ### Fleet
 
@@ -160,7 +160,7 @@ Health check: `GET http://localhost:3001/health`
 | GET  | `/api/fleet` | List user fleets |
 | POST | `/api/fleet/:id/vehicles` | Add vehicles to fleet |
 | GET  | `/api/fleet/:id/vehicles` | Get fleet vehicles |
-| POST | `/api/fleet/:id/analyse` | Run LUMI AI fleet analysis |
+| POST | `/api/fleet/:id/analyse` | Run AAIA fleet analysis |
 | PUT  | `/api/fleet/:id/vehicles/:vin` | Update vehicle data |
 
 ### Diagnostics
@@ -175,7 +175,7 @@ Health check: `GET http://localhost:3001/health`
 
 ## Example Requests
 
-### Send a chat message to LUMI AI
+### Send a chat message to AAIA
 
 ```bash
 curl -X POST http://localhost:3001/api/chat/message \
@@ -228,7 +228,7 @@ NODE_ENV=production
 
 # Use PM2 for process management
 npm install -g pm2
-pm2 start server.js --name "lumi-ai"
+pm2 start server.js --name "aaia"
 pm2 save
 pm2 startup
 ```
@@ -240,9 +240,9 @@ pm2 startup
 **Achtrex** — Engineering the Intelligence Layer Behind Modern Automotive Platforms
 
 - Website: achtrex.com
-- LUMI AI: lumiautomotive.com
+- AAIA: aaiaautomotive.com
 - Contact: achim@achtrex.com
 
 ---
 
-*LUMI AI — The automotive industry's first enterprise LLM reasoning engine.*
+*AAIA — The automotive industry's first enterprise LLM reasoning engine.*

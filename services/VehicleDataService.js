@@ -8,7 +8,7 @@ const apiClient = axios.create({
   headers: {
     'X-API-Key':    process.env.AUTOMOTIVE_DATASET_API_KEY,
     'Content-Type': 'application/json',
-    'User-Agent':   'LUMI-AI/1.0 (Achtrex)'
+    'User-Agent':   'AAIA/1.0 (Achtrex)'
   }
 });
 

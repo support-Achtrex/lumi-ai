@@ -4,7 +4,7 @@ const { param, query, body, validationResult } = require('express-validator');
 const { authenticate, requireCredits } = require('../middleware/auth');
 const { vehicleRateLimiter } = require('../middleware/rateLimiter');
 const VehicleDataService = require('../services/VehicleDataService');
-const LumiAIService      = require('../services/LumiAIService');
+const AAIAService      = require('../services/AAIAService');
 
 // ── GET /api/vehicles/decode/:vin ─────────────────────────────────────────────
 router.get('/decode/:vin',
@@ -165,7 +165,7 @@ router.get('/search',
   }
 );
 
-// ── POST /api/vehicles/:vin/ask — Ask LUMI AI about this specific vehicle ─────
+// ── POST /api/vehicles/:vin/ask — Ask AAIA about this specific vehicle ─────
 router.post('/:vin/ask',
   authenticate,
   [body('question').notEmpty().isString().isLength({ max: 2000 })],
@@ -174,7 +174,7 @@ router.post('/:vin/ask',
       const { vin } = req.params;
       const { question } = req.body;
 
-      const response = await LumiAIService.vehicleQuery({
+      const response = await AAIAService.vehicleQuery({
         vin,
         question,
         sessionId: `vehicle:${vin}:${req.user.id}`

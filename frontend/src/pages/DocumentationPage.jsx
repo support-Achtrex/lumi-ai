@@ -24,7 +24,7 @@ export default function DocumentationPage() {
 
   return (
     <div style={{ padding: '40px 48px', maxWidth: '1100px', margin: '0 auto', fontFamily: 'Inter, sans-serif' }}>
-      <h1 style={{ fontSize: '28px', fontWeight: '700', marginBottom: '32px' }}>LUMI API Documentation</h1>
+      <h1 style={{ fontSize: '28px', fontWeight: '700', marginBottom: '32px' }}>AAIA API Documentation</h1>
       
       <div style={{ background: '#FFF', border: '1px solid #EBEBEB', borderRadius: '16px', padding: '40px' }}>
         <h2 style={{ marginTop: 0 }}>Authentication</h2>
@@ -49,7 +49,7 @@ export default function DocumentationPage() {
   -H "Content-Type: application/json" \\
   -H "Authorization: Bearer ${apiKey || 'YOUR_API_KEY_HERE'}" \\
   -d '{
-    "model": "lumi-1.0",
+    "model": "aaia-1.0",
     "messages": [
       {
         "role": "system",

@@ -17,7 +17,7 @@ export function AuthProvider({ children }) {
       APIService.get('/auth/me').then(res => {
         if (res.success && res.user) {
           setUser(res.user);
-          localStorage.setItem('lumi_user', JSON.stringify(res.user));
+          localStorage.setItem('aaia_user', JSON.stringify(res.user));
         }
       }).catch(console.error);
     }
@@ -30,7 +30,7 @@ export function AuthProvider({ children }) {
         const res = await APIService.get('/auth/me');
         if (res.success && res.user) {
           setUser(res.user);
-          localStorage.setItem('lumi_user', JSON.stringify(res.user));
+          localStorage.setItem('aaia_user', JSON.stringify(res.user));
         }
       } catch (err) {
         console.error(err);

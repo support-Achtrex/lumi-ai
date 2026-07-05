@@ -1,13 +1,13 @@
-// src/services/api.js  — LUMI AI API client
+// src/services/api.js  — AAIA API client
 const BASE = process.env.REACT_APP_API_URL || '/api';
 
 class APIService {
 
   // ── Token ────────────────────────────────────────────────────────────────
-  static getToken()         { return localStorage.getItem('lumi_token'); }
-  static setToken(t)        { localStorage.setItem('lumi_token', t); }
-  static clearToken()       { localStorage.removeItem('lumi_token'); localStorage.removeItem('lumi_user'); }
-  static getCurrentUser()   { const u = localStorage.getItem('lumi_user'); return u ? JSON.parse(u) : null; }
+  static getToken()         { return localStorage.getItem('aaia_token'); }
+  static setToken(t)        { localStorage.setItem('aaia_token', t); }
+  static clearToken()       { localStorage.removeItem('aaia_token'); localStorage.removeItem('aaia_user'); }
+  static getCurrentUser()   { const u = localStorage.getItem('aaia_user'); return u ? JSON.parse(u) : null; }
 
   // ── Base request ─────────────────────────────────────────────────────────
   static async req(path, opts = {}) {
@@ -40,13 +40,13 @@ class APIService {
   static async login(email, password) {
     const res = await this.post('/auth/login', { email, password });
     this.setToken(res.data.token);
-    localStorage.setItem('lumi_user', JSON.stringify(res.data.user));
+    localStorage.setItem('aaia_user', JSON.stringify(res.data.user));
     return res.data;
   }
   static async register(name, email, password, company, phone) {
     const res = await this.post('/auth/register', { name, email, password, company, phone });
     this.setToken(res.data.token);
-    localStorage.setItem('lumi_user', JSON.stringify(res.data.user));
+    localStorage.setItem('aaia_user', JSON.stringify(res.data.user));
     return res.data;
   }
   static async logout() {
@@ -232,7 +232,10 @@ class APIService {
 
   // ── Analytics ─────────────────────────────────────────────────────────────
   static async getUsageStats()             { return (await this.get('/analytics/usage')).data; }
-  static async getPopularQueries()         { return (await this.get('/analytics/popular-queries')).data; }
+  // ── Reports ───────────────────────────────────────────────────────────────
+  static async getReports()                { return (await this.get('/reports')).reports; }
+  static async getReport(id)               { return (await this.get(`/reports/${id}`)).report; }
+  static async saveReport(name, type, content) { return (await this.post('/reports', { name, type, content })).report; }
 }
 
 export default APIService;

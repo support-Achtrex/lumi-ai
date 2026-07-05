@@ -92,7 +92,7 @@ export default function HistoryPage() {
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `LUMI_History_${vin || 'Report'}.html`;
+      a.download = `AAIA_History_${vin || 'Report'}.html`;
       a.click();
       URL.revokeObjectURL(url);
     } else {
@@ -182,7 +182,7 @@ export default function HistoryPage() {
                       <i className="ti ti-download" /> Download Report
                     </button>
                     <div style={{ background: 'rgba(255,255,255,0.1)', padding: '6px 12px', borderRadius: 20, fontSize: 12, fontWeight: 700, display: 'flex', alignItems: 'center', gap: 6 }}>
-                      <i className="ti ti-shield-check" style={{ color: '#10B981' }} /> LUMI Verified Report
+                      <i className="ti ti-shield-check" style={{ color: '#10B981' }} /> AAIA Verified Report
                     </div>
                   </div>
                   
@@ -370,7 +370,7 @@ export default function HistoryPage() {
           <div style={{ width: 80, height: 80, background: '#1C2B3A', borderRadius: '50%', margin: '0 auto 16px auto', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', boxShadow: '0 8px 16px rgba(0,0,0,0.1)' }}>
             <i className="ti ti-shield-check" style={{ fontSize: 40 }} />
           </div>
-          <h3 style={{ fontSize: 16, fontWeight: 700, color: '#1C2B3A', borderBottom: '2px solid #1C2B3A', paddingBottom: 8, display: 'inline-block' }}>Each LUMI Report Checks For:</h3>
+          <h3 style={{ fontSize: 16, fontWeight: 700, color: '#1C2B3A', borderBottom: '2px solid #1C2B3A', paddingBottom: 8, display: 'inline-block' }}>Each AAIA Report Checks For:</h3>
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
@@ -417,7 +417,7 @@ export default function HistoryPage() {
         <div style={{ maxWidth: 800, margin: '0 auto' }}>
           
           <div style={{ textAlign: 'center', marginBottom: 40 }}>
-            <h1 style={{ fontSize: 32, fontWeight: 700, color: '#1C2B3A', marginBottom: 16 }}>Order LUMI History Reports</h1>
+            <h1 style={{ fontSize: 32, fontWeight: 700, color: '#1C2B3A', marginBottom: 16 }}>Order AAIA History Reports</h1>
             <p style={{ fontSize: 20, color: '#1C2B3A', marginBottom: 24 }}>We found <strong>{historyReport?.summary?.service_records || 14} history records</strong> on this vehicle.</p>
             
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: 12, padding: '12px 24px', background: '#F5F8FC', borderRadius: 8, border: '1px solid #D0DCE8' }}>
@@ -445,7 +445,7 @@ export default function HistoryPage() {
                   
                   <div style={{ border: '2px solid #0F6E56', borderRadius: 8, padding: 24, position: 'relative', background: '#f8fdfa', textAlign: 'center', cursor: 'pointer' }}>
                     <div style={{ position: 'absolute', top: -12, left: '50%', transform: 'translateX(-50%)', background: '#f0f0f0', color: '#607D8B', fontSize: 11, fontWeight: 700, padding: '4px 12px', borderRadius: 12, border: '1px solid #d0d0d0' }}>STANDARD</div>
-                    <h3 style={{ fontSize: 18, fontWeight: 700, color: '#1C2B3A', marginBottom: 12 }}>1 LUMI Report <i className="ti ti-car" /></h3>
+                    <h3 style={{ fontSize: 18, fontWeight: 700, color: '#1C2B3A', marginBottom: 12 }}>1 AAIA Report <i className="ti ti-car" /></h3>
                     <div style={{ fontSize: 28, fontWeight: 700, color: '#1C2B3A', marginBottom: 4 }}>$44.99</div>
                     <div style={{ fontSize: 12, color: '#607D8B', marginBottom: 16 }}>($44.99/Report)</div>
                     <div style={{ fontSize: 13, color: '#1C2B3A', marginBottom: 24 }}>Best for one car only.</div>
@@ -470,7 +470,7 @@ export default function HistoryPage() {
                   <label style={{ display: 'flex', alignItems: 'flex-start', gap: 12, marginTop: 12, cursor: 'pointer' }}>
                     <input type="checkbox" required style={{ marginTop: 4 }} />
                     <div style={{ fontSize: 13, color: '#607D8B' }}>
-                      I agree to the <span style={{ color: '#0A2085', textDecoration: 'underline' }}>Customer Agreement</span> and understand that LUMI may not have the complete history of every vehicle.
+                      I agree to the <span style={{ color: '#0A2085', textDecoration: 'underline' }}>Customer Agreement</span> and understand that AAIA may not have the complete history of every vehicle.
                     </div>
                   </label>
 
@@ -498,7 +498,7 @@ export default function HistoryPage() {
               </div>
               <h2 style={{ fontSize: 28, fontWeight: 700, color: '#1C2B3A', marginBottom: 16 }}>Payment Successful!</h2>
               <p style={{ fontSize: 16, color: '#607D8B', marginBottom: 32, lineHeight: 1.6 }}>
-                Your order for 1 LUMI History Report has been confirmed. Your report is now ready to view.
+                Your order for 1 AAIA History Report has been confirmed. Your report is now ready to view.
               </p>
 
               <button onClick={handleViewReport} className="btn-primary" style={{ background: '#0A2085', padding: '16px 32px', fontSize: 16, borderRadius: 8, width: '100%' }}>

@@ -3,7 +3,7 @@ const axios = require('axios');
 async function runTest() {
   try {
     console.log('Testing login endpoint...');
-    const response = await axios.post('https://lumi-ai-production.up.railway.app/api/auth/login', {
+    const response = await axios.post('https://aaia-production.up.railway.app/api/auth/login', {
       email: 'demo@achtrex.com',
       password: 'password'
     });
@@ -15,7 +15,7 @@ async function runTest() {
     console.log('Testing chat endpoint...');
     
     const chatResponse = await axios.post(
-      'https://lumi-ai-production.up.railway.app/api/chat/message',
+      'https://aaia-production.up.railway.app/api/chat/message',
       { message: "Hello! What is the estimated repair cost for a 2018 Honda Accord with P0420?" },
       { headers: { Authorization: `Bearer ${token}` } }
     );
