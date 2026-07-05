@@ -151,3 +151,49 @@
 2026-07-05 15:15:39 [info]: PostgreSQL pool initialised
 2026-07-05 15:15:39 [info]: ✅ PostgreSQL connected
 2026-07-05 15:15:39 [info]: Redis connected
+2026-07-05 15:25:14 [info]: PostgreSQL pool initialised
+2026-07-05 15:25:14 [info]: ✅ PostgreSQL connected
+2026-07-05 15:25:14 [info]: Redis connected
+2026-07-05 15:25:15 [info]: ✅ Redis connected
+2026-07-05 15:25:15 [info]: 🚀 AAIA server running on port 3001
+2026-07-05 15:25:15 [info]: 📡 Environment: development
+2026-07-05 15:25:15 [info]: 🌐 Frontend: http://localhost:3000
+2026-07-05 15:25:15 [info]: 🤖 Model: undefined
+2026-07-05 15:27:53 [info]: PostgreSQL pool initialised
+2026-07-05 15:27:53 [info]: ✅ PostgreSQL connected
+2026-07-05 15:27:53 [info]: Redis connected
+2026-07-05 15:27:54 [info]: ✅ Redis connected
+2026-07-05 15:28:02 [info]: PostgreSQL pool initialised
+2026-07-05 15:28:02 [info]: ✅ PostgreSQL connected
+2026-07-05 15:28:02 [info]: Redis connected
+2026-07-05 15:28:03 [info]: ✅ Redis connected
+2026-07-05 15:28:03 [info]: 🚀 AAIA server running on port 3001
+2026-07-05 15:28:03 [info]: 📡 Environment: development
+2026-07-05 15:28:03 [info]: 🌐 Frontend: http://localhost:3000
+2026-07-05 15:28:03 [info]: 🤖 Model: undefined
+2026-07-05 15:28:09 [http]: ::1 - - [05/Jul/2026:15:28:09 +0000] "GET /api/auth/me HTTP/1.1" 200 276 "http://localhost:3000/admin/users" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 15:28:10 [http]: ::1 - - [05/Jul/2026:15:28:10 +0000] "GET /api/admin/users HTTP/1.1" 200 845 "http://localhost:3000/admin/users" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 15:28:11 [http]: ::1 - - [05/Jul/2026:15:28:11 +0000] "GET /api/admin/users HTTP/1.1" 304 - "http://localhost:3000/admin/users" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 15:28:11 [warn]: Slow query detected (1925ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-07-05 15:28:11 [http]: ::1 - - [05/Jul/2026:15:28:11 +0000] "GET /api/auth/me HTTP/1.1" 304 - "http://localhost:3000/admin/users" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 15:28:11 [warn]: Slow query detected (2338ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-07-05 15:28:12 [http]: ::1 - - [05/Jul/2026:15:28:12 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 200 - "http://localhost:3000/admin/users" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 15:28:13 [http]: ::1 - - [05/Jul/2026:15:28:13 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/admin/users" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 15:28:16 [http]: ::1 - - [05/Jul/2026:15:28:16 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/chat" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 15:28:23 [warn]: Grok stream failed (404 "The model grok-2-latest does not exist or your team dcf2db88-6d26-4c04-a850-a824215da840 does not have access to it. If you believe this is a mistake, please contact support and quote your team ID and the model name."). Falling back to Gemini.
+2026-07-05 15:28:36 [http]: ::1 - - [05/Jul/2026:15:28:36 +0000] "POST /api/chat/stream HTTP/1.1" 200 - "http://localhost:3000/chat" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 15:28:44 [http]: ::1 - - [05/Jul/2026:15:28:44 +0000] "GET /api/reports HTTP/1.1" 200 14 "http://localhost:3000/reports" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 15:28:46 [http]: ::1 - - [05/Jul/2026:15:28:46 +0000] "GET /api/reports HTTP/1.1" 304 - "http://localhost:3000/reports" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 15:28:47 [warn]: Slow query detected (3827ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-07-05 15:28:48 [http]: ::1 - - [05/Jul/2026:15:28:48 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 200 - "http://localhost:3000/reports" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 15:28:52 [http]: ::1 - - [05/Jul/2026:15:28:52 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/diagnostics" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 15:29:00 [http]: ::1 - - [05/Jul/2026:15:29:00 +0000] "GET /api/fleet HTTP/1.1" 304 - "http://localhost:3000/fleet" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 15:29:01 [http]: ::1 - - [05/Jul/2026:15:29:01 +0000] "GET /api/chat/conversations?page=1 HTTP/1.1" 304 - "http://localhost:3000/fleet" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 15:29:01 [http]: ::1 - - [05/Jul/2026:15:29:01 +0000] "GET /api/fleet/fabec341-14dc-41de-b132-5e5ca543df08/vehicles HTTP/1.1" 304 - "http://localhost:3000/fleet" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 15:29:03 [warn]: Slow query detected (2528ms): SELECT id, email, name, role, enterprise_id, is_active, credits, plan_type, last_login
+       FROM users WHERE id = $1 AND is_active = true
+2026-07-05 15:29:03 [http]: ::1 - - [05/Jul/2026:15:29:03 +0000] "GET /api/fleet HTTP/1.1" 304 - "http://localhost:3000/fleet" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 15:29:04 [http]: ::1 - - [05/Jul/2026:15:29:04 +0000] "GET /api/fleet/fabec341-14dc-41de-b132-5e5ca543df08/vehicles HTTP/1.1" 304 - "http://localhost:3000/fleet" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"

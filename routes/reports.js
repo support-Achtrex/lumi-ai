@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const { pool } = require('../config/database');
-const { verifyToken } = require('../middleware/auth');
+const { authenticate } = require('../middleware/auth');
 
-router.use(verifyToken);
+router.use(authenticate);
 
 // Get all reports for the user
 router.get('/', async (req, res) => {
