@@ -12,6 +12,7 @@ import DiagnosticsPage from './pages/DiagnosticsPage';
 import HistoryPage from './pages/HistoryPage';
 import AnalyticsPage from './pages/AnalyticsPage';
 import ReportsPage from './pages/ReportsPage';
+import PartsPage from './pages/PartsPage';
 import WorkflowAutomationPage from './pages/WorkflowAutomationPage';
 import AdminUsersPage from './pages/AdminUsersPage';
 import ConsoleShell from './components/layout/ConsoleShell';
@@ -81,6 +82,7 @@ function AppContainer() {
             <Route path="/history"      element={<HistoryPage />} />
             <Route path="/analytics"    element={<AnalyticsPage />} />
             <Route path="/reports"      element={<ReportsPage />} />
+            <Route path="/parts"        element={<PartsPage />} />
             <Route path="/workflow"     element={<WorkflowAutomationPage />} />
             <Route path="/admin/users"  element={<AdminUsersPage />} />
           </Route>

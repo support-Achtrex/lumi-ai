@@ -197,3 +197,22 @@
        FROM users WHERE id = $1 AND is_active = true
 2026-07-05 15:29:03 [http]: ::1 - - [05/Jul/2026:15:29:03 +0000] "GET /api/fleet HTTP/1.1" 304 - "http://localhost:3000/fleet" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
 2026-07-05 15:29:04 [http]: ::1 - - [05/Jul/2026:15:29:04 +0000] "GET /api/fleet/fabec341-14dc-41de-b132-5e5ca543df08/vehicles HTTP/1.1" 304 - "http://localhost:3000/fleet" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36"
+2026-07-05 15:29:23 [info]: PostgreSQL pool initialised
+2026-07-05 15:29:23 [info]: ✅ PostgreSQL connected
+2026-07-05 15:29:24 [info]: Redis connected
+2026-07-05 15:29:25 [info]: ✅ Redis connected
+2026-07-05 15:29:25 [info]: 🚀 AAIA server running on port 3001
+2026-07-05 15:29:25 [info]: 📡 Environment: development
+2026-07-05 15:29:25 [info]: 🌐 Frontend: http://localhost:3000
+2026-07-05 15:29:25 [info]: 🤖 Model: undefined
+2026-07-05 15:33:20 [info]: PostgreSQL pool initialised
+2026-07-05 15:33:20 [info]: ✅ PostgreSQL connected
+2026-07-05 15:33:20 [info]: Redis connected
+2026-07-05 15:33:27 [info]: PostgreSQL pool initialised
+2026-07-05 15:33:27 [info]: ✅ PostgreSQL connected
+2026-07-05 15:33:27 [info]: Redis connected
+2026-07-05 15:33:28 [info]: ✅ Redis connected
+2026-07-05 15:33:28 [info]: 🚀 AAIA server running on port 3001
+2026-07-05 15:33:28 [info]: 📡 Environment: development
+2026-07-05 15:33:28 [info]: 🌐 Frontend: http://localhost:3000
+2026-07-05 15:33:28 [info]: 🤖 Model: undefined

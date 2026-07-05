@@ -236,6 +236,9 @@ class APIService {
   static async getReports()                { return (await this.get('/reports')).reports; }
   static async getReport(id)               { return (await this.get(`/reports/${id}`)).report; }
   static async saveReport(name, type, content) { return (await this.post('/reports', { name, type, content })).report; }
+
+  // ── Parts ─────────────────────────────────────────────────────────────────
+  static async searchParts(mode, query)    { return (await this.post('/parts/search', { mode, query })).parts; }
 }
 
 export default APIService;

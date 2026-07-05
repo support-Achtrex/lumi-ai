@@ -13,6 +13,7 @@ const NAV = [
   { group: 'Operations', items: [
     { to: '/fleet',       icon: 'ti-truck',         label: 'Fleet' },
     { to: '/diagnostics', icon: 'ti-tool',          label: 'Diagnostics' },
+    { to: '/parts',       icon: 'ti-settings',      label: 'Parts Lookup' },
   ]},
   { group: 'Reports', items: [
     { to: '/reports',     icon: 'ti-file-report',   label: 'Reports Center' },
