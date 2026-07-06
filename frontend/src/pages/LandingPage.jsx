@@ -5,7 +5,7 @@ export default function LandingPage() {
   const navigate = useNavigate();
 
   return (
-    <div style={{ 
+    <div className="landing-bg" style={{ 
       height: '100vh', 
       width: '100vw', 
       overflow: 'hidden', 
@@ -63,7 +63,7 @@ export default function LandingPage() {
         {/* AAIA Logo */}
         <img 
           src="/logo.png" 
-          alt="AAIA Logo" 
+          alt="AAIA - Automotive AI Agent Platform Logo" 
           style={{ 
             height: '80px', objectFit: 'contain', marginBottom: '24px',
             filter: 'brightness(0) invert(1)' // Ensures it's white if the original logo is dark
@@ -75,13 +75,13 @@ export default function LandingPage() {
           fontSize: '48px', fontWeight: '600', color: '#ffffff', 
           letterSpacing: '-0.02em', marginBottom: '16px', textAlign: 'center'
         }}>
-          The Autonomous Reasoning Engine for Mobility.
+          The Autonomous Reasoning Engine for Automotive & Fleet Mobility.
         </h1>
         <p style={{
           fontSize: '20px', color: '#cbd5e1', textAlign: 'center',
           maxWidth: '700px', marginBottom: '24px', lineHeight: '1.5'
         }}>
-          Bridging the gap between static vehicle data and actionable intelligence.
+          Bridging the gap between static vehicle data and actionable intelligence. Empowering fleet managers and mechanics with AI-driven diagnostics, predictive maintenance, and real-time repair solutions.
         </p>
         <div style={{ 
           display: 'flex', gap: '16px', flexWrap: 'wrap', justifyContent: 'center',
@@ -90,11 +90,11 @@ export default function LandingPage() {
         }}>
           <span>Conversational Analytics</span>
           <span>•</span>
-          <span>Predictive Alerts</span>
+          <span>Predictive Maintenance</span>
           <span>•</span>
           <span>Intelligent Repair</span>
           <span>•</span>
-          <span>Real-time Reasoning</span>
+          <span>Diagnostic Reasoning</span>
         </div>
         
         {/* Call to Action */}
@@ -113,6 +113,17 @@ export default function LandingPage() {
         </button>
 
       </main>
+
+      {/* ── Footer ───────────────────────────────────────── */}
+      <footer style={{
+        position: 'absolute', bottom: 0, left: 0, right: 0, zIndex: 10,
+        padding: '16px 40px', display: 'flex', justifyContent: 'center',
+        borderTop: '1px solid rgba(255,255,255,0.1)', background: 'rgba(0,0,0,0.5)'
+      }}>
+        <p style={{ fontSize: '12px', color: '#64748b', textAlign: 'center' }}>
+          &copy; {new Date().getFullYear()} Achtrex LLC. All rights reserved. AAIA Cognitive Automotive Platform.
+        </p>
+      </footer>
       
     </div>
   );

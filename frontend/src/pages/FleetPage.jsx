@@ -180,7 +180,7 @@ export default function FleetPage() {
     <div style={{ display:'flex', flexDirection:'column', height:'100%', background: 'transparent', position: 'relative' }}>
       
       {/* Hidden PDF Template */}
-      <div style={{ position: 'absolute', top: '-10000px', left: '-10000px', width: '800px', background: '#fff', padding: '40px', color: '#000', fontFamily: 'Inter, sans-serif' }} ref={pdfTemplateRef}>
+      <div style={{ position: 'fixed', top: 0, left: '-2000px', width: '800px', background: '#fff', padding: '40px', color: '#000', fontFamily: 'Inter, sans-serif' }} ref={pdfTemplateRef}>
         {generatedReport && (
           <div>
             <div style={{ display: 'flex', alignItems: 'center', marginBottom: 30, borderBottom: '2px solid #eee', paddingBottom: 20 }}>

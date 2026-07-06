@@ -32,7 +32,7 @@ function TCOCard({ data }) {
         <div style={{ fontSize:14, color:'#607D8B', marginBottom:6 }}>5-year estimated total</div>
         <div style={{ fontSize:32, fontWeight:600, color:'#1C2B3A', marginBottom:12, letterSpacing:'-0.5px' }}>${data.total?.toLocaleString() || '25,250'}</div>
         <div style={{ fontSize:13.5, color:'#607D8B', display:'flex', alignItems:'center', gap:6, flexWrap:'wrap' }}>
-          ${data.costPerMile}/mi · {data.comparisonText} <span style={{ color:'#0F6E56', fontWeight:500, background:'#EAF3DE', padding:'2px 8px', borderRadius:12, whiteSpace:'nowrap' }}>✓ {data.verdict}</span>
+          ${data.costPerMile}/mi · {data.comparisonText} <span style={{ color:'#0F6E56', fontWeight:500, background:'#EAF3DE', padding:'2px 8px', borderRadius:12, display:'inline-block' }}>✓ {data.verdict}</span>
         </div>
       </div>
     </div>
@@ -249,7 +249,7 @@ export default function ChatPage() {
             {m.role === 'assistant' && (
               <div style={{ width:32, height:32, borderRadius:'50%', flexShrink:0, display:'flex', alignItems:'center', justifyContent:'center', fontSize:14, fontWeight:600, background:'#E1F5EE', color:'#0F6E56', marginTop:4 }}>L</div>
             )}
-            <div style={{ 
+            <div className="chat-message-bubble" style={{ 
               padding: m.role === 'user' ? '12px 18px' : '20px 28px', 
               borderRadius: m.role === 'user' ? '20px 20px 4px 20px' : '20px 20px 20px 4px', 
               background: m.role === 'user' ? 'linear-gradient(135deg, var(--dblu), var(--mid))' : 'rgba(255, 255, 255, 0.85)', 
@@ -274,7 +274,7 @@ export default function ChatPage() {
         {streaming && streamText && (
           <div style={{ display:'flex', gap:14, alignItems:'flex-start', animation:'fadeIn 0.2s ease-out' }}>
             <div style={{ width:32, height:32, borderRadius:'50%', flexShrink:0, display:'flex', alignItems:'center', justifyContent:'center', fontSize:14, fontWeight:600, background:'#E1F5EE', color:'#0F6E56', marginTop:4 }}>L</div>
-            <div style={{ padding:'20px 28px', borderRadius:'20px 20px 20px 4px', background:'rgba(255, 255, 255, 0.85)', backdropFilter:'blur(16px)', color:'var(--dgray)', maxWidth:750, fontSize:13.5, border:'1px solid rgba(255, 255, 255, 0.6)', boxShadow:'var(--shadow-md)' }}>
+            <div className="chat-message-bubble" style={{ padding:'20px 28px', borderRadius:'20px 20px 20px 4px', background:'rgba(255, 255, 255, 0.85)', backdropFilter:'blur(16px)', color:'var(--dgray)', maxWidth:750, fontSize:13.5, border:'1px solid rgba(255, 255, 255, 0.6)', boxShadow:'var(--shadow-md)' }}>
               <ReactMarkdown remarkPlugins={[remarkGfm]} components={MarkdownComponents}>{streamText}</ReactMarkdown>
             </div>
           </div>

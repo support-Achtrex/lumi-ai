@@ -348,7 +348,7 @@ button:active { transform: translateY(0); }
   }
 
   .main-content-area {
-    padding: 16px !important;
+    padding: 0 !important;
   }
   
   h1 {
@@ -356,6 +356,47 @@ button:active { transform: translateY(0); }
   }
   h2 {
     font-size: 24px !important;
+  }
+
+  /* ── Overrides for inline styles on Mobile ── */
+
+  /* Override large padding values globally */
+  [style*="padding: 24px;"],
+  [style*="padding: 32px;"],
+  [style*="padding: 40px;"],
+  [style*="padding: 48px;"],
+  [style*="padding: 24px 32px;"],
+  [style*="padding: 40px 48px;"],
+  [style*="padding: 20px 24px;"] {
+    padding: 16px !important;
+  }
+
+  /* Fix 2 and 3 column grids to stack on mobile */
+  [style*="grid-template-columns: 1fr 1fr;"],
+  [style*="grid-template-columns: repeat(3, 1fr);"],
+  [style*="grid-template-columns: 2fr 1fr;"],
+  [style*="grid-template-columns: 1fr 1.5fr;"] {
+    grid-template-columns: 1fr !important;
+  }
+  
+  /* Let complex grids (pseudo-tables) scroll horizontally */
+  [style*="grid-template-columns: 2fr 1fr 1fr 1.5fr 2fr;"],
+  [style*="grid-template-columns: 1fr 2fr 2fr 2fr;"] {
+    min-width: 700px;
+  }
+  
+  /* Make sure scrolling grids' containers can actually scroll */
+  .glass-panel {
+    overflow-x: auto !important;
+  }
+
+  /* Modals */
+  .card[style*="width: 500px"],
+  [style*="width: 500"] {
+     width: 95% !important;
+     max-width: 95% !important;
+     margin-left: auto;
+     margin-right: auto;
   }
 }
 
@@ -513,4 +554,12 @@ button:active { transform: translateY(0); }
   .bento-col-4, .bento-col-6, .bento-col-8 { grid-column: span 12; }
 }
 
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
 
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.8; }
+}

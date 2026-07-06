@@ -608,3 +608,19 @@
 2026-07-05 23:16:08 [info]: ::1 - - [05/Jul/2026:23:16:08 +0000] "POST /api/parts/suggest HTTP/1.1" 200 513 "-" "node"
 2026-07-05 23:16:09 [info]: [Parts AI] Details requested. Query: Alternator
 2026-07-05 23:16:19 [info]: ::1 - - [05/Jul/2026:23:16:19 +0000] "POST /api/parts/details HTTP/1.1" 200 - "-" "node"
+2026-07-05 23:22:00 [info]: PostgreSQL pool initialised
+2026-07-05 23:22:00 [info]: ✅ PostgreSQL connected
+2026-07-05 23:22:00 [info]: Redis connected
+2026-07-05 23:22:01 [info]: ✅ Redis connected
+2026-07-05 23:22:01 [info]: 🚀 AAIA server running on port 3001
+2026-07-05 23:22:01 [info]: 📡 Environment: development
+2026-07-05 23:22:01 [info]: 🌐 Frontend: http://localhost:3000
+2026-07-05 23:22:01 [info]: 🤖 Model: undefined
+2026-07-05 23:22:34 [info]: PostgreSQL pool initialised
+2026-07-05 23:22:34 [info]: ✅ PostgreSQL connected
+2026-07-05 23:22:34 [info]: Redis connected
+2026-07-05 23:22:36 [info]: ✅ Redis connected
+2026-07-05 23:22:36 [info]: 🚀 AAIA server running on port 3001
+2026-07-05 23:22:36 [info]: 📡 Environment: development
+2026-07-05 23:22:36 [info]: 🌐 Frontend: http://localhost:3000
+2026-07-05 23:22:36 [info]: 🤖 Model: undefined
