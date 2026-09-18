@@ -633,3 +633,7 @@ Please retry in 10.68152492s. [{"@type":"type.googleapis.com/google.rpc.Help","l
     at async generateContent (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\node_modules\@google\generative-ai\dist\index.js:867:22)
     at async AAIAService.getRepairAdviceAndCostEstimate (C:\Users\hp\Desktop\Achtrex LLC\lumi-ai\services\AAIAService.js:706:22)
     at async test ([eval]:6:17)
+2026-09-18 19:46:42 [info]: PartnerStore: Added partner Test Dynamic Garage (gar-1789760802546)
+2026-09-18 19:46:42 [info]: PartnerStore: Updated partner Test Dynamic Garage (gar-1789760802546)
+2026-09-18 19:46:42 [info]: PartnerStore: New booking created bk-802548 (Mobile Brake Test)
+2026-09-18 19:46:42 [info]: PartnerStore: Removed partner gar-1789760802546

@@ -11,8 +11,7 @@ router.use(authenticate, requireRole('admin'));
 // ── GET /api/admin/stats ──────────────────────────────────────────────────────
 router.get('/stats', async (req, res, next) => {
   try {
-    const garagesRouter = require('./garages');
-    const bookingsRouter = require('./bookings');
+    const PartnerStore = require('../services/PartnerStore');
 
     let totalUsers = 0;
     let activeUsers = 0;
@@ -40,10 +39,12 @@ router.get('/stats', async (req, res, next) => {
       // Degraded fallback
     }
 
-    const totalGarages = garagesRouter.PARTNER_GARAGES ? garagesRouter.PARTNER_GARAGES.length : 0;
-    const activeVans = garagesRouter.PARTNER_GARAGES ? garagesRouter.PARTNER_GARAGES.filter(g => g.isMobileCapable).length : 0;
-    const totalBookings = bookingsRouter.USER_BOOKINGS ? bookingsRouter.USER_BOOKINGS.length : 0;
-    const pendingBookings = bookingsRouter.USER_BOOKINGS ? bookingsRouter.USER_BOOKINGS.filter(b => b.status === 'pending').length : 0;
+    const allGarages = PartnerStore.getGarages({ approvalStatus: 'all' });
+    const totalGarages = allGarages.length;
+    const activeVans = allGarages.filter(g => g.isMobileCapable).length;
+    const allBookings = PartnerStore.getBookings({ isAdmin: true });
+    const totalBookings = allBookings.length;
+    const pendingBookings = allBookings.filter(b => b.status === 'pending').length;
 
     let totalRevenue = 0;
     try {
@@ -297,109 +298,49 @@ router.delete('/discounts/:id', async (req, res, next) => {
 
 // ── PARTNER SHOPS & GARAGES MANAGEMENT (ADMIN) ──────────────────────────────
 router.get('/garages', (req, res) => {
-  const garagesRouter = require('./garages');
-  const list = garagesRouter.PARTNER_GARAGES || [];
+  const PartnerStore = require('../services/PartnerStore');
+  const list = PartnerStore.getGarages({ approvalStatus: 'all' });
   res.json({ success: true, data: list });
 });
 
 router.post('/garages', (req, res) => {
-  const garagesRouter = require('./garages');
-  const { name, type, isMobileCapable, phone, email, city, state, zip, address, latitude, longitude, hourlyRate, servicesOffered, approvalStatus, bio, logo, image } = req.body;
-  
-  const defaultImg = isMobileCapable 
-    ? 'https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=600&q=80'
-    : 'https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=600&q=80';
-
-  const newPartner = {
-    id: `gar-${Date.now()}`,
-    name: name || 'New Partner Garage',
-    tagline: isMobileCapable ? 'Certified Remote Mobile Service' : 'Certified Automotive Center',
-    type: type || (isMobileCapable ? 'mobile_mechanic' : 'garage'),
-    isMobileCapable: Boolean(isMobileCapable),
-    approvalStatus: approvalStatus || 'approved',
-    rating: 5.0,
-    reviewCount: 1,
-    phone: phone || '+1 (800) 555-0000',
-    email: email || 'partner@aaia.achtrex.com',
-    address: address || 'Local Metro',
-    city: city || 'Metro Hub',
-    state: state || '',
-    zip: zip || '',
-    latitude: latitude ? parseFloat(latitude) : null,
-    longitude: longitude ? parseFloat(longitude) : null,
-    mapUrl: (latitude && longitude) 
-      ? `https://www.google.com/maps?q=${latitude},${longitude}`
-      : (address && city ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${address}, ${city} ${state || ''} ${zip || ''}`)}` : ''),
-    serviceRadiusMiles: parseInt(req.body.serviceRadiusMiles) || 25,
-    hourlyRate: parseInt(hourlyRate) || 110,
-    servicesOffered: Array.isArray(servicesOffered) ? servicesOffered : (servicesOffered ? servicesOffered.split(',').map(s => s.trim()) : ['Diagnostics', 'Brake Service']),
-    verifiedBadge: true,
-    badges: isMobileCapable ? ['🚐 Remote Mobile Van', '✅ Admin Verified'] : ['🏢 Verified Center', '✅ Admin Verified'],
-    logo: logo || null,
-    image: image || logo || defaultImg,
-    operatingHours: 'Mon-Sat: 8:00 AM - 6:00 PM',
-    bio: bio || 'Verified AAIA Partner Shop'
-  };
-
-  if (!garagesRouter.PARTNER_GARAGES) garagesRouter.PARTNER_GARAGES = [];
-  garagesRouter.PARTNER_GARAGES.unshift(newPartner);
-  res.status(201).json({ success: true, data: newPartner });
+  const PartnerStore = require('../services/PartnerStore');
+  const partner = PartnerStore.createGarage(req.body);
+  res.status(201).json({ success: true, data: partner });
 });
 
 router.put('/garages/:id', (req, res) => {
-  const garagesRouter = require('./garages');
-  if (!garagesRouter.PARTNER_GARAGES) garagesRouter.PARTNER_GARAGES = [];
-  const index = garagesRouter.PARTNER_GARAGES.findIndex(g => g.id === req.params.id);
-  if (index === -1) return res.status(404).json({ success: false, error: 'Partner not found' });
-  
-  const existing = garagesRouter.PARTNER_GARAGES[index];
-  const updated = {
-    ...existing,
-    ...req.body
-  };
-
-  if (req.body.latitude && req.body.longitude) {
-    updated.mapUrl = `https://www.google.com/maps?q=${req.body.latitude},${req.body.longitude}`;
-  }
-
-  garagesRouter.PARTNER_GARAGES[index] = updated;
-  res.json({ success: true, data: garagesRouter.PARTNER_GARAGES[index] });
+  const PartnerStore = require('../services/PartnerStore');
+  const updated = PartnerStore.updateGarage(req.params.id, req.body);
+  if (!updated) return res.status(404).json({ success: false, error: 'Partner not found' });
+  res.json({ success: true, data: updated });
 });
 
 router.delete('/garages/:id', (req, res) => {
-  const garagesRouter = require('./garages');
-  if (!garagesRouter.PARTNER_GARAGES) garagesRouter.PARTNER_GARAGES = [];
-  const index = garagesRouter.PARTNER_GARAGES.findIndex(g => g.id === req.params.id);
-  if (index === -1) return res.status(404).json({ success: false, error: 'Partner not found' });
-  
-  garagesRouter.PARTNER_GARAGES.splice(index, 1);
+  const PartnerStore = require('../services/PartnerStore');
+  const deleted = PartnerStore.deleteGarage(req.params.id);
+  if (!deleted) return res.status(404).json({ success: false, error: 'Partner not found' });
   res.json({ success: true, message: 'Partner removed' });
 });
 
 // ── SERVICE BOOKINGS MANAGEMENT (ADMIN) ──────────────────────────────────────
 router.get('/bookings', (req, res) => {
-  const bookingsRouter = require('./bookings');
-  const list = bookingsRouter.USER_BOOKINGS || [];
+  const PartnerStore = require('../services/PartnerStore');
+  const list = PartnerStore.getBookings({ isAdmin: true });
   res.json({ success: true, data: list });
 });
 
 router.put('/bookings/:id', (req, res) => {
-  const bookingsRouter = require('./bookings');
-  if (!bookingsRouter.USER_BOOKINGS) bookingsRouter.USER_BOOKINGS = [];
-  const booking = bookingsRouter.USER_BOOKINGS.find(b => b.id === req.params.id);
+  const PartnerStore = require('../services/PartnerStore');
+  const booking = PartnerStore.updateBooking(req.params.id, req.body);
   if (!booking) return res.status(404).json({ success: false, error: 'Booking not found' });
-
-  Object.assign(booking, req.body);
   res.json({ success: true, data: booking });
 });
 
 router.delete('/bookings/:id', (req, res) => {
-  const bookingsRouter = require('./bookings');
-  if (!bookingsRouter.USER_BOOKINGS) bookingsRouter.USER_BOOKINGS = [];
-  const index = bookingsRouter.USER_BOOKINGS.findIndex(b => b.id === req.params.id);
-  if (index === -1) return res.status(404).json({ success: false, error: 'Booking not found' });
-
-  bookingsRouter.USER_BOOKINGS.splice(index, 1);
+  const PartnerStore = require('../services/PartnerStore');
+  const deleted = PartnerStore.deleteBooking(req.params.id);
+  if (!deleted) return res.status(404).json({ success: false, error: 'Booking not found' });
   res.json({ success: true, message: 'Booking removed' });
 });
 
