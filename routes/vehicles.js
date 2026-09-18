@@ -1,7 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 const { param, query, body, validationResult } = require('express-validator');
-const { authenticate, requireCredits } = require('../middleware/auth');
+const { authenticate, requireCredits, optionalAuth } = require('../middleware/auth');
 const { vehicleRateLimiter } = require('../middleware/rateLimiter');
 const VehicleDataService = require('../services/VehicleDataService');
 const AAIAService      = require('../services/AAIAService');
@@ -239,8 +239,7 @@ router.get('/ymmt/models', authenticate, async (req, res, next) => {
 
 // ── POST /api/vehicles/identify-image — AI Visual Car Scanner ──────────────
 router.post('/identify-image',
-  authenticate,
-  requireCredits(1),
+  optionalAuth,
   async (req, res, next) => {
     try {
       const { image, mimeType } = req.body;
@@ -253,7 +252,7 @@ router.post('/identify-image',
         mimeType: mimeType || 'image/jpeg'
       });
 
-      // Deduct 1 credit if not enterprise
+      // Deduct 1 credit if not enterprise and logged in
       try {
         if (req.user && req.user.plan_type !== 'enterprise' && req.user.credits > 0) {
           const { query } = require('../config/database');
@@ -272,7 +271,7 @@ router.post('/identify-image',
 
 // ── POST /api/vehicles/repair-estimate — AI Repair Advice & Cost Estimator ──
 router.post('/repair-estimate',
-  authenticate,
+  optionalAuth,
   async (req, res, next) => {
     try {
       const { vehicle, repairJob, symptoms } = req.body;

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { authenticate } = require('../middleware/auth');
+const { authenticate, optionalAuth } = require('../middleware/auth');
 const logger = require('../config/logger');
 
 // In-memory persistent store initialized with rich certified automotive partners
@@ -148,7 +148,7 @@ let PARTNER_GARAGES = [
 ];
 
 // ── GET /api/garages — List & Filter Garages & Mobile Mechanics ───────────────
-router.get('/', authenticate, (req, res) => {
+router.get('/', optionalAuth, (req, res) => {
   try {
     const { type, service, search, isMobileOnly } = req.query;
     let results = [...PARTNER_GARAGES];
@@ -190,7 +190,7 @@ router.get('/', authenticate, (req, res) => {
 });
 
 // ── GET /api/garages/:id — Details ──────────────────────────────────────────
-router.get('/:id', authenticate, (req, res) => {
+router.get('/:id', optionalAuth, (req, res) => {
   const garage = PARTNER_GARAGES.find(g => g.id === req.params.id);
   if (!garage) {
     return res.status(404).json({ success: false, error: 'Partner not found' });
@@ -199,7 +199,7 @@ router.get('/:id', authenticate, (req, res) => {
 });
 
 // ── POST /api/garages/onboard — Partner Onboarding Form ──────────────────────
-router.post('/onboard', authenticate, (req, res) => {
+router.post('/onboard', optionalAuth, (req, res) => {
   try {
     const {
       name,
