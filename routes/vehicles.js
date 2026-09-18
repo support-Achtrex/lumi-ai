@@ -231,6 +231,12 @@ router.get('/ymmt/models', authenticate, async (req, res, next) => {
     if (!make || !year) return res.status(400).json({ success: false, error: 'Make and Year are required' });
     const response = await axios.get(`https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeYear/make/${encodeURIComponent(make)}/modelyear/${year}?format=json`);
     let models = response.data.Results.map(m => m.Model_Name).sort();
+    res.json({ success: true, models });
+  } catch (error) {
+    next(error);
+  }
+});
+
 // ── POST /api/vehicles/identify-image — AI Visual Car Scanner ──────────────
 router.post('/identify-image',
   authenticate,
