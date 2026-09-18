@@ -28,6 +28,8 @@ const billingRoutes   = require('./routes/billing');
 const usageRoutes     = require('./routes/usage');
 const reportsRoutes   = require('./routes/reports');
 const partsRoutes     = require('./routes/parts');
+const garagesRoutes   = require('./routes/garages');
+const bookingsRoutes  = require('./routes/bookings');
 
 const app = express();
 const server = http.createServer(app);
@@ -93,6 +95,8 @@ app.use('/api/billing',     billingRoutes);
 app.use('/api/usage',       usageRoutes);
 app.use('/api/reports',     reportsRoutes);
 app.use('/api/parts',       partsRoutes);
+app.use('/api/garages',     garagesRoutes);
+app.use('/api/bookings',    bookingsRoutes);
 
 // Proxy for the full HTML auction report
 app.get('/api/vehicles/:vin/html-report', async (req, res) => {

@@ -237,6 +237,37 @@ class APIService {
   static async getReport(id)               { return (await this.get(`/reports/${id}`)).report; }
   static async saveReport(name, type, content) { return (await this.post('/reports', { name, type, content })).report; }
 
+  // ── AI Car Scanner & Repair Estimator ─────────────────────────────────────
+  static async identifyCarImage(image, mimeType = 'image/jpeg') {
+    return (await this.post('/vehicles/identify-image', { image, mimeType })).data;
+  }
+  static async getRepairEstimate(vehicle, repairJob, symptoms) {
+    return (await this.post('/vehicles/repair-estimate', { vehicle, repairJob, symptoms })).data;
+  }
+
+  // ── Garages & Remote Mobile Service Marketplace ───────────────────────────
+  static async getGarages(params = {}) {
+    const qs = new URLSearchParams(params).toString();
+    return (await this.get(`/garages${qs ? `?${qs}` : ''}`)).data;
+  }
+  static async getGarageById(id) {
+    return (await this.get(`/garages/${id}`)).data;
+  }
+  static async onboardGarage(data) {
+    return await this.post('/garages/onboard', data);
+  }
+
+  // ── Bookings ──────────────────────────────────────────────────────────────
+  static async createBooking(data) {
+    return await this.post('/bookings', data);
+  }
+  static async getUserBookings() {
+    return (await this.get('/bookings')).data;
+  }
+  static async updateBookingStatus(id, status) {
+    return (await this.req(`/bookings/${id}/status`, { method: 'PATCH', body: JSON.stringify({ status }) })).data;
+  }
+
   // ── Parts (AI-Powered) ────────────────────────────────────────────────────
   static async suggestParts(mode, query)   { return await this.post('/parts/suggest', { mode, query }); }
   static async getPartDetails(partQuery, vehicleInfo) { return await this.post('/parts/details', { partQuery, vehicleInfo }); }

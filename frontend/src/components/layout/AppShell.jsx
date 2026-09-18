@@ -15,24 +15,29 @@ import {
   LogOut,
   Menu,
   Trash2,
-  Plus
+  Plus,
+  Camera,
+  Store,
+  DollarSign
 } from 'lucide-react';
 
 const NAV = [
   { group: 'Intelligence', items: [
-    { to: '/chat',        Icon: MessageSquare,     label: 'Chat' },
-    { to: '/vin',         Icon: Car,               label: 'VIN lookup' },
+    { to: '/chat',          Icon: MessageSquare,     label: 'AI Chat' },
+    { to: '/car-scanner',   Icon: Camera,             label: 'AI Car Scanner', badge: 'NEW', badgeColor: '#0A2085', badgeText: '#fff' },
+    { to: '/vin',           Icon: Car,                label: 'VIN Lookup' },
   ]},
-  { group: 'Operations', items: [
-    { to: '/fleet',       Icon: Truck,             label: 'Fleet' },
-    { to: '/diagnostics', Icon: Wrench,            label: 'Diagnostics' },
-    { to: '/parts',       Icon: Package,           label: 'Parts Lookup' },
+  { group: 'Operations & Service', items: [
+    { to: '/repair-advice', Icon: Wrench,             label: 'Repair & Cost Estimator' },
+    { to: '/garages',       Icon: Store,              label: 'Garages & Remote Mobile' },
+    { to: '/fleet',         Icon: Truck,              label: 'Fleet' },
+    { to: '/diagnostics',   Icon: Settings,           label: 'Diagnostics' },
   ]},
   { group: 'Reports', items: [
-    { to: '/reports',     Icon: FileText,          label: 'Reports Center' },
+    { to: '/reports',       Icon: FileText,           label: 'Reports Center' },
   ]},
   { group: 'Administration', role: 'admin', items: [
-    { to: '/admin/users', Icon: Users,             label: 'User Management' },
+    { to: '/admin/users',   Icon: Users,              label: 'User Management' },
   ]},
 ];
 

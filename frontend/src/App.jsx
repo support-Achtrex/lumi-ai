@@ -13,6 +13,9 @@ import HistoryPage from './pages/HistoryPage';
 import AnalyticsPage from './pages/AnalyticsPage';
 import ReportsPage from './pages/ReportsPage';
 import PartsPage from './pages/PartsPage';
+import RepairAdvicePage from './pages/RepairAdvicePage';
+import CarScannerPage from './pages/CarScannerPage';
+import GaragesPage from './pages/GaragesPage';
 import WorkflowAutomationPage from './pages/WorkflowAutomationPage';
 import AdminUsersPage from './pages/AdminUsersPage';
 import ConsoleShell from './components/layout/ConsoleShell';
@@ -72,19 +75,22 @@ function AppContainer() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route element={<RequireAuth><AppShell /></RequireAuth>}>
-            <Route path="/chat"         element={<ChatPage />} />
-            <Route path="/chat/:id"     element={<ChatPage />} />
-            <Route path="/vin"          element={<VINPage />} />
-            <Route path="/fleet"        element={<FleetPage />} />
-            <Route path="/inspection"   element={<InspectionPage />} />
+            <Route path="/chat"           element={<ChatPage />} />
+            <Route path="/chat/:id"       element={<ChatPage />} />
+            <Route path="/car-scanner"    element={<CarScannerPage />} />
+            <Route path="/vin"            element={<VINPage />} />
+            <Route path="/fleet"          element={<FleetPage />} />
+            <Route path="/inspection"     element={<InspectionPage />} />
             <Route path="/inspection/:id" element={<InspectionPage />} />
-            <Route path="/diagnostics"  element={<DiagnosticsPage />} />
-            <Route path="/history"      element={<HistoryPage />} />
-            <Route path="/analytics"    element={<AnalyticsPage />} />
-            <Route path="/reports"      element={<ReportsPage />} />
-            <Route path="/parts"        element={<PartsPage />} />
-            <Route path="/workflow"     element={<WorkflowAutomationPage />} />
-            <Route path="/admin/users"  element={<AdminUsersPage />} />
+            <Route path="/diagnostics"    element={<DiagnosticsPage />} />
+            <Route path="/history"        element={<HistoryPage />} />
+            <Route path="/analytics"      element={<AnalyticsPage />} />
+            <Route path="/reports"        element={<ReportsPage />} />
+            <Route path="/repair-advice"  element={<RepairAdvicePage />} />
+            <Route path="/parts"          element={<Navigate to="/repair-advice" replace />} />
+            <Route path="/garages"        element={<GaragesPage />} />
+            <Route path="/workflow"       element={<WorkflowAutomationPage />} />
+            <Route path="/admin/users"    element={<AdminUsersPage />} />
           </Route>
           <Route path="/console" element={<RequireAuth><ConsoleShell /></RequireAuth>}>
             <Route index element={<Navigate to="/console/dashboard" replace />} />

@@ -231,10 +231,57 @@ router.get('/ymmt/models', authenticate, async (req, res, next) => {
     if (!make || !year) return res.status(400).json({ success: false, error: 'Make and Year are required' });
     const response = await axios.get(`https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeYear/make/${encodeURIComponent(make)}/modelyear/${year}?format=json`);
     let models = response.data.Results.map(m => m.Model_Name).sort();
-    res.json({ success: true, models });
-  } catch (error) {
-    next(error);
+// ── POST /api/vehicles/identify-image — AI Visual Car Scanner ──────────────
+router.post('/identify-image',
+  authenticate,
+  requireCredits(1),
+  async (req, res, next) => {
+    try {
+      const { image, mimeType } = req.body;
+      if (!image) {
+        return res.status(400).json({ success: false, error: 'Image data (base64) is required.' });
+      }
+
+      const carDetails = await AAIAService.identifyCarFromImage({
+        imageBase64: image,
+        mimeType: mimeType || 'image/jpeg'
+      });
+
+      // Deduct 1 credit if not enterprise
+      if (req.user.plan_type !== 'enterprise') {
+        const { query } = require('../config/database');
+        await query('UPDATE users SET credits = credits - 1 WHERE id = $1', [req.user.id]);
+      }
+
+      res.json({ success: true, data: carDetails });
+    } catch (error) {
+      next(error);
+    }
   }
-});
+);
+
+// ── POST /api/vehicles/repair-estimate — AI Repair Advice & Cost Estimator ──
+router.post('/repair-estimate',
+  authenticate,
+  async (req, res, next) => {
+    try {
+      const { vehicle, repairJob, symptoms } = req.body;
+      if (!repairJob && !symptoms) {
+        return res.status(400).json({ success: false, error: 'A repair job or symptom description is required.' });
+      }
+
+      const estimate = await AAIAService.getRepairAdviceAndCostEstimate({
+        vehicle,
+        repairJob,
+        symptoms
+      });
+
+      res.json({ success: true, data: estimate });
+    } catch (error) {
+      next(error);
+    }
+  }
+);
 
 module.exports = router;
+

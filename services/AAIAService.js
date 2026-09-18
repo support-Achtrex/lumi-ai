@@ -446,6 +446,210 @@ Return JSON only with this exact structure:
     }
   }
 
+  static async identifyCarFromImage({ imageBase64, mimeType = 'image/jpeg' }) {
+    try {
+      if (!imageBase64) throw new Error('Image data is required.');
+      
+      let cleanBase64 = imageBase64;
+      let cleanMime = mimeType;
+      if (imageBase64.startsWith('data:')) {
+        cleanMime = imageBase64.substring(5, imageBase64.indexOf(';'));
+        cleanBase64 = imageBase64.substring(imageBase64.indexOf('base64,') + 7);
+      }
+
+      const prompt = `You are the world's leading automotive visual recognition expert for AAIA.
+Analyze this vehicle image in exhaustive detail and identify:
+1. Exact Make, Model, Year Range or precise Generation (e.g., Porsche 911 992, BMW M3 G80, Ford F-150 14th Gen).
+2. Exact Body Style and Trim / Sub-model package (e.g. AMG Line, M Sport, Limited, Rubicon, GT).
+3. Exact Paint Color Name (e.g., "Nardo Gray", "Daytona Violet Metallic", "Chalk White", "Obsidian Black Metallic", "Soul Red Crystal") along with finish type (Gloss, Metallic, Pearl, Matte/Satin, Chrome) and an approximate HEX color code.
+4. Visual Condition, detected aftermarket modifications (wheels, aero/spoiler, tint, exhaust), and visible wear/damage.
+5. Estimated Resale / Market Value ranges (Trade-in, Private Party, Dealer Retail in USD).
+6. Technical drivetrain & engine specifications.
+7. Common known mechanical/electrical issues & recommended maintenance for this specific model/year.
+
+Return STRICTLY a JSON object without any Markdown wrapping or commentary:
+{
+  "confidence": 0.95,
+  "make": "Porsche",
+  "model": "911 Carrera S",
+  "yearRange": "2020-2024",
+  "generation": "992",
+  "bodyStyle": "Coupe",
+  "trim": "Carrera S",
+  "color": {
+    "exactName": "Chalk / Crayon",
+    "finish": "Gloss",
+    "hexCode": "#D1D5DB"
+  },
+  "condition": {
+    "overallRating": "Pristine",
+    "exteriorWear": "Minor road use",
+    "detectedModifications": ["Sport Design Front Fascia", "20/21-inch Carrera S Wheels"]
+  },
+  "marketValue": {
+    "currency": "USD",
+    "tradeIn": "$115,000 - $122,000",
+    "privateParty": "$125,000 - $134,000",
+    "dealerRetail": "$135,000 - $145,000"
+  },
+  "technicalSpecs": {
+    "engine": "3.0L Twin-Turbocharged Boxer 6",
+    "horsepower": "443 hp @ 6,500 rpm",
+    "drivetrain": "RWD",
+    "transmission": "8-Speed Dual-Clutch (PDK)",
+    "fuelType": "Premium Unleaded"
+  },
+  "commonKnownIssues": [
+    "PCM infotainment screen connectivity lag",
+    "Front aero lip ground clearance on steep angles",
+    "Coolant changeover valve monitoring"
+  ],
+  "recommendedServiceAction": "Intermediate 30,000 mile comprehensive checkup"
+}`;
+
+      const { HarmCategory, HarmBlockThreshold } = require('@google/generative-ai');
+      const model = getGeminiClient().getGenerativeModel({ 
+        model: 'gemini-2.5-flash',
+        safetySettings: [
+          { category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT, threshold: HarmBlockThreshold.BLOCK_NONE },
+          { category: HarmCategory.HARM_CATEGORY_HARASSMENT, threshold: HarmBlockThreshold.BLOCK_NONE },
+          { category: HarmCategory.HARM_CATEGORY_HATE_SPEECH, threshold: HarmBlockThreshold.BLOCK_NONE },
+          { category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT, threshold: HarmBlockThreshold.BLOCK_NONE }
+        ]
+      });
+
+      const result = await model.generateContent([
+        prompt,
+        {
+          inlineData: {
+            data: cleanBase64,
+            mimeType: cleanMime
+          }
+        }
+      ]);
+
+      let text = result.response.text().trim();
+      const match = text.match(/\{[\s\S]*\}/);
+      if (match) text = match[0];
+      return JSON.parse(text);
+
+    } catch (error) {
+      logger.error('identifyCarFromImage error:', error);
+      throw error;
+    }
+  }
+
+  static async getRepairAdviceAndCostEstimate({ vehicle, repairJob, symptoms }) {
+    try {
+      const vInfo = typeof vehicle === 'string' ? vehicle : `${vehicle?.year || ''} ${vehicle?.make || ''} ${vehicle?.model || ''} ${vehicle?.trim || ''}`.trim();
+      const prompt = `You are AAIA's expert automotive master technician and repair cost estimating engine.
+Calculate a comprehensive, realistic repair advice and itemized cost breakdown for:
+VEHICLE: ${vInfo || 'General Vehicle'}
+REPAIR JOB / ISSUE: ${repairJob || symptoms || 'General Service'}
+SYMPTOMS: ${symptoms || 'None specified'}
+
+Provide accurate industry-standard parts costs (OEM vs Quality Aftermarket), realistic labor hours, standard certified shop vs remote mobile mechanic labor pricing, DIY difficulty score (1-5), required tools, step-by-step repair guide, and critical safety warnings.
+
+Return STRICTLY a JSON object:
+{
+  "repairTitle": "Front Brake Pads and Rotors Replacement",
+  "vehicleSummary": "${vInfo || 'Vehicle'}",
+  "urgency": "medium",
+  "summary": "Detailed summary of the required repair work.",
+  "diyDifficulty": {
+    "rating": "Moderate",
+    "score": 2,
+    "canDoAtHome": true,
+    "summary": "Explanation of DIY feasibility."
+  },
+  "laborDetails": {
+    "estimatedHours": "1.5 - 2.0 hrs",
+    "shopHourlyRate": "$120 - $160/hr",
+    "mobileMechanicHourlyRate": "$95 - $135/hr",
+    "estimatedLaborCostShop": "$180 - $280",
+    "estimatedLaborCostMobile": "$145 - $240"
+  },
+  "partsBreakdown": [
+    {
+      "partName": "Front Brake Pad Set",
+      "oemPartNumber": "OEM-12345",
+      "oemPrice": "$80 - $115",
+      "aftermarketPrice": "$40 - $65",
+      "recommendedBrand": "Brembo / Bosch"
+    },
+    {
+      "partName": "Front Brake Rotors (Pair)",
+      "oemPartNumber": "OEM-67890",
+      "oemPrice": "$160 - $220",
+      "aftermarketPrice": "$90 - $140",
+      "recommendedBrand": "Centric / Akebono"
+    }
+  ],
+  "totalCostEstimate": {
+    "diyPartsOnly": "$130 - $205",
+    "shopWithAftermarket": "$310 - $485",
+    "shopWithOEM": "$420 - $615",
+    "mobileWithAftermarket": "$275 - $445",
+    "mobileWithOEM": "$385 - $575"
+  },
+  "requiredTools": [
+    "Hydraulic Floor Jack & 2 Jack Stands",
+    "14mm & 17mm Socket / Wrench Set",
+    "Caliper Piston Compressor Tool",
+    "Brake Cleaner Spray & Wire Brush",
+    "High-Temp Silicone Caliper Grease"
+  ],
+  "stepByStepGuide": [
+    {
+      "step": 1,
+      "title": "Preparation & Lifting",
+      "instruction": "Loosen lug nuts, lift vehicle securely with jack stands, and remove wheels."
+    },
+    {
+      "step": 2,
+      "title": "Disassembly & Inspection",
+      "instruction": "Unbolt caliper slide pins, hang caliper safely, and remove caliper bracket."
+    },
+    {
+      "step": 3,
+      "title": "Component Replacement",
+      "instruction": "Install new rotor, compress caliper piston, lubricate contact points, and fit new pads."
+    },
+    {
+      "step": 4,
+      "title": "Reassembly & Bedding",
+      "instruction": "Reassemble to OEM torque specs, pump pedal before driving, and bed in pads."
+    }
+  ],
+  "safetyWarnings": [
+    "Never let the caliper hang by its rubber hydraulic hose.",
+    "Pump the brake pedal until firm before putting the vehicle into gear."
+  ]
+}`;
+
+      const { HarmCategory, HarmBlockThreshold } = require('@google/generative-ai');
+      const model = getGeminiClient().getGenerativeModel({ 
+        model: 'gemini-2.5-flash',
+        safetySettings: [
+          { category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT, threshold: HarmBlockThreshold.BLOCK_NONE },
+          { category: HarmCategory.HARM_CATEGORY_HARASSMENT, threshold: HarmBlockThreshold.BLOCK_NONE },
+          { category: HarmCategory.HARM_CATEGORY_HATE_SPEECH, threshold: HarmBlockThreshold.BLOCK_NONE },
+          { category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT, threshold: HarmBlockThreshold.BLOCK_NONE }
+        ]
+      });
+
+      const result = await model.generateContent(prompt);
+      let text = result.response.text().trim();
+      const match = text.match(/\{[\s\S]*\}/);
+      if (match) text = match[0];
+      return JSON.parse(text);
+
+    } catch (error) {
+      logger.error('getRepairAdviceAndCostEstimate error:', error);
+      throw error;
+    }
+  }
+
   static async analyzeImage(base64Image) {
     try {
       if (!base64Image.startsWith('data:')) return null;
