@@ -43,26 +43,6 @@ export default function LandingPage() {
         backgroundColor: 'rgba(0, 0, 0, 0.65)', zIndex: 1
       }} />
 
-      {/* ── Header ───────────────────────────────────────── */}
-      <header style={{ 
-        position: 'absolute', top: 0, left: 0, right: 0, zIndex: 10, 
-        padding: '24px 40px', display: 'flex', justifyContent: 'flex-end'
-      }}>
-        <button 
-          onClick={() => navigate('/login')}
-          style={{
-            padding: '8px 24px', background: 'transparent', color: '#fff', 
-            border: '1px solid rgba(255,255,255,0.4)', borderRadius: '30px', cursor: 'pointer',
-            fontSize: '14px', fontWeight: '500', transition: 'all 0.3s ease',
-            display: 'flex', alignItems: 'center', gap: 8
-          }}
-          onMouseOver={(e) => { e.currentTarget.style.background = '#fff'; e.currentTarget.style.color = '#000'; }}
-          onMouseOut={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#fff'; }}
-        >
-          Sign In <ArrowRight size={14} />
-        </button>
-      </header>
-
       {/* ── Central Content ──────────────────────────────── */}
       <main style={{ 
         position: 'relative', zIndex: 10, height: '100%', 
@@ -75,23 +55,23 @@ export default function LandingPage() {
           src="/logo.png" 
           alt="AAIA - Automotive AI Agent Platform Logo" 
           style={{ 
-            height: '80px', objectFit: 'contain', marginBottom: '24px',
-            filter: 'brightness(0) invert(1)' // Ensures it's white if the original logo is dark
+            height: '84px', objectFit: 'contain', marginBottom: '24px'
           }} 
         />
         
         {/* Text */}
         <h1 style={{ 
           fontSize: '48px', fontWeight: '600', color: '#ffffff', 
-          letterSpacing: '-0.02em', marginBottom: '16px', textAlign: 'center'
+          letterSpacing: '-0.02em', marginBottom: '16px', textAlign: 'center',
+          maxWidth: '900px'
         }}>
-          The Autonomous Reasoning Engine for Automotive & Fleet Mobility.
+          The Autonomous Reasoning Engine for Automotive Intelligence.
         </h1>
         <p style={{
           fontSize: '20px', color: '#cbd5e1', textAlign: 'center',
-          maxWidth: '700px', marginBottom: '24px', lineHeight: '1.5'
+          maxWidth: '750px', marginBottom: '28px', lineHeight: '1.5'
         }}>
-          Bridging the gap between static vehicle data and actionable intelligence. Empowering fleet managers and mechanics with AI-driven diagnostics, predictive maintenance, and real-time repair solutions.
+          Bridging the gap between vehicle diagnostics, visual AI scanning, and certified mobile repair. Empowering drivers, master mechanics, and service centers with real-time AI solutions.
         </p>
         <div style={{ 
           display: 'flex', gap: '16px', flexWrap: 'wrap', justifyContent: 'center',

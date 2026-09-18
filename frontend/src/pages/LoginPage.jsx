@@ -93,7 +93,7 @@ export default function LoginPage() {
         <img 
           src="/logo.png" 
           alt="AAIA Logo" 
-          style={{ height: '36px', objectFit: 'contain', cursor: 'pointer', filter: 'brightness(0) invert(1)' }}
+          style={{ height: '36px', objectFit: 'contain', cursor: 'pointer' }}
           onClick={() => navigate('/')}
         />
       </header>

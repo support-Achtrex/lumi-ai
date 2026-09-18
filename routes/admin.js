@@ -130,10 +130,15 @@ router.post('/users', async (req, res, next) => {
 router.put('/users/:id', async (req, res, next) => {
   try {
     const { id } = req.params;
-    const { role, is_active, name, email, plan_type, company, phone } = req.body;
+    const { role, is_active, name, email, plan_type, company, phone, password } = req.body;
 
     if (id === req.user.id && (role && role !== 'admin' || is_active === false)) {
       return res.status(400).json({ success: false, error: 'Cannot demote or deactivate your own admin account' });
+    }
+
+    let hashedPassword = null;
+    if (password && password.trim().length >= 6) {
+      hashedPassword = await bcrypt.hash(password.trim(), 12);
     }
 
     const result = await query(
@@ -145,10 +150,11 @@ router.put('/users/:id', async (req, res, next) => {
            plan_type = COALESCE($5, plan_type),
            company = COALESCE($6, company),
            phone = COALESCE($7, phone),
+           password = COALESCE($8, password),
            updated_at = NOW()
-       WHERE id = $8
+       WHERE id = $9
        RETURNING id, email, name, role, is_active, credits, plan_type, company, phone, last_login, created_at`,
-      [role, is_active, name, email, plan_type, company, phone, id]
+      [role, is_active, name, email, plan_type, company, phone, hashedPassword, id]
     );
 
     if (result.rows.length === 0) {

@@ -115,7 +115,8 @@ export default function AdminUsersPage() {
         plan_type: editFormData.plan_type,
         company: editFormData.company,
         phone: editFormData.phone,
-        is_active: editFormData.is_active
+        is_active: editFormData.is_active,
+        password: editFormData.password ? editFormData.password.trim() : undefined
       });
 
       // Update credits if changed
@@ -409,6 +410,7 @@ export default function AdminUsersPage() {
                           setEditFormData({
                             name: u.name || '',
                             email: u.email || '',
+                            password: '',
                             role: u.role || 'user',
                             plan_type: u.plan_type || 'free',
                             credits: u.credits ?? 5,
@@ -701,6 +703,19 @@ export default function AdminUsersPage() {
                     style={{ width: '100%', padding: '9px 12px', borderRadius: 8, border: '1px solid #CBD5E1', fontSize: 13 }}
                   />
                 </div>
+              </div>
+
+              <div>
+                <label style={{ display: 'block', fontSize: 11.5, fontWeight: 700, color: '#D97706', marginBottom: 4 }}>
+                  RESET PASSWORD (OPTIONAL — LEAVE BLANK TO KEEP CURRENT)
+                </label>
+                <input
+                  type="password"
+                  placeholder="Enter new password to overwrite (min 6 characters)"
+                  value={editFormData.password || ''}
+                  onChange={e => setEditFormData({ ...editFormData, password: e.target.value })}
+                  style={{ width: '100%', padding: '9px 12px', borderRadius: 8, border: '1px solid #F59E0B', background: '#FFFBEB', fontSize: 13 }}
+                />
               </div>
 
               <button
