@@ -3,7 +3,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { 
   Wrench, 
   DollarSign, 
-  Tool, 
   Sparkles, 
   AlertTriangle, 
   CheckCircle2, 
@@ -15,19 +14,27 @@ import {
   Clock, 
   Layers,
   HelpCircle,
-  Car
+  Car,
+  Disc,
+  Zap,
+  Battery,
+  Droplets,
+  Flame,
+  Wind,
+  CircleDot,
+  Settings
 } from 'lucide-react';
 import APIService from '../services/api';
 
 const POPULAR_REPAIRS = [
-  { id: 'brakes', title: 'Front Brake Pads & Rotors', icon: '🛑', category: 'Braking System' },
-  { id: 'alternator', title: 'Alternator & Serpentine Belt', icon: '⚡', category: 'Electrical' },
-  { id: 'battery', title: 'Battery Replacement & Terminal Service', icon: '🔋', category: 'Electrical' },
-  { id: 'oil_transmission', title: 'Transmission Fluid & Filter Flush', icon: '🛢️', category: 'Drivetrain' },
-  { id: 'spark_plugs', title: 'Spark Plugs & Ignition Coils', icon: '💥', category: 'Engine Ignition' },
-  { id: 'ac_compressor', title: 'AC Compressor & Freon Recharge', icon: '❄️', category: 'Climate Control' },
-  { id: 'struts', title: 'Front Suspension Struts & Links', icon: '🚗', category: 'Suspension' },
-  { id: 'timing_belt', title: 'Timing Belt & Water Pump', icon: '⚙️', category: 'Engine Timing' }
+  { id: 'brakes', title: 'Front Brake Pads & Rotors', Icon: Disc, category: 'Braking System' },
+  { id: 'alternator', title: 'Alternator & Serpentine Belt', Icon: Zap, category: 'Electrical' },
+  { id: 'battery', title: 'Battery Replacement & Terminal Service', Icon: Battery, category: 'Electrical' },
+  { id: 'oil_transmission', title: 'Transmission Fluid & Filter Flush', Icon: Droplets, category: 'Drivetrain' },
+  { id: 'spark_plugs', title: 'Spark Plugs & Ignition Coils', Icon: Flame, category: 'Engine Ignition' },
+  { id: 'ac_compressor', title: 'AC Compressor & Freon Recharge', Icon: Wind, category: 'Climate Control' },
+  { id: 'struts', title: 'Front Suspension Struts & Links', Icon: CircleDot, category: 'Suspension' },
+  { id: 'timing_belt', title: 'Timing Belt & Water Pump', Icon: Settings, category: 'Engine Timing' }
 ];
 
 export default function RepairAdvicePage() {
@@ -78,9 +85,6 @@ export default function RepairAdvicePage() {
         
         {/* ── Page Header ── */}
         <div style={{ marginBottom: 28 }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: '#E6F0FA', color: '#0A2085', padding: '4px 12px', borderRadius: 20, fontSize: 12, fontWeight: 700, marginBottom: 8 }}>
-            <Sparkles size={14} /> AI Mechanical Advisory & Cost Index
-          </div>
           <h1 style={{ fontSize: 28, fontWeight: 800, color: '#1C2B3A', margin: '0 0 6px 0', letterSpacing: '-0.5px' }}>
             Repair Advice & Cost Estimator
           </h1>
@@ -144,34 +148,38 @@ export default function RepairAdvicePage() {
               Popular Standard Repairs
             </div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-              {POPULAR_REPAIRS.map(rep => (
-                <button
-                  key={rep.id}
-                  onClick={() => {
-                    setSelectedRepair(rep.title);
-                    setCustomSymptom('');
-                    handleGenerateEstimate(rep.title);
-                  }}
-                  style={{
-                    background: selectedRepair === rep.title ? '#0A2085' : '#F5F8FC',
-                    color: selectedRepair === rep.title ? '#fff' : '#37474F',
-                    border: '1px solid',
-                    borderColor: selectedRepair === rep.title ? '#0A2085' : '#E2E8F0',
-                    padding: '8px 14px',
-                    borderRadius: 10,
-                    fontSize: 12.5,
-                    fontWeight: 600,
-                    cursor: 'pointer',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 6,
-                    transition: 'all 0.15s ease'
-                  }}
-                >
-                  <span>{rep.icon}</span>
-                  <span>{rep.title}</span>
-                </button>
-              ))}
+              {POPULAR_REPAIRS.map(rep => {
+                const IconComponent = rep.Icon;
+                const isSelected = selectedRepair === rep.title;
+                return (
+                  <button
+                    key={rep.id}
+                    onClick={() => {
+                      setSelectedRepair(rep.title);
+                      setCustomSymptom('');
+                      handleGenerateEstimate(rep.title);
+                    }}
+                    style={{
+                      background: isSelected ? '#0A2085' : '#F5F8FC',
+                      color: isSelected ? '#fff' : '#37474F',
+                      border: '1px solid',
+                      borderColor: isSelected ? '#0A2085' : '#E2E8F0',
+                      padding: '8px 14px',
+                      borderRadius: 10,
+                      fontSize: 12.5,
+                      fontWeight: 600,
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 8,
+                      transition: 'all 0.15s ease'
+                    }}
+                  >
+                    <IconComponent size={15} color={isSelected ? '#93C5FD' : '#2563EB'} />
+                    <span>{rep.title}</span>
+                  </button>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -255,8 +263,8 @@ export default function RepairAdvicePage() {
 
               {/* Option 2: Remote Mobile Mechanic (RECOMMENDED) */}
               <div style={{ background: '#F0F7FF', borderRadius: 16, padding: 20, border: '2px solid #0A2085', position: 'relative' }}>
-                <div style={{ position: 'absolute', top: -10, right: 14, background: '#0A2085', color: '#fff', fontSize: 10, fontWeight: 800, padding: '2px 8px', borderRadius: 6, textTransform: 'uppercase' }}>
-                  🚐 Remote Van (Convenient)
+                <div style={{ position: 'absolute', top: -10, right: 14, background: '#0A2085', color: '#fff', fontSize: 10, fontWeight: 800, padding: '2px 8px', borderRadius: 6, textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: 4 }}>
+                  <Truck size={12} /> Remote Van (Recommended)
                 </div>
                 <div style={{ fontSize: 11, fontWeight: 700, color: '#0A2085', textTransform: 'uppercase', marginBottom: 4 }}>
                   Remote Mobile Garage
@@ -363,8 +371,8 @@ export default function RepairAdvicePage() {
                       </div>
                       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
                         {estimateData.requiredTools.map((tool, i) => (
-                          <span key={i} style={{ background: '#F0F5FF', color: '#0A2085', fontSize: 11.5, padding: '3px 8px', borderRadius: 6, fontWeight: 500 }}>
-                            🔧 {tool}
+                          <span key={i} style={{ background: '#F0F5FF', color: '#0A2085', fontSize: 11.5, padding: '3px 8px', borderRadius: 6, fontWeight: 500, display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+                            <Wrench size={11} /> {tool}
                           </span>
                         ))}
                       </div>

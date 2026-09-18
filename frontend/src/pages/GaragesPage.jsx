@@ -231,9 +231,6 @@ export default function GaragesPage() {
         {/* ── Page Header ── */}
         <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 16, marginBottom: 24 }}>
           <div>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: '#E6F0FA', color: '#0A2085', padding: '4px 12px', borderRadius: 20, fontSize: 12, fontWeight: 700, marginBottom: 8 }}>
-              <Truck size={14} /> Certified Service Centers & Remote Mobile Mechanics
-            </div>
             <h1 style={{ fontSize: 28, fontWeight: 800, color: '#1C2B3A', margin: '0 0 6px 0', letterSpacing: '-0.5px' }}>
               Garages & Remote Mobile Service
             </h1>
