@@ -20,7 +20,14 @@ import {
   Search, 
   X,
   Send,
-  Car
+  Car,
+  Upload,
+  Image as ImageIcon,
+  Compass,
+  Navigation,
+  LocateFixed,
+  Building,
+  Check
 } from 'lucide-react';
 import APIService from '../services/api';
 
@@ -57,6 +64,8 @@ export default function GaragesPage() {
 
   // Onboarding Modal State
   const [onboardModalOpen, setOnboardModalOpen] = useState(false);
+  const [logoPreview, setLogoPreview] = useState('');
+  const [geoDetecting, setGeoDetecting] = useState(false);
   const [onboardData, setOnboardData] = useState({
     name: '',
     tagline: '',
@@ -66,13 +75,61 @@ export default function GaragesPage() {
     email: '',
     address: '',
     city: '',
+    state: '',
+    zip: '',
+    latitude: '',
+    longitude: '',
     serviceRadiusMiles: 30,
     hourlyRate: 110,
     servicesOffered: 'Mobile Diagnostics, Brake Replacement, Oil & Fluids, Battery & Starter',
-    bio: ''
+    bio: '',
+    logo: '',
+    image: ''
   });
   const [onboardSubmitting, setOnboardSubmitting] = useState(false);
   const [onboardSuccessMsg, setOnboardSuccessMsg] = useState('');
+
+  const handleLogoUpload = (e) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      if (file.size > 5 * 1024 * 1024) {
+        alert('Image size should be under 5MB');
+        return;
+      }
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setLogoPreview(reader.result);
+        setOnboardData(prev => ({ ...prev, logo: reader.result, image: reader.result }));
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleDetectGPS = () => {
+    if (!navigator.geolocation) {
+      alert('Geolocation is not supported by your browser.');
+      return;
+    }
+    setGeoDetecting(true);
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        setGeoDetecting(false);
+        const lat = pos.coords.latitude.toFixed(5);
+        const lng = pos.coords.longitude.toFixed(5);
+        setOnboardData(prev => ({
+          ...prev,
+          latitude: lat,
+          longitude: lng,
+          city: prev.city || 'Detected Location'
+        }));
+      },
+      (err) => {
+        setGeoDetecting(false);
+        alert('Could not detect location: ' + err.message);
+      },
+      { timeout: 8000 }
+    );
+  };
 
   useEffect(() => {
     loadGarages();
@@ -300,74 +357,99 @@ export default function GaragesPage() {
               </div>
             ) : (
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))', gap: 24 }}>
-                {garages.map(g => (
-                  <div key={g.id} style={{ background: '#fff', borderRadius: 20, overflow: 'hidden', border: '1px solid #D0DCE8', boxShadow: '0 4px 20px rgba(0,0,0,0.03)', display: 'flex', flexDirection: 'column', transition: 'transform 0.2s ease', cursor: 'pointer' }} onMouseOver={e => e.currentTarget.style.transform = 'translateY(-3px)'} onMouseOut={e => e.currentTarget.style.transform = 'translateY(0)'}>
-                    
-                    {/* Image & Badges */}
-                    <div style={{ height: 160, position: 'relative', background: '#E2E8F0' }}>
-                      <img src={g.image} alt={g.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                      <div style={{ position: 'absolute', top: 12, left: 12, display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-                        {g.badges?.map((badge, bi) => (
-                          <span key={bi} style={{ background: 'rgba(10,32,133,0.85)', color: '#fff', backdropFilter: 'blur(6px)', fontSize: 10.5, fontWeight: 700, padding: '3px 8px', borderRadius: 6 }}>
-                            {badge}
-                          </span>
-                        ))}
-                      </div>
-                      <div style={{ position: 'absolute', bottom: 12, right: 12, background: 'rgba(255,255,255,0.95)', padding: '4px 10px', borderRadius: 10, fontSize: 12, fontWeight: 800, color: '#1C2B3A', display: 'flex', alignItems: 'center', gap: 4 }}>
-                        <Star size={14} color="#F59E0B" fill="#F59E0B" />
-                        <span>{g.rating}</span>
-                        <span style={{ fontSize: 10, color: '#607D8B' }}>({g.reviewCount})</span>
-                      </div>
-                    </div>
+                {garages.map(g => {
+                  const mapLink = g.mapUrl || (g.latitude && g.longitude 
+                    ? `https://www.google.com/maps?q=${g.latitude},${g.longitude}` 
+                    : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${g.address || ''} ${g.city || ''} ${g.state || ''}`)}`);
 
-                    {/* Content */}
-                    <div style={{ padding: 22, flex: 1, display: 'flex', flexDirection: 'column' }}>
-                      <h3 style={{ fontSize: 18, fontWeight: 800, color: '#1C2B3A', margin: '0 0 4px 0' }}>{g.name}</h3>
-                      <div style={{ fontSize: 12, color: '#0A2085', fontWeight: 600, marginBottom: 10 }}>{g.tagline}</div>
+                  return (
+                    <div key={g.id} style={{ background: '#fff', borderRadius: 20, overflow: 'hidden', border: '1px solid #D0DCE8', boxShadow: '0 4px 20px rgba(0,0,0,0.03)', display: 'flex', flexDirection: 'column', transition: 'all 0.2s ease', cursor: 'pointer' }} onMouseOver={e => e.currentTarget.style.transform = 'translateY(-3px)'} onMouseOut={e => e.currentTarget.style.transform = 'translateY(0)'}>
                       
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: 6, fontSize: 12, color: '#607D8B', marginBottom: 14 }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                          <MapPin size={14} color="#90A4AE" />
-                          <span>{g.city} {g.serviceRadiusMiles ? `(Within ${g.serviceRadiusMiles} mi radius)` : ''}</span>
+                      {/* Image & Badges */}
+                      <div style={{ height: 165, position: 'relative', background: '#E2E8F0' }}>
+                        <img src={g.image || g.logo} alt={g.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                        <div style={{ position: 'absolute', top: 12, left: 12, display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+                          {g.badges?.map((badge, bi) => (
+                            <span key={bi} style={{ background: 'rgba(10,32,133,0.85)', color: '#fff', backdropFilter: 'blur(6px)', fontSize: 10.5, fontWeight: 700, padding: '3px 8px', borderRadius: 6 }}>
+                              {badge}
+                            </span>
+                          ))}
                         </div>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                          <Clock size={14} color="#90A4AE" />
-                          <span>{g.operatingHours}</span>
+                        <div style={{ position: 'absolute', bottom: 12, right: 12, background: 'rgba(255,255,255,0.95)', padding: '4px 10px', borderRadius: 10, fontSize: 12, fontWeight: 800, color: '#1C2B3A', display: 'flex', alignItems: 'center', gap: 4 }}>
+                          <Star size={14} color="#F59E0B" fill="#F59E0B" />
+                          <span>{g.rating}</span>
+                          <span style={{ fontSize: 10, color: '#607D8B' }}>({g.reviewCount})</span>
                         </div>
-                        {g.hourlyRate > 0 && (
-                          <div style={{ display: 'flex', alignItems: 'center', gap: 6, color: '#0F6E56', fontWeight: 700 }}>
-                            <span>Labor Rate: ${g.hourlyRate}/hr</span>
+
+                        {/* Branded Logo Overlay if exists */}
+                        {g.logo && (
+                          <div style={{ position: 'absolute', bottom: -18, left: 18, width: 44, height: 44, borderRadius: 12, background: '#fff', border: '2px solid #fff', boxShadow: '0 4px 10px rgba(0,0,0,0.15)', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 2 }}>
+                            <img src={g.logo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                           </div>
                         )}
                       </div>
 
-                      {/* Services Pills */}
-                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 5, marginBottom: 18 }}>
-                        {g.servicesOffered?.slice(0, 4).map((s, si) => (
-                          <span key={si} style={{ background: '#F5F8FC', color: '#37474F', fontSize: 11, padding: '3px 8px', borderRadius: 6, border: '1px solid #E2E8F0' }}>
-                            {s}
-                          </span>
-                        ))}
-                        {g.servicesOffered?.length > 4 && (
-                          <span style={{ fontSize: 11, color: '#90A4AE', padding: '3px 4px' }}>
-                            +{g.servicesOffered.length - 4} more
-                          </span>
-                        )}
-                      </div>
+                      {/* Content */}
+                      <div style={{ padding: '22px 22px 20px', flex: 1, display: 'flex', flexDirection: 'column', marginTop: g.logo ? 6 : 0 }}>
+                        <h3 style={{ fontSize: 18, fontWeight: 800, color: '#1C2B3A', margin: '0 0 4px 0' }}>{g.name}</h3>
+                        <div style={{ fontSize: 12, color: '#0A2085', fontWeight: 600, marginBottom: 10 }}>{g.tagline}</div>
+                        
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: 6, fontSize: 12, color: '#607D8B', marginBottom: 14 }}>
+                          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 6 }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                              <MapPin size={14} color="#0A2085" />
+                              <span>{g.address ? `${g.address}, ` : ''}{g.city} {g.state || ''} {g.serviceRadiusMiles ? `(±${g.serviceRadiusMiles} mi)` : ''}</span>
+                            </div>
+                            <a 
+                              href={mapLink} 
+                              target="_blank" 
+                              rel="noreferrer" 
+                              onClick={e => e.stopPropagation()} 
+                              style={{ display: 'inline-flex', alignItems: 'center', gap: 3, fontSize: 11, fontWeight: 700, color: '#2563EB', textDecoration: 'none', background: '#EFF6FF', padding: '3px 7px', borderRadius: 6 }}
+                            >
+                              <Navigation size={11} /> Map
+                            </a>
+                          </div>
 
-                      {/* CTA */}
-                      <div style={{ marginTop: 'auto', paddingTop: 14, borderTop: '1px solid #F0F4F8' }}>
-                        <button 
-                          onClick={() => handleOpenBooking(g)}
-                          style={{ width: '100%', background: '#0A2085', color: '#fff', border: 'none', padding: '12px', borderRadius: 10, fontSize: 13, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}
-                        >
-                          {g.isMobileCapable ? <><Truck size={16} /> Dispatch Remote Van</> : <><Calendar size={16} /> Book Facility Service</>}
-                        </button>
-                      </div>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                            <Clock size={14} color="#90A4AE" />
+                            <span>{g.operatingHours || 'Mon-Sat: 8:00 AM - 6:00 PM'}</span>
+                          </div>
+                          {g.hourlyRate > 0 && (
+                            <div style={{ display: 'flex', alignItems: 'center', gap: 6, color: '#0F6E56', fontWeight: 700 }}>
+                              <span>Labor Rate: ${g.hourlyRate}/hr</span>
+                            </div>
+                          )}
+                        </div>
 
+                        {/* Services Pills */}
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 5, marginBottom: 18 }}>
+                          {g.servicesOffered?.slice(0, 4).map((s, si) => (
+                            <span key={si} style={{ background: '#F5F8FC', color: '#37474F', fontSize: 11, padding: '3px 8px', borderRadius: 6, border: '1px solid #E2E8F0' }}>
+                              {s}
+                            </span>
+                          ))}
+                          {g.servicesOffered?.length > 4 && (
+                            <span style={{ fontSize: 11, color: '#90A4AE', padding: '3px 4px' }}>
+                              +{g.servicesOffered.length - 4} more
+                            </span>
+                          )}
+                        </div>
+
+                        {/* CTA */}
+                        <div style={{ marginTop: 'auto', paddingTop: 14, borderTop: '1px solid #F0F4F8' }}>
+                          <button 
+                            onClick={() => handleOpenBooking(g)}
+                            style={{ width: '100%', background: '#0A2085', color: '#fff', border: 'none', padding: '12px', borderRadius: 10, fontSize: 13, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}
+                          >
+                            {g.isMobileCapable ? <><Truck size={16} /> Dispatch Remote Van</> : <><Calendar size={16} /> Book Facility Service</>}
+                          </button>
+                        </div>
+
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             )}
           </div>
@@ -649,6 +731,39 @@ export default function GaragesPage() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmitOnboard} style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+                  
+                  {/* Brand Logo / Shop Photo Upload */}
+                  <div>
+                    <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: '#1C2B3A', marginBottom: 6 }}>
+                      BRAND LOGO OR SHOP PHOTO
+                    </label>
+                    {logoPreview ? (
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 16, background: '#F8FAFC', padding: 12, borderRadius: 12, border: '1px solid #E2E8F0' }}>
+                        <img src={logoPreview} alt="Logo preview" style={{ width: 64, height: 64, borderRadius: 10, objectFit: 'cover', border: '1px solid #CBD5E1' }} />
+                        <div style={{ flex: 1 }}>
+                          <div style={{ fontSize: 13, fontWeight: 700, color: '#1C2B3A' }}>Image uploaded successfully</div>
+                          <div style={{ fontSize: 11, color: '#64748B' }}>Will be displayed on your partner card and dispatch van profile</div>
+                        </div>
+                        <button 
+                          type="button" 
+                          onClick={() => { setLogoPreview(''); setOnboardData(prev => ({ ...prev, logo: '', image: '' })); }}
+                          style={{ background: '#FEF2F2', border: '1px solid #FECACA', color: '#DC2626', padding: '6px 12px', borderRadius: 8, fontSize: 12, fontWeight: 600, cursor: 'pointer' }}
+                        >
+                          Remove
+                        </button>
+                      </div>
+                    ) : (
+                      <label className="image-upload-dropzone" style={{ padding: '20px 16px', borderRadius: 12 }}>
+                        <input type="file" accept="image/*" onChange={handleLogoUpload} style={{ display: 'none' }} />
+                        <div style={{ width: 40, height: 40, borderRadius: 10, background: '#EFF6FF', color: '#2563EB', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                          <Upload size={20} />
+                        </div>
+                        <div style={{ fontSize: 13, fontWeight: 700, color: '#1C2B3A' }}>Click to upload brand logo or shop image</div>
+                        <div style={{ fontSize: 11, color: '#94A3B8' }}>PNG, JPG, WEBP up to 5MB</div>
+                      </label>
+                    )}
+                  </div>
+
                   <div>
                     <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: '#1C2B3A', marginBottom: 4 }}>BUSINESS / MECHANIC NAME</label>
                     <input 
@@ -686,18 +801,92 @@ export default function GaragesPage() {
                     </div>
                   </div>
 
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-                    <div>
-                      <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: '#1C2B3A', marginBottom: 4 }}>CITY / METRO REGION</label>
-                      <input 
-                        type="text" 
-                        value={onboardData.city} 
-                        onChange={e => setOnboardData({ ...onboardData, city: e.target.value })} 
-                        placeholder="e.g. Houston Metro"
-                        style={{ width: '100%', padding: '12px 14px', borderRadius: 10, border: '1px solid #D0DCE8', fontSize: 14 }}
-                        required 
-                      />
+                  {/* Location & GPS Auto-Detect */}
+                  <div style={{ background: '#F8FAFC', padding: 14, borderRadius: 12, border: '1px solid #E2E8F0' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
+                      <label style={{ fontSize: 12, fontWeight: 700, color: '#0A2085', margin: 0, display: 'flex', alignItems: 'center', gap: 5 }}>
+                        <MapPin size={14} /> LOCATION & SERVICE RADIUS
+                      </label>
+                      <button
+                        type="button"
+                        onClick={handleDetectGPS}
+                        disabled={geoDetecting}
+                        style={{ background: '#EFF6FF', border: '1px solid #BFDBFE', color: '#1D4ED8', padding: '5px 10px', borderRadius: 8, fontSize: 11.5, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 4 }}
+                      >
+                        <LocateFixed size={13} className={geoDetecting ? 'spin-icon' : ''} />
+                        {geoDetecting ? 'Detecting GPS…' : '📍 Auto-Detect GPS'}
+                      </button>
                     </div>
+
+                    <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: 10, marginBottom: 10 }}>
+                      <div>
+                        <label style={{ display: 'block', fontSize: 11, fontWeight: 600, color: '#64748B', marginBottom: 3 }}>STREET ADDRESS</label>
+                        <input 
+                          type="text" 
+                          value={onboardData.address} 
+                          onChange={e => setOnboardData({ ...onboardData, address: e.target.value })} 
+                          placeholder="e.g. 100 Industrial Pkwy"
+                          style={{ width: '100%', padding: '9px 12px', borderRadius: 8, border: '1px solid #CBD5E1', fontSize: 13, background: '#fff' }}
+                        />
+                      </div>
+                      <div>
+                        <label style={{ display: 'block', fontSize: 11, fontWeight: 600, color: '#64748B', marginBottom: 3 }}>CITY</label>
+                        <input 
+                          type="text" 
+                          value={onboardData.city} 
+                          onChange={e => setOnboardData({ ...onboardData, city: e.target.value })} 
+                          placeholder="Houston"
+                          style={{ width: '100%', padding: '9px 12px', borderRadius: 8, border: '1px solid #CBD5E1', fontSize: 13, background: '#fff' }}
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr', gap: 10 }}>
+                      <div>
+                        <label style={{ display: 'block', fontSize: 11, fontWeight: 600, color: '#64748B', marginBottom: 3 }}>STATE</label>
+                        <input 
+                          type="text" 
+                          value={onboardData.state} 
+                          onChange={e => setOnboardData({ ...onboardData, state: e.target.value })} 
+                          placeholder="TX"
+                          style={{ width: '100%', padding: '9px 12px', borderRadius: 8, border: '1px solid #CBD5E1', fontSize: 13, background: '#fff' }}
+                        />
+                      </div>
+                      <div>
+                        <label style={{ display: 'block', fontSize: 11, fontWeight: 600, color: '#64748B', marginBottom: 3 }}>ZIP CODE</label>
+                        <input 
+                          type="text" 
+                          value={onboardData.zip} 
+                          onChange={e => setOnboardData({ ...onboardData, zip: e.target.value })} 
+                          placeholder="77001"
+                          style={{ width: '100%', padding: '9px 12px', borderRadius: 8, border: '1px solid #CBD5E1', fontSize: 13, background: '#fff' }}
+                        />
+                      </div>
+                      <div>
+                        <label style={{ display: 'block', fontSize: 11, fontWeight: 600, color: '#64748B', marginBottom: 3 }}>LATITUDE</label>
+                        <input 
+                          type="text" 
+                          value={onboardData.latitude} 
+                          onChange={e => setOnboardData({ ...onboardData, latitude: e.target.value })} 
+                          placeholder="29.7604"
+                          style={{ width: '100%', padding: '9px 12px', borderRadius: 8, border: '1px solid #CBD5E1', fontSize: 13, background: '#fff' }}
+                        />
+                      </div>
+                      <div>
+                        <label style={{ display: 'block', fontSize: 11, fontWeight: 600, color: '#64748B', marginBottom: 3 }}>LONGITUDE</label>
+                        <input 
+                          type="text" 
+                          value={onboardData.longitude} 
+                          onChange={e => setOnboardData({ ...onboardData, longitude: e.target.value })} 
+                          placeholder="-95.3698"
+                          style={{ width: '100%', padding: '9px 12px', borderRadius: 8, border: '1px solid #CBD5E1', fontSize: 13, background: '#fff' }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
                     <div>
                       <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: '#1C2B3A', marginBottom: 4 }}>HOURLY LABOR RATE ($)</label>
                       <input 
@@ -707,6 +896,16 @@ export default function GaragesPage() {
                         placeholder="110"
                         style={{ width: '100%', padding: '12px 14px', borderRadius: 10, border: '1px solid #D0DCE8', fontSize: 14 }}
                         required 
+                      />
+                    </div>
+                    <div>
+                      <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: '#1C2B3A', marginBottom: 4 }}>SERVICE RADIUS (MILES)</label>
+                      <input 
+                        type="number" 
+                        value={onboardData.serviceRadiusMiles} 
+                        onChange={e => setOnboardData({ ...onboardData, serviceRadiusMiles: e.target.value })} 
+                        placeholder="30"
+                        style={{ width: '100%', padding: '12px 14px', borderRadius: 10, border: '1px solid #D0DCE8', fontSize: 14 }}
                       />
                     </div>
                   </div>

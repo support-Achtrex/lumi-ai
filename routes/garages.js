@@ -210,36 +210,52 @@ router.post('/onboard', authenticate, (req, res) => {
       email,
       address,
       city,
+      state,
+      zip,
+      latitude,
+      longitude,
       serviceRadiusMiles,
       hourlyRate,
       servicesOffered,
-      bio
+      bio,
+      logo,
+      image
     } = req.body;
 
     if (!name || !phone || !email) {
       return res.status(400).json({ success: false, error: 'Business name, phone, and email are required.' });
     }
 
+    const defaultImg = isMobileCapable 
+      ? 'https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=600&q=80'
+      : 'https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=600&q=80';
+
     const newPartner = {
       id: `gar-${Date.now()}`,
-      name,
+      name: name.trim(),
       tagline: tagline || (isMobileCapable ? 'Certified Remote Mobile Service' : 'Certified Automotive Repair'),
       type: type || (isMobileCapable ? 'mobile_mechanic' : 'garage'),
       isMobileCapable: Boolean(isMobileCapable),
       rating: 5.0,
       reviewCount: 1,
-      phone,
-      email,
+      phone: phone.trim(),
+      email: email.trim(),
       address: address || 'Local Area',
       city: city || 'Local Metro',
+      state: state || '',
+      zip: zip || '',
+      latitude: latitude ? parseFloat(latitude) : null,
+      longitude: longitude ? parseFloat(longitude) : null,
+      mapUrl: (latitude && longitude) 
+        ? `https://www.google.com/maps?q=${latitude},${longitude}`
+        : (address && city ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${address}, ${city} ${state || ''} ${zip || ''}`)}` : ''),
       serviceRadiusMiles: parseInt(serviceRadiusMiles) || (isMobileCapable ? 25 : 15),
       hourlyRate: parseInt(hourlyRate) || 100,
       servicesOffered: Array.isArray(servicesOffered) ? servicesOffered : (servicesOffered ? servicesOffered.split(',').map(s => s.trim()) : ['General Automotive Diagnostics & Repair']),
       verifiedBadge: true,
       badges: isMobileCapable ? ['🚐 Remote Mobile Van', '✨ Newly Onboarded'] : ['🏢 Verified Facility', '✨ Newly Onboarded'],
-      image: isMobileCapable 
-        ? 'https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=600&q=80'
-        : 'https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=600&q=80',
+      logo: logo || null,
+      image: image || logo || defaultImg,
       operatingHours: 'Mon-Sat: 8:00 AM - 6:00 PM',
       bio: bio || 'Certified automotive professional dedicated to high quality diagnostics, repairs, and customer transparency.'
     };

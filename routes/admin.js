@@ -298,8 +298,12 @@ router.get('/garages', (req, res) => {
 
 router.post('/garages', (req, res) => {
   const garagesRouter = require('./garages');
-  const { name, type, isMobileCapable, phone, email, city, hourlyRate, servicesOffered, approvalStatus, bio } = req.body;
+  const { name, type, isMobileCapable, phone, email, city, state, zip, address, latitude, longitude, hourlyRate, servicesOffered, approvalStatus, bio, logo, image } = req.body;
   
+  const defaultImg = isMobileCapable 
+    ? 'https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=600&q=80'
+    : 'https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=600&q=80';
+
   const newPartner = {
     id: `gar-${Date.now()}`,
     name: name || 'New Partner Garage',
@@ -311,16 +315,22 @@ router.post('/garages', (req, res) => {
     reviewCount: 1,
     phone: phone || '+1 (800) 555-0000',
     email: email || 'partner@aaia.achtrex.com',
-    address: req.body.address || 'Local Metro',
+    address: address || 'Local Metro',
     city: city || 'Metro Hub',
+    state: state || '',
+    zip: zip || '',
+    latitude: latitude ? parseFloat(latitude) : null,
+    longitude: longitude ? parseFloat(longitude) : null,
+    mapUrl: (latitude && longitude) 
+      ? `https://www.google.com/maps?q=${latitude},${longitude}`
+      : (address && city ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${address}, ${city} ${state || ''} ${zip || ''}`)}` : ''),
     serviceRadiusMiles: parseInt(req.body.serviceRadiusMiles) || 25,
     hourlyRate: parseInt(hourlyRate) || 110,
     servicesOffered: Array.isArray(servicesOffered) ? servicesOffered : (servicesOffered ? servicesOffered.split(',').map(s => s.trim()) : ['Diagnostics', 'Brake Service']),
     verifiedBadge: true,
     badges: isMobileCapable ? ['🚐 Remote Mobile Van', '✅ Admin Verified'] : ['🏢 Verified Center', '✅ Admin Verified'],
-    image: isMobileCapable 
-      ? 'https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=600&q=80'
-      : 'https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=600&q=80',
+    logo: logo || null,
+    image: image || logo || defaultImg,
     operatingHours: 'Mon-Sat: 8:00 AM - 6:00 PM',
     bio: bio || 'Verified AAIA Partner Shop'
   };
@@ -336,10 +346,17 @@ router.put('/garages/:id', (req, res) => {
   const index = garagesRouter.PARTNER_GARAGES.findIndex(g => g.id === req.params.id);
   if (index === -1) return res.status(404).json({ success: false, error: 'Partner not found' });
   
-  garagesRouter.PARTNER_GARAGES[index] = {
-    ...garagesRouter.PARTNER_GARAGES[index],
+  const existing = garagesRouter.PARTNER_GARAGES[index];
+  const updated = {
+    ...existing,
     ...req.body
   };
+
+  if (req.body.latitude && req.body.longitude) {
+    updated.mapUrl = `https://www.google.com/maps?q=${req.body.latitude},${req.body.longitude}`;
+  }
+
+  garagesRouter.PARTNER_GARAGES[index] = updated;
   res.json({ success: true, data: garagesRouter.PARTNER_GARAGES[index] });
 });
 

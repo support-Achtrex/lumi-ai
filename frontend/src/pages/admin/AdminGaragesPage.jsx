@@ -1,4 +1,3 @@
-// src/pages/admin/AdminGaragesPage.jsx
 import React, { useState, useEffect } from 'react';
 import APIService from '../../services/api';
 import {
@@ -16,7 +15,11 @@ import {
   X,
   RefreshCw,
   MapPin,
-  DollarSign
+  DollarSign,
+  Upload,
+  LocateFixed,
+  Navigation,
+  Image as ImageIcon
 } from 'lucide-react';
 
 export default function AdminGaragesPage() {
@@ -29,19 +32,71 @@ export default function AdminGaragesPage() {
 
   const [modalOpen, setModalOpen] = useState(false);
   const [editingPartner, setEditingPartner] = useState(null);
+  const [logoPreview, setLogoPreview] = useState('');
+  const [geoDetecting, setGeoDetecting] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
+    tagline: '',
     type: 'mobile_mechanic',
     isMobileCapable: true,
     phone: '',
     email: '',
     city: '',
+    state: '',
+    zip: '',
     address: '',
+    latitude: '',
+    longitude: '',
     hourlyRate: 110,
     serviceRadiusMiles: 30,
     approvalStatus: 'approved',
-    servicesOffered: 'Mobile Diagnostics, Brakes, Battery, Oil Change'
+    servicesOffered: 'Mobile Diagnostics, Brakes, Battery, Oil Change',
+    bio: '',
+    logo: '',
+    image: ''
   });
+
+  const handleLogoUpload = (e) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      if (file.size > 5 * 1024 * 1024) {
+        alert('Image size should be under 5MB');
+        return;
+      }
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setLogoPreview(reader.result);
+        setFormData(prev => ({ ...prev, logo: reader.result, image: reader.result }));
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleDetectGPS = () => {
+    if (!navigator.geolocation) {
+      alert('Geolocation is not supported by your browser.');
+      return;
+    }
+    setGeoDetecting(true);
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        setGeoDetecting(false);
+        const lat = pos.coords.latitude.toFixed(5);
+        const lng = pos.coords.longitude.toFixed(5);
+        setFormData(prev => ({
+          ...prev,
+          latitude: lat,
+          longitude: lng,
+          city: prev.city || 'Detected Location'
+        }));
+      },
+      (err) => {
+        setGeoDetecting(false);
+        alert('Could not detect location: ' + err.message);
+      },
+      { timeout: 8000 }
+    );
+  };
 
   useEffect(() => {
     loadPartners();
@@ -145,18 +200,27 @@ export default function AdminGaragesPage() {
           <button
             onClick={() => {
               setEditingPartner(null);
+              setLogoPreview('');
               setFormData({
                 name: '',
+                tagline: '',
                 type: 'mobile_mechanic',
                 isMobileCapable: true,
                 phone: '',
                 email: '',
                 city: '',
+                state: '',
+                zip: '',
                 address: '',
+                latitude: '',
+                longitude: '',
                 hourlyRate: 110,
                 serviceRadiusMiles: 30,
                 approvalStatus: 'approved',
-                servicesOffered: 'Mobile Diagnostics, Brakes, Battery, Oil Change'
+                servicesOffered: 'Mobile Diagnostics, Brakes, Battery, Oil Change',
+                bio: '',
+                logo: '',
+                image: ''
               });
               setModalOpen(true);
             }}
@@ -254,115 +318,151 @@ export default function AdminGaragesPage() {
           <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: 13 }}>
             <thead>
               <tr style={{ background: '#F8FAFC', borderBottom: '1px solid #E2E8F0', color: '#64748B' }}>
-                <th style={{ padding: '14px 20px', fontWeight: 700 }}>PARTNER NAME</th>
+                <th style={{ padding: '14px 20px', fontWeight: 700 }}>PARTNER & BRAND</th>
                 <th style={{ padding: '14px 16px', fontWeight: 700 }}>SERVICE TYPE</th>
-                <th style={{ padding: '14px 16px', fontWeight: 700 }}>LOCATION / RADIUS</th>
+                <th style={{ padding: '14px 16px', fontWeight: 700 }}>LOCATION / MAP</th>
                 <th style={{ padding: '14px 16px', fontWeight: 700 }}>LABOR RATE</th>
                 <th style={{ padding: '14px 16px', fontWeight: 700 }}>STATUS</th>
                 <th style={{ padding: '14px 20px', fontWeight: 700, textAlign: 'right' }}>ACTIONS</th>
               </tr>
             </thead>
             <tbody>
-              {filtered.map(p => (
-                <tr key={p.id} style={{ borderBottom: '1px solid #F1F5F9' }}>
-                  <td style={{ padding: '16px 20px' }}>
-                    <div style={{ fontWeight: 700, color: '#0F172A' }}>{p.name || 'Partner'}</div>
-                    <div style={{ fontSize: 11.5, color: '#64748B' }}>{p.phone || '—'} • {p.email || '—'}</div>
-                  </td>
+              {filtered.map(p => {
+                const mapLink = p.mapUrl || (p.latitude && p.longitude 
+                  ? `https://www.google.com/maps?q=${p.latitude},${p.longitude}` 
+                  : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${p.address || ''} ${p.city || ''} ${p.state || ''}`)}`);
 
-                  <td style={{ padding: '16px 16px' }}>
-                    <span style={{
-                      background: p.isMobileCapable ? '#EFF6FF' : '#F1F5F9',
-                      color: p.isMobileCapable ? '#1D4ED8' : '#334155',
-                      fontSize: 11.5,
-                      fontWeight: 700,
-                      padding: '3px 8px',
-                      borderRadius: 6
-                    }}>
-                      {p.isMobileCapable ? '🚐 Remote Mobile Van' : '🏢 Drive-in Center'}
-                    </span>
-                  </td>
+                return (
+                  <tr key={p.id} style={{ borderBottom: '1px solid #F1F5F9' }}>
+                    <td style={{ padding: '16px 20px' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                        <div style={{ width: 40, height: 40, borderRadius: 10, overflow: 'hidden', background: '#F1F5F9', border: '1px solid #E2E8F0', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                          {p.logo || p.image ? (
+                            <img src={p.logo || p.image} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                          ) : (
+                            <Store size={20} color="#94A3B8" />
+                          )}
+                        </div>
+                        <div>
+                          <div style={{ fontWeight: 700, color: '#0F172A' }}>{p.name || 'Partner'}</div>
+                          <div style={{ fontSize: 11.5, color: '#64748B' }}>{p.phone || '—'} • {p.email || '—'}</div>
+                        </div>
+                      </div>
+                    </td>
 
-                  <td style={{ padding: '16px 16px', color: '#334155' }}>
-                    <div>{p.city || 'Metro Area'}</div>
-                    <div style={{ fontSize: 11, color: '#94A3B8' }}>{p.serviceRadiusMiles ? `Radius: ${p.serviceRadiusMiles} miles` : 'Standard coverage'}</div>
-                  </td>
+                    <td style={{ padding: '16px 16px' }}>
+                      <span style={{
+                        background: p.isMobileCapable ? '#EFF6FF' : '#F1F5F9',
+                        color: p.isMobileCapable ? '#1D4ED8' : '#334155',
+                        fontSize: 11.5,
+                        fontWeight: 700,
+                        padding: '3px 8px',
+                        borderRadius: 6
+                      }}>
+                        {p.isMobileCapable ? '🚐 Remote Mobile Van' : '🏢 Drive-in Center'}
+                      </span>
+                    </td>
 
-                  <td style={{ padding: '16px 16px', fontWeight: 700, color: '#0D9488' }}>
-                    ${p.hourlyRate ?? 110}/hr
-                  </td>
-
-                  <td style={{ padding: '16px 16px' }}>
-                    <span style={{
-                      background: p.approvalStatus === 'approved' ? '#F0FDF4' : p.approvalStatus === 'pending' ? '#FFFBEB' : '#FEF2F2',
-                      color: p.approvalStatus === 'approved' ? '#15803D' : p.approvalStatus === 'pending' ? '#B45309' : '#B91C1C',
-                      fontSize: 11,
-                      fontWeight: 700,
-                      padding: '3px 8px',
-                      borderRadius: 6,
-                      textTransform: 'capitalize'
-                    }}>
-                      ● {p.approvalStatus || 'approved'}
-                    </span>
-                  </td>
-
-                  <td style={{ padding: '16px 20px', textAlign: 'right' }}>
-                    <div style={{ display: 'flex', gap: 6, justifyContent: 'flex-end' }}>
-                      {p.approvalStatus !== 'approved' && (
-                        <button
-                          onClick={() => handleToggleStatus(p, 'approved')}
-                          title="Approve Shop"
-                          style={{ background: '#F0FDF4', color: '#15803D', border: '1px solid #BBF7D0', padding: '6px 10px', borderRadius: 6, cursor: 'pointer', fontSize: 12, fontWeight: 700, display: 'flex', alignItems: 'center', gap: 4 }}
+                    <td style={{ padding: '16px 16px', color: '#334155' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                        <span>{p.city || 'Metro Area'} {p.state || ''}</span>
+                        <a 
+                          href={mapLink} 
+                          target="_blank" 
+                          rel="noreferrer" 
+                          style={{ display: 'inline-flex', alignItems: 'center', gap: 2, fontSize: 11, fontWeight: 700, color: '#2563EB', textDecoration: 'none', background: '#EFF6FF', padding: '2px 6px', borderRadius: 4 }}
                         >
-                          <Check size={13} /> Approve
-                        </button>
-                      )}
+                          <Navigation size={10} /> Map
+                        </a>
+                      </div>
+                      <div style={{ fontSize: 11, color: '#94A3B8' }}>{p.address ? `${p.address} • ` : ''}{p.serviceRadiusMiles ? `Radius: ${p.serviceRadiusMiles} mi` : 'Standard coverage'}</div>
+                    </td>
 
-                      {p.approvalStatus === 'approved' && (
+                    <td style={{ padding: '16px 16px', fontWeight: 700, color: '#0D9488' }}>
+                      ${p.hourlyRate ?? 110}/hr
+                    </td>
+
+                    <td style={{ padding: '16px 16px' }}>
+                      <span style={{
+                        background: p.approvalStatus === 'approved' ? '#F0FDF4' : p.approvalStatus === 'pending' ? '#FFFBEB' : '#FEF2F2',
+                        color: p.approvalStatus === 'approved' ? '#15803D' : p.approvalStatus === 'pending' ? '#B45309' : '#B91C1C',
+                        fontSize: 11,
+                        fontWeight: 700,
+                        padding: '3px 8px',
+                        borderRadius: 6,
+                        textTransform: 'capitalize'
+                      }}>
+                        ● {p.approvalStatus || 'approved'}
+                      </span>
+                    </td>
+
+                    <td style={{ padding: '16px 20px', textAlign: 'right' }}>
+                      <div style={{ display: 'flex', gap: 6, justifyContent: 'flex-end' }}>
+                        {p.approvalStatus !== 'approved' && (
+                          <button
+                            onClick={() => handleToggleStatus(p, 'approved')}
+                            title="Approve Shop"
+                            style={{ background: '#F0FDF4', color: '#15803D', border: '1px solid #BBF7D0', padding: '6px 10px', borderRadius: 6, cursor: 'pointer', fontSize: 12, fontWeight: 700, display: 'flex', alignItems: 'center', gap: 4 }}
+                          >
+                            <Check size={13} /> Approve
+                          </button>
+                        )}
+
+                        {p.approvalStatus === 'approved' && (
+                          <button
+                            onClick={() => handleToggleStatus(p, 'rejected')}
+                            title="Suspend Shop"
+                            style={{ background: '#FEF2F2', color: '#B91C1C', border: '1px solid #FECACA', padding: '6px 10px', borderRadius: 6, cursor: 'pointer', fontSize: 12, fontWeight: 700, display: 'flex', alignItems: 'center', gap: 4 }}
+                          >
+                            <Ban size={13} /> Suspend
+                          </button>
+                        )}
+
                         <button
-                          onClick={() => handleToggleStatus(p, 'rejected')}
-                          title="Suspend Shop"
-                          style={{ background: '#FEF2F2', color: '#B91C1C', border: '1px solid #FECACA', padding: '6px 10px', borderRadius: 6, cursor: 'pointer', fontSize: 12, fontWeight: 700, display: 'flex', alignItems: 'center', gap: 4 }}
+                          onClick={() => {
+                            setEditingPartner(p);
+                            setLogoPreview(p.logo || p.image || '');
+                            setFormData({
+                              name: p.name || '',
+                              tagline: p.tagline || '',
+                              type: p.type || 'mobile_mechanic',
+                              isMobileCapable: Boolean(p.isMobileCapable),
+                              phone: p.phone || '',
+                              email: p.email || '',
+                              city: p.city || '',
+                              state: p.state || '',
+                              zip: p.zip || '',
+                              address: p.address || '',
+                              latitude: p.latitude || '',
+                              longitude: p.longitude || '',
+                              hourlyRate: p.hourlyRate || 110,
+                              serviceRadiusMiles: p.serviceRadiusMiles || 30,
+                              approvalStatus: p.approvalStatus || 'approved',
+                              servicesOffered: Array.isArray(p.servicesOffered) ? p.servicesOffered.join(', ') : (p.servicesOffered || ''),
+                              bio: p.bio || '',
+                              logo: p.logo || '',
+                              image: p.image || ''
+                            });
+                            setModalOpen(true);
+                          }}
+                          title="Edit Shop"
+                          style={{ background: '#F8FAFC', color: '#2563EB', border: '1px solid #CBD5E1', padding: '6px 8px', borderRadius: 6, cursor: 'pointer' }}
                         >
-                          <Ban size={13} /> Suspend
+                          <Edit size={14} />
                         </button>
-                      )}
 
-                      <button
-                        onClick={() => {
-                          setEditingPartner(p);
-                          setFormData({
-                            name: p.name || '',
-                            type: p.type || 'mobile_mechanic',
-                            isMobileCapable: Boolean(p.isMobileCapable),
-                            phone: p.phone || '',
-                            email: p.email || '',
-                            city: p.city || '',
-                            address: p.address || '',
-                            hourlyRate: p.hourlyRate || 110,
-                            serviceRadiusMiles: p.serviceRadiusMiles || 30,
-                            approvalStatus: p.approvalStatus || 'approved',
-                            servicesOffered: Array.isArray(p.servicesOffered) ? p.servicesOffered.join(', ') : (p.servicesOffered || '')
-                          });
-                          setModalOpen(true);
-                        }}
-                        title="Edit Shop"
-                        style={{ background: '#F8FAFC', color: '#2563EB', border: '1px solid #CBD5E1', padding: '6px 8px', borderRadius: 6, cursor: 'pointer' }}
-                      >
-                        <Edit size={14} />
-                      </button>
-
-                      <button
-                        onClick={() => handleDeletePartner(p.id)}
-                        title="Delete Shop"
-                        style={{ background: '#FEF2F2', color: '#DC2626', border: '1px solid #FECACA', padding: '6px 8px', borderRadius: 6, cursor: 'pointer' }}
-                      >
-                        <Trash2 size={14} />
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
+                        <button
+                          onClick={() => handleDeletePartner(p.id)}
+                          title="Delete Shop"
+                          style={{ background: '#FEF2F2', color: '#DC2626', border: '1px solid #FECACA', padding: '6px 8px', borderRadius: 6, cursor: 'pointer' }}
+                        >
+                          <Trash2 size={14} />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })}
 
               {filtered.length === 0 && (
                 <tr>
@@ -379,7 +479,7 @@ export default function AdminGaragesPage() {
       {/* Partner Modal */}
       {modalOpen && (
         <div style={{ position: 'fixed', inset: 0, background: 'rgba(15,23,42,0.6)', backdropFilter: 'blur(4px)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20 }}>
-          <div style={{ background: '#FFFFFF', borderRadius: 20, width: '100%', maxWidth: 540, maxHeight: '90vh', overflowY: 'auto', padding: 28, boxShadow: '0 25px 50px -12px rgba(0,0,0,0.25)' }}>
+          <div style={{ background: '#FFFFFF', borderRadius: 20, width: '100%', maxWidth: 580, maxHeight: '90vh', overflowY: 'auto', padding: 28, boxShadow: '0 25px 50px -12px rgba(0,0,0,0.25)' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
               <h2 style={{ fontSize: 18, fontWeight: 800, color: '#0F172A', margin: 0 }}>
                 {editingPartner ? 'Edit Partner Shop' : 'Onboard Partner Shop'}
@@ -390,6 +490,32 @@ export default function AdminGaragesPage() {
             </div>
 
             <form onSubmit={handleSubmitPartner} style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+              
+              {/* Brand Logo Upload */}
+              <div>
+                <label style={{ display: 'block', fontSize: 11.5, fontWeight: 700, color: '#475569', marginBottom: 4 }}>BRAND LOGO / PHOTO</label>
+                {logoPreview ? (
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 12, background: '#F8FAFC', padding: 10, borderRadius: 8, border: '1px solid #E2E8F0' }}>
+                    <img src={logoPreview} alt="" style={{ width: 48, height: 48, borderRadius: 8, objectFit: 'cover' }} />
+                    <div style={{ flex: 1, fontSize: 12, color: '#334155', fontWeight: 600 }}>Logo selected</div>
+                    <button 
+                      type="button" 
+                      onClick={() => { setLogoPreview(''); setFormData(p => ({ ...p, logo: '', image: '' })); }}
+                      style={{ background: '#FEF2F2', border: '1px solid #FECACA', color: '#DC2626', padding: '4px 8px', borderRadius: 6, fontSize: 11, fontWeight: 600, cursor: 'pointer' }}
+                    >
+                      Remove
+                    </button>
+                  </div>
+                ) : (
+                  <label className="image-upload-dropzone" style={{ padding: '14px', borderRadius: 8 }}>
+                    <input type="file" accept="image/*" onChange={handleLogoUpload} style={{ display: 'none' }} />
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: '#2563EB', fontSize: 12.5, fontWeight: 600 }}>
+                      <Upload size={16} /> Click to upload partner logo
+                    </div>
+                  </label>
+                )}
+              </div>
+
               <div>
                 <label style={{ display: 'block', fontSize: 11.5, fontWeight: 700, color: '#475569', marginBottom: 4 }}>SHOP / MECHANIC NAME</label>
                 <input
@@ -424,17 +550,92 @@ export default function AdminGaragesPage() {
                 </div>
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-                <div>
-                  <label style={{ display: 'block', fontSize: 11.5, fontWeight: 700, color: '#475569', marginBottom: 4 }}>CITY / REGION</label>
-                  <input
-                    type="text"
-                    value={formData.city}
-                    onChange={e => setFormData({ ...formData, city: e.target.value })}
-                    style={{ width: '100%', padding: '9px 12px', borderRadius: 8, border: '1px solid #CBD5E1', fontSize: 13 }}
-                    required
-                  />
+              {/* Location & GPS */}
+              <div style={{ background: '#F8FAFC', padding: 12, borderRadius: 8, border: '1px solid #E2E8F0' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                  <label style={{ fontSize: 11.5, fontWeight: 700, color: '#1D4ED8', margin: 0, display: 'flex', alignItems: 'center', gap: 4 }}>
+                    <MapPin size={13} /> LOCATION & COORDINATES
+                  </label>
+                  <button
+                    type="button"
+                    onClick={handleDetectGPS}
+                    disabled={geoDetecting}
+                    style={{ background: '#EFF6FF', border: '1px solid #BFDBFE', color: '#1D4ED8', padding: '4px 8px', borderRadius: 6, fontSize: 11, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 4 }}
+                  >
+                    <LocateFixed size={12} className={geoDetecting ? 'spin-icon' : ''} />
+                    {geoDetecting ? 'Detecting…' : '📍 Auto GPS'}
+                  </button>
                 </div>
+
+                <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: 8, marginBottom: 8 }}>
+                  <div>
+                    <label style={{ display: 'block', fontSize: 10.5, fontWeight: 600, color: '#64748B', marginBottom: 2 }}>STREET ADDRESS</label>
+                    <input
+                      type="text"
+                      value={formData.address}
+                      onChange={e => setFormData({ ...formData, address: e.target.value })}
+                      placeholder="e.g. 100 Main St"
+                      style={{ width: '100%', padding: '7px 10px', borderRadius: 6, border: '1px solid #CBD5E1', fontSize: 12.5, background: '#fff' }}
+                    />
+                  </div>
+                  <div>
+                    <label style={{ display: 'block', fontSize: 10.5, fontWeight: 600, color: '#64748B', marginBottom: 2 }}>CITY</label>
+                    <input
+                      type="text"
+                      value={formData.city}
+                      onChange={e => setFormData({ ...formData, city: e.target.value })}
+                      placeholder="Houston"
+                      style={{ width: '100%', padding: '7px 10px', borderRadius: 6, border: '1px solid #CBD5E1', fontSize: 12.5, background: '#fff' }}
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr', gap: 8 }}>
+                  <div>
+                    <label style={{ display: 'block', fontSize: 10.5, fontWeight: 600, color: '#64748B', marginBottom: 2 }}>STATE</label>
+                    <input
+                      type="text"
+                      value={formData.state}
+                      onChange={e => setFormData({ ...formData, state: e.target.value })}
+                      placeholder="TX"
+                      style={{ width: '100%', padding: '7px 10px', borderRadius: 6, border: '1px solid #CBD5E1', fontSize: 12.5, background: '#fff' }}
+                    />
+                  </div>
+                  <div>
+                    <label style={{ display: 'block', fontSize: 10.5, fontWeight: 600, color: '#64748B', marginBottom: 2 }}>ZIP</label>
+                    <input
+                      type="text"
+                      value={formData.zip}
+                      onChange={e => setFormData({ ...formData, zip: e.target.value })}
+                      placeholder="77001"
+                      style={{ width: '100%', padding: '7px 10px', borderRadius: 6, border: '1px solid #CBD5E1', fontSize: 12.5, background: '#fff' }}
+                    />
+                  </div>
+                  <div>
+                    <label style={{ display: 'block', fontSize: 10.5, fontWeight: 600, color: '#64748B', marginBottom: 2 }}>LAT</label>
+                    <input
+                      type="text"
+                      value={formData.latitude}
+                      onChange={e => setFormData({ ...formData, latitude: e.target.value })}
+                      placeholder="29.76"
+                      style={{ width: '100%', padding: '7px 10px', borderRadius: 6, border: '1px solid #CBD5E1', fontSize: 12.5, background: '#fff' }}
+                    />
+                  </div>
+                  <div>
+                    <label style={{ display: 'block', fontSize: 10.5, fontWeight: 600, color: '#64748B', marginBottom: 2 }}>LONG</label>
+                    <input
+                      type="text"
+                      value={formData.longitude}
+                      onChange={e => setFormData({ ...formData, longitude: e.target.value })}
+                      placeholder="-95.36"
+                      style={{ width: '100%', padding: '7px 10px', borderRadius: 6, border: '1px solid #CBD5E1', fontSize: 12.5, background: '#fff' }}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
                 <div>
                   <label style={{ display: 'block', fontSize: 11.5, fontWeight: 700, color: '#475569', marginBottom: 4 }}>HOURLY RATE ($)</label>
                   <input
@@ -445,9 +646,18 @@ export default function AdminGaragesPage() {
                     required
                   />
                 </div>
+                <div>
+                  <label style={{ display: 'block', fontSize: 11.5, fontWeight: 700, color: '#475569', marginBottom: 4 }}>SERVICE RADIUS (MILES)</label>
+                  <input
+                    type="number"
+                    value={formData.serviceRadiusMiles}
+                    onChange={e => setFormData({ ...formData, serviceRadiusMiles: e.target.value })}
+                    style={{ width: '100%', padding: '9px 12px', borderRadius: 8, border: '1px solid #CBD5E1', fontSize: 13 }}
+                  />
+                </div>
               </div>
 
-              <div style={{ background: '#F8FAFC', padding: 12, borderRadius: 8, border: '1px solid #E2E8F0' }}>
+              <div style={{ background: '#F8FAFC', padding: 10, borderRadius: 8, border: '1px solid #E2E8F0' }}>
                 <label style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 12.5, fontWeight: 700, color: '#1D4ED8', cursor: 'pointer' }}>
                   <input
                     type="checkbox"
@@ -458,28 +668,17 @@ export default function AdminGaragesPage() {
                 </label>
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-                <div>
-                  <label style={{ display: 'block', fontSize: 11.5, fontWeight: 700, color: '#475569', marginBottom: 4 }}>SERVICE RADIUS (MILES)</label>
-                  <input
-                    type="number"
-                    value={formData.serviceRadiusMiles}
-                    onChange={e => setFormData({ ...formData, serviceRadiusMiles: e.target.value })}
-                    style={{ width: '100%', padding: '9px 12px', borderRadius: 8, border: '1px solid #CBD5E1', fontSize: 13 }}
-                  />
-                </div>
-                <div>
-                  <label style={{ display: 'block', fontSize: 11.5, fontWeight: 700, color: '#475569', marginBottom: 4 }}>APPROVAL STATUS</label>
-                  <select
-                    value={formData.approvalStatus}
-                    onChange={e => setFormData({ ...formData, approvalStatus: e.target.value })}
-                    style={{ width: '100%', padding: '9px 12px', borderRadius: 8, border: '1px solid #CBD5E1', fontSize: 13 }}
-                  >
-                    <option value="approved">Approved & Active</option>
-                    <option value="pending">Pending Review</option>
-                    <option value="rejected">Suspended / Rejected</option>
-                  </select>
-                </div>
+              <div>
+                <label style={{ display: 'block', fontSize: 11.5, fontWeight: 700, color: '#475569', marginBottom: 4 }}>APPROVAL STATUS</label>
+                <select
+                  value={formData.approvalStatus}
+                  onChange={e => setFormData({ ...formData, approvalStatus: e.target.value })}
+                  style={{ width: '100%', padding: '9px 12px', borderRadius: 8, border: '1px solid #CBD5E1', fontSize: 13 }}
+                >
+                  <option value="approved">Approved & Active</option>
+                  <option value="pending">Pending Review</option>
+                  <option value="rejected">Suspended / Rejected</option>
+                </select>
               </div>
 
               <div>

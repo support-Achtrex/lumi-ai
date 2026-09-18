@@ -19,26 +19,37 @@ import {
   Camera,
   Store,
   DollarSign,
-  Shield
+  Shield,
+  Search,
+  Sparkles
 } from 'lucide-react';
 
 const NAV = [
   { group: 'Intelligence', items: [
-    { to: '/chat',          Icon: MessageSquare,     label: 'AI Chat' },
-    { to: '/car-scanner',   Icon: Camera,             label: 'AI Car Scanner', badge: 'NEW', badgeColor: '#0A2085', badgeText: '#fff' },
-    { to: '/vin',           Icon: Car,                label: 'VIN Lookup' },
+    { to: '/chat',          Icon: MessageSquare,     label: 'AI Chat', iconColorClass: 'adv-icon-blue' },
+    { to: '/car-scanner',   Icon: Camera,             label: 'AI Car Scanner', badge: 'NEW', badgeColor: '#0A2085', badgeText: '#fff', iconColorClass: 'adv-icon-purple' },
+    { to: '/vin',           Icon: Car,                label: 'VIN Lookup', iconColorClass: 'adv-icon-teal' },
   ]},
   { group: 'Operations & Service', items: [
-    { to: '/repair-advice', Icon: Wrench,             label: 'Repair & Cost Estimator' },
-    { to: '/garages',       Icon: Store,              label: 'Garages & Remote Mobile' },
-    { to: '/diagnostics',   Icon: Settings,           label: 'Diagnostics' },
+    { to: '/repair-advice', Icon: Wrench,             label: 'Repair & Cost Estimator', iconColorClass: 'adv-icon-amber' },
+    { to: '/garages',       Icon: Store,              label: 'Garages & Remote Mobile', iconColorClass: 'adv-icon-emerald' },
+    { to: '/diagnostics',   Icon: Settings,           label: 'Diagnostics', iconColorClass: 'adv-icon-blue' },
   ]},
   { group: 'Reports', items: [
-    { to: '/reports',       Icon: FileText,           label: 'Reports Center' },
+    { to: '/reports',       Icon: FileText,           label: 'Reports Center', iconColorClass: 'adv-icon-rose' },
   ]},
   { group: 'Administration', role: 'admin', items: [
-    { to: '/admin/dashboard', Icon: Shield,           label: 'Admin Control Center', badge: 'ADMIN', badgeColor: '#2563EB', badgeText: '#fff' },
+    { to: '/admin/dashboard', Icon: Shield,           label: 'Admin Control Center', badge: 'ADMIN', badgeColor: '#2563EB', badgeText: '#fff', iconColorClass: 'adv-icon-purple' },
   ]},
+];
+
+const MOBILE_NAV_ITEMS = [
+  { to: '/chat',        Icon: MessageSquare, label: 'AI Chat' },
+  { to: '/car-scanner', Icon: Camera,        label: 'Scanner' },
+  { to: '/vin',         Icon: Car,           label: 'VIN' },
+  { to: '/garages',     Icon: Store,         label: 'Garages' },
+  { to: '/diagnostics', Icon: Settings,      label: 'Diagnostics' },
+  { to: '/reports',     Icon: FileText,      label: 'Reports' },
 ];
 
 export default function AppShell() {
@@ -104,7 +115,7 @@ export default function AppShell() {
       {/* Sidebar */}
       <aside 
         className={isMobile ? `mobile-sidebar ${!isSidebarOpen ? 'closed' : ''}` : ''}
-        style={{ width: isSidebarOpen ? 210 : 72, minWidth: isSidebarOpen ? 210 : 72, transition: 'transform 0.3s ease, width 0.3s ease', background:'#fff', borderRight:'0.5px solid #D0DCE8', display:'flex', flexDirection:'column', overflow:'hidden' }}
+        style={{ width: isSidebarOpen ? 220 : 72, minWidth: isSidebarOpen ? 220 : 72, transition: 'transform 0.3s ease, width 0.3s ease', background:'#fff', borderRight:'0.5px solid #D0DCE8', display:'flex', flexDirection:'column', overflow:'hidden' }}
       >
 
         {/* Logo */}
@@ -120,22 +131,24 @@ export default function AppShell() {
           {NAV.map(({ group, items, role }) => {
             if (role && user?.role !== role) return null;
             return (
-              <div key={group} style={{ marginBottom:4 }}>
-              {isSidebarOpen && <div style={{ fontSize:10, color:'#90A4AE', padding:'6px 10px 2px', textTransform:'uppercase', letterSpacing:'.5px' }}>{group}</div>}
-              {items.map(({ to, Icon, label, badge, badgeColor, badgeText }) => (
+              <div key={group} style={{ marginBottom:6 }}>
+              {isSidebarOpen && <div style={{ fontSize:10, color:'#90A4AE', padding:'6px 10px 2px', textTransform:'uppercase', letterSpacing:'.5px', fontWeight: 700 }}>{group}</div>}
+              {items.map(({ to, Icon, label, badge, badgeColor, badgeText, iconColorClass }) => (
                 <NavLink key={to} to={to} title={label} onClick={() => isMobile && setIsSidebarOpen(false)} style={({ isActive }) => ({
-                  display:'flex', alignItems:'center', gap:8, padding:'7px 10px',
+                  display:'flex', alignItems:'center', gap:10, padding:'7px 10px',
                   justifyContent: isSidebarOpen ? 'flex-start' : 'center',
-                  borderRadius:8, textDecoration:'none', fontSize:12.5,
-                  color: isActive ? '#0A2085' : '#607D8B',
-                  background: isActive ? '#F0F5FF' : 'transparent',
-                  fontWeight: isActive ? 600 : 400,
+                  borderRadius:10, textDecoration:'none', fontSize:13,
+                  color: isActive ? '#0A2085' : '#475569',
+                  background: isActive ? '#EFF6FF' : 'transparent',
+                  fontWeight: isActive ? 700 : 500,
                   transition: 'all 0.15s ease'
                 })}>
-                  <Icon size={16} strokeWidth={2} style={{ flexShrink: 0 }} />
-                  {isSidebarOpen && <span>{label}</span>}
+                  <div className={`adv-icon-badge ${iconColorClass || 'adv-icon-blue'}`} style={{ width: 28, height: 28, borderRadius: 8, flexShrink: 0 }}>
+                    <Icon size={15} strokeWidth={2.2} />
+                  </div>
+                  {isSidebarOpen && <span style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{label}</span>}
                   {isSidebarOpen && badge && (
-                    <span style={{ marginLeft:'auto', background:badgeColor, color:badgeText, borderRadius:10, padding:'1px 6px', fontSize:10, fontWeight:500 }}>
+                    <span style={{ marginLeft:'auto', background:badgeColor, color:badgeText, borderRadius:10, padding:'1px 6px', fontSize:9.5, fontWeight:700 }}>
                       {badge}
                     </span>
                   )}
@@ -146,14 +159,14 @@ export default function AppShell() {
           })}
           {/* Recent conversations */}
           {isSidebarOpen && (
-            <div style={{ padding:'16px 6px 6px' }}>
-              <div style={{ fontSize:10, color:'#90A4AE', padding:'4px 10px 3px', textTransform:'uppercase', letterSpacing:'.5px' }}>Recent</div>
+            <div style={{ padding:'12px 6px 6px' }}>
+              <div style={{ fontSize:10, color:'#90A4AE', padding:'4px 10px 3px', textTransform:'uppercase', letterSpacing:'.5px', fontWeight: 700 }}>Recent Activity</div>
               {recentConvs.map((c, i) => (
                 <div key={c.id || i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding:'6px 10px', borderRadius:8, cursor:'pointer' }}
                   onClick={() => navigate(c.id ? `/chat/${c.id}` : '/chat')}
                   onMouseOver={e => e.currentTarget.style.background = '#F5F8FC'}
                   onMouseOut={e => e.currentTarget.style.background = 'transparent'}>
-                  <div style={{ fontSize:11, color:'#607D8B', whiteSpace:'nowrap', overflow:'hidden', textOverflow:'ellipsis', flex: 1 }}>
+                  <div style={{ fontSize:11.5, color:'#64748B', whiteSpace:'nowrap', overflow:'hidden', textOverflow:'ellipsis', flex: 1 }}>
                     {c.title || c}
                   </div>
                   {c.id && (
@@ -207,17 +220,41 @@ export default function AppShell() {
       </aside>
 
       {/* Main Content Area */}
-      <main className="main-content-area" style={{ flex:1, display:'flex', flexDirection:'column', height:'100vh', overflow:'hidden' }}>
+      <main className="main-content-area" style={{ flex:1, display:'flex', flexDirection:'column', height:'100vh', overflow:'hidden', position: 'relative' }}>
         {/* Mobile Header Toggle */}
         {isMobile && (
-          <div style={{ padding: '16px', background: '#fff', borderBottom: '1px solid #D0DCE8', display: 'flex', alignItems: 'center', gap: '16px' }}>
-            <button onClick={() => setIsSidebarOpen(true)} style={{ background: 'transparent', border: 'none', color: '#1C2B3A', padding: '4px' }}>
-              <Menu size={24} />
-            </button>
-            <img src="/logo.png" alt="AAIA" style={{ height: 24 }} />
+          <div style={{ padding: '12px 16px', background: '#fff', borderBottom: '1px solid #D0DCE8', display: 'flex', alignItems: 'center', justifyContent: 'space-between', zIndex: 10 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <button onClick={() => setIsSidebarOpen(true)} style={{ background: 'transparent', border: 'none', color: '#1C2B3A', padding: '4px', display: 'flex', alignItems: 'center' }}>
+                <Menu size={22} />
+              </button>
+              <img src="/logo.png" alt="AAIA" style={{ height: 22 }} />
+            </div>
+            {user?.role === 'admin' && (
+              <NavLink to="/admin/dashboard" style={{ background: '#EFF6FF', color: '#2563EB', textDecoration: 'none', padding: '4px 10px', borderRadius: 6, fontSize: 11, fontWeight: 700, display: 'flex', alignItems: 'center', gap: 4 }}>
+                <Shield size={12} /> Admin
+              </NavLink>
+            )}
           </div>
         )}
+
         <Outlet />
+
+        {/* ── Native Mobile Bottom Navigation Bar ── */}
+        <nav className="mobile-bottom-nav">
+          {MOBILE_NAV_ITEMS.map(({ to, Icon, label }) => (
+            <NavLink
+              key={to}
+              to={to}
+              className={({ isActive }) => `mobile-nav-item ${isActive ? 'active' : ''}`}
+            >
+              <div className="mobile-nav-icon">
+                <Icon size={20} strokeWidth={2.2} />
+              </div>
+              <span>{label}</span>
+            </NavLink>
+          ))}
+        </nav>
       </main>
     </div>
   );
