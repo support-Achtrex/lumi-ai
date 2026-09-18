@@ -50,14 +50,22 @@ export default function LandingPage() {
         padding: '20px'
       }}>
         
-        {/* AAIA Logo */}
-        <img 
-          src="/logo.png" 
-          alt="AAIA - Automotive AI Agent Platform Logo" 
-          style={{ 
-            height: '84px', objectFit: 'contain', marginBottom: '24px'
-          }} 
-        />
+        {/* AAIA Brand Logo & Title */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: '24px' }}>
+          <img 
+            src="/favicon.png" 
+            alt="AAIA Logo" 
+            style={{ 
+              height: '76px', width: '76px', objectFit: 'contain'
+            }} 
+          />
+          <span style={{ 
+            fontSize: '52px', fontWeight: '800', color: '#ffffff', 
+            letterSpacing: '-0.03em', fontFamily: 'Inter, system-ui, -apple-system, sans-serif'
+          }}>
+            AAIA
+          </span>
+        </div>
         
         {/* Text */}
         <h1 style={{ 

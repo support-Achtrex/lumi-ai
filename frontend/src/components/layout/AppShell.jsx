@@ -120,7 +120,14 @@ export default function AppShell() {
 
         {/* Logo */}
         <div style={{ padding:'20px 16px 10px', borderBottom:'1px solid var(--lgray)', display:'flex', alignItems:'center', justifyContent: isSidebarOpen ? 'space-between' : 'center' }}>
-          {isSidebarOpen && <img src="/logo.png" alt="AAIA" style={{ height: 32, objectFit: 'contain' }} />}
+          {isSidebarOpen ? (
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              <img src="/favicon.png" alt="AAIA" style={{ height: 26, width: 26, objectFit: 'contain' }} />
+              <span style={{ fontSize: 18, fontWeight: 800, color: '#0A2085', letterSpacing: '-0.02em' }}>AAIA</span>
+            </div>
+          ) : (
+            <img src="/favicon.png" alt="AAIA" style={{ height: 26, width: 26, objectFit: 'contain' }} />
+          )}
           <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} style={{ background:'transparent', border:'none', cursor:'pointer', color:'#607D8B', padding: 6, borderRadius: 8 }} onMouseOver={e => e.currentTarget.style.background = '#F5F8FC'} onMouseOut={e => e.currentTarget.style.background = 'transparent'}>
             <Menu size={20} />
           </button>
@@ -228,7 +235,10 @@ export default function AppShell() {
               <button onClick={() => setIsSidebarOpen(true)} style={{ background: 'transparent', border: 'none', color: '#1C2B3A', padding: '4px', display: 'flex', alignItems: 'center' }}>
                 <Menu size={22} />
               </button>
-              <img src="/logo.png" alt="AAIA" style={{ height: 22 }} />
+              <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                <img src="/favicon.png" alt="AAIA" style={{ height: 22, width: 22, objectFit: 'contain' }} />
+                <span style={{ fontSize: 16, fontWeight: 800, color: '#0A2085', letterSpacing: '-0.02em' }}>AAIA</span>
+              </div>
             </div>
             {user?.role === 'admin' && (
               <NavLink to="/admin/dashboard" style={{ background: '#EFF6FF', color: '#2563EB', textDecoration: 'none', padding: '4px 10px', borderRadius: 6, fontSize: 11, fontWeight: 700, display: 'flex', alignItems: 'center', gap: 4 }}>

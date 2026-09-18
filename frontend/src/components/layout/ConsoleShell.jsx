@@ -82,7 +82,8 @@ export default function ConsoleShell() {
         {/* Header/Logo area */}
         <div style={{ padding: '24px 24px 12px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <img src="/logo.png" alt="AAIA" style={{ height: '28px', objectFit: 'contain' }} />
+            <img src="/favicon.png" alt="AAIA" style={{ height: '26px', width: '26px', objectFit: 'contain' }} />
+            <span style={{ fontSize: '18px', fontWeight: 800, color: '#0A2085', letterSpacing: '-0.02em' }}>AAIA</span>
           </div>
           <Search size={18} style={{ color: '#888', cursor: 'pointer' }} />
         </div>

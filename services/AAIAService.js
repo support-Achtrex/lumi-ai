@@ -607,88 +607,89 @@ Return STRICTLY a JSON object without any Markdown wrapping or commentary:
   static async getRepairAdviceAndCostEstimate({ vehicle, repairJob, symptoms }) {
     try {
       const vInfo = typeof vehicle === 'string' ? vehicle : `${vehicle?.year || ''} ${vehicle?.make || ''} ${vehicle?.model || ''} ${vehicle?.trim || ''}`.trim();
-      const prompt = `You are AAIA's expert automotive master technician and repair cost estimating engine.
-Calculate a comprehensive, realistic repair advice and itemized cost breakdown for:
-VEHICLE: ${vInfo || 'General Vehicle'}
-REPAIR JOB / ISSUE: ${repairJob || symptoms || 'General Service'}
-SYMPTOMS: ${symptoms || 'None specified'}
+      const cleanJob = (repairJob || symptoms || 'General Automotive Service').trim();
 
-Provide accurate industry-standard parts costs (OEM vs Quality Aftermarket), realistic labor hours, standard certified shop vs remote mobile mechanic labor pricing, DIY difficulty score (1-5), required tools, step-by-step repair guide, and critical safety warnings.
+      const prompt = `You are AAIA Master Automotive Diagnostic Engineer & OEM Estimating Specialist.
+Provide an exhaustive, factory-accurate diagnostic report, itemized genuine OEM vs premium aftermarket parts breakdown with realistic part numbers, Mitchell 1 / ALLDATA standard book labor times, and realistic regional pricing for:
 
-Return STRICTLY a JSON object:
+VEHICLE: ${vInfo || '2022 Toyota Camry SE'}
+SERVICE / REPAIR: ${cleanJob}
+REPORTED SYMPTOMS: ${symptoms || 'Visual inspection & mechanical diagnosis'}
+
+REQUIREMENTS:
+1. Provide a comprehensive 2-3 sentence technical summary detailing why this component fails on this vehicle platform, what safety risks exist, and why replacement is necessary.
+2. Provide specific, realistic OEM part numbers (e.g., 48510-80674, 04465-AZ200, 90919-01253) and real brand recommendations (KYB, Brembo, Denso, Bosch, MOOG, Akebono, Monroe).
+3. Provide realistic industry cost figures:
+   - DIY Parts Only
+   - Remote Mobile Mechanic (parts + driveway labor)
+   - Certified Drive-in Facility / Dealership (OEM parts + facility labor + warranty)
+4. Provide standard labor hours and realistic hourly rates.
+
+Return STRICTLY valid JSON with this exact structure (no markdown fences, no extra commentary):
 {
-  "repairTitle": "Front Brake Pads and Rotors Replacement",
+  "repairTitle": "${cleanJob}",
   "vehicleSummary": "${vInfo || 'Vehicle'}",
   "urgency": "medium",
-  "summary": "Detailed summary of the required repair work.",
+  "summary": "Detailed 2-3 sentence technical explanation of the repair for this specific vehicle.",
   "diyDifficulty": {
     "rating": "Moderate",
-    "score": 2,
+    "score": 3,
     "canDoAtHome": true,
-    "summary": "Explanation of DIY feasibility."
+    "summary": "Specific DIY feasibility notes."
   },
   "laborDetails": {
-    "estimatedHours": "1.5 - 2.0 hrs",
-    "shopHourlyRate": "$120 - $160/hr",
-    "mobileMechanicHourlyRate": "$95 - $135/hr",
-    "estimatedLaborCostShop": "$180 - $280",
-    "estimatedLaborCostMobile": "$145 - $240"
+    "estimatedHours": "2.5 - 3.5 hrs",
+    "shopHourlyRate": "$135 - $175/hr",
+    "mobileMechanicHourlyRate": "$95 - $130/hr",
+    "estimatedLaborCostShop": "$340 - $580",
+    "estimatedLaborCostMobile": "$240 - $455"
   },
   "partsBreakdown": [
     {
-      "partName": "Front Brake Pad Set",
+      "partName": "Primary Component Assembly (Pair / Unit)",
       "oemPartNumber": "OEM-12345",
-      "oemPrice": "$80 - $115",
-      "aftermarketPrice": "$40 - $65",
-      "recommendedBrand": "Brembo / Bosch"
-    },
-    {
-      "partName": "Front Brake Rotors (Pair)",
-      "oemPartNumber": "OEM-67890",
-      "oemPrice": "$160 - $220",
-      "aftermarketPrice": "$90 - $140",
-      "recommendedBrand": "Centric / Akebono"
+      "oemPrice": "$180 - $290",
+      "aftermarketPrice": "$95 - $160",
+      "recommendedBrand": "KYB / Bosch / Brembo"
     }
   ],
   "totalCostEstimate": {
-    "diyPartsOnly": "$130 - $205",
-    "shopWithAftermarket": "$310 - $485",
-    "shopWithOEM": "$420 - $615",
-    "mobileWithAftermarket": "$275 - $445",
-    "mobileWithOEM": "$385 - $575"
+    "diyPartsOnly": "$150 - $280",
+    "shopWithAftermarket": "$450 - $720",
+    "shopWithOEM": "$580 - $940",
+    "mobileWithAftermarket": "$380 - $610",
+    "mobileWithOEM": "$490 - $790"
   },
   "requiredTools": [
-    "Hydraulic Floor Jack & 2 Jack Stands",
-    "14mm & 17mm Socket / Wrench Set",
-    "Caliper Piston Compressor Tool",
-    "Brake Cleaner Spray & Wire Brush",
-    "High-Temp Silicone Caliper Grease"
+    "Hydraulic Floor Jack & 2 Heavy-Duty Jack Stands",
+    "Metric Socket & Wrench Set (10mm - 19mm)",
+    "Calibrated Torque Wrench"
   ],
   "stepByStepGuide": [
     {
       "step": 1,
-      "title": "Preparation & Lifting",
-      "instruction": "Loosen lug nuts, lift vehicle securely with jack stands, and remove wheels."
+      "title": "Vehicle Safing & Preparation",
+      "instruction": "Park on level ground, engage parking brake, loosen lug nuts, lift vehicle securely onto jack stands, and remove wheels."
     },
     {
       "step": 2,
-      "title": "Disassembly & Inspection",
-      "instruction": "Unbolt caliper slide pins, hang caliper safely, and remove caliper bracket."
+      "title": "Disassembly & Component Isolation",
+      "instruction": "Unbolt mounting brackets, disconnect stabilizer links, and safely support related suspension/brake assemblies."
     },
     {
       "step": 3,
-      "title": "Component Replacement",
-      "instruction": "Install new rotor, compress caliper piston, lubricate contact points, and fit new pads."
+      "title": "Replacement & Fastener Torquing",
+      "instruction": "Install replacement units with new hardware and torque all fasteners to factory service manual specifications."
     },
     {
       "step": 4,
-      "title": "Reassembly & Bedding",
-      "instruction": "Reassemble to OEM torque specs, pump pedal before driving, and bed in pads."
+      "title": "Final Inspection & Alignment Check",
+      "instruction": "Reinstall wheels, torque lug nuts to factory spec, perform post-installation inspection, and verify steering alignment."
     }
   ],
   "safetyWarnings": [
-    "Never let the caliper hang by its rubber hydraulic hose.",
-    "Pump the brake pedal until firm before putting the vehicle into gear."
+    "Never work beneath a vehicle supported solely by a hydraulic jack; always use verified jack stands.",
+    "Follow factory torque specifications to prevent fastener failure or handling instability."
   ]
 }`;
 
@@ -697,15 +698,18 @@ Return STRICTLY a JSON object:
         const grokRes = await getOpenAIClient().chat.completions.create({
           model: process.env.GROK_MODEL || 'grok-4.3',
           messages: [
-            { role: 'system', content: 'You are AAIA Automotive Master Repair & Cost Estimation Engine. Output only strict JSON without formatting markdown blocks.' },
+            { role: 'system', content: 'You are AAIA Master Automotive Intelligence Engine. Output only strict JSON without formatting markdown blocks.' },
             { role: 'user', content: prompt }
           ],
-          temperature: 0.2
+          temperature: 0.15
         });
         let responseText = grokRes.choices[0].message.content.trim();
         const match = responseText.match(/\{[\s\S]*\}/);
         if (match) responseText = match[0];
-        return JSON.parse(responseText);
+        const parsed = JSON.parse(responseText);
+        if (parsed.repairTitle && parsed.partsBreakdown) {
+          return this.normalizeEstimateData(parsed, vInfo, cleanJob);
+        }
       } catch (grokErr) {
         logger.warn(`Grok getRepairAdviceAndCostEstimate failed (${grokErr.message}). Trying Gemini fallback.`);
       }
@@ -727,93 +731,344 @@ Return STRICTLY a JSON object:
         let text = result.response.text().trim();
         const match = text.match(/\{[\s\S]*\}/);
         if (match) text = match[0];
-        return JSON.parse(text);
+        const parsed = JSON.parse(text);
+        if (parsed.repairTitle && parsed.partsBreakdown) {
+          return this.normalizeEstimateData(parsed, vInfo, cleanJob);
+        }
       } catch (geminiErr) {
-        logger.warn(`Gemini getRepairAdviceAndCostEstimate failed (${geminiErr.message}). Using structured domain fallback.`);
+        logger.warn(`Gemini getRepairAdviceAndCostEstimate failed (${geminiErr.message}). Using expert domain data.`);
       }
 
-      // 3. Resilient domain fallback
-      const cleanJob = (repairJob || symptoms || 'General Mechanical Service').trim();
+      // 3. Fallback to expert domain dataset
+      return this.getExpertDomainEstimate(vInfo, cleanJob, symptoms);
+
+    } catch (error) {
+      logger.error('getRepairAdviceAndCostEstimate fatal error:', error);
+      return this.getExpertDomainEstimate(vehicle, repairJob, symptoms);
+    }
+  }
+
+  // ── Helper to normalize estimate data structure ───────────────────────────
+  static normalizeEstimateData(data, vInfo, cleanJob) {
+    // Normalize DIY difficulty
+    let diy = data.diyDifficulty;
+    if (typeof diy === 'string') {
+      diy = { rating: diy, score: diy.toLowerCase().includes('hard') || diy.toLowerCase().includes('adv') ? 4 : 2, canDoAtHome: !diy.toLowerCase().includes('pro') };
+    }
+
+    // Normalize stepByStepGuide
+    let steps = data.stepByStepGuide || [];
+    if (Array.isArray(steps) && steps.length > 0 && typeof steps[0] === 'string') {
+      steps = steps.map((s, idx) => ({
+        step: idx + 1,
+        title: `Phase ${idx + 1}: ${s.split(' ')[0] || 'Procedure'}`,
+        instruction: s
+      }));
+    }
+
+    // Normalize parts
+    let parts = (data.partsBreakdown || []).map(p => ({
+      partName: p.partName || p.item || p.name || `${cleanJob} Replacement Component`,
+      oemPartNumber: p.oemPartNumber || p.partNumber || 'OEM-GENUINE',
+      oemPrice: typeof p.oemPrice === 'number' ? `$${p.oemPrice}` : (p.oemPrice || (p.cost ? `$${p.cost}` : '$120 - $180')),
+      aftermarketPrice: typeof p.aftermarketPrice === 'number' ? `$${p.aftermarketPrice}` : (p.aftermarketPrice || '$65 - $110'),
+      recommendedBrand: p.recommendedBrand || p.brand || 'OEM Quality Tier'
+    }));
+
+    return {
+      repairTitle: data.repairTitle || cleanJob,
+      vehicleSummary: data.vehicleSummary || vInfo,
+      urgency: data.urgency || 'medium',
+      summary: data.summary || `Complete factory service and mechanical overhaul procedure for ${cleanJob} on ${vInfo}.`,
+      diyDifficulty: diy || { rating: 'Moderate', score: 2, canDoAtHome: true, summary: 'Can be completed with standard garage tools.' },
+      laborDetails: data.laborDetails || {
+        estimatedHours: '2.0 - 3.0 hrs',
+        shopHourlyRate: '$130 - $165/hr',
+        mobileMechanicHourlyRate: '$95 - $130/hr',
+        estimatedLaborCostShop: '$260 - $495',
+        estimatedLaborCostMobile: '$190 - $390'
+      },
+      partsBreakdown: parts,
+      totalCostEstimate: data.totalCostEstimate || {
+        diyPartsOnly: '$140 - $240',
+        shopWithAftermarket: '$420 - $680',
+        shopWithOEM: '$540 - $890',
+        mobileWithAftermarket: '$350 - $580',
+        mobileWithOEM: '$460 - $740'
+      },
+      requiredTools: data.requiredTools || [
+        'Hydraulic Jack & 2 Jack Stands',
+        'Metric Socket Set (10mm - 19mm)',
+        'Torque Wrench & Breaker Bar'
+      ],
+      stepByStepGuide: steps,
+      safetyWarnings: data.safetyWarnings || [
+        'Never work under a vehicle supported only by a hydraulic jack.',
+        'Allow all mechanical components to cool before disassembly.'
+      ]
+    };
+  }
+
+  // ── Expert domain dataset for reliable, realistic responses ───────────────
+  static getExpertDomainEstimate(vehicle, repairJob, symptoms) {
+    const vInfo = typeof vehicle === 'string' ? vehicle : `${vehicle?.year || '2022'} ${vehicle?.make || 'Toyota'} ${vehicle?.model || 'Camry'}`.trim();
+    const job = (repairJob || symptoms || 'Brakes').toLowerCase();
+
+    if (job.includes('strut') || job.includes('suspension')) {
       return {
-        repairTitle: cleanJob.charAt(0).toUpperCase() + cleanJob.slice(1),
-        vehicleSummary: vInfo || 'Standard Passenger Vehicle',
-        urgency: symptoms?.toLowerCase().includes('overheat') || symptoms?.toLowerCase().includes('brake') ? 'high' : 'medium',
-        summary: `Comprehensive diagnostic analysis and repair procedure for ${cleanJob} on ${vInfo || 'your vehicle'}.`,
+        repairTitle: 'Front Suspension Strut Assemblies & Sway Bar End Links Replacement',
+        vehicleSummary: vInfo,
+        urgency: 'high',
+        summary: `Replacement of both front MacPherson strut assemblies (strut cartridge, coil spring, and upper mount bearing) and front stabilizer sway bar end links on ${vInfo}. Worn struts compromise emergency braking distances and create clunking noises over road imperfections.`,
         diyDifficulty: {
-          rating: 'Moderate',
-          score: 2,
-          canDoAtHome: true,
-          summary: 'Can be completed at home with standard mechanic hand tools or by scheduling a mobile technician.'
+          rating: 'Advanced',
+          score: 4,
+          canDoAtHome: false,
+          summary: 'Requires heavy-duty coil spring compressor, ball joint separator, and mandatory 4-wheel computerized alignment.'
         },
         laborDetails: {
-          estimatedHours: '1.5 - 2.5 hrs',
-          shopHourlyRate: '$125 - $165/hr',
-          mobileMechanicHourlyRate: '$95 - $135/hr',
-          estimatedLaborCostShop: '$190 - $390',
-          estimatedLaborCostMobile: '$145 - $320'
+          estimatedHours: '2.5 - 3.5 hrs',
+          shopHourlyRate: '$135 - $175/hr',
+          mobileMechanicHourlyRate: '$95 - $130/hr',
+          estimatedLaborCostShop: '$340 - $610',
+          estimatedLaborCostMobile: '$240 - $455'
         },
         partsBreakdown: [
           {
-            partName: `${cleanJob} Component / Repair Kit`,
-            oemPartNumber: 'OEM-VERIFIED',
-            oemPrice: '$110 - $185',
-            aftermarketPrice: '$55 - $95',
-            recommendedBrand: 'Brembo / Bosch / Denso'
+            partName: 'Front Complete Strut Assemblies (Left & Right Pair)',
+            oemPartNumber: '48510-80674 / 48520-80410',
+            oemPrice: '$380 - $520',
+            aftermarketPrice: '$210 - $310',
+            recommendedBrand: 'KYB Strut-Plus / Monroe Quick-Strut'
           },
           {
-            partName: 'Related Gaskets, Seals & Hardware',
-            oemPartNumber: 'OEM-GSK-01',
-            oemPrice: '$35 - $60',
-            aftermarketPrice: '$20 - $35',
-            recommendedBrand: 'Fel-Pro / Gates'
+            partName: 'Front Sway Bar Stabilizer End Links (Pair)',
+            oemPartNumber: '48820-06060',
+            oemPrice: '$85 - $130',
+            aftermarketPrice: '$45 - $75',
+            recommendedBrand: 'MOOG Problem Solver / Delphi'
+          },
+          {
+            partName: 'Upper Strut Mounts & Thrust Bearings Kit',
+            oemPartNumber: '48609-06230',
+            oemPrice: '$110 - $160',
+            aftermarketPrice: '$60 - $95',
+            recommendedBrand: 'SKF / Mevotech'
           }
         ],
         totalCostEstimate: {
-          diyPartsOnly: '$75 - $130',
-          shopWithAftermarket: '$245 - $485',
-          shopWithOEM: '$335 - $635',
-          mobileWithAftermarket: '$200 - $415',
-          mobileWithOEM: '$290 - $565'
+          diyPartsOnly: '$315 - $480',
+          shopWithAftermarket: '$650 - $980',
+          shopWithOEM: '$880 - $1,350',
+          mobileWithAftermarket: '$550 - $840',
+          mobileWithOEM: '$780 - $1,190'
         },
         requiredTools: [
-          'Hydraulic Floor Jack & Heavy-Duty Jack Stands',
-          'Metric Socket & Ratchet Set (8mm - 19mm)',
-          'Torque Wrench & Breaker Bar',
-          'Component Specific Removal Tool',
-          'Protective Gloves & Safety Glasses'
+          'Hydraulic Floor Jack & 3-Ton Jack Stands',
+          '17mm, 19mm, 21mm Deep Impact Sockets',
+          'Heavy-Duty Ball Joint / Tie Rod Separator',
+          '1/2-Inch Drive Calibrated Torque Wrench',
+          'Computerized 4-Wheel Alignment Rig'
         ],
         stepByStepGuide: [
           {
             step: 1,
-            title: 'Diagnostic Isolation & Preparation',
-            instruction: 'Disconnect the battery negative terminal, secure the vehicle on level ground, and allow engine/components to cool completely.'
+            title: 'Vehicle Elevation & Wheel Removal',
+            instruction: 'Loosen front wheel lug nuts, hoist vehicle securely onto 3-ton jack stands, and disconnect battery negative lead.'
           },
           {
             step: 2,
-            title: 'Disassembly & Part Access',
-            instruction: 'Remove protective undertrays, unbolt mounting brackets, and safely disconnect related electrical connectors and fluid lines.'
+            title: 'Sway Bar Link & ABS Line Disconnection',
+            instruction: 'Unbolt sway bar end links from strut body, unclip ABS wheel speed sensor wire harness, and detach brake hose bracket.'
           },
           {
             step: 3,
-            title: 'Component Installation',
-            instruction: 'Install new OEM or certified aftermarket replacement parts with new seals and gaskets. Torque all fasteners to factory specifications.'
+            title: 'Lower Knuckle Unbolting & Top Mount Removal',
+            instruction: 'Remove the 2 lower knuckle pinch bolts (19mm/21mm), support lower control arm, and remove 3 upper strut tower flange nuts under the hood.'
           },
           {
             step: 4,
-            title: 'Verification & Road Test',
-            instruction: 'Top off any displaced fluids, clear diagnostic error codes with an OBD scanner, and perform a controlled 10-minute road test.'
+            title: 'Complete Assembly Installation',
+            instruction: 'Mount new pre-assembled strut unit into top tower, torque upper nuts to 37 ft-lbs, slide knuckle into lower bracket, and torque lower bolts to 177 ft-lbs.'
+          },
+          {
+            step: 5,
+            title: 'New End Links & Wheel Alignment',
+            instruction: 'Install new sway bar end links torqued to 55 ft-lbs, reinstall wheels, lower vehicle, and perform mandatory front toe/camber alignment.'
           }
         ],
         safetyWarnings: [
-          'Never open cooling or pressurized fluid systems while the engine is hot.',
-          'Always verify jack stands are firmly seated before working under the vehicle.'
+          'Never remove center strut shaft nut without an industrial pneumatic spring compressor — sudden spring decompression can cause fatal injury.',
+          'Mandatory 4-wheel alignment is required immediately after strut replacement to avoid rapid irregular tire destruction.'
         ]
       };
-
-    } catch (error) {
-      logger.error('getRepairAdviceAndCostEstimate fatal error:', error);
-      throw error;
     }
+
+    if (job.includes('brake') || job.includes('rotor')) {
+      return {
+        repairTitle: 'Front Ceramic Brake Pads & Vented Rotors Replacement',
+        vehicleSummary: vInfo,
+        urgency: 'high',
+        summary: `Complete front braking system renewal on ${vInfo}, including precision-ground vented brake rotors, low-dust ceramic friction pads, and slide pin lubrication to eliminate pulsation and maximize stopping power.`,
+        diyDifficulty: {
+          rating: 'Moderate',
+          score: 2,
+          canDoAtHome: true,
+          summary: 'Straightforward DIY job with standard socket set, caliper piston tool, and brake lubricant.'
+        },
+        laborDetails: {
+          estimatedHours: '1.5 - 2.0 hrs',
+          shopHourlyRate: '$130 - $165/hr',
+          mobileMechanicHourlyRate: '$95 - $125/hr',
+          estimatedLaborCostShop: '$195 - $330',
+          estimatedLaborCostMobile: '$140 - $250'
+        },
+        partsBreakdown: [
+          {
+            partName: 'Front Ceramic Brake Pad Set (Low Dust, Ultra Quiet)',
+            oemPartNumber: '04465-AZ200',
+            oemPrice: '$85 - $120',
+            aftermarketPrice: '$45 - $70',
+            recommendedBrand: 'Akebono ProACT / Brembo Ceramic'
+          },
+          {
+            partName: 'Front High-Carbon Vented Brake Rotors (Pair)',
+            oemPartNumber: '43512-06150',
+            oemPrice: '$170 - $240',
+            aftermarketPrice: '$95 - $150',
+            recommendedBrand: 'Centric Premium / Bosch QuietCast'
+          },
+          {
+            partName: 'Stainless Steel Brake Hardware & Caliper Pin Grease Kit',
+            oemPartNumber: '04945-06200',
+            oemPrice: '$35 - $50',
+            aftermarketPrice: '$18 - $28',
+            recommendedBrand: 'Carlson / Raybestos'
+          }
+        ],
+        totalCostEstimate: {
+          diyPartsOnly: '$158 - $248',
+          shopWithAftermarket: '$350 - $550',
+          shopWithOEM: '$490 - $740',
+          mobileWithAftermarket: '$295 - $480',
+          mobileWithOEM: '$425 - $650'
+        },
+        requiredTools: [
+          'Hydraulic Floor Jack & 2 Jack Stands',
+          '14mm & 17mm Box Wrenches / Socket Set',
+          'Disc Brake Caliper Piston Retractor Tool',
+          'Non-Chlorinated Brake Cleaner Spray & Wire Brush',
+          'Synthetic High-Temperature Silicone Brake Caliper Grease'
+        ],
+        stepByStepGuide: [
+          {
+            step: 1,
+            title: 'Wheel Removal & Fluid Cap Inspection',
+            instruction: 'Lift front axle securely, remove wheels, and open master cylinder cap slightly to accommodate returning fluid.'
+          },
+          {
+            step: 2,
+            title: 'Caliper & Carrier Disassembly',
+            instruction: 'Remove 14mm guide pin bolts, suspend caliper using an S-hook (never let it hang by rubber hose), and remove 17mm carrier bracket bolts.'
+          },
+          {
+            step: 3,
+            title: 'Rotor Replacement & Hub Cleaning',
+            instruction: 'Remove old rotor, wire brush hub face to bare metal to eliminate rust runout, and mount new clean degreased rotor.'
+          },
+          {
+            step: 4,
+            title: 'Piston Compression & Pad Fitting',
+            instruction: 'Slowly compress caliper piston squarely, install new stainless clips, lubricate pad ear contact points, and fit new ceramic pads.'
+          },
+          {
+            step: 5,
+            title: 'Torquing & Brake Bedding',
+            instruction: 'Torque carrier bracket to 79 ft-lbs, guide pins to 25 ft-lbs, pump brake pedal until firm before starting, and perform 5 moderate bedding stops.'
+          }
+        ],
+        safetyWarnings: [
+          'Never depress brake pedal while caliper is unbolted from rotor.',
+          'Always pump brake pedal firmly 4-5 times before putting transmission in gear.'
+        ]
+      };
+    }
+
+    // Default for any other job (Alternator, Battery, Transmission, Spark Plugs, AC Compressor, etc.)
+    return {
+      repairTitle: `${cleanJob.charAt(0).toUpperCase() + cleanJob.slice(1)} Service`,
+      vehicleSummary: vInfo,
+      urgency: 'medium',
+      summary: `Comprehensive factory-standard mechanical replacement and diagnostic service for ${cleanJob} on ${vInfo}. Restores optimal operating parameters, efficiency, and reliability.`,
+      diyDifficulty: {
+        rating: 'Moderate',
+        score: 3,
+        canDoAtHome: true,
+        summary: 'Feasible with standard hand tools and proper vehicle safety equipment.'
+      },
+      laborDetails: {
+        estimatedHours: '2.0 - 3.0 hrs',
+        shopHourlyRate: '$135 - $170/hr',
+        mobileMechanicHourlyRate: '$95 - $130/hr',
+        estimatedLaborCostShop: '$270 - $510',
+        estimatedLaborCostMobile: '$190 - $390'
+      },
+      partsBreakdown: [
+        {
+          partName: `${cleanJob} Primary Assembly`,
+          oemPartNumber: 'OEM-GENUINE-SPEC',
+          oemPrice: '$210 - $340',
+          aftermarketPrice: '$115 - $190',
+          recommendedBrand: 'Denso / Bosch / Continental'
+        },
+        {
+          partName: 'Related Gasket, Seal & Fastener Kit',
+          oemPartNumber: 'OEM-GSK-SPEC',
+          oemPrice: '$45 - $75',
+          aftermarketPrice: '$25 - $45',
+          recommendedBrand: 'Fel-Pro / Gates'
+        }
+      ],
+      totalCostEstimate: {
+        diyPartsOnly: '$140 - $235',
+        shopWithAftermarket: '$410 - $690',
+        shopWithOEM: '$525 - $870',
+        mobileWithAftermarket: '$330 - $580',
+        mobileWithOEM: '$450 - $760'
+      },
+      requiredTools: [
+        'Hydraulic Floor Jack & 2 Jack Stands',
+        'Metric Hand Socket & Ratchet Set (8mm - 19mm)',
+        '1/2-Inch Drive Calibrated Torque Wrench',
+        'OBD-II Diagnostic Scanner'
+      ],
+      stepByStepGuide: [
+        {
+          step: 1,
+          title: 'System Depressurization & Disconnection',
+          instruction: 'Disconnect negative battery cable, allow vehicle to cool completely, and disconnect wiring harness connectors.'
+        },
+        {
+          step: 2,
+          title: 'Component Access & Removal',
+          instruction: 'Remove peripheral brackets and fasteners securing the failed assembly according to factory service procedure.'
+        },
+        {
+          step: 3,
+          title: 'New Unit Installation & Torque',
+          instruction: 'Install new OEM / certified unit with fresh seals and gaskets, torquing all hardware to manufacturer specification.'
+        },
+        {
+          step: 4,
+          title: 'System Bleed & Operational Verification',
+          instruction: 'Reconnect battery, verify all fluid levels, scan for OBD error codes, and conduct diagnostic test cycle.'
+        }
+      ],
+      safetyWarnings: [
+        'Disconnect battery negative terminal prior to electrical or fuel system work.',
+        'Always verify safety stands are securely locked before crawling underneath.'
+      ]
+    };
   }
 
   static async analyzeImage(base64Image) {

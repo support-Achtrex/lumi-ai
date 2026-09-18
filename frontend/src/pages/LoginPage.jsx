@@ -90,12 +90,19 @@ export default function LoginPage() {
         position: 'relative', zIndex: 10, 
         padding: '20px 24px', display: 'flex', justifyContent: 'flex-start'
       }}>
-        <img 
-          src="/logo.png" 
-          alt="AAIA Logo" 
-          style={{ height: '36px', objectFit: 'contain', cursor: 'pointer' }}
+        <div 
           onClick={() => navigate('/')}
-        />
+          style={{ display: 'inline-flex', alignItems: 'center', gap: 10, cursor: 'pointer' }}
+        >
+          <img 
+            src="/favicon.png" 
+            alt="AAIA Logo" 
+            style={{ height: '36px', width: '36px', objectFit: 'contain' }}
+          />
+          <span style={{ fontSize: '24px', fontWeight: '800', color: '#ffffff', letterSpacing: '-0.02em' }}>
+            AAIA
+          </span>
+        </div>
       </header>
 
       {/* ── Central Login Form ───────────────────────────── */}
