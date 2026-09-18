@@ -17,7 +17,6 @@ import RepairAdvicePage from './pages/RepairAdvicePage';
 import CarScannerPage from './pages/CarScannerPage';
 import GaragesPage from './pages/GaragesPage';
 import WorkflowAutomationPage from './pages/WorkflowAutomationPage';
-import AdminUsersPage from './pages/AdminUsersPage';
 import ConsoleShell from './components/layout/ConsoleShell';
 import ProfileSettingsPage from './pages/ProfileSettingsPage';
 import ApiKeysPage from './pages/ApiKeysPage';
@@ -26,6 +25,17 @@ import BillingPage from './pages/BillingPage';
 import DocumentationPage from './pages/DocumentationPage';
 import ConsoleDashboard from './pages/ConsoleDashboard';
 import LandingPage from './pages/LandingPage';
+
+// Admin Suite
+import AdminShell from './components/layout/AdminShell';
+import RequireAdmin from './components/auth/RequireAdmin';
+import AdminDashboardPage from './pages/admin/AdminDashboardPage';
+import AdminUsersPage from './pages/admin/AdminUsersPage';
+import AdminGaragesPage from './pages/admin/AdminGaragesPage';
+import AdminBookingsPage from './pages/admin/AdminBookingsPage';
+import AdminPlansPage from './pages/admin/AdminPlansPage';
+import AdminDiscountsPage from './pages/admin/AdminDiscountsPage';
+import AdminSystemPage from './pages/admin/AdminSystemPage';
 
 import UpgradeModal from './components/layout/UpgradeModal';
 import './index.css';
@@ -90,8 +100,9 @@ function AppContainer() {
             <Route path="/parts"          element={<Navigate to="/repair-advice" replace />} />
             <Route path="/garages"        element={<GaragesPage />} />
             <Route path="/workflow"       element={<WorkflowAutomationPage />} />
-            <Route path="/admin/users"    element={<AdminUsersPage />} />
           </Route>
+          
+          {/* Developer / Enterprise Console */}
           <Route path="/console" element={<RequireAuth><ConsoleShell /></RequireAuth>}>
             <Route index element={<Navigate to="/console/dashboard" replace />} />
             <Route path="dashboard" element={<ConsoleDashboard />} />
@@ -100,9 +111,22 @@ function AppContainer() {
             <Route path="models" element={<ModelsPage />} />
             <Route path="billing" element={<BillingPage />} />
             <Route path="docs" element={<DocumentationPage />} />
-
             <Route path="*" element={<Navigate to="/console/dashboard" replace />} />
           </Route>
+
+          {/* Independent Admin Management Suite */}
+          <Route path="/admin" element={<RequireAdmin><AdminShell /></RequireAdmin>}>
+            <Route index element={<Navigate to="/admin/dashboard" replace />} />
+            <Route path="dashboard" element={<AdminDashboardPage />} />
+            <Route path="users" element={<AdminUsersPage />} />
+            <Route path="garages" element={<AdminGaragesPage />} />
+            <Route path="bookings" element={<AdminBookingsPage />} />
+            <Route path="plans" element={<AdminPlansPage />} />
+            <Route path="discounts" element={<AdminDiscountsPage />} />
+            <Route path="system" element={<AdminSystemPage />} />
+            <Route path="*" element={<Navigate to="/admin/dashboard" replace />} />
+          </Route>
+
           <Route path="*" element={<Navigate to="/chat" replace />} />
         </Routes>
       </BrowserRouter>

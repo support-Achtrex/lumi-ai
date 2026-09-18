@@ -18,7 +18,8 @@ import {
   Plus,
   Camera,
   Store,
-  DollarSign
+  DollarSign,
+  Shield
 } from 'lucide-react';
 
 const NAV = [
@@ -36,7 +37,7 @@ const NAV = [
     { to: '/reports',       Icon: FileText,           label: 'Reports Center' },
   ]},
   { group: 'Administration', role: 'admin', items: [
-    { to: '/admin/users',   Icon: Users,              label: 'Admin Control Center' },
+    { to: '/admin/dashboard', Icon: Shield,           label: 'Admin Control Center', badge: 'ADMIN', badgeColor: '#2563EB', badgeText: '#fff' },
   ]},
 ];
 

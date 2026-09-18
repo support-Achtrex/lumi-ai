@@ -13,7 +13,8 @@ import {
   ChevronDown,
   ArrowLeft,
   LogOut,
-  Menu
+  Menu,
+  Shield
 } from 'lucide-react';
 
 const CONSOLE_NAV = [
@@ -29,6 +30,9 @@ const CONSOLE_NAV = [
   { group: 'Developer', items: [
     { to: '/console/api-keys', Icon: Key, label: 'API Keys' },
     { to: '/console/docs', Icon: BookOpen, label: 'Documentation' },
+  ]},
+  { group: 'Administration', role: 'admin', items: [
+    { to: '/admin/dashboard', Icon: Shield, label: 'Admin Control Center' },
   ]},
 ];
 
@@ -100,44 +104,47 @@ export default function ConsoleShell() {
 
         {/* Navigation */}
         <nav style={{ flex: 1, overflowY: 'auto', padding: '0 12px' }}>
-          {CONSOLE_NAV.map((section, idx) => (
-            <div key={idx} style={{ marginBottom: '16px' }}>
-              {section.group && (
-                <div style={{ fontSize: '11px', fontWeight: '600', color: '#888', textTransform: 'uppercase', padding: '8px 12px', letterSpacing: '0.5px' }}>
-                  {section.group}
-                </div>
-              )}
-              {section.items.map((item) => {
-                const Icon = item.Icon;
-                return (
-                  <NavLink
-                    key={item.to}
-                    to={item.to}
-                    end={item.exact}
-                    style={({ isActive }) => ({
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'space-between',
-                      padding: '9px 12px',
-                      borderRadius: '8px',
-                      textDecoration: 'none',
-                      color: isActive ? '#0A2085' : '#555',
-                      background: isActive ? '#F0F5FF' : 'transparent',
-                      fontWeight: isActive ? '600' : '400',
-                      fontSize: '13.5px',
-                      marginBottom: '2px',
-                      transition: 'all 0.15s ease'
-                    })}
-                  >
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                      <Icon size={16} strokeWidth={2} style={{ color: '#607D8B' }} />
-                      <span>{item.label}</span>
-                    </div>
-                  </NavLink>
-                );
-              })}
-            </div>
-          ))}
+          {CONSOLE_NAV.map((section, idx) => {
+            if (section.role && user?.role !== section.role) return null;
+            return (
+              <div key={idx} style={{ marginBottom: '16px' }}>
+                {section.group && (
+                  <div style={{ fontSize: '11px', fontWeight: '600', color: '#888', textTransform: 'uppercase', padding: '8px 12px', letterSpacing: '0.5px' }}>
+                    {section.group}
+                  </div>
+                )}
+                {section.items.map((item) => {
+                  const Icon = item.Icon;
+                  return (
+                    <NavLink
+                      key={item.to}
+                      to={item.to}
+                      end={item.exact}
+                      style={({ isActive }) => ({
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        padding: '9px 12px',
+                        borderRadius: '8px',
+                        textDecoration: 'none',
+                        color: isActive ? '#0A2085' : '#555',
+                        background: isActive ? '#F0F5FF' : 'transparent',
+                        fontWeight: isActive ? '600' : '400',
+                        fontSize: '13.5px',
+                        marginBottom: '2px',
+                        transition: 'all 0.15s ease'
+                      })}
+                    >
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                        <Icon size={16} strokeWidth={2} style={{ color: '#607D8B' }} />
+                        <span>{item.label}</span>
+                      </div>
+                    </NavLink>
+                  );
+                })}
+              </div>
+            );
+          })}
         </nav>
 
         {/* Bottom Actions */}

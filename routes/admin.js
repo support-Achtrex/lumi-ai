@@ -1,10 +1,86 @@
 const express = require('express');
 const router = express.Router();
+const bcrypt = require('bcryptjs');
+const { v4: uuidv4 } = require('uuid');
 const { authenticate, requireRole } = require('../middleware/auth');
 const { query } = require('../config/database');
 
 // All routes here require admin access
 router.use(authenticate, requireRole('admin'));
+
+// ── GET /api/admin/stats ──────────────────────────────────────────────────────
+router.get('/stats', async (req, res, next) => {
+  try {
+    const garagesRouter = require('./garages');
+    const bookingsRouter = require('./bookings');
+
+    let totalUsers = 0;
+    let activeUsers = 0;
+    let roleCounts = { admin: 0, user: 0, enterprise: 0, developer: 0 };
+    let planCounts = { free: 0, starter: 0, pro: 0, enterprise: 0 };
+    let recentUsers = [];
+
+    try {
+      const usersRes = await query(`
+        SELECT id, email, name, role, is_active, plan_type, credits, created_at 
+        FROM users 
+        ORDER BY created_at DESC
+      `);
+      const users = usersRes.rows || [];
+      totalUsers = users.length;
+      activeUsers = users.filter(u => u.is_active).length;
+      users.forEach(u => {
+        const r = u.role || 'user';
+        const p = u.plan_type || 'free';
+        roleCounts[r] = (roleCounts[r] || 0) + 1;
+        planCounts[p] = (planCounts[p] || 0) + 1;
+      });
+      recentUsers = users.slice(0, 6);
+    } catch (e) {
+      // Degraded fallback
+    }
+
+    const totalGarages = garagesRouter.PARTNER_GARAGES ? garagesRouter.PARTNER_GARAGES.length : 0;
+    const activeVans = garagesRouter.PARTNER_GARAGES ? garagesRouter.PARTNER_GARAGES.filter(g => g.isMobileCapable).length : 0;
+    const totalBookings = bookingsRouter.USER_BOOKINGS ? bookingsRouter.USER_BOOKINGS.length : 0;
+    const pendingBookings = bookingsRouter.USER_BOOKINGS ? bookingsRouter.USER_BOOKINGS.filter(b => b.status === 'pending').length : 0;
+
+    let totalRevenue = 0;
+    try {
+      const invRes = await query(`SELECT COALESCE(SUM(amount), 0) as total_rev FROM invoices WHERE status = 'paid'`);
+      if (invRes.rows.length > 0) {
+        totalRevenue = parseFloat(invRes.rows[0].total_rev) || 0;
+      }
+    } catch (e) {}
+
+    let totalApiRequests = 0;
+    try {
+      const usageRes = await query(`SELECT COUNT(*) as total FROM api_usage`);
+      if (usageRes.rows.length > 0) {
+        totalApiRequests = parseInt(usageRes.rows[0].total, 10) || 0;
+      }
+    } catch (e) {}
+
+    res.json({
+      success: true,
+      data: {
+        totalUsers,
+        activeUsers,
+        roleCounts,
+        planCounts,
+        totalGarages,
+        activeVans,
+        totalBookings,
+        pendingBookings,
+        totalRevenue,
+        totalApiRequests,
+        recentUsers
+      }
+    });
+  } catch (error) {
+    next(error);
+  }
+});
 
 // ── GET /api/admin/users ───────────────────────────────────────────────────────
 router.get('/users', async (req, res, next) => {
@@ -20,13 +96,43 @@ router.get('/users', async (req, res, next) => {
   }
 });
 
+// ── POST /api/admin/users ──────────────────────────────────────────────────────
+router.post('/users', async (req, res, next) => {
+  try {
+    const { email, password, name, role = 'user', plan_type = 'free', credits = 5.0, company, phone, is_active = true } = req.body;
+
+    if (!email || !password || !name) {
+      return res.status(400).json({ success: false, error: 'Name, email, and password are required' });
+    }
+
+    const existing = await query('SELECT id FROM users WHERE email = $1', [email.trim().toLowerCase()]);
+    if (existing.rows.length > 0) {
+      return res.status(409).json({ success: false, error: 'A user with this email already exists' });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 12);
+    const id = uuidv4();
+
+    const result = await query(
+      `INSERT INTO users (id, email, password, name, role, is_active, credits, plan_type, company, phone, created_at, updated_at)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, NOW(), NOW())
+       RETURNING id, email, name, role, is_active, credits, plan_type, company, phone, created_at`,
+      [id, email.trim().toLowerCase(), hashedPassword, name.trim(), role, is_active, credits, plan_type, company || null, phone || null]
+    );
+
+    res.status(201).json({ success: true, data: result.rows[0] });
+  } catch (error) {
+    next(error);
+  }
+});
+
 // ── PUT /api/admin/users/:id ───────────────────────────────────────────────────
 router.put('/users/:id', async (req, res, next) => {
   try {
     const { id } = req.params;
-    const { role, is_active } = req.body;
+    const { role, is_active, name, email, plan_type, company, phone } = req.body;
 
-    if (id === req.user.id && (role !== 'admin' || is_active === false)) {
+    if (id === req.user.id && (role && role !== 'admin' || is_active === false)) {
       return res.status(400).json({ success: false, error: 'Cannot demote or deactivate your own admin account' });
     }
 
@@ -34,10 +140,15 @@ router.put('/users/:id', async (req, res, next) => {
       `UPDATE users 
        SET role = COALESCE($1, role), 
            is_active = COALESCE($2, is_active),
+           name = COALESCE($3, name),
+           email = COALESCE($4, email),
+           plan_type = COALESCE($5, plan_type),
+           company = COALESCE($6, company),
+           phone = COALESCE($7, phone),
            updated_at = NOW()
-       WHERE id = $3
-       RETURNING id, email, name, role, is_active, last_login, created_at`,
-      [role, is_active, id]
+       WHERE id = $8
+       RETURNING id, email, name, role, is_active, credits, plan_type, company, phone, last_login, created_at`,
+      [role, is_active, name, email, plan_type, company, phone, id]
     );
 
     if (result.rows.length === 0) {
@@ -77,7 +188,7 @@ router.put('/users/:id/credits', async (req, res, next) => {
     const { id } = req.params;
     const { credits, plan_type } = req.body;
     const result = await query(
-      `UPDATE users SET credits = $1, plan_type = $2, updated_at = NOW() WHERE id = $3 RETURNING id, email, credits, plan_type`,
+      `UPDATE users SET credits = $1, plan_type = COALESCE($2, plan_type), updated_at = NOW() WHERE id = $3 RETURNING id, email, credits, plan_type`,
       [credits, plan_type, id]
     );
     if (result.rows.length === 0) return res.status(404).json({ success: false, error: 'User not found' });
@@ -120,7 +231,7 @@ router.post('/plans', async (req, res, next) => {
     const result = await query(
       `INSERT INTO plans (title, description, price_usd, credits, interval, tab, is_popular, features) 
        VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *`,
-      [title, description, price_usd, credits, interval, tab, is_popular, JSON.stringify(features)]
+      [title, description, price_usd, credits, interval, tab, is_popular, JSON.stringify(features || [])]
     );
     res.json({ success: true, data: result.rows[0] });
   } catch (e) { next(e); }
@@ -135,7 +246,7 @@ router.put('/plans/:id', async (req, res, next) => {
       `UPDATE plans 
        SET title=$1, description=$2, price_usd=$3, credits=$4, interval=$5, tab=$6, is_popular=$7, features=$8, is_active=$9 
        WHERE id=$10 RETURNING *`,
-      [title, description, price_usd, credits, interval, tab, is_popular, JSON.stringify(features), is_active, id]
+      [title, description, price_usd, credits, interval, tab, is_popular, JSON.stringify(features || []), is_active, id]
     );
     res.json({ success: true, data: result.rows[0] });
   } catch (e) { next(e); }
@@ -167,6 +278,14 @@ router.post('/discounts', async (req, res, next) => {
       [code, percentage_off || null, fixed_amount_off || null, max_uses || null, expires_at || null]
     );
     res.json({ success: true, data: result.rows[0] });
+  } catch (e) { next(e); }
+});
+
+// ── DELETE /api/admin/discounts/:id ────────────────────────────────────────────
+router.delete('/discounts/:id', async (req, res, next) => {
+  try {
+    await query('DELETE FROM discounts WHERE id = $1', [req.params.id]);
+    res.json({ success: true });
   } catch (e) { next(e); }
 });
 
@@ -206,12 +325,14 @@ router.post('/garages', (req, res) => {
     bio: bio || 'Verified AAIA Partner Shop'
   };
 
+  if (!garagesRouter.PARTNER_GARAGES) garagesRouter.PARTNER_GARAGES = [];
   garagesRouter.PARTNER_GARAGES.unshift(newPartner);
   res.status(201).json({ success: true, data: newPartner });
 });
 
 router.put('/garages/:id', (req, res) => {
   const garagesRouter = require('./garages');
+  if (!garagesRouter.PARTNER_GARAGES) garagesRouter.PARTNER_GARAGES = [];
   const index = garagesRouter.PARTNER_GARAGES.findIndex(g => g.id === req.params.id);
   if (index === -1) return res.status(404).json({ success: false, error: 'Partner not found' });
   
@@ -224,6 +345,7 @@ router.put('/garages/:id', (req, res) => {
 
 router.delete('/garages/:id', (req, res) => {
   const garagesRouter = require('./garages');
+  if (!garagesRouter.PARTNER_GARAGES) garagesRouter.PARTNER_GARAGES = [];
   const index = garagesRouter.PARTNER_GARAGES.findIndex(g => g.id === req.params.id);
   if (index === -1) return res.status(404).json({ success: false, error: 'Partner not found' });
   
@@ -240,6 +362,7 @@ router.get('/bookings', (req, res) => {
 
 router.put('/bookings/:id', (req, res) => {
   const bookingsRouter = require('./bookings');
+  if (!bookingsRouter.USER_BOOKINGS) bookingsRouter.USER_BOOKINGS = [];
   const booking = bookingsRouter.USER_BOOKINGS.find(b => b.id === req.params.id);
   if (!booking) return res.status(404).json({ success: false, error: 'Booking not found' });
 
@@ -249,11 +372,62 @@ router.put('/bookings/:id', (req, res) => {
 
 router.delete('/bookings/:id', (req, res) => {
   const bookingsRouter = require('./bookings');
+  if (!bookingsRouter.USER_BOOKINGS) bookingsRouter.USER_BOOKINGS = [];
   const index = bookingsRouter.USER_BOOKINGS.findIndex(b => b.id === req.params.id);
   if (index === -1) return res.status(404).json({ success: false, error: 'Booking not found' });
 
   bookingsRouter.USER_BOOKINGS.splice(index, 1);
   res.json({ success: true, message: 'Booking removed' });
+});
+
+// ── SYSTEM DIAGNOSTICS (ADMIN) ───────────────────────────────────────────────
+router.get('/system', async (req, res, next) => {
+  try {
+    const memory = process.memoryUsage();
+    const uptime = process.uptime();
+    
+    let dbStatus = 'connected';
+    let dbLatencyMs = 0;
+    try {
+      const t0 = Date.now();
+      await query('SELECT 1');
+      dbLatencyMs = Date.now() - t0;
+    } catch (e) {
+      dbStatus = 'degraded';
+    }
+
+    let redisStatus = 'active';
+    try {
+      const { get } = require('../config/redis');
+      await get('health:ping');
+    } catch (e) {
+      redisStatus = 'disabled';
+    }
+
+    res.json({
+      success: true,
+      data: {
+        environment: process.env.NODE_ENV || 'production',
+        version: process.env.PRODUCT_VERSION || '1.0.0',
+        uptimeSeconds: Math.floor(uptime),
+        nodeVersion: process.version,
+        memoryUsageMB: {
+          rss: Math.round(memory.rss / 1024 / 1024),
+          heapTotal: Math.round(memory.heapTotal / 1024 / 1024),
+          heapUsed: Math.round(memory.heapUsed / 1024 / 1024)
+        },
+        database: {
+          status: dbStatus,
+          latencyMs: dbLatencyMs
+        },
+        redis: {
+          status: redisStatus
+        }
+      }
+    });
+  } catch (error) {
+    next(error);
+  }
 });
 
 module.exports = router;

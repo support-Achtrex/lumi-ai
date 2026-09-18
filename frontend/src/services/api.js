@@ -64,7 +64,9 @@ class APIService {
   static getInvoices() { return this.get('/billing/invoices').then(res => res.data); }
 
   // ── Admin ────────────────────────────────────────────────────────────────
+  static getAdminStats() { return this.get('/admin/stats').then(res => res.data); }
   static getAdminUsers() { return this.get('/admin/users').then(res => res.data); }
+  static createAdminUser(data) { return this.post('/admin/users', data).then(res => res.data); }
   static updateAdminUser(id, data) { return this.put(`/admin/users/${id}`, data).then(res => res.data); }
   static deleteAdminUser(id) { return this.del(`/admin/users/${id}`); }
   static updateAdminUserCredits(id, credits, plan_type) { return this.put(`/admin/users/${id}/credits`, { credits, plan_type }).then(res => res.data); }
@@ -89,6 +91,9 @@ class APIService {
   static getAdminBookings() { return this.get('/admin/bookings').then(res => res.data); }
   static updateAdminBooking(id, data) { return this.put(`/admin/bookings/${id}`, data).then(res => res.data); }
   static deleteAdminBooking(id) { return this.del(`/admin/bookings/${id}`); }
+
+  // Admin System Diagnostics
+  static getAdminSystemInfo() { return this.get('/admin/system').then(res => res.data); }
 
   // ── Usage & Analytics ───────────────────────────────────────────────────
   static getUsage() { return this.get('/usage').then(res => res.data); }

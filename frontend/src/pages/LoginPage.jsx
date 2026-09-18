@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { 
   Lock, 
@@ -25,17 +25,29 @@ export default function LoginPage() {
   const [loading,  setLoading]  = useState(false);
   const { login, register } = useAuth();
   const navigate   = useNavigate();
+  const location   = useLocation();
+
+  const searchParams = new URLSearchParams(location.search);
+  const redirectPath = searchParams.get('redirect');
 
   async function handleSubmit(e) {
     e.preventDefault();
     setLoading(true); setError('');
     try {
+      let authResult;
       if (tab === 'login') {
-        await login(email, password);
+        authResult = await login(email, password);
       } else {
-        await register(name, email, password, company, phone);
+        authResult = await register(name, email, password, company, phone);
       }
-      navigate('/chat');
+
+      if (redirectPath) {
+        navigate(redirectPath, { replace: true });
+      } else if (authResult?.user?.role === 'admin') {
+        navigate('/admin/dashboard', { replace: true });
+      } else {
+        navigate('/chat', { replace: true });
+      }
     } catch (err) {
       setError(err.message || 'Authentication failed. Please check your credentials.');
     } finally { setLoading(false); }
