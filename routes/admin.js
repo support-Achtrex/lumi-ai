@@ -170,12 +170,90 @@ router.post('/discounts', async (req, res, next) => {
   } catch (e) { next(e); }
 });
 
-// ── DELETE /api/admin/discounts/:id ────────────────────────────────────────────
-router.delete('/discounts/:id', async (req, res, next) => {
-  try {
-    await query('DELETE FROM discounts WHERE id = $1', [req.params.id]);
-    res.json({ success: true });
-  } catch (e) { next(e); }
+// ── PARTNER SHOPS & GARAGES MANAGEMENT (ADMIN) ──────────────────────────────
+router.get('/garages', (req, res) => {
+  const garagesRouter = require('./garages');
+  const list = garagesRouter.PARTNER_GARAGES || [];
+  res.json({ success: true, data: list });
+});
+
+router.post('/garages', (req, res) => {
+  const garagesRouter = require('./garages');
+  const { name, type, isMobileCapable, phone, email, city, hourlyRate, servicesOffered, approvalStatus, bio } = req.body;
+  
+  const newPartner = {
+    id: `gar-${Date.now()}`,
+    name: name || 'New Partner Garage',
+    tagline: isMobileCapable ? 'Certified Remote Mobile Service' : 'Certified Automotive Center',
+    type: type || (isMobileCapable ? 'mobile_mechanic' : 'garage'),
+    isMobileCapable: Boolean(isMobileCapable),
+    approvalStatus: approvalStatus || 'approved',
+    rating: 5.0,
+    reviewCount: 1,
+    phone: phone || '+1 (800) 555-0000',
+    email: email || 'partner@aaia.achtrex.com',
+    address: req.body.address || 'Local Metro',
+    city: city || 'Metro Hub',
+    serviceRadiusMiles: parseInt(req.body.serviceRadiusMiles) || 25,
+    hourlyRate: parseInt(hourlyRate) || 110,
+    servicesOffered: Array.isArray(servicesOffered) ? servicesOffered : (servicesOffered ? servicesOffered.split(',').map(s => s.trim()) : ['Diagnostics', 'Brake Service']),
+    verifiedBadge: true,
+    badges: isMobileCapable ? ['🚐 Remote Mobile Van', '✅ Admin Verified'] : ['🏢 Verified Center', '✅ Admin Verified'],
+    image: isMobileCapable 
+      ? 'https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=600&q=80'
+      : 'https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=600&q=80',
+    operatingHours: 'Mon-Sat: 8:00 AM - 6:00 PM',
+    bio: bio || 'Verified AAIA Partner Shop'
+  };
+
+  garagesRouter.PARTNER_GARAGES.unshift(newPartner);
+  res.status(201).json({ success: true, data: newPartner });
+});
+
+router.put('/garages/:id', (req, res) => {
+  const garagesRouter = require('./garages');
+  const index = garagesRouter.PARTNER_GARAGES.findIndex(g => g.id === req.params.id);
+  if (index === -1) return res.status(404).json({ success: false, error: 'Partner not found' });
+  
+  garagesRouter.PARTNER_GARAGES[index] = {
+    ...garagesRouter.PARTNER_GARAGES[index],
+    ...req.body
+  };
+  res.json({ success: true, data: garagesRouter.PARTNER_GARAGES[index] });
+});
+
+router.delete('/garages/:id', (req, res) => {
+  const garagesRouter = require('./garages');
+  const index = garagesRouter.PARTNER_GARAGES.findIndex(g => g.id === req.params.id);
+  if (index === -1) return res.status(404).json({ success: false, error: 'Partner not found' });
+  
+  garagesRouter.PARTNER_GARAGES.splice(index, 1);
+  res.json({ success: true, message: 'Partner removed' });
+});
+
+// ── SERVICE BOOKINGS MANAGEMENT (ADMIN) ──────────────────────────────────────
+router.get('/bookings', (req, res) => {
+  const bookingsRouter = require('./bookings');
+  const list = bookingsRouter.USER_BOOKINGS || [];
+  res.json({ success: true, data: list });
+});
+
+router.put('/bookings/:id', (req, res) => {
+  const bookingsRouter = require('./bookings');
+  const booking = bookingsRouter.USER_BOOKINGS.find(b => b.id === req.params.id);
+  if (!booking) return res.status(404).json({ success: false, error: 'Booking not found' });
+
+  Object.assign(booking, req.body);
+  res.json({ success: true, data: booking });
+});
+
+router.delete('/bookings/:id', (req, res) => {
+  const bookingsRouter = require('./bookings');
+  const index = bookingsRouter.USER_BOOKINGS.findIndex(b => b.id === req.params.id);
+  if (index === -1) return res.status(404).json({ success: false, error: 'Booking not found' });
+
+  bookingsRouter.USER_BOOKINGS.splice(index, 1);
+  res.json({ success: true, message: 'Booking removed' });
 });
 
 module.exports = router;

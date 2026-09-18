@@ -30,14 +30,13 @@ const NAV = [
   { group: 'Operations & Service', items: [
     { to: '/repair-advice', Icon: Wrench,             label: 'Repair & Cost Estimator' },
     { to: '/garages',       Icon: Store,              label: 'Garages & Remote Mobile' },
-    { to: '/fleet',         Icon: Truck,              label: 'Fleet' },
     { to: '/diagnostics',   Icon: Settings,           label: 'Diagnostics' },
   ]},
   { group: 'Reports', items: [
     { to: '/reports',       Icon: FileText,           label: 'Reports Center' },
   ]},
   { group: 'Administration', role: 'admin', items: [
-    { to: '/admin/users',   Icon: Users,              label: 'User Management' },
+    { to: '/admin/users',   Icon: Users,              label: 'Admin Control Center' },
   ]},
 ];
 

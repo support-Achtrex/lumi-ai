@@ -135,4 +135,5 @@ router.patch('/:id/status', authenticate, (req, res) => {
   }
 });
 
+router.USER_BOOKINGS = USER_BOOKINGS;
 module.exports = router;

@@ -79,6 +79,17 @@ class APIService {
   static createAdminDiscount(data) { return this.post('/admin/discounts', data).then(res => res.data); }
   static deleteAdminDiscount(id) { return this.del(`/admin/discounts/${id}`); }
 
+  // Admin Garages & Partners Management
+  static getAdminGarages() { return this.get('/admin/garages').then(res => res.data); }
+  static createAdminGarage(data) { return this.post('/admin/garages', data).then(res => res.data); }
+  static updateAdminGarage(id, data) { return this.put(`/admin/garages/${id}`, data).then(res => res.data); }
+  static deleteAdminGarage(id) { return this.del(`/admin/garages/${id}`); }
+
+  // Admin Service Bookings Management
+  static getAdminBookings() { return this.get('/admin/bookings').then(res => res.data); }
+  static updateAdminBooking(id, data) { return this.put(`/admin/bookings/${id}`, data).then(res => res.data); }
+  static deleteAdminBooking(id) { return this.del(`/admin/bookings/${id}`); }
+
   // ── Usage & Analytics ───────────────────────────────────────────────────
   static getUsage() { return this.get('/usage').then(res => res.data); }
 

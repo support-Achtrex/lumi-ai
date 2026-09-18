@@ -259,4 +259,5 @@ router.post('/onboard', authenticate, (req, res) => {
   }
 });
 
+router.PARTNER_GARAGES = PARTNER_GARAGES;
 module.exports = router;

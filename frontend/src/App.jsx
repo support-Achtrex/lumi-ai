@@ -79,7 +79,7 @@ function AppContainer() {
             <Route path="/chat/:id"       element={<ChatPage />} />
             <Route path="/car-scanner"    element={<CarScannerPage />} />
             <Route path="/vin"            element={<VINPage />} />
-            <Route path="/fleet"          element={<FleetPage />} />
+            <Route path="/fleet"          element={<Navigate to="/chat" replace />} />
             <Route path="/inspection"     element={<InspectionPage />} />
             <Route path="/inspection/:id" element={<InspectionPage />} />
             <Route path="/diagnostics"    element={<DiagnosticsPage />} />

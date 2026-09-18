@@ -254,9 +254,13 @@ router.post('/identify-image',
       });
 
       // Deduct 1 credit if not enterprise
-      if (req.user.plan_type !== 'enterprise') {
-        const { query } = require('../config/database');
-        await query('UPDATE users SET credits = credits - 1 WHERE id = $1', [req.user.id]);
+      try {
+        if (req.user && req.user.plan_type !== 'enterprise' && req.user.credits > 0) {
+          const { query } = require('../config/database');
+          await query('UPDATE users SET credits = credits - 1 WHERE id = $1', [req.user.id]);
+        }
+      } catch (dbErr) {
+        console.warn('Credits update non-fatal error:', dbErr.message);
       }
 
       res.json({ success: true, data: carDetails });
