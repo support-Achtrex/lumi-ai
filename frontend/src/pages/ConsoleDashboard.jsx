@@ -3,7 +3,18 @@ import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import APIService from '../services/api';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-
+import { 
+  Plus, 
+  RotateCw, 
+  ChevronDown, 
+  MessageSquare, 
+  Mic, 
+  Image as ImageIcon, 
+  Video, 
+  Car, 
+  Sparkles,
+  Radio
+} from 'lucide-react';
 
 export default function ConsoleDashboard() {
   const { user, refreshUser } = useAuth();
@@ -55,7 +66,7 @@ export default function ConsoleDashboard() {
           fontSize: '14px', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer',
           boxShadow: '0 1px 2px rgba(0,0,0,0.05)'
         }}>
-          <i className="ti ti-plus" style={{ fontSize: '14px' }}/> Create API key
+          <Plus size={14} /> Create API key
         </button>
       </div>
 
@@ -66,7 +77,7 @@ export default function ConsoleDashboard() {
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
           <div style={{ color: '#4285F4', background: '#F0F5FF', width: '40px', height: '40px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-             <i className="ti ti-refresh" style={{ fontSize: '20px' }} />
+             <RotateCw size={20} />
           </div>
           <div>
             <div style={{ fontWeight: '600', fontSize: '16px', marginBottom: '4px' }}>Enable auto top up</div>
@@ -81,7 +92,7 @@ export default function ConsoleDashboard() {
       {/* Usage Section */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
         <h2 style={{ fontSize: '18px', fontWeight: '600', margin: 0, display: 'flex', alignItems: 'center', gap: '8px' }}>
-          Usage <span style={{ color: '#888', fontWeight: '400' }}>this month <i className="ti ti-chevron-down" style={{ fontSize: '12px' }}/></span>
+          Usage <span style={{ color: '#888', fontWeight: '400', display: 'inline-flex', alignItems: 'center', gap: 4 }}>this month <ChevronDown size={14} /></span>
         </h2>
         <a href="#" style={{ color: '#555', textDecoration: 'none', fontSize: '14px', fontWeight: '500' }}>See all</a>
       </div>
@@ -92,7 +103,7 @@ export default function ConsoleDashboard() {
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '24px' }}>
             <div style={{ color: '#555', fontSize: '14px' }}>Credits remaining</div>
             <button style={{ background: '#FFF', border: '1px solid #EBEBEB', padding: '4px 12px', borderRadius: '16px', fontSize: '12px', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '4px', cursor: 'pointer' }}>
-              <i className="ti ti-plus" style={{ fontSize: '12px' }}/> Add
+              <Plus size={12} /> Add
             </button>
           </div>
           <div style={{ fontSize: '32px', fontWeight: '700', marginBottom: '16px' }}>{remaining}</div>
@@ -136,19 +147,19 @@ export default function ConsoleDashboard() {
         <div style={{ background: '#FFF', border: '1px solid #EBEBEB', borderRadius: '16px', padding: '24px', display: 'flex', flexDirection: 'column' }}>
           <div style={{ background: '#F5F5F5', borderRadius: '8px', padding: '16px', marginBottom: '24px', fontSize: '13px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
             <div style={{ alignSelf: 'flex-end', background: '#FFF', padding: '8px 12px', borderRadius: '16px', boxShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>
-              How's the weather like tomorrow?
+              Diagnose DTC P0300 on 2021 Silverado
             </div>
-            <div style={{ color: '#888', fontSize: '12px' }}>3 tools · 12s</div>
-            <div style={{ fontWeight: '500' }}>It'll be sunny in London tomorrow, great for a day out! Want some suggestions?</div>
+            <div style={{ color: '#888', fontSize: '12px' }}>3 diagnostics · 0.8s</div>
+            <div style={{ fontWeight: '500' }}>Random/Multiple Cylinder Misfire detected. Verified causes: Ignition coils, spark plug fouling, or fuel injector clog.</div>
           </div>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontWeight: '600' }}>
-               <i className="ti ti-message-circle" style={{ fontSize: '18px', color: '#555' }} /> Chat API
+               <MessageSquare size={18} style={{ color: '#555' }} /> Diagnostic Chat API
             </div>
-            <span style={{ background: '#FFF0E5', color: '#E85D04', fontSize: '12px', padding: '2px 8px', borderRadius: '12px', fontWeight: '600' }}>AAIA 1.0</span>
+            <span style={{ background: '#FFF0E5', color: '#E85D04', fontSize: '12px', padding: '2px 8px', borderRadius: '12px', fontWeight: '600' }}>AAIA 2.5</span>
           </div>
           <div style={{ color: '#555', fontSize: '13px', lineHeight: '1.5' }}>
-            Strong agentic tool calling with minimal hallucinations. Supports non-reasoning mode.
+            Strong automotive tool calling with OEM telemetry and zero hallucination repair steps.
           </div>
         </div>
 
@@ -156,7 +167,7 @@ export default function ConsoleDashboard() {
         <div style={{ background: '#FFF', border: '1px solid #EBEBEB', borderRadius: '16px', padding: '24px', display: 'flex', flexDirection: 'column' }}>
           <div style={{ background: '#FAFAFA', borderRadius: '8px', height: '140px', marginBottom: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <div style={{ background: '#FFF', padding: '12px 24px', borderRadius: '32px', display: 'flex', alignItems: 'center', gap: '16px', boxShadow: '0 4px 12px rgba(0,0,0,0.05)' }}>
-              <i className="ti ti-microphone" style={{ fontSize: '20px' }} />
+              <Mic size={20} />
               <div style={{ display: 'flex', gap: '4px', alignItems: 'center' }}>
                 <div style={{ width: '3px', height: '12px', background: '#4285F4', borderRadius: '2px' }}></div>
                 <div style={{ width: '3px', height: '24px', background: '#4285F4', borderRadius: '2px' }}></div>
@@ -170,10 +181,10 @@ export default function ConsoleDashboard() {
             </div>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontWeight: '600', marginBottom: '12px' }}>
-            <i className="ti ti-chart-arcs" style={{ fontSize: '18px', color: '#555' }} /> Voice API
+            <Radio size={18} style={{ color: '#555' }} /> Voice Telemetry API
           </div>
           <div style={{ color: '#555', fontSize: '13px', lineHeight: '1.5' }}>
-            Real-time conversations, speech-to-text, and text-to-speech.
+            Real-time mechanic voice notes, engine audio acoustic analysis, and live workshop voice assistance.
           </div>
         </div>
 
@@ -181,23 +192,23 @@ export default function ConsoleDashboard() {
         <div style={{ background: '#FFF', border: '1px solid #EBEBEB', borderRadius: '16px', padding: '24px', display: 'flex', flexDirection: 'column' }}>
           <div style={{ background: '#000', borderRadius: '8px', height: '140px', marginBottom: '24px', position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#FFF' }}>
              {/* Mocking the video thumbnail with a colored background */}
-             <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(45deg, #4A2311, #8A431F)' }}></div>
+             <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(45deg, #1C2B3A, #0A141D)' }}></div>
              <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', opacity: 0.8 }}>
-                 <i className="ti ti-car" style={{ fontSize: '48px' }} />
+                 <Car size={48} />
              </div>
              <div style={{ position: 'absolute', top: '12px', left: '12px', background: 'rgba(0,0,0,0.5)', padding: '4px 8px', borderRadius: '16px', display: 'flex', gap: '8px', fontSize: '12px' }}>
-               <i className="ti ti-video" />
-               <i className="ti ti-photo" />
+               <Video size={14} />
+               <ImageIcon size={14} />
              </div>
              <div style={{ position: 'absolute', bottom: '12px', right: '12px', background: 'rgba(0,0,0,0.5)', padding: '2px 6px', borderRadius: '4px', fontSize: '10px' }}>
                0:12
              </div>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontWeight: '600', marginBottom: '12px' }}>
-            <i className="ti ti-photo" style={{ fontSize: '18px', color: '#555' }} /> Imagine API
+            <ImageIcon size={18} style={{ color: '#555' }} /> Damage Vision API
           </div>
           <div style={{ color: '#555', fontSize: '13px', lineHeight: '1.5' }}>
-            Turn ideas into reality with image and video generation.
+            Automated visual vehicle damage assessment, body panel dent detection, and repair estimate generation.
           </div>
         </div>
 

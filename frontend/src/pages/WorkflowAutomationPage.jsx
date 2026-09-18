@@ -1,5 +1,16 @@
 import { useState, useEffect } from 'react';
 import APIService from '../services/api';
+import { 
+  Zap, 
+  Plus, 
+  Gauge, 
+  AlertTriangle, 
+  ArrowRight, 
+  Trash2, 
+  X, 
+  Cpu, 
+  SlidersHorizontal 
+} from 'lucide-react';
 
 export default function WorkflowAutomationPage() {
   const [workflows, setWorkflows] = useState([]);
@@ -61,12 +72,12 @@ export default function WorkflowAutomationPage() {
       <div style={{ height: 64, padding: '0 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: 'rgba(255,255,255,0.7)', backdropFilter: 'blur(16px)', borderBottom: '1px solid var(--bord)', flexShrink: 0, zIndex: 10 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, fontSize: 15, fontWeight: 600, color: 'var(--dgray)' }}>
           <div style={{ width: 36, height: 36, background: 'linear-gradient(135deg, var(--teal), var(--teal-dk))', borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', boxShadow: 'var(--shadow-md)' }}>
-            <i className="ti ti-bolt" style={{ fontSize: 18 }} />
+            <Zap size={18} />
           </div>
           Workflow Automation Engine
         </div>
-        <button className="btn-primary" onClick={() => setShowModal(true)}>
-          <i className="ti ti-plus" /> Create Workflow
+        <button className="btn-primary" onClick={() => setShowModal(true)} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+          <Plus size={16} /> Create Workflow
         </button>
       </div>
 
@@ -81,7 +92,7 @@ export default function WorkflowAutomationPage() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
             {workflows.length === 0 ? (
               <div style={{ textAlign: 'center', padding: '60px 20px', border: '2px dashed var(--lgray)', borderRadius: 12 }}>
-                <i className="ti ti-automation" style={{ fontSize: 48, color: 'var(--lgray)', marginBottom: 16 }} />
+                <Cpu size={48} style={{ color: 'var(--lgray)', marginBottom: 16 }} />
                 <h3 style={{ fontSize: 18, color: 'var(--dgray)', marginBottom: 8 }}>No Workflows Configured</h3>
                 <p style={{ color: 'var(--mgray)', marginBottom: 24 }}>Set up your first automation rule to get started.</p>
                 <button className="btn-primary" onClick={() => setShowModal(true)}>Create First Workflow</button>
@@ -90,21 +101,21 @@ export default function WorkflowAutomationPage() {
               <div key={wf.id} className="glass-panel" style={{ padding: 24, display: 'flex', alignItems: 'center', justifyContent: 'space-between', transition: 'all 0.2s' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
                   <div style={{ width: 48, height: 48, background: 'var(--offwh)', borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--teal-dk)', border: '1px solid var(--bord)' }}>
-                    <i className={wf.trigger_type === 'mileage_threshold' ? 'ti ti-dashboard' : 'ti ti-alert-triangle'} style={{ fontSize: 24 }} />
+                    {wf.trigger_type === 'mileage_threshold' ? <Gauge size={24} /> : <AlertTriangle size={24} />}
                   </div>
                   <div>
                     <h3 style={{ fontSize: 16, fontWeight: 600, color: 'var(--dgray)', marginBottom: 4 }}>{wf.name}</h3>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, color: 'var(--mgray)' }}>
                       <span className="pill pill-blue">Trigger: {wf.trigger_type.replace('_', ' ')}</span>
-                      <i className="ti ti-arrow-right" />
+                      <ArrowRight size={14} />
                       <span className="pill pill-teal">Action: {wf.action_type.replace('_', ' ')}</span>
                     </div>
                   </div>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
                   <div className="pill pill-green" style={{ display: 'flex', alignItems: 'center', gap: 4 }}><span style={{ width: 6, height: 6, background: 'var(--green)', borderRadius: '50%' }} /> Active</div>
-                  <button onClick={() => handleDelete(wf.id)} style={{ background: 'transparent', border: 'none', color: 'var(--red)', cursor: 'pointer', padding: 8 }}>
-                    <i className="ti ti-trash" style={{ fontSize: 18 }} />
+                  <button onClick={() => handleDelete(wf.id)} style={{ background: 'transparent', border: 'none', color: 'var(--red)', cursor: 'pointer', padding: 8, display: 'flex', alignItems: 'center' }}>
+                    <Trash2 size={18} />
                   </button>
                 </div>
               </div>
@@ -120,7 +131,9 @@ export default function WorkflowAutomationPage() {
           <div className="animate-slide-up" style={{ background: '#fff', width: 500, borderRadius: 16, overflow: 'hidden', boxShadow: '0 24px 48px rgba(0,0,0,0.2)' }}>
             <div style={{ padding: '20px 24px', borderBottom: '1px solid var(--lgray)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
               <h2 style={{ fontSize: 18, fontWeight: 600 }}>Create Automation Rule</h2>
-              <button onClick={() => setShowModal(false)} style={{ background: 'transparent', border: 'none', fontSize: 20, cursor: 'pointer', color: 'var(--mgray)' }}>&times;</button>
+              <button onClick={() => setShowModal(false)} style={{ background: 'transparent', border: 'none', cursor: 'pointer', color: 'var(--mgray)', display: 'flex', alignItems: 'center' }}>
+                <X size={20} />
+              </button>
             </div>
             
             <form onSubmit={handleCreate} style={{ padding: 24, display: 'flex', flexDirection: 'column', gap: 20 }}>

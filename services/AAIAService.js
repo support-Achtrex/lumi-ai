@@ -376,11 +376,8 @@ Return ONLY a valid JSON object and absolutely nothing else. Do not use markdown
       });
 
       let responseText = response.choices[0].message.content.trim();
-      if (responseText.startsWith('```json')) {
-        responseText = responseText.substring(7, responseText.length - 3).trim();
-      } else if (responseText.startsWith('```')) {
-        responseText = responseText.substring(3, responseText.length - 3).trim();
-      }
+      const match = responseText.match(/\{[\s\S]*\}/);
+      if (match) responseText = match[0];
       return JSON.parse(responseText);
     } catch (error) {
       logger.warn(`Grok failed in generateRepairGuide (${error.message}). Falling back to Gemini.`);
@@ -391,11 +388,8 @@ Return ONLY a valid JSON object and absolutely nothing else. Do not use markdown
         });
         const geminiRes = await model.generateContent(prompt);
         let responseText = geminiRes.response.text().trim();
-        if (responseText.startsWith('```json')) {
-          responseText = responseText.substring(7, responseText.length - 3).trim();
-        } else if (responseText.startsWith('```')) {
-          responseText = responseText.substring(3, responseText.length - 3).trim();
-        }
+        const match = responseText.match(/\{[\s\S]*\}/);
+        if (match) responseText = match[0];
         return JSON.parse(responseText);
       } catch (geminiError) {
         logger.error('Failed to generate diagnostic reasoning nodes with both models:', geminiError);
@@ -438,11 +432,8 @@ Return JSON only with this exact structure:
       });
 
       let responseText = response.choices[0].message.content.trim();
-      if (responseText.startsWith('```json')) {
-        responseText = responseText.substring(7, responseText.length - 3).trim();
-      } else if (responseText.startsWith('```')) {
-        responseText = responseText.substring(3, responseText.length - 3).trim();
-      }
+      const match = responseText.match(/\{[\s\S]*\}/);
+      if (match) responseText = match[0];
       return JSON.parse(responseText);
     } catch (error) {
       return {
@@ -674,15 +665,28 @@ Important: Generate 8-12 parts in the array. For images, use 'https://placehold.
 
   static async transcribeAudio(base64Audio) {
     try {
-      if (!base64Audio.startsWith('data:')) return '[Audio note received: Invalid format]';
+      if (!base64Audio || !base64Audio.startsWith('data:')) return '[Voice note attached]';
       
       const mimeType = base64Audio.substring(5, base64Audio.indexOf(';'));
       const data = base64Audio.substring(base64Audio.indexOf('base64,') + 7);
       
-      return '[Voice transcription unavailable: API region blocked]';
+      const model = getGeminiClient().getGenerativeModel({ 
+        model: 'gemini-2.5-flash'
+      });
+      const result = await model.generateContent([
+        'Please accurately transcribe the spoken words in this automotive voice note into clean English text. Return ONLY the transcribed text and nothing else.',
+        {
+          inlineData: {
+            data: data,
+            mimeType: mimeType || 'audio/webm'
+          }
+        }
+      ]);
+      const transcript = result.response.text().trim();
+      return transcript || '[Audio recorded - no speech detected]';
     } catch (error) {
       logger.error('Audio transcription error:', error);
-      return '[Audio note received: Transcription failed]';
+      return '[Voice note attached]';
     }
   }
 

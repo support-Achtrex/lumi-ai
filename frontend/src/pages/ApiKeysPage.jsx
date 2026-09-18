@@ -1,5 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import APIService from '../services/api';
+import { 
+  Key, 
+  Plus, 
+  Copy, 
+  Check, 
+  Trash2, 
+  Terminal, 
+  ShieldCheck, 
+  Code2, 
+  Lock 
+} from 'lucide-react';
 
 export default function ApiKeysPage() {
   const [keys, setKeys] = useState([]);
@@ -117,7 +128,7 @@ export default function ApiKeysPage() {
         <button 
           onClick={() => setShowModal(true)}
           style={{ background: 'var(--dblu)', color: '#FFF', border: 'none', padding: '12px 24px', borderRadius: '12px', fontWeight: '700', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <i className="ti ti-plus" /> Create new key
+          <Plus size={16} /> Create new key
         </button>
       </div>
 
@@ -144,7 +155,7 @@ export default function ApiKeysPage() {
                       onClick={() => handleCopy(k.key_value || k.key, k.id)}
                       style={{ background: 'transparent', border: 'none', cursor: 'pointer', color: copiedId === k.id ? '#10B981' : 'var(--gray)', padding: 0, display: 'flex' }}
                       title="Copy full key">
-                      <i className={copiedId === k.id ? "ti ti-check" : "ti ti-copy"} style={{ fontSize: '16px' }} />
+                      {copiedId === k.id ? <Check size={16} color="#10B981" /> : <Copy size={16} />}
                     </button>
                   </div>
                 </td>
@@ -153,7 +164,7 @@ export default function ApiKeysPage() {
                 </td>
                 <td style={{ padding: '20px 24px', display: 'flex', justifyContent: 'flex-end' }}>
                   <button onClick={() => handleDelete(k.id)} style={{ background: '#FEE2E2', color: '#EF4444', border: 'none', padding: '8px 16px', borderRadius: '8px', fontWeight: '700', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                    <i className="ti ti-trash" /> Delete
+                    <Trash2 size={15} /> Delete
                   </button>
                 </td>
               </tr>
@@ -161,7 +172,9 @@ export default function ApiKeysPage() {
             {keys.length === 0 && (
               <tr>
                 <td colSpan="4" style={{ padding: '48px', textAlign: 'center', color: 'var(--gray)' }}>
-                  <div style={{ fontSize: '48px', marginBottom: '16px', color: '#E2E8F0' }}><i className="ti ti-key" /></div>
+                  <div style={{ fontSize: '48px', marginBottom: '16px', color: '#E2E8F0', display: 'flex', justifyContent: 'center' }}>
+                    <Key size={48} />
+                  </div>
                   <div style={{ fontSize: '18px', fontWeight: '600', color: 'var(--dgray)', marginBottom: '8px' }}>No API keys found</div>
                   <div style={{ fontSize: '15px' }}>Create an API key to authenticate your requests.</div>
                 </td>

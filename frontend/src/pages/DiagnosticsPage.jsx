@@ -5,6 +5,27 @@ import APIService from '../services/api';
 import ReactMarkdown from 'react-markdown';
 import html2canvas from 'html2canvas';
 import { jsPDF } from 'jspdf';
+import {
+  Wrench,
+  Cpu,
+  Brain,
+  Plug,
+  MessageSquare,
+  Mic,
+  MicOff,
+  Camera,
+  Download,
+  CheckCircle2,
+  Clock,
+  FileText,
+  AlertTriangle,
+  X,
+  RotateCcw,
+  Sparkles,
+  Car,
+  Check,
+  Image as ImageIcon
+} from 'lucide-react';
 
 export default function DiagnosticsPage() {
   const { state } = useLocation();
@@ -56,7 +77,6 @@ export default function DiagnosticsPage() {
   const [assessmentText, setAssessmentText] = useState('');
   const [assessmentMode, setAssessmentMode] = useState(false);
   
-
   const [tab, setTab] = useState('reasoning');
   const [routingState, setRoutingState] = useState('idle'); // For node editor animation
 
@@ -177,7 +197,7 @@ export default function DiagnosticsPage() {
       <div style={{ height:64, padding:'0 24px', display:'flex', alignItems:'center', justifyContent:'space-between', background:'rgba(255,255,255,0.7)', backdropFilter:'blur(16px)', borderBottom:'1px solid var(--bord)', flexShrink:0, zIndex:10 }}>
         <div style={{ display:'flex', alignItems:'center', gap:10, fontSize:15, fontWeight:600, color:'var(--dgray)' }}>
           <div style={{ width:36, height:36, background:'linear-gradient(135deg, var(--teal), var(--teal-dk))', borderRadius:10, display:'flex', alignItems:'center', justifyContent:'center', color:'#fff', boxShadow:'var(--shadow-md)' }}>
-            <i className="ti ti-tool" style={{ fontSize:18 }} aria-hidden="true" />
+            <Wrench size={18} />
           </div>
           Intelligent Diagnostics
           {phase === 'results' && <span className="pill pill-blue">Phase 03 Active</span>}
@@ -185,17 +205,17 @@ export default function DiagnosticsPage() {
         <div style={{ display:'flex', gap:12, alignItems: 'center' }}>
           {state?.vehicleContext && (
             <div style={{ padding: '6px 12px', background: 'var(--teal-lt)', color: 'var(--teal-dk)', borderRadius: 8, fontSize: 13, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 6 }}>
-              <i className="ti ti-car" /> {state.vehicleContext.year} {state.vehicleContext.make} {state.vehicleContext.model}
+              <Car size={14} /> {state.vehicleContext.year} {state.vehicleContext.make} {state.vehicleContext.model}
             </div>
           )}
           <input value={vin} onChange={e=>setVin(e.target.value)} placeholder="Vehicle VIN" style={{ width: 220 }} />
           {phase === 'results' && (
             <div style={{ display:'flex', gap:8 }}>
-              <button className="btn-outline" onClick={downloadDiagnosticReport} disabled={downloading}>
-                {downloading ? <span className="loading-dot" /> : <><i className="ti ti-download" /> Export Report</>}
+              <button className="btn-outline" onClick={downloadDiagnosticReport} disabled={downloading} style={{ display:'flex', alignItems:'center', gap:6 }}>
+                {downloading ? <span className="loading-dot" /> : <><Download size={14} /> Export Report</>}
               </button>
-              <button className="btn-primary" onClick={() => { setRoutingState('idle'); setTimeout(() => setRoutingState('analyzing'), 100); setTimeout(() => setRoutingState('complete'), 2500); }}>
-                <i className="ti ti-cpu" /> Rerun Logic
+              <button className="btn-primary" onClick={() => { setRoutingState('idle'); setTimeout(() => setRoutingState('analyzing'), 100); setTimeout(() => setRoutingState('complete'), 2500); }} style={{ display:'flex', alignItems:'center', gap:6 }}>
+                <Cpu size={14} /> Rerun Logic
               </button>
             </div>
           )}
@@ -218,7 +238,7 @@ export default function DiagnosticsPage() {
                 {/* Trouble Code Input */}
                 <div className="glass-panel" style={{ padding: 24, display: 'flex', flexDirection: 'column', gap: 16 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 10, color: 'var(--dblu)', fontWeight: 600 }}>
-                    <i className="ti ti-plug" style={{ fontSize: 20 }} /> Scan Tool Code
+                    <Plug size={20} /> Scan Tool Code
                   </div>
                   <p style={{ fontSize: 13, color: 'var(--mgray)', lineHeight: 1.5 }}>Enter the exact Diagnostic Trouble Code (DTC) retrieved from your scanner.</p>
                   <input 
@@ -232,10 +252,10 @@ export default function DiagnosticsPage() {
                 <div className="glass-panel" style={{ padding: 24, display: 'flex', flexDirection: 'column', gap: 16 }}>
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 10, color: 'var(--teal-dk)', fontWeight: 600 }}>
-                      <i className="ti ti-messages" style={{ fontSize: 20 }} /> Natural Language Symptoms
+                      <MessageSquare size={20} /> Natural Language Symptoms
                     </div>
-                    <button onClick={handleMicToggle} style={{ background: isRecording ? 'var(--red-lt)' : 'var(--offwh)', border: 'none', color: isRecording ? 'var(--red)' : 'var(--dgray)', width: 36, height: 36, padding: 0, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <i className="ti ti-microphone" style={{ fontSize: 18 }} />
+                    <button onClick={handleMicToggle} style={{ background: isRecording ? 'var(--red-lt)' : 'var(--offwh)', border: 'none', color: isRecording ? 'var(--red)' : 'var(--dgray)', width: 36, height: 36, padding: 0, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 'unset' }}>
+                      {isRecording ? <MicOff size={18} /> : <Mic size={18} />}
                     </button>
                   </div>
                   <p style={{ fontSize: 13, color: 'var(--mgray)', lineHeight: 1.5 }}>Describe what you hear, feel, or see. AAIA's NLP will extract the mechanical context automatically.</p>
@@ -247,7 +267,7 @@ export default function DiagnosticsPage() {
                     />
                     {image && (
                       <div style={{ position: 'absolute', bottom: 12, left: 12, display: 'flex', alignItems: 'center', gap: 6, background: 'var(--offwh)', padding: '4px 8px', borderRadius: 4, fontSize: 11, fontWeight: 600, color: 'var(--dgray)' }}>
-                        <i className="ti ti-photo" /> Image Attached <button onClick={() => setImage(null)} style={{ background: 'transparent', border: 'none', color: 'var(--red)', cursor: 'pointer', padding: 0, marginLeft: 4 }}><i className="ti ti-x" /></button>
+                        <ImageIcon size={13} /> Image Attached <button onClick={() => setImage(null)} style={{ background: 'transparent', border: 'none', color: 'var(--red)', cursor: 'pointer', padding: 0, marginLeft: 4, minHeight: 'unset' }}><X size={13} /></button>
                       </div>
                     )}
                     {isRecording && <div style={{ position: 'absolute', bottom: 16, right: 16, display: 'flex', alignItems: 'center', gap: 6, fontSize: 12, color: 'var(--red)', fontWeight: 600 }}><span className="loading-dot" style={{ background: 'var(--red)' }}/> Listening...</div>}
@@ -256,16 +276,16 @@ export default function DiagnosticsPage() {
                   {/* Image Upload Button */}
                   <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
                     <input type="file" accept="image/*" ref={fileInputRef} style={{ display: 'none' }} onChange={handleImageUpload} />
-                    <button className="btn-secondary" onClick={() => fileInputRef.current?.click()} style={{ fontSize: 13, height: 32 }}>
-                      <i className="ti ti-camera" /> Upload Photo for Vision Analysis
+                    <button className="btn-secondary" onClick={() => fileInputRef.current?.click()} style={{ fontSize: 13, height: 32, display: 'flex', alignItems: 'center', gap: 6 }}>
+                      <Camera size={14} /> Upload Photo for Vision Analysis
                     </button>
                   </div>
                 </div>
 
               </div>
 
-              <button className="btn-teal" onClick={handleStartDiagnosis} disabled={!obdCode && !symptoms && !image} style={{ height: 56, fontSize: 16, alignSelf: 'center', padding: '0 40px', borderRadius: 28, boxShadow: '0 8px 24px rgba(0, 229, 193, 0.3)' }}>
-                <i className="ti ti-cpu" style={{ fontSize: 20 }} /> Initiate Cognitive Diagnosis
+              <button className="btn-teal" onClick={handleStartDiagnosis} disabled={!obdCode && !symptoms && !image} style={{ height: 56, fontSize: 16, alignSelf: 'center', padding: '0 40px', borderRadius: 28, boxShadow: '0 8px 24px rgba(0, 229, 193, 0.3)', display: 'flex', alignItems: 'center', gap: 8 }}>
+                <Cpu size={20} /> Initiate Cognitive Diagnosis
               </button>
 
             </div>
@@ -277,7 +297,7 @@ export default function DiagnosticsPage() {
             <div style={{ position: 'relative', width: 120, height: 120, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <div style={{ position: 'absolute', width: '100%', height: '100%', border: '4px solid var(--teal-lt)', borderRadius: '50%', borderTopColor: 'var(--teal)', animation: 'spin 1s linear infinite' }} />
               <div style={{ position: 'absolute', width: '70%', height: '70%', border: '4px solid rgba(10,32,133,0.1)', borderRadius: '50%', borderBottomColor: 'var(--dblu)', animation: 'spin 1.5s linear infinite reverse' }} />
-              <i className="ti ti-brain" style={{ fontSize: 40, color: 'var(--dgray)', animation: 'pulse 1.5s ease-in-out infinite' }} />
+              <Brain size={40} style={{ color: 'var(--dgray)', animation: 'pulse 1.5s ease-in-out infinite' }} />
             </div>
             <div style={{ textAlign: 'center' }}>
               <h2 style={{ fontSize: 24, fontFamily: 'var(--display)', color: 'var(--dgray)', marginBottom: 8 }}>Parsing Diagnostic Logic...</h2>
@@ -369,7 +389,7 @@ export default function DiagnosticsPage() {
                           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
                             <span className={`pill ${node.type === 'diagnostic_step' ? 'pill-blue' : node.type === 'repair_action' ? 'pill-teal' : 'pill-amber'}`}>{node?.type?.replace('_', ' ')}</span>
                             {routingState === 'analyzing' && node.type === 'diagnostic_step' && <span className="loading-dot" />}
-                            {routingState === 'complete' && <i className="ti ti-check" style={{ color: 'var(--green)' }} />}
+                            {routingState === 'complete' && <Check size={14} style={{ color: 'var(--green)' }} />}
                           </div>
                           <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--dgray)', marginBottom: 4 }}>{node.title}</div>
                           <div style={{ fontSize: 12, color: 'var(--mgray)' }}>{node.description}</div>
@@ -405,11 +425,11 @@ export default function DiagnosticsPage() {
                         </div>
                         <div style={{ fontSize: 13, color: 'var(--sgray)', marginTop: 4, marginBottom: 8, lineHeight: 1.5 }}>{rec.description}</div>
                         {(rec.requiredTools && rec.requiredTools.length > 0) && (
-                          <div style={{ fontSize: 13, color: 'var(--mgray)' }}><i className="ti ti-tool" /> Tools: {rec.requiredTools.join(', ')}</div>
+                          <div style={{ fontSize: 13, color: 'var(--mgray)', display: 'flex', alignItems: 'center', gap: 6 }}><Wrench size={13} /> Tools: {rec.requiredTools.join(', ')}</div>
                         )}
                       </div>
-                      <div className="pill pill-blue" style={{ flexShrink: 0 }}>
-                        <i className="ti ti-clock" /> {rec.estimatedTime || 'N/A'}
+                      <div className="pill pill-blue" style={{ flexShrink: 0, display: 'flex', alignItems: 'center', gap: 4 }}>
+                        <Clock size={12} /> {rec.estimatedTime || 'N/A'}
                       </div>
                     </div>
                   ))}

@@ -1,6 +1,22 @@
 // src/pages/InspectionPage.jsx
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { 
+  Camera, 
+  Car, 
+  RotateCw, 
+  AlertOctagon, 
+  Upload, 
+  Image as ImageIcon, 
+  Info, 
+  FileText, 
+  ShieldAlert, 
+  Gauge, 
+  ShieldCheck,
+  Zap,
+  Layers,
+  Sparkles
+} from 'lucide-react';
 
 export default function InspectionPage() {
   const { state } = useLocation();
@@ -11,10 +27,10 @@ export default function InspectionPage() {
   const [selectedPart, setSelectedPart] = useState(null);
 
   const CAR_PARTS = [
-    { id: 'fender_fl', label: 'Front Left Fender', icon: 'ti-car' },
-    { id: 'bumper_f',  label: 'Front Bumper', icon: 'ti-car-crash' },
-    { id: 'door_fl',   label: 'Front Left Door', icon: 'ti-door' },
-    { id: 'tyre_fl',   label: 'Front Left Tyre', icon: 'ti-steering-wheel' },
+    { id: 'fender_fl', label: 'Front Left Fender', icon: Car },
+    { id: 'bumper_f',  label: 'Front Bumper', icon: AlertOctagon },
+    { id: 'door_fl',   label: 'Front Left Door', icon: Layers },
+    { id: 'tyre_fl',   label: 'Front Left Tyre', icon: Gauge },
   ];
 
   function handlePartClick(part) {
@@ -26,7 +42,7 @@ export default function InspectionPage() {
     setPhase('processing');
     setTimeout(() => {
       setPhase('result');
-    }, 4500); // simulate "under 5-minute" deep scan
+    }, 3500); // simulate "under 5-minute" deep scan
   }
 
   return (
@@ -36,7 +52,7 @@ export default function InspectionPage() {
       <div style={{ height:64, padding:'0 24px', display:'flex', alignItems:'center', justifyContent:'space-between', background:'rgba(255,255,255,0.7)', backdropFilter:'blur(16px)', borderBottom:'1px solid var(--bord)', flexShrink:0, zIndex:10 }}>
         <div style={{ display:'flex', alignItems:'center', gap:10, fontSize:15, fontWeight:600, color:'var(--dgray)' }}>
           <div style={{ width:36, height:36, background:'linear-gradient(135deg, var(--teal), var(--teal-dk))', borderRadius:10, display:'flex', alignItems:'center', justifyContent:'center', color:'#fff', boxShadow:'var(--shadow-md)' }}>
-            <i className="ti ti-camera" style={{ fontSize:18 }} aria-hidden="true" />
+            <Camera size={18} />
           </div>
           AI Visual Inspection
           <span className="pill pill-blue">360° Computer Vision</span>
@@ -44,13 +60,13 @@ export default function InspectionPage() {
         <div style={{ display:'flex', gap:12, alignItems: 'center' }}>
           {state?.vehicleContext && (
             <div style={{ padding: '6px 12px', background: 'var(--teal-lt)', color: 'var(--teal-dk)', borderRadius: 8, fontSize: 13, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 6 }}>
-              <i className="ti ti-car" /> {state.vehicleContext.year} {state.vehicleContext.make} {state.vehicleContext.model}
+              <Car size={14} /> {state.vehicleContext.year} {state.vehicleContext.make} {state.vehicleContext.model}
             </div>
           )}
           <input value={vin} onChange={e=>setVin(e.target.value)} placeholder="Vehicle VIN" style={{ width: 220 }} />
           {phase === 'result' && (
-            <button className="btn-primary" onClick={() => setPhase('selection')}>
-              <i className="ti ti-rotate" /> New Inspection
+            <button className="btn-primary" onClick={() => setPhase('selection')} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+              <RotateCw size={14} /> New Inspection
             </button>
           )}
         </div>
@@ -66,14 +82,17 @@ export default function InspectionPage() {
             </div>
             
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: 20 }}>
-              {CAR_PARTS.map(part => (
-                <div key={part.id} className="glass-panel" onClick={() => handlePartClick(part)} style={{ padding: 24, cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16, transition: 'transform 0.2s, boxShadow 0.2s' }} onMouseOver={e => e.currentTarget.style.transform = 'translateY(-4px)'} onMouseOut={e => e.currentTarget.style.transform = 'none'}>
-                  <div style={{ width: 64, height: 64, borderRadius: '50%', background: 'var(--teal-lt)', color: 'var(--teal-dk)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 28 }}>
-                    <i className={`ti ${part.icon}`} />
+              {CAR_PARTS.map(part => {
+                const PartIcon = part.icon;
+                return (
+                  <div key={part.id} className="glass-panel" onClick={() => handlePartClick(part)} style={{ padding: 24, cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16, transition: 'transform 0.2s, boxShadow 0.2s' }} onMouseOver={e => e.currentTarget.style.transform = 'translateY(-4px)'} onMouseOut={e => e.currentTarget.style.transform = 'none'}>
+                    <div style={{ width: 64, height: 64, borderRadius: '50%', background: 'var(--teal-lt)', color: 'var(--teal-dk)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 28 }}>
+                      <PartIcon size={28} />
+                    </div>
+                    <div style={{ fontSize: 16, fontWeight: 600, color: 'var(--dgray)' }}>{part.label}</div>
                   </div>
-                  <div style={{ fontSize: 16, fontWeight: 600, color: 'var(--dgray)' }}>{part.label}</div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         )}
@@ -91,22 +110,22 @@ export default function InspectionPage() {
               <div style={{ border: '1px solid var(--bord)', borderRadius: 'var(--radius-md)', overflow: 'hidden', background: '#000', position: 'relative' }}>
                 <img src="/inspection_schema.png" alt="Schema Guide" style={{ width: '100%', display: 'block', opacity: 0.9 }} />
                 <div style={{ position: 'absolute', bottom: 12, left: 12, right: 12, background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(4px)', padding: '8px 12px', borderRadius: 8, color: '#fff', fontSize: 12, display: 'flex', alignItems: 'center', gap: 8 }}>
-                  <i className="ti ti-info-circle" style={{ color: 'var(--teal)' }} /> Ensure the entire highlighted zone is visible.
+                  <Info size={14} style={{ color: 'var(--teal)' }} /> Ensure the entire highlighted zone is visible.
                 </div>
               </div>
             </div>
 
             {/* Upload Zone */}
             <div style={{ width: 350, display: 'flex', flexDirection: 'column', gap: 20 }}>
-              <button className="btn-primary" onClick={handleUpload} style={{ height: 160, display: 'flex', flexDirection: 'column', gap: 12, borderRadius: 'var(--radius-lg)', background: 'linear-gradient(135deg, var(--teal-dk), var(--teal))', boxShadow: '0 12px 32px rgba(0, 229, 193, 0.3)' }}>
-                <i className="ti ti-camera" style={{ fontSize: 48 }} />
+              <button className="btn-primary" onClick={handleUpload} style={{ height: 160, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 12, borderRadius: 'var(--radius-lg)', background: 'linear-gradient(135deg, var(--teal-dk), var(--teal))', boxShadow: '0 12px 32px rgba(0, 229, 193, 0.3)' }}>
+                <Camera size={44} />
                 <span style={{ fontSize: 16, fontWeight: 600 }}>Use Camera</span>
               </button>
               
               <div style={{ textAlign: 'center', color: 'var(--mgray)', fontSize: 12, fontWeight: 600, textTransform: 'uppercase' }}>— OR —</div>
               
-              <div onClick={handleUpload} style={{ border: '2px dashed var(--lgray)', borderRadius: 'var(--radius-lg)', padding: 32, textAlign: 'center', background: 'rgba(255,255,255,0.5)', cursor: 'pointer', transition: 'background 0.2s' }} onMouseOver={e=>e.currentTarget.style.background='rgba(255,255,255,0.8)'} onMouseOut={e=>e.currentTarget.style.background='rgba(255,255,255,0.5)'}>
-                <i className="ti ti-upload" style={{ fontSize: 32, color: 'var(--mgray)', marginBottom: 12 }} />
+              <div onClick={handleUpload} style={{ border: '2px dashed var(--lgray)', borderRadius: 'var(--radius-lg)', padding: 32, textAlign: 'center', background: 'rgba(255,255,255,0.5)', cursor: 'pointer', transition: 'background 0.2s', display: 'flex', flexDirection: 'column', alignItems: 'center' }} onMouseOver={e=>e.currentTarget.style.background='rgba(255,255,255,0.8)'} onMouseOut={e=>e.currentTarget.style.background='rgba(255,255,255,0.5)'}>
+                <Upload size={32} style={{ color: 'var(--mgray)', marginBottom: 12 }} />
                 <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--dgray)', marginBottom: 4 }}>Upload Photo</div>
                 <div style={{ fontSize: 12, color: 'var(--sgray)' }}>JPEG, PNG up to 10MB</div>
               </div>
@@ -122,11 +141,11 @@ export default function InspectionPage() {
               <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, border: '1px solid var(--teal)', borderRadius: 16, overflow: 'hidden' }}>
                 <div style={{ width: '100%', height: '10%', background: 'rgba(0,229,193,0.3)', position: 'absolute', top: 0, animation: 'scan 2s ease-in-out infinite alternate', boxShadow: '0 0 20px var(--teal)' }} />
               </div>
-              <i className="ti ti-photo" style={{ fontSize: 64, color: 'var(--teal)' }} />
+              <ImageIcon size={64} style={{ color: 'var(--teal)' }} />
             </div>
             <div style={{ textAlign: 'center' }}>
               <h2 style={{ fontSize: 24, fontFamily: 'var(--display)', color: 'var(--dgray)', marginBottom: 8 }}>360° Computer Vision Processing</h2>
-              <p style={{ color: 'var(--mgray)', fontSize: 14, maxWidth: 400 }}>AAIA is mapping surface geometry, detecting micro-scratches, and assessing structural integrity. Assessment completing in under 5 minutes...</p>
+              <p style={{ color: 'var(--mgray)', fontSize: 14, maxWidth: 400 }}>AAIA is mapping surface geometry, detecting micro-scratches, and assessing structural integrity. Assessment completing in seconds...</p>
             </div>
             <style>{`@keyframes scan { from { top: -10%; } to { top: 100%; } }`}</style>
           </div>
@@ -136,7 +155,9 @@ export default function InspectionPage() {
           <div className="animate-fade-in" style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 24 }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
               <h2 style={{ fontSize: 24, fontFamily: 'var(--display)', color: 'var(--dgray)' }}>AI Assessment Result</h2>
-              <div className="pill pill-red">Damage Detected</div>
+              <div className="pill pill-red" style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                <ShieldAlert size={14} /> Damage Detected
+              </div>
             </div>
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: 24 }}>
@@ -162,7 +183,7 @@ export default function InspectionPage() {
                 
                 <div style={{ display: 'flex', gap: 16, alignItems: 'center', background: 'var(--white)', padding: 16, borderRadius: 'var(--radius-md)', border: '1px solid var(--bord)' }}>
                   <div style={{ width: 48, height: 48, background: 'var(--red-lt)', color: 'var(--red)', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24 }}>
-                    <i className="ti ti-car-crash" />
+                    <AlertOctagon size={24} />
                   </div>
                   <div style={{ flex: 1 }}>
                     <div style={{ fontSize: 15, fontWeight: 600, color: 'var(--dgray)' }}>Moderate Dent (Depth: 4.2mm)</div>
@@ -176,7 +197,7 @@ export default function InspectionPage() {
 
                 <div style={{ display: 'flex', gap: 16, alignItems: 'center', background: 'var(--white)', padding: 16, borderRadius: 'var(--radius-md)', border: '1px solid var(--bord)' }}>
                   <div style={{ width: 48, height: 48, background: 'var(--amber-lt)', color: 'var(--amber)', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24 }}>
-                    <i className="ti ti-slash" />
+                    <Zap size={24} />
                   </div>
                   <div style={{ flex: 1 }}>
                     <div style={{ fontSize: 15, fontWeight: 600, color: 'var(--dgray)' }}>Surface Scratch (Length: 12cm)</div>
@@ -188,8 +209,8 @@ export default function InspectionPage() {
                   </div>
                 </div>
                 
-                <button className="btn-teal" style={{ alignSelf: 'flex-start', marginTop: 8 }}>
-                  <i className="ti ti-file-export" /> Generate Repair Estimate
+                <button className="btn-teal" style={{ alignSelf: 'flex-start', marginTop: 8, display: 'flex', alignItems: 'center', gap: 8 }}>
+                  <FileText size={16} /> Generate Repair Estimate
                 </button>
 
               </div>

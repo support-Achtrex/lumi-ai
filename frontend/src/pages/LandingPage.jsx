@@ -1,5 +1,14 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { 
+  Sparkles, 
+  ArrowRight, 
+  Bot, 
+  Zap, 
+  ShieldCheck, 
+  Activity, 
+  Cpu 
+} from 'lucide-react';
 
 export default function LandingPage() {
   const navigate = useNavigate();
@@ -44,12 +53,13 @@ export default function LandingPage() {
           style={{
             padding: '8px 24px', background: 'transparent', color: '#fff', 
             border: '1px solid rgba(255,255,255,0.4)', borderRadius: '30px', cursor: 'pointer',
-            fontSize: '14px', fontWeight: '500', transition: 'all 0.3s ease'
+            fontSize: '14px', fontWeight: '500', transition: 'all 0.3s ease',
+            display: 'flex', alignItems: 'center', gap: 8
           }}
           onMouseOver={(e) => { e.currentTarget.style.background = '#fff'; e.currentTarget.style.color = '#000'; }}
           onMouseOut={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#fff'; }}
         >
-          Sign In
+          Sign In <ArrowRight size={14} />
         </button>
       </header>
 
@@ -85,16 +95,16 @@ export default function LandingPage() {
         </p>
         <div style={{ 
           display: 'flex', gap: '16px', flexWrap: 'wrap', justifyContent: 'center',
-          fontSize: '14px', color: '#94a3b8', marginBottom: '48px', fontWeight: '600',
-          letterSpacing: '0.05em', textTransform: 'uppercase'
+          fontSize: '13px', color: '#94a3b8', marginBottom: '48px', fontWeight: '600',
+          letterSpacing: '0.05em', textTransform: 'uppercase', alignItems: 'center'
         }}>
-          <span>Conversational Analytics</span>
+          <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}><Activity size={14} /> Conversational Analytics</span>
           <span>•</span>
-          <span>Predictive Maintenance</span>
+          <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}><Cpu size={14} /> Predictive Maintenance</span>
           <span>•</span>
-          <span>Intelligent Repair</span>
+          <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}><Zap size={14} /> Intelligent Repair</span>
           <span>•</span>
-          <span>Diagnostic Reasoning</span>
+          <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}><ShieldCheck size={14} /> Diagnostic Reasoning</span>
         </div>
         
         {/* Call to Action */}
@@ -104,12 +114,13 @@ export default function LandingPage() {
             padding: '16px 48px', background: '#ffffff', color: '#000000', 
             border: 'none', borderRadius: '4px', cursor: 'pointer',
             fontSize: '14px', fontWeight: '600', letterSpacing: '0.1em', textTransform: 'uppercase',
-            transition: 'transform 0.3s ease, background 0.3s ease'
+            transition: 'transform 0.3s ease, background 0.3s ease',
+            display: 'flex', alignItems: 'center', gap: 10
           }}
           onMouseOver={(e) => { e.currentTarget.style.transform = 'scale(1.05)'; e.currentTarget.style.background = '#f4f4f5'; }}
           onMouseOut={(e) => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.background = '#ffffff'; }}
         >
-          Access Platform
+          Access Platform <ArrowRight size={16} />
         </button>
 
       </main>

@@ -3,6 +3,15 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import APIService from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import { AreaChart, Area, XAxis, Tooltip, ResponsiveContainer } from 'recharts';
+import { 
+  CreditCard, 
+  Check, 
+  Zap, 
+  ShieldCheck, 
+  Receipt, 
+  Plus, 
+  ArrowRight 
+} from 'lucide-react';
 
 export default function BillingPage() {
   const { user, setUser } = useAuth();
@@ -119,7 +128,7 @@ export default function BillingPage() {
           <ul style={{ margin: 0, padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 12 }}>
             {features.map((f, i) => (
               <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, fontSize: 14, color: '#455A64', lineHeight: 1.4 }}>
-                <i className="ti ti-check" style={{ color: '#0A2085', marginTop: 2 }} /> 
+                <Check size={16} style={{ color: '#0A2085', marginTop: 2, flexShrink: 0 }} /> 
                 <span>{f}</span>
               </li>
             ))}

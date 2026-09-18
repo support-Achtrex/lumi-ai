@@ -3,6 +3,14 @@ import APIService from '../services/api';
 import ReactMarkdown from 'react-markdown';
 import html2canvas from 'html2canvas';
 import { jsPDF } from 'jspdf';
+import { 
+  FileText, 
+  RotateCcw, 
+  Download, 
+  FileSpreadsheet, 
+  Layers,
+  FileCheck2
+} from 'lucide-react';
 
 export default function ReportsPage() {
   const [reports, setReports] = useState([]);
@@ -105,7 +113,7 @@ export default function ReportsPage() {
       <div style={{ height:64, padding:'0 24px', display:'flex', alignItems:'center', justifyContent:'space-between', background:'rgba(255,255,255,0.7)', backdropFilter:'blur(16px)', borderBottom:'1px solid var(--bord)', flexShrink:0, zIndex:10 }}>
         <div style={{ display:'flex', alignItems:'center', gap:10, fontSize:15, fontWeight:600, color:'var(--dgray)' }}>
           <div style={{ width:36, height:36, background:'linear-gradient(135deg, var(--dblu), var(--mid))', borderRadius:10, display:'flex', alignItems:'center', justifyContent:'center', color:'#fff', boxShadow:'var(--shadow-md)' }}>
-            <i className="ti ti-file-report" style={{ fontSize:18 }} aria-hidden="true" />
+            <FileCheck2 size={18} />
           </div>
           Reports Center
         </div>
@@ -119,7 +127,9 @@ export default function ReportsPage() {
               <p style={{ fontSize: 13, color: 'var(--sgray)' }}>Access and download historical analysis and diagnostic reports.</p>
             </div>
             <div style={{ display: 'flex', gap: 12 }}>
-              <button className="btn-outline" onClick={loadReports}><i className="ti ti-refresh" /> Refresh</button>
+              <button className="btn-outline" onClick={loadReports} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                <RotateCcw size={14} /> Refresh
+              </button>
             </div>
           </div>
 
@@ -143,7 +153,7 @@ export default function ReportsPage() {
                   <tr key={report.id} style={{ borderBottom: '1px solid var(--lgray)', transition: 'background 0.2s' }} onMouseOver={e => e.currentTarget.style.background = 'var(--offwh)'} onMouseOut={e => e.currentTarget.style.background = 'transparent'}>
                     <td style={{ padding: '16px', fontSize: 14, fontWeight: 500, color: 'var(--dgray)' }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                        <i className="ti ti-file-text" style={{ color: 'var(--teal)', fontSize: 16 }} />
+                        <FileText size={16} style={{ color: 'var(--teal)' }} />
                         {report.name}
                       </div>
                     </td>
@@ -158,17 +168,17 @@ export default function ReportsPage() {
                           className="btn-outline" 
                           onClick={() => handleDownload(report, 'PDF')}
                           disabled={downloading !== null}
-                          style={{ padding: '6px 12px', fontSize: 12 }}
+                          style={{ padding: '6px 12px', fontSize: 12, display: 'flex', alignItems: 'center', gap: 6 }}
                         >
-                          {downloading === `${report.id}-PDF` ? <span className="loading-dot" /> : <><i className="ti ti-download" /> PDF</>}
+                          {downloading === `${report.id}-PDF` ? <span className="loading-dot" /> : <><Download size={13} /> PDF</>}
                         </button>
                         <button 
                           className="btn-outline" 
                           onClick={() => handleDownload(report, 'CSV')}
                           disabled={downloading !== null}
-                          style={{ padding: '6px 12px', fontSize: 12 }}
+                          style={{ padding: '6px 12px', fontSize: 12, display: 'flex', alignItems: 'center', gap: 6 }}
                         >
-                          {downloading === `${report.id}-CSV` ? <span className="loading-dot" /> : <><i className="ti ti-download" /> CSV</>}
+                          {downloading === `${report.id}-CSV` ? <span className="loading-dot" /> : <><Download size={13} /> CSV</>}
                         </button>
                       </div>
                     </td>

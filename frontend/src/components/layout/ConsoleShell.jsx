@@ -1,21 +1,34 @@
+// src/components/layout/ConsoleShell.jsx
 import { Outlet, NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useState, useEffect } from 'react';
+import {
+  LayoutDashboard,
+  User,
+  CreditCard,
+  Key,
+  BookOpen,
+  Search,
+  ChevronsUpDown,
+  ChevronDown,
+  ArrowLeft,
+  LogOut,
+  Menu
+} from 'lucide-react';
 
 const CONSOLE_NAV = [
   { group: 'Analytics', items: [
-    { to: '/console/dashboard', icon: 'ti-chart-area-line', label: 'Dashboard' },
+    { to: '/console/dashboard', Icon: LayoutDashboard, label: 'Dashboard' },
   ]},
   { group: 'Account', items: [
-    { to: '/console/profile', icon: 'ti-user', label: 'Profile Settings' },
+    { to: '/console/profile', Icon: User, label: 'Profile Settings' },
   ]},
   { group: 'Organization', items: [
-    { to: '/console/billing', icon: 'ti-coin', label: 'Billing & Plan' },
+    { to: '/console/billing', Icon: CreditCard, label: 'Billing & Plan' },
   ]},
   { group: 'Developer', items: [
-    { to: '/console/api-keys', icon: 'ti-key', label: 'API Keys' },
-
-    { to: '/console/docs', icon: 'ti-book', label: 'Documentation' },
+    { to: '/console/api-keys', Icon: Key, label: 'API Keys' },
+    { to: '/console/docs', Icon: BookOpen, label: 'Documentation' },
   ]},
 ];
 
@@ -67,21 +80,21 @@ export default function ConsoleShell() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <img src="/logo.png" alt="AAIA" style={{ height: '28px', objectFit: 'contain' }} />
           </div>
-          <i className="ti ti-search" style={{ color: '#888', fontSize: '18px', cursor: 'pointer' }} />
+          <Search size={18} style={{ color: '#888', cursor: 'pointer' }} />
         </div>
 
         {/* Project Selector */}
         <div style={{ padding: '0 16px 16px 16px' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '8px 12px', background: '#F5F5F5', borderRadius: '8px', cursor: 'pointer' }}>
              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <div style={{ width: '20px', height: '20px', background: '#1C2B3A', borderRadius: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '10px', fontWeight: 'bold', color: '#fff' }}>
+                <div style={{ width: '22px', height: '22px', background: '#0A2085', borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '11px', fontWeight: 'bold', color: '#fff' }}>
                   {user?.name?.charAt(0).toUpperCase() || 'A'}
                 </div>
-                <span style={{ fontSize: '14px', fontWeight: '500', color: '#1C2B3A', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                <span style={{ fontSize: '13.5px', fontWeight: '600', color: '#1C2B3A', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                   {user?.name || 'Account'}
                 </span>
              </div>
-             <i className="ti ti-selector" style={{ color: '#888', fontSize: '14px' }} />
+             <ChevronsUpDown size={14} style={{ color: '#888' }} />
           </div>
         </div>
 
@@ -94,32 +107,35 @@ export default function ConsoleShell() {
                   {section.group}
                 </div>
               )}
-              {section.items.map((item) => (
-                <NavLink
-                  key={item.to}
-                  to={item.to}
-                  end={item.exact}
-                  style={({ isActive }) => ({
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    padding: '8px 12px',
-                    borderRadius: '8px',
-                    textDecoration: 'none',
-                    color: isActive ? '#000' : '#555',
-                    background: isActive ? '#F5F5F5' : 'transparent',
-                    fontWeight: isActive ? '600' : '400',
-                    fontSize: '14px',
-                    marginBottom: '2px'
-                  })}
-                >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                    <i className={`ti ${item.icon}`} style={{ fontSize: '18px', color: '#888' }} />
-                    {item.label}
-                  </div>
-                  {item.hasSubmenu && <i className="ti ti-chevron-down" style={{ fontSize: '14px', color: '#AAA' }} />}
-                </NavLink>
-              ))}
+              {section.items.map((item) => {
+                const Icon = item.Icon;
+                return (
+                  <NavLink
+                    key={item.to}
+                    to={item.to}
+                    end={item.exact}
+                    style={({ isActive }) => ({
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      padding: '9px 12px',
+                      borderRadius: '8px',
+                      textDecoration: 'none',
+                      color: isActive ? '#0A2085' : '#555',
+                      background: isActive ? '#F0F5FF' : 'transparent',
+                      fontWeight: isActive ? '600' : '400',
+                      fontSize: '13.5px',
+                      marginBottom: '2px',
+                      transition: 'all 0.15s ease'
+                    })}
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                      <Icon size={16} strokeWidth={2} style={{ color: '#607D8B' }} />
+                      <span>{item.label}</span>
+                    </div>
+                  </NavLink>
+                );
+              })}
             </div>
           ))}
         </nav>
@@ -127,12 +143,14 @@ export default function ConsoleShell() {
         {/* Bottom Actions */}
         <div style={{ padding: '16px', borderTop: '1px solid #EBEBEB', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <NavLink to="/chat" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px', color: '#555', fontSize: '13px', fontWeight: '500' }}>
-             <i className="ti ti-arrow-left" style={{ fontSize: '16px', color: '#888' }} />
+             <ArrowLeft size={16} style={{ color: '#888' }} />
              Back to App
           </NavLink>
-          <div style={{ display: 'flex', gap: '12px' }}>
-             <i className="ti ti-logout" title="Log out" style={{ fontSize: '18px', color: '#888', cursor: 'pointer' }} onClick={handleLogout} />
-          </div>
+          <button onClick={handleLogout} title="Log out" style={{ background: 'transparent', border: 'none', padding: 4, cursor: 'pointer', color: '#888', display: 'flex', alignItems: 'center', minHeight: 'unset' }}
+            onMouseOver={e => e.currentTarget.style.color = '#D32F2F'}
+            onMouseOut={e => e.currentTarget.style.color = '#888'}>
+             <LogOut size={16} />
+          </button>
         </div>
 
       </aside>
@@ -143,7 +161,7 @@ export default function ConsoleShell() {
         {isMobile && (
           <div style={{ padding: '16px', background: '#fff', borderBottom: '1px solid #D0DCE8', display: 'flex', alignItems: 'center', gap: '16px' }}>
             <button onClick={() => setIsSidebarOpen(true)} style={{ background: 'transparent', border: 'none', color: '#1C2B3A', padding: '4px' }}>
-              <i className="ti ti-menu-2" style={{ fontSize: 24 }} />
+              <Menu size={24} />
             </button>
             <span style={{ fontWeight: 600, fontSize: 16 }}>Console</span>
           </div>

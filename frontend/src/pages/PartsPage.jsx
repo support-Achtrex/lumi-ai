@@ -1,4 +1,17 @@
 import React, { useState, useEffect } from 'react';
+import { 
+  Package, 
+  Settings, 
+  ArrowLeft, 
+  Bot, 
+  ArrowUp, 
+  Search, 
+  Image as ImageIcon, 
+  FileText, 
+  X, 
+  Wrench,
+  Sparkles
+} from 'lucide-react';
 import APIService from '../services/api';
 
 const PartsPage = () => {
@@ -94,8 +107,8 @@ const PartsPage = () => {
             boxShadow: '0 24px 60px rgba(0,0,0,0.08)', overflow: 'hidden', display: 'flex', flexDirection: 'column' 
           }}>
             <div style={{ padding: '24px 40px', background: 'linear-gradient(135deg, var(--dblu), var(--mid))', color: '#fff', textAlign: 'center' }}>
-              <div style={{ width: 48, height: 48, background: 'rgba(255,255,255,0.1)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24, margin: '0 auto 12px', backdropFilter: 'blur(10px)' }}>
-                <i className="ti ti-settings" />
+              <div style={{ width: 48, height: 48, background: 'rgba(255,255,255,0.1)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 12px', backdropFilter: 'blur(10px)' }}>
+                <Package size={24} />
               </div>
               <h1 style={{ fontSize: 28, fontWeight: 800, margin: '0 0 8px 0', letterSpacing: '-0.5px' }}>Find Your Part</h1>
               <p style={{ fontSize: 15, margin: 0, opacity: 0.9 }}>Connect to AAIA's global automotive database to identify, source, and analyze parts in seconds.</p>
@@ -194,7 +207,7 @@ const PartsPage = () => {
               onClick={() => { setStep(1); setPartDetails(null); setSuggestions([]); }}
               style={{ background: '#F5F8FC', border: 'none', padding: '10px 20px', borderRadius: 8, color: 'var(--dblu)', fontWeight: 600, cursor: 'pointer', transition: '0.2s', display: 'flex', alignItems: 'center', gap: 8 }}
             >
-              <i className="ti ti-arrow-left" /> Start Over
+              <ArrowLeft size={16} /> Start Over
             </button>
           </div>
 
@@ -205,7 +218,7 @@ const PartsPage = () => {
               <div style={{ padding: 24, borderBottom: '1px solid var(--bord)', background: '#FAFCFF' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                   <div style={{ width: 40, height: 40, background: 'linear-gradient(135deg, var(--dblu), var(--mid))', borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff' }}>
-                    <i className="ti ti-robot" style={{ fontSize: 20 }} />
+                    <Bot size={20} />
                   </div>
                   <div>
                     <div style={{ fontSize: 16, fontWeight: 700, color: 'var(--dgray)' }}>AAIA Parts Assistant</div>
@@ -218,7 +231,7 @@ const PartsPage = () => {
                 {aiPrompt && (
                   <div style={{ display: 'flex', gap: 12 }}>
                     <div style={{ width: 32, height: 32, background: 'var(--dblu)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', flexShrink: 0 }}>
-                      <i className="ti ti-robot" style={{ fontSize: 16 }} />
+                      <Bot size={16} />
                     </div>
                     <div style={{ background: '#F5F8FC', padding: 16, borderRadius: '0 16px 16px 16px', fontSize: 14, color: 'var(--dgray)', lineHeight: 1.5 }}>
                       {aiPrompt}
@@ -245,7 +258,7 @@ const PartsPage = () => {
                 {loading && (
                    <div style={{ display: 'flex', gap: 12 }}>
                      <div style={{ width: 32, height: 32, background: 'var(--dblu)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', flexShrink: 0 }}>
-                       <i className="ti ti-robot" style={{ fontSize: 16 }} />
+                       <Bot size={16} />
                      </div>
                      <div style={{ background: '#F5F8FC', padding: 16, borderRadius: '0 16px 16px 16px', fontSize: 14, color: 'var(--dgray)', display: 'flex', alignItems: 'center' }}>
                        <span className="loading-dot" />
@@ -270,7 +283,7 @@ const PartsPage = () => {
                     disabled={loading || !partSearch.trim()}
                     style={{ width: 40, height: 40, background: 'var(--dblu)', border: 'none', borderRadius: 8, color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: '0.2s', opacity: (loading || !partSearch.trim()) ? 0.5 : 1 }}
                   >
-                    <i className="ti ti-arrow-up" style={{ fontSize: 20 }} />
+                    <ArrowUp size={20} />
                   </button>
                 </div>
               </div>
@@ -280,7 +293,7 @@ const PartsPage = () => {
             <div style={{ flex: 1, padding: 40, overflowY: 'auto', background: '#F4F7FB' }}>
               {!partDetails && step === 2 && !loading && (
                 <div style={{ height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', opacity: 0.5 }}>
-                  <i className="ti ti-shopping-cart-search" style={{ fontSize: 64, color: 'var(--dblu)', marginBottom: 16 }} />
+                  <Search size={64} style={{ color: 'var(--dblu)', marginBottom: 16 }} />
                   <h3 style={{ fontSize: 20, color: 'var(--dgray)', margin: 0 }}>Select a part to view details</h3>
                   <p style={{ color: 'var(--gray)', marginTop: 8 }}>Use the chat assistant on the left to find parts.</p>
                 </div>
@@ -306,7 +319,7 @@ const PartsPage = () => {
                               <img src={p.images[0]} alt={p.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                             ) : (
                               <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#ccc' }}>
-                                <i className="ti ti-photo" style={{ fontSize: 48 }} />
+                                <ImageIcon size={48} />
                               </div>
                             )}
                             <div style={{ position: 'absolute', top: 16, right: 16, background: '#fff', padding: '6px 12px', borderRadius: 20, fontSize: 14, fontWeight: 800, color: 'var(--dgray)', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
@@ -325,7 +338,7 @@ const PartsPage = () => {
                               style={{ width: '100%', padding: '12px', background: '#F5F8FC', border: '1px solid var(--bord)', borderRadius: 10, color: 'var(--dblu)', fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, cursor: 'pointer', transition: '0.2s' }} 
                               onMouseOver={e => { e.currentTarget.style.background = 'var(--dblu)'; e.currentTarget.style.color = '#fff'; }} 
                               onMouseOut={e => { e.currentTarget.style.background = '#F5F8FC'; e.currentTarget.style.color = 'var(--dblu)'; }}>
-                              <i className="ti ti-file-analytics" /> View Schematics
+                              <FileText size={16} /> View Schematics
                             </button>
                           </div>
                         </div>
@@ -351,7 +364,9 @@ const PartsPage = () => {
           <div style={{ background: '#fff', borderRadius: 24, width: '100%', maxWidth: 900, maxHeight: '90vh', overflow: 'hidden', display: 'flex', flexDirection: 'column', boxShadow: '0 24px 60px rgba(0,0,0,0.2)' }}>
             <div style={{ padding: '24px 32px', borderBottom: '1px solid var(--bord)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <h2 style={{ margin: 0, fontSize: 24, fontWeight: 800, color: 'var(--dgray)' }}>Part Schematics & Details</h2>
-              <button onClick={() => setSelectedSchemaPart(null)} style={{ background: 'transparent', border: 'none', fontSize: 24, color: 'var(--gray)', cursor: 'pointer' }}>&times;</button>
+              <button onClick={() => setSelectedSchemaPart(null)} style={{ background: 'transparent', border: 'none', cursor: 'pointer', color: 'var(--gray)', display: 'flex', alignItems: 'center' }}>
+                <X size={24} />
+              </button>
             </div>
             <div style={{ padding: 32, overflowY: 'auto', flex: 1 }}>
               <div style={{ display: 'flex', gap: 32, flexDirection: 'column' }}>
@@ -363,7 +378,7 @@ const PartsPage = () => {
                     ))
                   ) : (
                     <div style={{ width: '100%', height: 240, background: '#f0f0f0', borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#ccc' }}>
-                      <i className="ti ti-photo" style={{ fontSize: 48 }} />
+                      <ImageIcon size={48} />
                     </div>
                   )}
                 </div>

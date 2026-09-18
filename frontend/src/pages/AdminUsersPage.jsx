@@ -1,5 +1,18 @@
 import { useState, useEffect } from 'react';
 import APIService from '../services/api';
+import { 
+  Users, 
+  CreditCard, 
+  Tag, 
+  Search, 
+  Plus, 
+  Edit, 
+  Trash2, 
+  X, 
+  Shield, 
+  KeyRound,
+  CheckCircle2
+} from 'lucide-react';
 
 export default function AdminUsersPage() {
   const [activeTab, setActiveTab] = useState('users'); // 'users', 'plans', 'discounts'
@@ -7,14 +20,28 @@ export default function AdminUsersPage() {
   return (
     <div style={{ padding: 40, background: '#F5F8FC', minHeight: '100%', fontFamily: "'Inter', sans-serif" }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
-        <h1 style={{ fontSize: 24, fontWeight: 600, color: '#1C2B3A', margin: 0 }}>Admin Dashboard</h1>
+        <h1 style={{ fontSize: 24, fontWeight: 600, color: '#1C2B3A', margin: 0, display: 'flex', alignItems: 'center', gap: 10 }}>
+          <Shield size={24} style={{ color: '#0A2540' }} /> Admin Dashboard
+        </h1>
       </div>
 
       {/* Tabs */}
       <div style={{ display: 'flex', gap: 24, borderBottom: '1px solid #D0DCE8', marginBottom: 32 }}>
-        <TabButton active={activeTab === 'users'} onClick={() => setActiveTab('users')}>Users</TabButton>
-        <TabButton active={activeTab === 'plans'} onClick={() => setActiveTab('plans')}>Pricing Plans</TabButton>
-        <TabButton active={activeTab === 'discounts'} onClick={() => setActiveTab('discounts')}>Discounts</TabButton>
+        <TabButton active={activeTab === 'users'} onClick={() => setActiveTab('users')}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            <Users size={16} /> Users
+          </div>
+        </TabButton>
+        <TabButton active={activeTab === 'plans'} onClick={() => setActiveTab('plans')}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            <CreditCard size={16} /> Pricing Plans
+          </div>
+        </TabButton>
+        <TabButton active={activeTab === 'discounts'} onClick={() => setActiveTab('discounts')}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            <Tag size={16} /> Discounts
+          </div>
+        </TabButton>
       </div>
 
       {activeTab === 'users' && <UsersTab />}
@@ -364,7 +391,9 @@ function Modal({ title, onClose, children }) {
       <div style={{ background: '#fff', padding: 32, borderRadius: 16, width: 500, maxWidth: '90%', boxShadow: '0 20px 40px rgba(0,0,0,0.2)' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
           <h2 style={{ margin: 0, fontSize: 20 }}>{title}</h2>
-          <button onClick={onClose} style={{ background: 'none', border: 'none', fontSize: 24, cursor: 'pointer', color: '#90A4AE' }}>&times;</button>
+          <button onClick={onClose} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#90A4AE', display: 'flex', alignItems: 'center' }}>
+            <X size={20} />
+          </button>
         </div>
         {children}
       </div>

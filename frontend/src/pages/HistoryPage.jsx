@@ -1,5 +1,22 @@
 import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { 
+  FileCheck, 
+  Car, 
+  Download, 
+  ShieldCheck, 
+  AlertTriangle, 
+  CheckCircle2, 
+  Users, 
+  Wrench, 
+  FileText, 
+  Check, 
+  ShieldAlert, 
+  Building2, 
+  AlertOctagon,
+  CreditCard,
+  History as HistoryIcon
+} from 'lucide-react';
 import APIService from '../services/api';
 
 export default function HistoryPage() {
@@ -141,13 +158,13 @@ export default function HistoryPage() {
         <div style={{ height:64, padding:'0 24px', display:'flex', alignItems:'center', justifyContent:'space-between', background:'rgba(255,255,255,0.7)', backdropFilter:'blur(16px)', borderBottom:'1px solid var(--bord)', flexShrink:0, zIndex:10 }}>
           <div style={{ display:'flex', alignItems:'center', gap:10, fontSize:15, fontWeight:600, color:'var(--dgray)' }}>
             <div style={{ width:36, height:36, background:'linear-gradient(135deg, #1C2B3A, #3A506B)', borderRadius:10, display:'flex', alignItems:'center', justifyContent:'center', color:'#fff', boxShadow:'var(--shadow-md)' }}>
-              <i className="ti ti-file-certificate" style={{ fontSize:18 }} aria-hidden="true" />
+              <FileCheck size={18} />
             </div>
             Comprehensive History
           </div>
           <div style={{ display:'flex', gap:12, alignItems: 'center' }}>
             <div style={{ padding: '6px 12px', background: 'var(--teal-lt)', color: 'var(--teal-dk)', borderRadius: 8, fontSize: 13, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 6 }}>
-              <i className="ti ti-car" /> {vehicleContext.year} {vehicleContext.make} {vehicleContext.model}
+              <Car size={15} /> {vehicleContext.year} {vehicleContext.make} {vehicleContext.model}
             </div>
             <input value={vin} readOnly placeholder="Vehicle VIN" style={{ width: 220 }} />
           </div>
@@ -179,16 +196,16 @@ export default function HistoryPage() {
                 <div style={{ padding: 40, background: 'linear-gradient(135deg, #1C2B3A, #0A141D)', color: '#fff', position: 'relative' }}>
                   <div style={{ position: 'absolute', top: 20, right: 20, display: 'flex', gap: 10 }}>
                     <button onClick={handleDownloadHTML} style={{ background: 'rgba(255,255,255,0.1)', border: 'none', color: '#fff', padding: '6px 12px', borderRadius: 20, fontSize: 12, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
-                      <i className="ti ti-download" /> Download Report
+                      <Download size={14} /> Download Report
                     </button>
                     <div style={{ background: 'rgba(255,255,255,0.1)', padding: '6px 12px', borderRadius: 20, fontSize: 12, fontWeight: 700, display: 'flex', alignItems: 'center', gap: 6 }}>
-                      <i className="ti ti-shield-check" style={{ color: '#10B981' }} /> AAIA Verified Report
+                      <ShieldCheck size={14} style={{ color: '#10B981' }} /> AAIA Verified Report
                     </div>
                   </div>
                   
                   <div style={{ display: 'flex', alignItems: 'center', gap: 20, marginBottom: 24 }}>
                     <div style={{ width: 64, height: 64, borderRadius: 16, background: 'rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid rgba(255,255,255,0.2)' }}>
-                      <i className="ti ti-file-certificate" style={{ fontSize: 32, color: '#fff' }} />
+                      <FileCheck size={32} color="#fff" />
                     </div>
                     <div>
                       <h1 style={{ fontSize: 28, fontWeight: 700, margin: '0 0 4px 0', fontFamily: 'var(--display)' }}>Comprehensive Vehicle History</h1>
@@ -215,7 +232,7 @@ export default function HistoryPage() {
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 20 }}>
                     <div style={{ padding: 20, borderRadius: 12, background: '#fff', border: '1px solid #EBF1F8', boxShadow: '0 2px 8px rgba(0,0,0,0.02)' }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: '#1C2B3A', fontSize: 14, fontWeight: 700, marginBottom: 8 }}>
-                        <i className="ti ti-car-crash" style={{ color: summary.accidents_reported > 0 ? '#EF4444' : '#10B981', fontSize: 20 }} /> Accidents / Damage
+                        <AlertOctagon size={20} style={{ color: summary.accidents_reported > 0 ? '#EF4444' : '#10B981' }} /> Accidents / Damage
                       </div>
                       <div style={{ fontSize: 24, fontWeight: 700, color: summary.accidents_reported > 0 ? '#EF4444' : '#10B981' }}>
                         {summary.accidents_reported === 0 ? 'No Issues' : `${summary.accidents_reported} Reported`}
@@ -224,7 +241,7 @@ export default function HistoryPage() {
                     
                     <div style={{ padding: 20, borderRadius: 12, background: '#fff', border: '1px solid #EBF1F8', boxShadow: '0 2px 8px rgba(0,0,0,0.02)' }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: '#1C2B3A', fontSize: 14, fontWeight: 700, marginBottom: 8 }}>
-                        <i className="ti ti-users" style={{ color: '#0A2085', fontSize: 20 }} /> Previous Owners
+                        <Users size={20} style={{ color: '#0A2085' }} /> Previous Owners
                       </div>
                       <div style={{ fontSize: 24, fontWeight: 700, color: '#1C2B3A' }}>
                         {summary.owners} {typeof summary.owners === 'number' && 'Owners'}
@@ -233,7 +250,7 @@ export default function HistoryPage() {
 
                     <div style={{ padding: 20, borderRadius: 12, background: '#fff', border: '1px solid #EBF1F8', boxShadow: '0 2px 8px rgba(0,0,0,0.02)' }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: '#1C2B3A', fontSize: 14, fontWeight: 700, marginBottom: 8 }}>
-                        <i className="ti ti-tool" style={{ color: '#0A2085', fontSize: 20 }} /> Service Records
+                        <Wrench size={20} style={{ color: '#0A2085' }} /> Service Records
                       </div>
                       <div style={{ fontSize: 24, fontWeight: 700, color: '#1C2B3A' }}>
                         {summary.service_records} {typeof summary.service_records === 'number' && 'Records'}
@@ -242,7 +259,7 @@ export default function HistoryPage() {
 
                     <div style={{ padding: 20, borderRadius: 12, background: '#fff', border: '1px solid #EBF1F8', boxShadow: '0 2px 8px rgba(0,0,0,0.02)' }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: '#1C2B3A', fontSize: 14, fontWeight: 700, marginBottom: 8 }}>
-                        <i className="ti ti-file-text" style={{ color: summary.title_status === 'Clean' ? '#10B981' : (summary.title_status !== 'Unknown' ? '#EF4444' : '#607D8B'), fontSize: 20 }} /> Title Status
+                        <FileText size={20} style={{ color: summary.title_status === 'Clean' ? '#10B981' : (summary.title_status !== 'Unknown' ? '#EF4444' : '#607D8B') }} /> Title Status
                       </div>
                       <div style={{ fontSize: 24, fontWeight: 700, color: summary.title_status === 'Clean' ? '#10B981' : (summary.title_status !== 'Unknown' ? '#EF4444' : '#607D8B') }}>
                         {summary.title_status}
@@ -264,7 +281,7 @@ export default function HistoryPage() {
                           <div key={idx} style={{ display: 'flex', justifyContent: 'space-between', padding: '16px 20px', background: '#fff', border: '1px solid #EBF1F8', borderRadius: 8 }}>
                             <span style={{ fontWeight: 600, color: '#455A64', textTransform: 'capitalize' }}>{check.text || check.details}</span>
                             <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: check.status === 'no records found' ? '#10B981' : '#EF4444', fontWeight: 700 }}>
-                              <i className={check.status === 'no records found' ? "ti ti-circle-check-filled" : "ti ti-alert-triangle"} /> 
+                              {check.status === 'no records found' ? <CheckCircle2 size={18} color="#10B981" /> : <AlertTriangle size={18} color="#EF4444" />} 
                               {check.status === 'no records found' ? 'Clean' : 'Reported'}
                             </div>
                           </div>
@@ -368,7 +385,7 @@ export default function HistoryPage() {
       <div style={{ width: 280, borderRight: '1px solid #e0e0e0', padding: '32px 24px', background: '#fafafa', overflowY: 'auto' }}>
         <div style={{ textAlign: 'center', marginBottom: 32 }}>
           <div style={{ width: 80, height: 80, background: '#1C2B3A', borderRadius: '50%', margin: '0 auto 16px auto', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', boxShadow: '0 8px 16px rgba(0,0,0,0.1)' }}>
-            <i className="ti ti-shield-check" style={{ fontSize: 40 }} />
+            <ShieldCheck size={40} />
           </div>
           <h3 style={{ fontSize: 16, fontWeight: 700, color: '#1C2B3A', borderBottom: '2px solid #1C2B3A', paddingBottom: 8, display: 'inline-block' }}>Each AAIA Report Checks For:</h3>
         </div>
@@ -376,7 +393,7 @@ export default function HistoryPage() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontWeight: 700, color: '#1C2B3A', marginBottom: 8 }}>
-              <i className="ti ti-square-check-filled" style={{ color: '#0F6E56', fontSize: 20 }} /> Accident Data
+              <CheckCircle2 size={18} style={{ color: '#0F6E56' }} /> Accident Data
             </div>
             <ul style={{ margin: 0, paddingLeft: 30, color: '#607D8B', fontSize: 13, lineHeight: 1.8 }}>
               <li>Accident History</li>
@@ -388,7 +405,7 @@ export default function HistoryPage() {
           </div>
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontWeight: 700, color: '#1C2B3A', marginBottom: 8 }}>
-              <i className="ti ti-tool" style={{ color: '#607D8B', fontSize: 20 }} /> Service History
+              <Wrench size={18} style={{ color: '#607D8B' }} /> Service History
             </div>
             <ul style={{ margin: 0, paddingLeft: 30, color: '#607D8B', fontSize: 13, lineHeight: 1.8 }}>
               <li>Oil Changes</li>
@@ -400,7 +417,7 @@ export default function HistoryPage() {
           </div>
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontWeight: 700, color: '#1C2B3A', marginBottom: 8 }}>
-              <i className="ti ti-home" style={{ color: '#EF4444', fontSize: 20 }} /> Type of Use
+              <Building2 size={18} style={{ color: '#EF4444' }} /> Type of Use
             </div>
             <ul style={{ margin: 0, paddingLeft: 30, color: '#607D8B', fontSize: 13, lineHeight: 1.8 }}>
               <li>Personal Vehicle</li>
@@ -421,7 +438,7 @@ export default function HistoryPage() {
             <p style={{ fontSize: 20, color: '#1C2B3A', marginBottom: 24 }}>We found <strong>{historyReport?.summary?.service_records || 14} history records</strong> on this vehicle.</p>
             
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: 12, padding: '12px 24px', background: '#F5F8FC', borderRadius: 8, border: '1px solid #D0DCE8' }}>
-              <i className="ti ti-car" style={{ fontSize: 24, color: '#0A2085' }} />
+              <Car size={24} style={{ color: '#0A2085' }} />
               <div style={{ textAlign: 'left' }}>
                 <div style={{ fontSize: 14, fontWeight: 700, color: '#1C2B3A' }}>{vehicleContext.year} {vehicleContext.make} {vehicleContext.model}</div>
                 <div style={{ fontSize: 12, color: '#607D8B' }}><strong>VIN:</strong> {vin}</div>
@@ -445,7 +462,7 @@ export default function HistoryPage() {
                   
                   <div style={{ border: '2px solid #0F6E56', borderRadius: 8, padding: 24, position: 'relative', background: '#f8fdfa', textAlign: 'center', cursor: 'pointer' }}>
                     <div style={{ position: 'absolute', top: -12, left: '50%', transform: 'translateX(-50%)', background: '#f0f0f0', color: '#607D8B', fontSize: 11, fontWeight: 700, padding: '4px 12px', borderRadius: 12, border: '1px solid #d0d0d0' }}>STANDARD</div>
-                    <h3 style={{ fontSize: 18, fontWeight: 700, color: '#1C2B3A', marginBottom: 12 }}>1 AAIA Report <i className="ti ti-car" /></h3>
+                    <h3 style={{ fontSize: 18, fontWeight: 700, color: '#1C2B3A', marginBottom: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}>1 AAIA Report <Car size={16} /></h3>
                     <div style={{ fontSize: 28, fontWeight: 700, color: '#1C2B3A', marginBottom: 4 }}>$44.99</div>
                     <div style={{ fontSize: 12, color: '#607D8B', marginBottom: 16 }}>($44.99/Report)</div>
                     <div style={{ fontSize: 13, color: '#1C2B3A', marginBottom: 24 }}>Best for one car only.</div>
@@ -494,7 +511,7 @@ export default function HistoryPage() {
           {phase === 'success' && (
             <div className="animate-fade-in" style={{ textAlign: 'center', padding: '40px 0', maxWidth: 500, margin: '0 auto' }}>
               <div style={{ width: 80, height: 80, borderRadius: '50%', background: '#0F6E56', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 40, margin: '0 auto 24px auto' }}>
-                <i className="ti ti-check" />
+                <Check size={40} />
               </div>
               <h2 style={{ fontSize: 28, fontWeight: 700, color: '#1C2B3A', marginBottom: 16 }}>Payment Successful!</h2>
               <p style={{ fontSize: 16, color: '#607D8B', marginBottom: 32, lineHeight: 1.6 }}>

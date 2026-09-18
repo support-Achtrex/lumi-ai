@@ -5,6 +5,24 @@ import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, Tooltip as RechartsTo
 import html2canvas from 'html2canvas';
 import { jsPDF } from 'jspdf';
 import APIService from '../services/api';
+import {
+  Truck,
+  Plus,
+  Download,
+  AlertTriangle,
+  CheckCircle2,
+  PieChart as PieIcon,
+  Activity,
+  ChevronDown,
+  ChevronUp,
+  FileSpreadsheet,
+  Trash2,
+  Wrench,
+  Lightbulb,
+  X,
+  FileText,
+  Check
+} from 'lucide-react';
 
 export default function FleetPage() {
   const [loading,  setLoading]  = useState(false);
@@ -204,17 +222,17 @@ export default function FleetPage() {
       <div style={{ height:64, padding:'0 24px', display:'flex', alignItems:'center', justifyContent:'space-between', background:'rgba(255,255,255,0.7)', backdropFilter:'blur(16px)', borderBottom:'1px solid var(--bord)', flexShrink:0, zIndex:10 }}>
         <div style={{ display:'flex', alignItems:'center', gap:10, fontSize:15, fontWeight:600, color:'var(--dgray)' }}>
           <div style={{ width:36, height:36, background:'linear-gradient(135deg, var(--dblu), var(--mid))', borderRadius:10, display:'flex', alignItems:'center', justifyContent:'center', color:'#fff', boxShadow:'var(--shadow-md)' }}>
-            <i className="ti ti-truck" style={{ fontSize:18 }} aria-hidden="true" />
+            <Truck size={18} />
           </div>
           Fleet Intelligence
         </div>
         <div style={{ display:'flex', gap:12 }}>
-          <button className="btn-primary" onClick={runAAIAFleetAnalysis} disabled={loading}>
-            {loading ? <span className="loading-dot" /> : <i className="ti ti-activity" />}
+          <button className="btn-primary" onClick={runAAIAFleetAnalysis} disabled={loading} style={{ display:'flex', alignItems:'center', gap:8 }}>
+            {loading ? <span className="loading-dot" /> : <Activity size={16} />}
             Deep Fleet Analysis
           </button>
-          <button className="btn-teal" onClick={() => setShowAddModal(true)}>
-            <i className="ti ti-plus" /> Add Vehicle
+          <button className="btn-teal" onClick={() => setShowAddModal(true)} style={{ display:'flex', alignItems:'center', gap:8 }}>
+            <Plus size={16} /> Add Vehicle
           </button>
         </div>
       </div>
@@ -264,16 +282,16 @@ export default function FleetPage() {
                 <div className="card animate-fade-in" style={{ padding: 24, marginBottom: 24, background: 'var(--white)' }}>
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
                     <div style={{ display: 'flex', alignItems: 'center' }}>
-                      <span className="pill pill-teal" style={{ marginRight: 8 }}><i className="ti ti-bulb" /> AI Insight</span>
+                      <span className="pill pill-teal" style={{ marginRight: 8, display:'inline-flex', alignItems:'center', gap:4 }}><Lightbulb size={12} /> AI Insight</span>
                       <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--mgray)' }}>Fleet Analysis Summary</span>
                     </div>
                     <button 
                       className="btn-outline" 
                       onClick={downloadFleetReport}
                       disabled={downloading || !generatedReport}
-                      style={{ padding: '6px 12px', fontSize: 12 }}
+                      style={{ padding: '6px 12px', fontSize: 12, display:'flex', alignItems:'center', gap:6 }}
                     >
-                      {downloading ? <span className="loading-dot" /> : <><i className="ti ti-download" /> Download PDF</>}
+                      {downloading ? <span className="loading-dot" /> : <><Download size={13} /> Download PDF</>}
                     </button>
                   </div>
                   <div className="markdown-body" style={{ fontSize: 14, color: 'var(--dgray)', lineHeight: 1.6 }}>
@@ -283,15 +301,15 @@ export default function FleetPage() {
               </>
             ) : (
               <div className="card animate-fade-in" style={{ padding: 48, marginBottom: 24, background: 'linear-gradient(135deg, var(--white), #f8fafc)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', border: '1px dashed var(--bord)' }}>
-                <div style={{ width: 64, height: 64, borderRadius: 32, background: 'rgba(13,148,136,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 24 }}>
-                  <i className="ti ti-chart-pie" style={{ fontSize: 32, color: 'var(--teal)' }} />
+                <div style={{ width: 64, height: 64, borderRadius: 32, background: 'rgba(13,148,136,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 24, color:'var(--teal)' }}>
+                  <PieIcon size={32} />
                 </div>
                 <h3 style={{ fontSize: 20, color: 'var(--dgray)', marginBottom: 12, fontFamily: 'var(--display)' }}>Unlock Predictive Fleet Insights</h3>
                 <p style={{ fontSize: 14, color: 'var(--sgray)', maxWidth: 480, lineHeight: 1.6, marginBottom: 24 }}>
                   AAIA processes your vehicle mileage, diagnostic codes, and maintenance history to forecast breakdowns, identify high-risk assets, and build a proactive 90-day service schedule. 
                 </p>
-                <button className="btn-primary" onClick={runAAIAFleetAnalysis} disabled={loading} style={{ padding: '12px 24px', fontSize: 15 }}>
-                  {loading ? <span className="loading-dot" /> : <i className="ti ti-activity" />}
+                <button className="btn-primary" onClick={runAAIAFleetAnalysis} disabled={loading} style={{ padding: '12px 24px', fontSize: 15, display:'flex', alignItems:'center', gap:8 }}>
+                  {loading ? <span className="loading-dot" /> : <Activity size={16} />}
                   Run Deep Fleet Analysis
                 </button>
               </div>
@@ -334,11 +352,11 @@ export default function FleetPage() {
                 <div style={{ fontSize:13, color: v.alert ? 'var(--red)' : 'var(--mgray)', lineHeight: 1.4, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   {v.alert ? (
                     <div style={{ display: 'flex', gap: 6, alignItems: 'flex-start' }}>
-                      <i className="ti ti-alert-triangle" style={{ marginTop: 2 }} />
-                      {v.alert}
+                      <AlertTriangle size={15} style={{ marginTop: 2, flexShrink: 0 }} />
+                      <span>{v.alert}</span>
                     </div>
                   ) : <span>System nominal</span>}
-                  <i className={`ti ti-chevron-${expandedVehicle === v.vin ? 'up' : 'down'}`} style={{ color: 'var(--mgray)' }} />
+                  {expandedVehicle === v.vin ? <ChevronUp size={16} color="var(--mgray)" /> : <ChevronDown size={16} color="var(--mgray)" />}
                 </div>
               </div>
               {expandedVehicle === v.vin && (
@@ -358,12 +376,12 @@ export default function FleetPage() {
                       <div style={{ fontSize: 13, lineHeight: 1.5, color: 'var(--dgray)', padding: '16px', background: 'var(--offwh)', borderRadius: 8, border: '1px solid var(--bord)' }}>
                         {v.alert ? (
                           <>
-                            <div style={{ fontWeight: 600, color: 'var(--red)', marginBottom: 8 }}><i className="ti ti-alert-triangle" /> Critical Alert Detected</div>
+                            <div style={{ fontWeight: 600, color: 'var(--red)', marginBottom: 8, display:'flex', alignItems:'center', gap:6 }}><AlertTriangle size={15} /> Critical Alert Detected</div>
                             {v.alert}
                           </>
                         ) : (
                           <>
-                            <div style={{ fontWeight: 600, color: 'var(--green)', marginBottom: 8 }}><i className="ti ti-check" /> All Systems Nominal</div>
+                            <div style={{ fontWeight: 600, color: 'var(--green)', marginBottom: 8, display:'flex', alignItems:'center', gap:6 }}><CheckCircle2 size={15} /> All Systems Nominal</div>
                             No critical issues detected. Vehicle operating within normal parameters. Routine maintenance schedule should be followed.
                           </>
                         )}
@@ -384,7 +402,7 @@ export default function FleetPage() {
           <div className="card animate-fade-in" style={{ width: 500, background: 'var(--white)', overflow: 'hidden' }}>
             <div className="card-header">
               <h3 style={{ fontSize: 16, fontFamily: 'var(--display)' }}>Add Vehicle to Fleet</h3>
-              <i className="ti ti-x" style={{ cursor: 'pointer', fontSize: 18, color: 'var(--mgray)' }} onClick={() => setShowAddModal(false)} />
+              <X size={18} style={{ cursor: 'pointer', color: 'var(--mgray)' }} onClick={() => setShowAddModal(false)} />
             </div>
             
             <div style={{ display: 'flex', borderBottom: '1px solid var(--bord)' }}>
@@ -438,7 +456,7 @@ export default function FleetPage() {
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
                   <div style={{ border: '2px dashed var(--lgray)', borderRadius: 8, padding: 32, textAlign: 'center', background: 'var(--offwh)', position: 'relative' }}>
                     <input type="file" accept=".csv" onChange={e => setBulkFile(e.target.files[0])} style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', opacity: 0, cursor: 'pointer' }} />
-                    <i className="ti ti-file-spreadsheet" style={{ fontSize: 32, color: 'var(--mgray)', marginBottom: 12 }} />
+                    <FileSpreadsheet size={36} color="var(--mgray)" style={{ marginBottom: 12 }} />
                     <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--dgray)', marginBottom: 4 }}>
                       {bulkFile ? bulkFile.name : 'Drag & Drop file here'}
                     </div>

@@ -1,11 +1,23 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { 
+  Lock, 
+  Mail, 
+  User, 
+  Building2, 
+  Phone, 
+  Eye, 
+  EyeOff, 
+  ArrowRight,
+  ShieldCheck 
+} from 'lucide-react';
 
 export default function LoginPage() {
   const [tab,      setTab]      = useState('login');
   const [email,    setEmail]    = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [name,     setName]     = useState('');
   const [company,  setCompany]  = useState('');
   const [phone,    setPhone]    = useState('');
@@ -81,8 +93,8 @@ export default function LoginPage() {
         
         <div style={{
           width: '100%', maxWidth: '420px', 
-          background: 'rgba(15, 23, 42, 0.4)', backdropFilter: 'blur(16px)',
-          border: '1px solid rgba(255, 255, 255, 0.1)', borderRadius: '16px',
+          background: 'rgba(15, 23, 42, 0.5)', backdropFilter: 'blur(16px)',
+          border: '1px solid rgba(255, 255, 255, 0.12)', borderRadius: '16px',
           padding: '40px', boxSizing: 'border-box',
           boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)'
         }}>
@@ -97,7 +109,7 @@ export default function LoginPage() {
               <button key={t} onClick={() => { setTab(t); setError(''); }} style={{
                 flex: 1, height: '36px', fontSize: '13px', borderRadius: '6px',
                 border: 'none', cursor: 'pointer', transition: 'all 0.2s',
-                background: tab === t ? 'rgba(255,255,255,0.1)' : 'transparent',
+                background: tab === t ? 'rgba(255,255,255,0.12)' : 'transparent',
                 color: tab === t ? '#fff' : '#94a3b8',
                 fontWeight: tab === t ? '600' : '500',
               }}>
@@ -109,29 +121,50 @@ export default function LoginPage() {
           <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             {tab === 'register' && (
               <>
-                <input
-                  value={name} onChange={e => setName(e.target.value)}
-                  placeholder="Full Name" type="text" style={inputStyle} required
-                />
-                <input
-                  value={company} onChange={e => setCompany(e.target.value)}
-                  placeholder="Company Name" type="text" style={inputStyle} required
-                />
-                <input
-                  value={phone} onChange={e => setPhone(e.target.value)}
-                  placeholder="Phone Number" type="tel" style={inputStyle} required
-                />
+                <div style={{ position: 'relative' }}>
+                  <input
+                    value={name} onChange={e => setName(e.target.value)}
+                    placeholder="Full Name" type="text" style={inputStyle} required
+                  />
+                </div>
+                <div style={{ position: 'relative' }}>
+                  <input
+                    value={company} onChange={e => setCompany(e.target.value)}
+                    placeholder="Company Name" type="text" style={inputStyle} required
+                  />
+                </div>
+                <div style={{ position: 'relative' }}>
+                  <input
+                    value={phone} onChange={e => setPhone(e.target.value)}
+                    placeholder="Phone Number" type="tel" style={inputStyle} required
+                  />
+                </div>
               </>
             )}
             
-            <input
-              value={email} onChange={e => setEmail(e.target.value)}
-              placeholder="Email Address" type="email" style={inputStyle} required
-            />
-            <input
-              value={password} onChange={e => setPassword(e.target.value)}
-              placeholder="Password" type="password" style={inputStyle} required
-            />
+            <div style={{ position: 'relative' }}>
+              <input
+                value={email} onChange={e => setEmail(e.target.value)}
+                placeholder="Email Address" type="email" style={inputStyle} required
+              />
+            </div>
+
+            <div style={{ position: 'relative' }}>
+              <input
+                value={password} onChange={e => setPassword(e.target.value)}
+                placeholder="Password" type={showPassword ? 'text' : 'password'} style={{ ...inputStyle, paddingRight: '44px' }} required
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                style={{
+                  position: 'absolute', right: 12, top: '50%', transform: 'translateY(-50%)',
+                  background: 'none', border: 'none', color: '#94a3b8', cursor: 'pointer', display: 'flex', alignItems: 'center'
+                }}
+              >
+                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+              </button>
+            </div>
 
             {error && (
               <div style={{ color: '#fca5a5', fontSize: '13px', textAlign: 'center', background: 'rgba(220, 38, 38, 0.2)', padding: '12px', borderRadius: '8px', border: '1px solid rgba(220, 38, 38, 0.3)' }}>
@@ -143,7 +176,8 @@ export default function LoginPage() {
               height: '48px', border: 'none', borderRadius: '8px',
               fontSize: '15px', fontWeight: '600', color: '#000', marginTop: '8px',
               background: '#ffffff', cursor: loading ? 'not-allowed' : 'pointer', 
-              opacity: loading ? 0.7 : 1, transition: 'transform 0.2s, background 0.2s'
+              opacity: loading ? 0.7 : 1, transition: 'transform 0.2s, background 0.2s',
+              display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8
             }}
             onMouseOver={(e) => { if(!loading) e.currentTarget.style.background = '#f4f4f5'; }}
             onMouseOut={(e) => { if(!loading) e.currentTarget.style.background = '#ffffff'; }}

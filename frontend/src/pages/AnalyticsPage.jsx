@@ -1,5 +1,13 @@
 // src/pages/AnalyticsPage.jsx
 import { useState, useEffect } from 'react';
+import { 
+  BarChart3, 
+  TrendingUp, 
+  Activity, 
+  Cpu, 
+  Zap, 
+  Sparkles 
+} from 'lucide-react';
 
 export default function AnalyticsPage() {
   const [loading, setLoading] = useState(true);
@@ -15,7 +23,7 @@ export default function AnalyticsPage() {
       <div style={{ height:64, padding:'0 24px', display:'flex', alignItems:'center', justifyContent:'space-between', background:'rgba(255,255,255,0.7)', backdropFilter:'blur(16px)', borderBottom:'1px solid var(--bord)', flexShrink:0, zIndex:10 }}>
         <div style={{ display:'flex', alignItems:'center', gap:10, fontSize:15, fontWeight:600, color:'var(--dgray)' }}>
           <div style={{ width:36, height:36, background:'linear-gradient(135deg, var(--teal), var(--dblu))', borderRadius:10, display:'flex', alignItems:'center', justifyContent:'center', color:'#fff', boxShadow:'var(--shadow-md)' }}>
-            <i className="ti ti-chart-bar" style={{ fontSize:18 }} aria-hidden="true" />
+            <BarChart3 size={18} />
           </div>
           AAIA Platform Analytics
         </div>

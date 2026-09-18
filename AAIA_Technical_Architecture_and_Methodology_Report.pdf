@@ -1,0 +1,1367 @@
+%PDF-1.3
+%ºß¬à
+3 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 4 0 R
+>>
+endobj
+4 0 obj
+<<
+/Length 19122
+>>
+stream
+0.200025 w
+0 G
+0.96 0.97 0.98 rg
+46. 801.8899999999999864 m
+549.2799999999999727 801.8899999999999864 l
+552.5937084989847108 801.8899999999999864 555.2799999999999727 799.2037084989847244 555.2799999999999727 795.8899999999999864 c
+555.2799999999999727 717.8899999999999864 l
+555.2799999999999727 714.5762915010152483 551.9662915010152346 711.8899999999999864 549.2799999999999727 711.8899999999999864 c
+46. 711.8899999999999864 l
+42.6862915010152406 711.8899999999999864 40. 715.2037084989847244 40. 717.8899999999999864 c
+40. 795.8899999999999864 l
+40. 799.2037084989847244 43.3137084989847594 801.8899999999999864 46. 801.8899999999999864 c
+h
+f
+0.9 0.91 0.92 RG
+46. 801.8899999999999864 m
+549.2799999999999727 801.8899999999999864 l
+552.5937084989847108 801.8899999999999864 555.2799999999999727 799.2037084989847244 555.2799999999999727 795.8899999999999864 c
+555.2799999999999727 717.8899999999999864 l
+555.2799999999999727 714.5762915010152483 551.9662915010152346 711.8899999999999864 549.2799999999999727 711.8899999999999864 c
+46. 711.8899999999999864 l
+42.6862915010152406 711.8899999999999864 40. 715.2037084989847244 40. 717.8899999999999864 c
+40. 795.8899999999999864 l
+40. 799.2037084989847244 43.3137084989847594 801.8899999999999864 46. 801.8899999999999864 c
+h
+S
+BT
+/F2 20 Tf
+23. TL
+0.039 0.125 0.522 rg
+58. 773.8899999999999864 Td
+(AAIA — Cognitive Automotive Platform) Tj
+ET
+BT
+/F2 11 Tf
+12.6499999999999986 TL
+0.11 0.169 0.227 rg
+58. 755.8899999999999864 Td
+(Comprehensive Technical Architecture, Methodology & Analysis Report) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0.392 0.455 0.545 rg
+58. 733.8899999999999864 Td
+(Published by: Achtrex LLC \(achtrex.com\)  |  Version: 1.0.0  |  Date: August 2026) Tj
+ET
+0.04 0.13 0.52 rg
+40. 691.8899999999999864 4. -16. re
+f
+BT
+/F2 13 Tf
+14.9499999999999993 TL
+0.039 0.125 0.522 rg
+50. 678.8899999999999864 Td
+(1. Executive Summary & Platform Overview) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+40. 667.8899999999999864 Td
+(AAIA \(Automotive Artificial Intelligence Agent\) is an enterprise-grade automotive reasoning platform engineered to bridge the) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+40. 654.8899999999999864 Td
+(divide between raw automotive telemetry and actionable decision intelligence. Built by Achtrex LLC, AAIA provides an AI-native) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+40. 641.8899999999999864 Td
+(operating system for vehicle owners, repair shops, dealerships, and commercial fleet managers.) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+40. 623.8899999999999864 Td
+(By synthesizing real-time vehicle sensor feeds, OEM databases, historical repair indices, and market depreciation curves through) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+40. 610.8899999999999864 Td
+(state-of-the-art Large Language Models \(Anthropic Claude, Google Gemini, and xAI Grok\), AAIA automates complex diagnostic) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+40. 597.8899999999999864 Td
+(workflows, maintenance forecasting, and financial total cost of ownership \(TCO\) modeling.) Tj
+ET
+0.04 0.13 0.52 rg
+40. 579.8899999999999864 4. -16. re
+f
+BT
+/F2 13 Tf
+14.9499999999999993 TL
+0.039 0.125 0.522 rg
+50. 566.8899999999999864 Td
+(2. Complete Technology Stack & Specifications) Tj
+ET
+BT
+/F2 10.5 Tf
+12.0749999999999993 TL
+0.11 0.169 0.227 rg
+40. 555.8899999999999864 Td
+(2.1 Frontend Presentation Tier) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.11 0.169 0.227 rg
+40. 540.8899999999999864 Td
+(• Core Framework: ) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+40. 553.8899999999999864 Td
+(•) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+50. 553.8899999999999864 Td
+(Core Framework:) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+125.6400000000000148 553.8899999999999864 Td
+(React 18 Single Page Application \(SPA\) with Concurrent Mode & Component Architecture.) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.11 0.169 0.227 rg
+40. 537.8899999999999864 Td
+(• Routing & Navigation: ) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+40. 550.8899999999999864 Td
+(•) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+50. 550.8899999999999864 Td
+(Routing & Navigation:) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+143.0099999999999909 550.8899999999999864 Td
+(React Router v6 for secure, declarative route guarding and navigation state management.) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.11 0.169 0.227 rg
+40. 534.8899999999999864 Td
+(• Data Visualization: ) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+40. 547.8899999999999864 Td
+(•) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+50. 547.8899999999999864 Td
+(Data Visualization:) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+130.589999999999975 547.8899999999999864 Td
+(Recharts library delivering responsive telemetry graphs, token burn-down charts, and fleet indices.) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.11 0.169 0.227 rg
+40. 531.8899999999999864 Td
+(• Streaming UI & Parser: ) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+40. 544.8899999999999864 Td
+(•) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+50. 544.8899999999999864 Td
+(Streaming UI & Parser:) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+148.5 544.8899999999999864 Td
+(react-markdown and remark-gfm supporting real-time streaming tokens and markdown tables.) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.11 0.169 0.227 rg
+40. 528.8899999999999864 Td
+(• PDF Export Engine: ) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+40. 541.8899999999999864 Td
+(•) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+50. 541.8899999999999864 Td
+(PDF Export Engine:) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+135.539999999999992 541.8899999999999864 Td
+(Client-side isolated document rendering utilizing jsPDF and html2canvas.) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.11 0.169 0.227 rg
+40. 525.8899999999999864 Td
+(• Styling & Design System: ) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+40. 538.8899999999999864 Td
+(•) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+50. 538.8899999999999864 Td
+(Styling & Design System:) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+157.0499999999999829 538.8899999999999864 Td
+(Vanilla CSS custom tokens, HSL color palettes, dark-mode overlays, and responsive flex/grid) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+50. 525.8899999999999864 Td
+(layouts.) Tj
+ET
+BT
+/F2 10.5 Tf
+12.0749999999999993 TL
+0.11 0.169 0.227 rg
+40. 509.8899999999999864 Td
+(2.2 Backend & Server Architecture) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.11 0.169 0.227 rg
+40. 494.8899999999999864 Td
+(• Runtime & Server: ) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+40. 507.8899999999999864 Td
+(•) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+50. 507.8899999999999864 Td
+(Runtime & Server:) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+129.6000000000000227 507.8899999999999864 Td
+(Node.js \(v20+ LTS\) running Express.js v4 with modular RESTful routing and Service-Oriented separation.) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.11 0.169 0.227 rg
+40. 491.8899999999999864 Td
+(• Real-Time Comms: ) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+40. 504.8899999999999864 Td
+(•) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+50. 504.8899999999999864 Td
+(Real-Time Comms:) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+133.6499999999999773 504.8899999999999864 Td
+(Socket.IO duplex WebSocket server for real-time telemetry streaming and event broadcasting.) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.11 0.169 0.227 rg
+40. 488.8899999999999864 Td
+(• Token Streaming: ) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+40. 501.8899999999999864 Td
+(•) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+50. 501.8899999999999864 Td
+(Token Streaming:) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+126. 501.8899999999999864 Td
+(Server-Sent Events \(SSE\) via POST /api/chat/stream for zero-latency AI message generation.) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.11 0.169 0.227 rg
+40. 485.8899999999999864 Td
+(• Structured Logging: ) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+40. 498.8899999999999864 Td
+(•) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+50. 498.8899999999999864 Td
+(Structured Logging:) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+134.4599999999999795 498.8899999999999864 Td
+(Winston logger with multi-transport logging \(rotating files & standard out\) paired with Morgan HTTP) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+50. 485.8899999999999864 Td
+(logging.) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.11 0.169 0.227 rg
+40. 469.8899999999999864 Td
+(• Security & Hardening: ) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+40. 482.8899999999999864 Td
+(•) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+50. 482.8899999999999864 Td
+(Security & Hardening:) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+143.460000000000008 482.8899999999999864 Td
+(Helmet HTTP protection headers, CORS origin whitelisting, bcryptjs password hashing, and) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+50. 469.8899999999999864 Td
+(express-rate-limit.) Tj
+ET
+BT
+/F2 10.5 Tf
+12.0749999999999993 TL
+0.11 0.169 0.227 rg
+40. 453.8899999999999864 Td
+(2.3 AI & Cognitive Reasoning Layer) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.11 0.169 0.227 rg
+40. 438.8899999999999864 Td
+(• Anthropic Claude 3.5: ) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+40. 451.8899999999999864 Td
+(•) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+50. 451.8899999999999864 Td
+(Anthropic Claude 3.5:) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+142.4699999999999704 451.8899999999999864 Td
+(@anthropic-ai/sdk integration for deep automotive diagnostic reasoning and multi-step repair workflows.) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.11 0.169 0.227 rg
+40. 435.8899999999999864 Td
+(• Google Gemini 1.5/2.0: ) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+40. 448.8899999999999864 Td
+(•) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+50. 448.8899999999999864 Td
+(Google Gemini 1.5/2.0:) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+148.5900000000000034 448.8899999999999864 Td
+(@google/generative-ai integration for high-throughput multimodal telemetry and image inspection.) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.11 0.169 0.227 rg
+40. 432.8899999999999864 Td
+(• xAI Grok & OpenAI: ) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+40. 445.8899999999999864 Td
+(•) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+50. 445.8899999999999864 Td
+(xAI Grok & OpenAI:) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+135.2699999999999818 445.8899999999999864 Td
+(OpenAI SDK compatibility layer connecting to xAI Grok-2 for conversational automotive analytics.) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.11 0.169 0.227 rg
+40. 429.8899999999999864 Td
+(• System Prompt Architecture: ) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+40. 442.8899999999999864 Td
+(•) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+50. 442.8899999999999864 Td
+(System Prompt Architecture:) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+170.460000000000008 442.8899999999999864 Td
+(Over 700 lines of specialized domain guidance, safety boundaries, and repair taxonomies.) Tj
+ET
+BT
+/F2 10.5 Tf
+12.0749999999999993 TL
+0.11 0.169 0.227 rg
+40. 426.8899999999999864 Td
+(2.4 Database, Vector Search & Caching) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.11 0.169 0.227 rg
+40. 411.8899999999999864 Td
+(• Relational Storage: ) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+40. 424.8899999999999864 Td
+(•) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+50. 424.8899999999999864 Td
+(Relational Storage:) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+132.4799999999999898 424.8899999999999864 Td
+(PostgreSQL 14+ with pg connection pool managing users, fleets, vehicles, diagnostics, invoices, and API) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+50. 411.8899999999999864 Td
+(keys.) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.11 0.169 0.227 rg
+40. 395.8899999999999864 Td
+(• Vector Storage \(RAG\): ) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+40. 408.8899999999999864 Td
+(•) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+50. 408.8899999999999864 Td
+(Vector Storage \(RAG\):) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+145.7999999999999829 408.8899999999999864 Td
+(pgvector extension for semantic vector embeddings across OEM repair manuals.) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.11 0.169 0.227 rg
+40. 392.8899999999999864 Td
+(• High-Speed Caching: ) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+40. 405.8899999999999864 Td
+(•) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+50. 405.8899999999999864 Td
+(High-Speed Caching:) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+141.3899999999999864 405.8899999999999864 Td
+(Redis 7+ \(ioredis\) for high-speed VIN decoding cache, session token blacklists, and rate-limiting) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+50. 392.8899999999999864 Td
+(counters.) Tj
+ET
+0.04 0.13 0.52 rg
+40. 376.8899999999999864 4. -16. re
+f
+BT
+/F2 13 Tf
+14.9499999999999993 TL
+0.039 0.125 0.522 rg
+50. 363.8899999999999864 Td
+(3. Engineering Methodologies & Key Innovations) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.11 0.169 0.227 rg
+40. 352.8899999999999864 Td
+(• Memory-Safe Client PDF Generation: ) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+40. 365.8899999999999864 Td
+(•) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+50. 365.8899999999999864 Td
+(Memory-Safe Client PDF Generation:) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+205.2000000000000455 365.8899999999999864 Td
+(Solved browser canvas memory bloat by isolating hidden export DOM trees with fixed) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+50. 352.8899999999999864 Td
+(off-screen coordinates \(left: -2000px\), eliminating layout shifts and mobile browser) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+50. 339.8899999999999864 Td
+(crashes.) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.11 0.169 0.227 rg
+40. 323.8899999999999864 Td
+(• Dynamic Database-Driven Pricing: ) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+40. 336.8899999999999864 Td
+(•) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+50. 336.8899999999999864 Td
+(Dynamic Database-Driven Pricing:) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+193.2300000000000466 336.8899999999999864 Td
+(Decoupled billing pricing matrices from client code into PostgreSQL JSONB schemas,) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+50. 323.8899999999999864 Td
+(allowing instantaneous plan and pricing modifications without application rebuilds.) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.11 0.169 0.227 rg
+40. 307.8899999999999864 Td
+(• Mobile-First Responsive Retrofitting: ) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+40. 320.8899999999999864 Td
+(•) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+50. 320.8899999999999864 Td
+(Mobile-First Responsive Retrofitting:) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+200.7900000000000489 320.8899999999999864 Td
+(Implemented global CSS attribute overrides and container queries that dynamically) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+50. 307.8899999999999864 Td
+(normalize inline styling into flexible single-column mobile views.) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.11 0.169 0.227 rg
+40. 291.8899999999999864 Td
+(• Technical SEO & Semantic Structure: ) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+40. 304.8899999999999864 Td
+(•) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+50. 304.8899999999999864 Td
+(Technical SEO & Semantic Structure:) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+204.6600000000000534 304.8899999999999864 Td
+(Engineered HTML5 semantic hierarchies, JSON-LD schemas, and Open Graph meta) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+50. 291.8899999999999864 Td
+(cards targeting high-converting automotive AI keywords.) Tj
+ET
+0.04 0.13 0.52 rg
+40. 275.8899999999999864 4. -16. re
+f
+BT
+/F2 13 Tf
+14.9499999999999993 TL
+0.039 0.125 0.522 rg
+50. 262.8899999999999864 Td
+(4. Core Modules & Analytical Workflows) Tj
+ET
+BT
+/F2 10.5 Tf
+12.0749999999999993 TL
+0.11 0.169 0.227 rg
+40. 251.8899999999999864 Td
+(4.1 Intelligent Diagnostics \(SEV-0 to SEV-5\)) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+40. 236.8899999999999864 Td
+(The diagnostic engine combines user-reported symptoms, OBD-II Diagnostic Trouble Codes \(DTCs\), and VIN-specific OEM) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+40. 223.8899999999999864 Td
+(specifications to generate probability-ranked component failure analyses, DIY vs. professional recommendations, and labor-hour) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+40. 210.8899999999999864 Td
+(cost estimates.) Tj
+ET
+BT
+/F2 10.5 Tf
+12.0749999999999993 TL
+0.11 0.169 0.227 rg
+40. 192.8899999999999864 Td
+(4.2 5-Year Total Cost of Ownership \(TCO\) Analysis) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+40. 177.8899999999999864 Td
+(Computes full lifecycle financial impact by calculating Purchase Price, Fuel/Energy Consumption, Scheduled Maintenance,) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+40. 164.8899999999999864 Td
+(Expected Unscheduled Repairs, and Estimated Residual Depreciation over customizable multi-year horizons.) Tj
+ET
+BT
+/F2 10.5 Tf
+12.0749999999999993 TL
+0.11 0.169 0.227 rg
+40. 146.8899999999999864 Td
+(4.3 Fleet Management & Health Indexing) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+40. 131.8899999999999864 Td
+(Provides multi-vehicle tracking, automated mileage decay forecasting, centralized recall monitoring, and scheduled maintenance) Tj
+ET
+BT
+/F1 9 Tf
+10.3499999999999996 TL
+0.216 0.255 0.318 rg
+40. 118.8899999999999864 Td
+(dispatching to minimize fleet downtime.) Tj
+ET
+0.04 0.13 0.52 rg
+40. 816.8899999999999864 515.2799999999999727 -3. re
+f
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.549 0.588 0.647 rg
+40. 20. Td
+(AAIA System Architecture & Engineering Report | Achtrex LLC) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.549 0.588 0.647 rg
+514.6399999999999864 20. Td
+(Page 1 of 2) Tj
+ET
+endstream
+endobj
+5 0 obj
+<</Type /Page
+/Parent 1 0 R
+/Resources 2 0 R
+/MediaBox [0 0 595.2799999999999727 841.8899999999999864]
+/Contents 6 0 R
+>>
+endobj
+6 0 obj
+<<
+/Length 3658
+>>
+stream
+0.200025 w
+0.9 0.91 0.92 RG
+0.04 0.13 0.52 rg
+40. 816.8899999999999864 515.2799999999999727 -3. re
+f
+0.04 0.13 0.52 rg
+40. 786.8899999999999864 4. -16. re
+f
+BT
+/F2 13 Tf
+14.9499999999999993 TL
+0.039 0.125 0.522 rg
+50. 773.8899999999999864 Td
+(5. Technical Architecture Summary) Tj
+ET
+0.04 0.13 0.52 rg
+40. 762.8899999999999864 515.2799999999999727 -20. re
+f
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+1. g
+48. 749.8899999999999864 Td
+(Layer) Tj
+ET
+BT
+/F2 9 Tf
+10.3499999999999996 TL
+1. g
+168. 749.8899999999999864 Td
+(Technologies / Specifications) Tj
+ET
+1. g
+40. 742.8899999999999864 515.2799999999999727 -20. re
+f
+0.9 0.91 0.92 RG
+40. 742.8899999999999864 515.2799999999999727 -20. re
+S
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.216 0.255 0.318 rg
+48. 729.8899999999999864 Td
+(Presentation Tier) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.216 0.255 0.318 rg
+168. 729.8899999999999864 Td
+(React 18, React Router v6, Recharts, jsPDF, html2canvas, Tabler Icons) Tj
+ET
+0.96 0.97 0.98 rg
+40. 722.8899999999999864 515.2799999999999727 -20. re
+f
+0.9 0.91 0.92 RG
+40. 722.8899999999999864 515.2799999999999727 -20. re
+S
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.216 0.255 0.318 rg
+48. 709.8899999999999864 Td
+(Server Gateway) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.216 0.255 0.318 rg
+168. 709.8899999999999864 Td
+(Node.js 20+, Express.js, Socket.IO, Helmet, Morgan, Winston) Tj
+ET
+1. g
+40. 702.8899999999999864 515.2799999999999727 -20. re
+f
+0.9 0.91 0.92 RG
+40. 702.8899999999999864 515.2799999999999727 -20. re
+S
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.216 0.255 0.318 rg
+48. 689.8899999999999864 Td
+(AI Reasoning Layer) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.216 0.255 0.318 rg
+168. 689.8899999999999864 Td
+(Anthropic Claude 3.5, Google Gemini 1.5/2.0, xAI Grok / OpenAI) Tj
+ET
+0.96 0.97 0.98 rg
+40. 682.8899999999999864 515.2799999999999727 -20. re
+f
+0.9 0.91 0.92 RG
+40. 682.8899999999999864 515.2799999999999727 -20. re
+S
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.216 0.255 0.318 rg
+48. 669.8899999999999864 Td
+(Database & Vector) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.216 0.255 0.318 rg
+168. 669.8899999999999864 Td
+(PostgreSQL 14+ with pgvector, Connection Pooling) Tj
+ET
+1. g
+40. 662.8899999999999864 515.2799999999999727 -20. re
+f
+0.9 0.91 0.92 RG
+40. 662.8899999999999864 515.2799999999999727 -20. re
+S
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.216 0.255 0.318 rg
+48. 649.8899999999999864 Td
+(Cache & Session) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.216 0.255 0.318 rg
+168. 649.8899999999999864 Td
+(Redis 7+ \(ioredis\), node-cache memory fallback) Tj
+ET
+0.96 0.97 0.98 rg
+40. 642.8899999999999864 515.2799999999999727 -20. re
+f
+0.9 0.91 0.92 RG
+40. 642.8899999999999864 515.2799999999999727 -20. re
+S
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.216 0.255 0.318 rg
+48. 629.8899999999999864 Td
+(Security & Auth) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.216 0.255 0.318 rg
+168. 629.8899999999999864 Td
+(JWT \(JSON Web Tokens\), bcryptjs, RBAC, Rate-Limiting) Tj
+ET
+1. g
+40. 622.8899999999999864 515.2799999999999727 -20. re
+f
+0.9 0.91 0.92 RG
+40. 622.8899999999999864 515.2799999999999727 -20. re
+S
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.216 0.255 0.318 rg
+48. 609.8899999999999864 Td
+(Data Integrations) Tj
+ET
+BT
+/F1 8.5 Tf
+9.7749999999999986 TL
+0.216 0.255 0.318 rg
+168. 609.8899999999999864 Td
+(AutomotiveDataset.com, NHTSA Safety & Recalls API) Tj
+ET
+0.04 0.13 0.52 rg
+40. 816.8899999999999864 515.2799999999999727 -3. re
+f
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.549 0.588 0.647 rg
+40. 20. Td
+(AAIA System Architecture & Engineering Report | Achtrex LLC) Tj
+ET
+BT
+/F1 8 Tf
+9.1999999999999993 TL
+0.549 0.588 0.647 rg
+514.6399999999999864 20. Td
+(Page 2 of 2) Tj
+ET
+endstream
+endobj
+1 0 obj
+<</Type /Pages
+/Kids [3 0 R 5 0 R ]
+/Count 2
+>>
+endobj
+7 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+8 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica-Bold
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+9 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica-Oblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+10 0 obj
+<<
+/Type /Font
+/BaseFont /Helvetica-BoldOblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+11 0 obj
+<<
+/Type /Font
+/BaseFont /Courier
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+12 0 obj
+<<
+/Type /Font
+/BaseFont /Courier-Bold
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+13 0 obj
+<<
+/Type /Font
+/BaseFont /Courier-Oblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+14 0 obj
+<<
+/Type /Font
+/BaseFont /Courier-BoldOblique
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+15 0 obj
+<<
+/Type /Font
+/BaseFont /Times-Roman
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+16 0 obj
+<<
+/Type /Font
+/BaseFont /Times-Bold
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+17 0 obj
+<<
+/Type /Font
+/BaseFont /Times-Italic
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+18 0 obj
+<<
+/Type /Font
+/BaseFont /Times-BoldItalic
+/Subtype /Type1
+/Encoding /WinAnsiEncoding
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+19 0 obj
+<<
+/Type /Font
+/BaseFont /ZapfDingbats
+/Subtype /Type1
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+20 0 obj
+<<
+/Type /Font
+/BaseFont /Symbol
+/Subtype /Type1
+/FirstChar 32
+/LastChar 255
+>>
+endobj
+2 0 obj
+<<
+/ProcSet [/PDF /Text /ImageB /ImageC /ImageI]
+/Font <<
+/F1 7 0 R
+/F2 8 0 R
+/F3 9 0 R
+/F4 10 0 R
+/F5 11 0 R
+/F6 12 0 R
+/F7 13 0 R
+/F8 14 0 R
+/F9 15 0 R
+/F10 16 0 R
+/F11 17 0 R
+/F12 18 0 R
+/F13 19 0 R
+/F14 20 0 R
+>>
+/XObject <<
+>>
+>>
+endobj
+21 0 obj
+<<
+/Producer (jsPDF 4.2.1)
+/CreationDate (D:20260817072146-00'00')
+>>
+endobj
+22 0 obj
+<<
+/Type /Catalog
+/Pages 1 0 R
+/OpenAction [3 0 R /FitH null]
+/PageLayout /OneColumn
+>>
+endobj
+xref
+0 23
+0000000000 65535 f 
+0000023174 00000 n 
+0000024999 00000 n 
+0000000015 00000 n 
+0000000152 00000 n 
+0000019327 00000 n 
+0000019464 00000 n 
+0000023237 00000 n 
+0000023362 00000 n 
+0000023492 00000 n 
+0000023625 00000 n 
+0000023763 00000 n 
+0000023887 00000 n 
+0000024016 00000 n 
+0000024148 00000 n 
+0000024284 00000 n 
+0000024412 00000 n 
+0000024539 00000 n 
+0000024668 00000 n 
+0000024801 00000 n 
+0000024903 00000 n 
+0000025249 00000 n 
+0000025335 00000 n 
+trailer
+<<
+/Size 23
+/Root 22 0 R
+/Info 21 0 R
+/ID [ <230A434D4B3E809863B24D31DB19AED2> <230A434D4B3E809863B24D31DB19AED2> ]
+>>
+startxref
+25439
+%%EOF

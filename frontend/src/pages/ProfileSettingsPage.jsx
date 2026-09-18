@@ -2,6 +2,16 @@
 import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import APIService from '../services/api';
+import { 
+  User, 
+  Lock, 
+  Mail, 
+  Shield, 
+  CheckCircle2, 
+  AlertCircle, 
+  Save, 
+  Key 
+} from 'lucide-react';
 
 export default function ProfileSettingsPage() {
   const { user, setUser } = useAuth();
@@ -69,12 +79,16 @@ export default function ProfileSettingsPage() {
 
   return (
     <div style={{ maxWidth: 640, margin: '0 auto', padding: '40px 20px', fontFamily: "'Inter', sans-serif" }}>
-      <h1 style={{ fontSize: 28, fontWeight: 700, color: '#1C2B3A', marginBottom: 8 }}>Profile Settings</h1>
+      <h1 style={{ fontSize: 28, fontWeight: 700, color: '#1C2B3A', marginBottom: 8, display: 'flex', alignItems: 'center', gap: 10 }}>
+        <User size={28} style={{ color: '#1C2B3A' }} /> Profile Settings
+      </h1>
       <p style={{ color: '#607D8B', marginBottom: 32 }}>Manage your account settings and preferences.</p>
 
       {/* Profile Form */}
       <div style={cardStyle}>
-        <h2 style={cardTitleStyle}>Personal Information</h2>
+        <h2 style={cardTitleStyle}>
+          <User size={18} style={{ display: 'inline', marginRight: 8 }} /> Personal Information
+        </h2>
         <form onSubmit={handleUpdateProfile} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
           <div>
             <label style={labelStyle}>Full Name</label>
@@ -101,8 +115,8 @@ export default function ProfileSettingsPage() {
               {nameLoading ? 'Saving...' : 'Save Changes'}
             </button>
             {nameMessage && (
-              <span style={{ fontSize: 13, color: nameMessage.includes('Error') ? '#D32F2F' : '#0F6E56', fontWeight: 500 }}>
-                {nameMessage}
+              <span style={{ fontSize: 13, color: nameMessage.includes('Error') ? '#D32F2F' : '#0F6E56', fontWeight: 500, display: 'flex', alignItems: 'center', gap: 4 }}>
+                {nameMessage.includes('Error') ? <AlertCircle size={14} /> : <CheckCircle2 size={14} />} {nameMessage}
               </span>
             )}
           </div>
@@ -111,7 +125,9 @@ export default function ProfileSettingsPage() {
 
       {/* Security Form */}
       <div style={cardStyle}>
-        <h2 style={cardTitleStyle}>Security</h2>
+        <h2 style={cardTitleStyle}>
+          <Shield size={18} style={{ display: 'inline', marginRight: 8 }} /> Security & Password
+        </h2>
         <form onSubmit={handleChangePassword} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
           <div>
             <label style={labelStyle}>Current Password</label>
@@ -149,8 +165,8 @@ export default function ProfileSettingsPage() {
             <button type="submit" disabled={pwdLoading || !currentPassword || !newPassword || !confirmPassword} style={buttonStyle}>
               {pwdLoading ? 'Updating...' : 'Update Password'}
             </button>
-            {pwdMessage && <span style={{ fontSize: 13, color: '#0F6E56', fontWeight: 500 }}>{pwdMessage}</span>}
-            {pwdError && <span style={{ fontSize: 13, color: '#D32F2F', fontWeight: 500 }}>{pwdError}</span>}
+            {pwdMessage && <span style={{ fontSize: 13, color: '#0F6E56', fontWeight: 500, display: 'flex', alignItems: 'center', gap: 4 }}><CheckCircle2 size={14} /> {pwdMessage}</span>}
+            {pwdError && <span style={{ fontSize: 13, color: '#D32F2F', fontWeight: 500, display: 'flex', alignItems: 'center', gap: 4 }}><AlertCircle size={14} /> {pwdError}</span>}
           </div>
         </form>
       </div>
