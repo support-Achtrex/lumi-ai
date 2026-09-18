@@ -1,5 +1,26 @@
 // src/services/api.js  — AAIA API client
-const BASE = process.env.REACT_APP_API_URL || '/api';
+import { Capacitor } from '@capacitor/core';
+
+export const getApiBaseUrl = () => {
+  if (process.env.REACT_APP_API_URL) {
+    return process.env.REACT_APP_API_URL.replace(/\/+$/, '');
+  }
+  
+  if (typeof window !== 'undefined') {
+    const isCapacitorNative = Capacitor.isNativePlatform();
+    const isCapacitorProtocol = window.location.protocol === 'capacitor:';
+    const isAndroidLocalhost = window.location.hostname === 'localhost' && (!window.location.port || window.location.port === '80' || window.location.port === '443');
+    
+    // In native Android app or Capacitor container, route to live AAIA backend server
+    if (isCapacitorNative || isCapacitorProtocol || isAndroidLocalhost) {
+      return 'https://aaia.achtrex.com/api';
+    }
+  }
+  
+  return '/api';
+};
+
+const BASE = getApiBaseUrl();
 
 class APIService {
 
@@ -22,7 +43,12 @@ class APIService {
     });
     const data = await res.json();
     if (!res.ok) {
-      if (res.status === 401) { this.clearToken(); window.location.href = '/login'; }
+      if (res.status === 401 && !path.includes('/auth/login') && !path.includes('/auth/register')) {
+        this.clearToken();
+        if (typeof window !== 'undefined' && !window.location.pathname.includes('/login')) {
+          window.location.href = '/login';
+        }
+      }
       if (res.status === 402 && data.error === 'CREDITS_EXHAUSTED') {
         window.dispatchEvent(new CustomEvent('creditsExhausted'));
       }

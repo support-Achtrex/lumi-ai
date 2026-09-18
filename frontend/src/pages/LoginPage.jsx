@@ -55,12 +55,14 @@ export default function LoginPage() {
 
   return (
     <div style={{ 
-      height: '100vh', 
-      width: '100vw', 
-      overflow: 'hidden', 
+      minHeight: '100vh', 
+      width: '100%', 
+      overflowY: 'auto', 
       position: 'relative', 
       backgroundColor: '#000',
-      fontFamily: 'Inter, system-ui, sans-serif' 
+      fontFamily: 'Inter, system-ui, sans-serif',
+      display: 'flex',
+      flexDirection: 'column'
     }}>
       
       {/* ── Background Video ─────────────────────────────── */}
@@ -70,7 +72,7 @@ export default function LoginPage() {
         muted
         playsInline
         style={{
-          position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
+          position: 'fixed', top: 0, left: 0, width: '100%', height: '100%',
           objectFit: 'cover', zIndex: 0
         }}
       >
@@ -79,14 +81,14 @@ export default function LoginPage() {
 
       {/* ── Dark Overlay ─────────────────────────────────── */}
       <div style={{
-        position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
+        position: 'fixed', top: 0, left: 0, width: '100%', height: '100%',
         backgroundColor: 'rgba(0, 0, 0, 0.65)', zIndex: 1
       }} />
 
       {/* ── Header ───────────────────────────────────────── */}
       <header style={{ 
-        position: 'absolute', top: 0, left: 0, right: 0, zIndex: 10, 
-        padding: '24px 40px', display: 'flex', justifyContent: 'flex-start'
+        position: 'relative', zIndex: 10, 
+        padding: '20px 24px', display: 'flex', justifyContent: 'flex-start'
       }}>
         <img 
           src="/logo.png" 
@@ -98,20 +100,20 @@ export default function LoginPage() {
 
       {/* ── Central Login Form ───────────────────────────── */}
       <main style={{ 
-        position: 'relative', zIndex: 10, height: '100%', 
+        position: 'relative', zIndex: 10, flex: 1, 
         display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-        padding: '20px'
+        padding: '20px 16px 40px'
       }}>
         
         <div style={{
           width: '100%', maxWidth: '420px', 
-          background: 'rgba(15, 23, 42, 0.5)', backdropFilter: 'blur(16px)',
-          border: '1px solid rgba(255, 255, 255, 0.12)', borderRadius: '16px',
-          padding: '40px', boxSizing: 'border-box',
+          background: 'rgba(15, 23, 42, 0.75)', backdropFilter: 'blur(20px)',
+          border: '1px solid rgba(255, 255, 255, 0.15)', borderRadius: '20px',
+          padding: '32px 24px', boxSizing: 'border-box',
           boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)'
         }}>
           
-          <h1 style={{ fontSize: '24px', fontWeight: '600', color: '#ffffff', marginBottom: '24px', textAlign: 'center', letterSpacing: '-0.02em' }}>
+          <h1 style={{ fontSize: '24px', fontWeight: '700', color: '#ffffff', marginBottom: '20px', textAlign: 'center', letterSpacing: '-0.02em' }}>
             {tab === 'login' ? 'Welcome Back' : 'Create an Account'}
           </h1>
 

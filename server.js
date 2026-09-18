@@ -56,11 +56,32 @@ app.use(helmet({
   }
 }));
 
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://localhost',
+  'capacitor://localhost',
+  'http://localhost',
+  'https://aaia.achtrex.com',
+  'http://aaia.achtrex.com',
+  process.env.FRONTEND_URL
+].filter(Boolean);
+
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true);
+    if (
+      allowedOrigins.indexOf(origin) !== -1 || 
+      origin.startsWith('http://localhost') || 
+      origin.startsWith('https://localhost') || 
+      origin.startsWith('capacitor://')
+    ) {
+      return callback(null, true);
+    }
+    return callback(null, true);
+  },
   credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Origin']
 }));
 
 app.use(compression());
