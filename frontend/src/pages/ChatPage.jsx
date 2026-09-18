@@ -338,7 +338,7 @@ export default function ChatPage() {
       </div>
 
       {/* Messages */}
-      <div style={{ flex:1, padding:'24px 32px', overflowY:'auto', display:'flex', flexDirection:'column', gap:24 }}>
+      <div className="chat-messages-container" style={{ flex:1, padding:'24px 32px', overflowY:'auto', display:'flex', flexDirection:'column', gap:24 }}>
 
         {messages.length === 0 && !streaming && (
           <div style={{ flex:1, display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', gap:16, color:'#90A4AE', textAlign:'center', animation:'fadeIn 0.5s ease-out' }}>

@@ -44,12 +44,12 @@ const NAV = [
 ];
 
 const MOBILE_NAV_ITEMS = [
-  { to: '/chat',        Icon: MessageSquare, label: 'AI Chat' },
-  { to: '/car-scanner', Icon: Camera,        label: 'Scanner' },
-  { to: '/vin',         Icon: Car,           label: 'VIN' },
-  { to: '/garages',     Icon: Store,         label: 'Garages' },
-  { to: '/diagnostics', Icon: Settings,      label: 'Diagnostics' },
-  { to: '/reports',     Icon: FileText,      label: 'Reports' },
+  { to: '/chat',          Icon: MessageSquare, label: 'AI Chat' },
+  { to: '/car-scanner',   Icon: Camera,        label: 'Scanner' },
+  { to: '/repair-advice', Icon: Wrench,        label: 'Estimator' },
+  { to: '/garages',       Icon: Store,         label: 'Garages' },
+  { to: '/vin',           Icon: Car,           label: 'VIN' },
+  { to: '/diagnostics',   Icon: Settings,      label: 'Diagnostics' },
 ];
 
 export default function AppShell() {
@@ -230,21 +230,42 @@ export default function AppShell() {
       <main className="main-content-area" style={{ flex:1, display:'flex', flexDirection:'column', height:'100vh', overflow:'hidden', position: 'relative' }}>
         {/* Mobile Header Toggle */}
         {isMobile && (
-          <div style={{ padding: '12px 16px', background: '#fff', borderBottom: '1px solid #D0DCE8', display: 'flex', alignItems: 'center', justifyContent: 'space-between', zIndex: 10 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-              <button onClick={() => setIsSidebarOpen(true)} style={{ background: 'transparent', border: 'none', color: '#1C2B3A', padding: '4px', display: 'flex', alignItems: 'center' }}>
+          <div style={{ padding: 'calc(env(safe-area-inset-top, 0px) + 10px) 16px 10px', background: '#fff', borderBottom: '1px solid #D0DCE8', display: 'flex', alignItems: 'center', justifyContent: 'space-between', zIndex: 10 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <button onClick={() => setIsSidebarOpen(true)} style={{ background: 'transparent', border: 'none', color: '#1C2B3A', padding: '4px', display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
                 <Menu size={22} />
               </button>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                <img src="/favicon.png" alt="AAIA" style={{ height: 22, width: 22, objectFit: 'contain' }} />
-                <span style={{ fontSize: 16, fontWeight: 800, color: '#0A2085', letterSpacing: '-0.02em' }}>AAIA</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 7, cursor: 'pointer' }} onClick={() => navigate('/')}>
+                <img src="/favicon.png" alt="AAIA" style={{ height: 24, width: 24, objectFit: 'contain' }} />
+                <span style={{ fontSize: 17, fontWeight: 800, color: '#0A2085', letterSpacing: '-0.02em' }}>AAIA</span>
               </div>
             </div>
-            {user?.role === 'admin' && (
-              <NavLink to="/admin/dashboard" style={{ background: '#EFF6FF', color: '#2563EB', textDecoration: 'none', padding: '4px 10px', borderRadius: 6, fontSize: 11, fontWeight: 700, display: 'flex', alignItems: 'center', gap: 4 }}>
-                <Shield size={12} /> Admin
-              </NavLink>
-            )}
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              {user?.role === 'admin' && (
+                <NavLink to="/admin/dashboard" style={{ background: '#EFF6FF', color: '#2563EB', textDecoration: 'none', padding: '4px 9px', borderRadius: 6, fontSize: 11, fontWeight: 700, display: 'flex', alignItems: 'center', gap: 4 }}>
+                  <Shield size={12} /> Admin
+                </NavLink>
+              )}
+              <div
+                onClick={() => navigate('/console/profile')}
+                title="Account Settings"
+                style={{
+                  width: 30,
+                  height: 30,
+                  borderRadius: '50%',
+                  background: '#0A2085',
+                  color: '#fff',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: 11.5,
+                  fontWeight: 700,
+                  cursor: 'pointer'
+                }}
+              >
+                {user?.name?.slice(0, 2).toUpperCase() || 'U'}
+              </div>
+            </div>
           </div>
         )}
 

@@ -250,21 +250,22 @@ export default function GaragesPage() {
         </div>
 
         {/* ── Top Navigation Tabs ── */}
-        <div style={{ display: 'flex', gap: 12, marginBottom: 24, borderBottom: '1px solid #D0DCE8', paddingBottom: 12 }}>
+        <div style={{ display: 'flex', gap: 10, marginBottom: 20, borderBottom: '1px solid #D0DCE8', paddingBottom: 12, overflowX: 'auto', WebkitOverflowScrolling: 'touch', whiteSpace: 'nowrap' }}>
           <button 
             onClick={() => setActiveTab('directory')}
             style={{
               background: activeTab === 'directory' ? '#0A2085' : 'transparent',
               color: activeTab === 'directory' ? '#fff' : '#607D8B',
               border: 'none',
-              padding: '10px 20px',
+              padding: '10px 18px',
               borderRadius: 10,
-              fontSize: 14,
+              fontSize: 13.5,
               fontWeight: 700,
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
               gap: 8,
+              flexShrink: 0,
               transition: 'all 0.2s'
             }}
           >
@@ -277,14 +278,15 @@ export default function GaragesPage() {
               background: activeTab === 'bookings' ? '#0A2085' : 'transparent',
               color: activeTab === 'bookings' ? '#fff' : '#607D8B',
               border: 'none',
-              padding: '10px 20px',
+              padding: '10px 18px',
               borderRadius: 10,
-              fontSize: 14,
+              fontSize: 13.5,
               fontWeight: 700,
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
               gap: 8,
+              flexShrink: 0,
               transition: 'all 0.2s'
             }}
           >
@@ -298,7 +300,7 @@ export default function GaragesPage() {
         {activeTab === 'directory' && (
           <div>
             {/* Filter Bar */}
-            <div style={{ background: '#fff', borderRadius: 18, padding: '16px 20px', border: '1px solid #D0DCE8', marginBottom: 24, display: 'flex', flexWrap: 'wrap', gap: 16, alignItems: 'center', justifyContent: 'space-between' }}>
+            <div style={{ background: '#fff', borderRadius: 18, padding: '16px 20px', border: '1px solid #D0DCE8', marginBottom: 24, display: 'flex', flexWrap: 'wrap', gap: 14, alignItems: 'center', justifyContent: 'space-between' }}>
               
               {/* Category Pills */}
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
@@ -316,9 +318,9 @@ export default function GaragesPage() {
                       color: selectedType === c.id ? '#0A2085' : '#607D8B',
                       border: '1px solid',
                       borderColor: selectedType === c.id ? '#0A2085' : '#E2E8F0',
-                      padding: '8px 14px',
+                      padding: '8px 12px',
                       borderRadius: 10,
-                      fontSize: 13,
+                      fontSize: 12.5,
                       fontWeight: 700,
                       cursor: 'pointer',
                       display: 'flex',
@@ -326,14 +328,14 @@ export default function GaragesPage() {
                       gap: 6
                     }}
                   >
-                    <c.icon size={15} />
+                    <c.icon size={14} />
                     {c.label}
                   </button>
                 ))}
               </div>
 
               {/* Search Bar */}
-              <div style={{ display: 'flex', alignItems: 'center', background: '#F5F8FC', border: '1px solid #D0DCE8', borderRadius: 10, padding: '0 12px', minWidth: 260 }}>
+              <div style={{ display: 'flex', alignItems: 'center', background: '#F5F8FC', border: '1px solid #D0DCE8', borderRadius: 10, padding: '0 12px', flex: '1 1 220px', minWidth: 200 }}>
                 <Search size={16} color="#90A4AE" style={{ marginRight: 6 }} />
                 <input 
                   type="text" 
@@ -353,7 +355,7 @@ export default function GaragesPage() {
                 <div style={{ fontSize: 14, color: '#607D8B' }}>Loading certified partners & mobile units…</div>
               </div>
             ) : (
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))', gap: 24 }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 20 }}>
                 {garages.map(g => {
                   const mapLink = g.mapUrl || (g.latitude && g.longitude 
                     ? `https://www.google.com/maps?q=${g.latitude},${g.longitude}` 

@@ -1,4 +1,4 @@
-const { GoogleGenerativeAI } = require('@google/generative-ai');
+const { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } = require('@google/generative-ai');
 const { OpenAI } = require('openai');
 const logger = require('../config/logger');
 const { get, set, DEFAULT_TTL } = require('../config/redis');
@@ -6,6 +6,7 @@ const VehicleDataService = require('./VehicleDataService');
 
 let _gemini = null;
 let _openai = null;
+let _anthropic = null;
 
 function getGeminiClient() {
   if (!_gemini) {
@@ -16,6 +17,31 @@ function getGeminiClient() {
   return _gemini;
 }
 
+function getGeminiModelName() {
+  return process.env.GEMINI_MODEL || 'gemini-3.6-flash';
+}
+
+function getGrokModelName() {
+  return process.env.GROK_MODEL || 'grok-3';
+}
+
+function getGeminiModel(systemInstruction, withSafety = false) {
+  const genAI = getGeminiClient();
+  const config = {
+    model: getGeminiModelName()
+  };
+  if (systemInstruction) config.systemInstruction = systemInstruction;
+  if (withSafety) {
+    config.safetySettings = [
+      { category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT, threshold: HarmBlockThreshold.BLOCK_NONE },
+      { category: HarmCategory.HARM_CATEGORY_HARASSMENT, threshold: HarmBlockThreshold.BLOCK_NONE },
+      { category: HarmCategory.HARM_CATEGORY_HATE_SPEECH, threshold: HarmBlockThreshold.BLOCK_NONE },
+      { category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT, threshold: HarmBlockThreshold.BLOCK_NONE }
+    ];
+  }
+  return genAI.getGenerativeModel(config);
+}
+
 function getOpenAIClient() {
   if (!_openai) {
     const key = process.env.GROK_API_KEY;
@@ -23,6 +49,20 @@ function getOpenAIClient() {
     _openai = new OpenAI({ apiKey: key, baseURL: 'https://api.x.ai/v1' });
   }
   return _openai;
+}
+
+function getAnthropicClient() {
+  if (!_anthropic) {
+    const key = process.env.ANTHROPIC_API_KEY || process.env.CLAUDE_API_KEY;
+    if (!key) return null;
+    try {
+      const Anthropic = require('@anthropic-ai/sdk');
+      _anthropic = new Anthropic({ apiKey: key });
+    } catch (e) {
+      return null;
+    }
+  }
+  return _anthropic;
 }
 
 // ── AAIA Core System Prompt ────────────────────────────────────────────────
@@ -112,13 +152,13 @@ You are AAIA. You make automotive enterprises smarter.`;
 
 class AAIAService {
 
-  // ── Main chat method (Grok with Gemini fallback) ───────────────────────────
+  // ── Main chat method (Grok with Gemini & Claude fallbacks) ─────────────────
   static async chat({ messages, sessionId, vehicleContext, enterpriseContext, stream = false, image = null }) {
     try {
       const enrichedMessages = await this.enrichMessages(messages, vehicleContext, image);
 
       const params = {
-        model:      process.env.GROK_MODEL || 'grok-4.3',
+        model:      getGrokModelName(),
         max_tokens: parseInt(process.env.MAX_TOKENS) || 4096,
         messages:   [
           { role: 'system', content: AAIA_SYSTEM_PROMPT },
@@ -130,24 +170,25 @@ class AAIAService {
         return this.streamResponse(params, sessionId, enrichedMessages);
       }
 
-      let response;
+      // 1. Try Grok
       try {
-        response = await getOpenAIClient().chat.completions.create(params);
+        const response = await getOpenAIClient().chat.completions.create(params);
         const result = {
           content:      response.choices[0].message.content,
-          inputTokens:  response.usage.prompt_tokens,
-          outputTokens: response.usage.completion_tokens,
-          model:        response.model,
+          inputTokens:  response.usage?.prompt_tokens || 0,
+          outputTokens: response.usage?.completion_tokens || 0,
+          model:        response.model || getGrokModelName(),
           sessionId
         };
         await this.cacheInteraction(sessionId, messages, result);
         return result;
       } catch (err) {
         logger.warn(`Grok failed (${err.message}). Falling back to Gemini.`);
-        const model = getGeminiClient().getGenerativeModel({ 
-          model: 'gemini-2.5-flash',
-          systemInstruction: AAIA_SYSTEM_PROMPT
-        });
+      }
+
+      // 2. Try Gemini fallback
+      try {
+        const model = getGeminiModel(AAIA_SYSTEM_PROMPT, true);
         const contents = enrichedMessages.map(m => ({
           role: m.role === 'assistant' ? 'model' : 'user',
           parts: [{ text: m.content }]
@@ -157,14 +198,47 @@ class AAIAService {
         
         const result = {
           content:      text,
-          inputTokens:  0, // Gemini SDK doesn't always expose this easily
+          inputTokens:  0,
           outputTokens: 0,
-          model: 'gemini-2.5-flash',
+          model:        getGeminiModelName(),
           sessionId
         };
         await this.cacheInteraction(sessionId, messages, result);
         return result;
+      } catch (geminiErr) {
+        logger.warn(`Gemini fallback failed (${geminiErr.message}). Trying Claude fallback.`);
       }
+
+      // 3. Try Claude fallback if available
+      try {
+        const anthropic = getAnthropicClient();
+        if (anthropic) {
+          const claudeMessages = enrichedMessages.map(m => ({
+            role: m.role === 'assistant' ? 'assistant' : 'user',
+            content: m.content
+          }));
+          const claudeRes = await anthropic.messages.create({
+            model: 'claude-3-5-sonnet-20241022',
+            max_tokens: parseInt(process.env.MAX_TOKENS) || 4096,
+            system: AAIA_SYSTEM_PROMPT,
+            messages: claudeMessages
+          });
+          const text = claudeRes.content.map(c => c.text || '').join('');
+          const result = {
+            content:      text,
+            inputTokens:  claudeRes.usage?.input_tokens || 0,
+            outputTokens: claudeRes.usage?.output_tokens || 0,
+            model:        'claude-3-5-sonnet',
+            sessionId
+          };
+          await this.cacheInteraction(sessionId, messages, result);
+          return result;
+        }
+      } catch (claudeErr) {
+        logger.warn(`Claude fallback failed (${claudeErr.message}).`);
+      }
+
+      throw new Error('All AI providers (Grok, Gemini, Claude) encountered an error. Please try again.');
 
     } catch (error) {
       logger.error('AAIA chat error:', error);
@@ -185,23 +259,29 @@ class AAIAService {
         }
       }
     } catch (err) {
-      logger.warn(`Grok stream failed (${err.message}). Falling back to Gemini.`);
-      const model = getGeminiClient().getGenerativeModel({ 
-        model: 'gemini-2.5-flash',
-        systemInstruction: AAIA_SYSTEM_PROMPT
-      });
-      const contents = enrichedMessages.map(m => ({
-        role: m.role === 'assistant' ? 'model' : 'user',
-        parts: [{ text: m.content }]
-      }));
-      const result = await model.generateContentStream({ contents });
-      for await (const chunk of result.stream) {
-        if (chunk.text()) {
-          yield { 
-            type: 'content_block_delta', 
-            delta: { type: 'text_delta', text: chunk.text() } 
-          };
+      logger.warn(`Grok stream failed (${err.message}). Falling back to Gemini stream.`);
+      try {
+        const model = getGeminiModel(AAIA_SYSTEM_PROMPT, true);
+        const contents = enrichedMessages.map(m => ({
+          role: m.role === 'assistant' ? 'model' : 'user',
+          parts: [{ text: m.content }]
+        }));
+        const result = await model.generateContentStream({ contents });
+        for await (const chunk of result.stream) {
+          const chunkText = chunk.text();
+          if (chunkText) {
+            yield { 
+              type: 'content_block_delta', 
+              delta: { type: 'text_delta', text: chunkText } 
+            };
+          }
         }
+      } catch (geminiErr) {
+        logger.error(`Gemini stream failed (${geminiErr.message}).`);
+        yield {
+          type: 'content_block_delta',
+          delta: { type: 'text_delta', text: "I'm temporarily experiencing connectivity issues with the AI reasoning core. Please try your request again in a moment." }
+        };
       }
     }
   }
@@ -367,7 +447,7 @@ Return ONLY a valid JSON object and absolutely nothing else. Do not use markdown
 
     try {
       const response = await getOpenAIClient().chat.completions.create({
-        model:      process.env.GROK_MODEL || 'grok-4.3',
+        model:      getGrokModelName(),
         max_tokens: 2500,
         messages:   [
           { role: 'system', content: 'You are a strict JSON-only diagnostic reasoning engine. Return only the JSON object without formatting or markdown code blocks.' },
@@ -382,10 +462,7 @@ Return ONLY a valid JSON object and absolutely nothing else. Do not use markdown
     } catch (error) {
       logger.warn(`Grok failed in generateRepairGuide (${error.message}). Falling back to Gemini.`);
       try {
-        const model = getGeminiClient().getGenerativeModel({ 
-          model: 'gemini-2.5-flash',
-          systemInstruction: 'You are a strict JSON-only diagnostic reasoning engine. Return only the JSON object without formatting or markdown code blocks.'
-        });
+        const model = getGeminiModel('You are a strict JSON-only diagnostic reasoning engine. Return only the JSON object without formatting or markdown code blocks.', true);
         const geminiRes = await model.generateContent(prompt);
         let responseText = geminiRes.response.text().trim();
         const match = responseText.match(/\{[\s\S]*\}/);
@@ -423,7 +500,7 @@ Return JSON only with this exact structure:
 
     try {
       const response = await getOpenAIClient().chat.completions.create({
-        model:      process.env.GROK_MODEL || 'grok-4.3',
+        model:      getGrokModelName(),
         max_tokens: 500,
         messages:   [
           { role: 'system', content: 'You are a JSON-only response system. Return valid JSON and nothing else.' },
@@ -436,13 +513,22 @@ Return JSON only with this exact structure:
       if (match) responseText = match[0];
       return JSON.parse(responseText);
     } catch (error) {
-      return {
-        primaryIntent: 'general_query',
-        entities: {},
-        urgency: 'low',
-        requiresVehicleData: false,
-        confidence: 0.5
-      };
+      try {
+        const model = getGeminiModel('You are a JSON-only response system. Return valid JSON and nothing else.', true);
+        const geminiRes = await model.generateContent(prompt);
+        let responseText = geminiRes.response.text().trim();
+        const match = responseText.match(/\{[\s\S]*\}/);
+        if (match) responseText = match[0];
+        return JSON.parse(responseText);
+      } catch (geminiErr) {
+        return {
+          primaryIntent: 'general_query',
+          entities: {},
+          urgency: 'low',
+          requiresVehicleData: false,
+          confidence: 0.5
+        };
+      }
     }
   }
 
@@ -515,16 +601,7 @@ Return STRICTLY a JSON object without any Markdown wrapping or commentary:
 }`;
 
       try {
-        const { HarmCategory, HarmBlockThreshold } = require('@google/generative-ai');
-        const model = getGeminiClient().getGenerativeModel({ 
-          model: 'gemini-2.5-flash',
-          safetySettings: [
-            { category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT, threshold: HarmBlockThreshold.BLOCK_NONE },
-            { category: HarmCategory.HARM_CATEGORY_HARASSMENT, threshold: HarmBlockThreshold.BLOCK_NONE },
-            { category: HarmCategory.HARM_CATEGORY_HATE_SPEECH, threshold: HarmBlockThreshold.BLOCK_NONE },
-            { category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT, threshold: HarmBlockThreshold.BLOCK_NONE }
-          ]
-        });
+        const model = getGeminiModel(null, true);
 
         const result = await model.generateContent([
           prompt,
@@ -544,7 +621,7 @@ Return STRICTLY a JSON object without any Markdown wrapping or commentary:
         logger.warn(`Gemini identifyCarFromImage failed (${geminiErr.message}). Trying Grok vision fallback.`);
         const fullDataUrl = `data:${cleanMime};base64,${cleanBase64}`;
         const grokRes = await getOpenAIClient().chat.completions.create({
-          model: process.env.GROK_MODEL || 'grok-4.3',
+          model: getGrokModelName(),
           messages: [
             {
               role: 'user',
@@ -696,7 +773,7 @@ Return STRICTLY valid JSON with this exact structure (no markdown fences, no ext
       // 1. Try Grok primary engine
       try {
         const grokRes = await getOpenAIClient().chat.completions.create({
-          model: process.env.GROK_MODEL || 'grok-4.3',
+          model: getGrokModelName(),
           messages: [
             { role: 'system', content: 'You are AAIA Master Automotive Intelligence Engine. Output only strict JSON without formatting markdown blocks.' },
             { role: 'user', content: prompt }
@@ -716,16 +793,7 @@ Return STRICTLY valid JSON with this exact structure (no markdown fences, no ext
 
       // 2. Try Gemini fallback
       try {
-        const { HarmCategory, HarmBlockThreshold } = require('@google/generative-ai');
-        const model = getGeminiClient().getGenerativeModel({ 
-          model: 'gemini-2.5-flash',
-          safetySettings: [
-            { category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT, threshold: HarmBlockThreshold.BLOCK_NONE },
-            { category: HarmCategory.HARM_CATEGORY_HARASSMENT, threshold: HarmBlockThreshold.BLOCK_NONE },
-            { category: HarmCategory.HARM_CATEGORY_HATE_SPEECH, threshold: HarmBlockThreshold.BLOCK_NONE },
-            { category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT, threshold: HarmBlockThreshold.BLOCK_NONE }
-          ]
-        });
+        const model = getGeminiModel(null, true);
 
         const result = await model.generateContent(prompt);
         let text = result.response.text().trim();
@@ -1079,7 +1147,7 @@ Return STRICTLY valid JSON with this exact structure (no markdown fences, no ext
       const data = base64Image.substring(base64Image.indexOf('base64,') + 7);
       
       const response = await getOpenAIClient().chat.completions.create({
-        model: process.env.GROK_MODEL || 'grok-4.3',
+        model: getGrokModelName(),
         messages: [
           {
             role: 'user',
@@ -1097,16 +1165,7 @@ Return STRICTLY valid JSON with this exact structure (no markdown fences, no ext
       try {
         const mimeType = base64Image.substring(5, base64Image.indexOf(';'));
         const data = base64Image.substring(base64Image.indexOf('base64,') + 7);
-        const { HarmCategory, HarmBlockThreshold } = require('@google/generative-ai');
-        const model = getGeminiClient().getGenerativeModel({ 
-          model: 'gemini-2.5-flash',
-          safetySettings: [
-            { category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT, threshold: HarmBlockThreshold.BLOCK_NONE },
-            { category: HarmCategory.HARM_CATEGORY_HARASSMENT, threshold: HarmBlockThreshold.BLOCK_NONE },
-            { category: HarmCategory.HARM_CATEGORY_HATE_SPEECH, threshold: HarmBlockThreshold.BLOCK_NONE },
-            { category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT, threshold: HarmBlockThreshold.BLOCK_NONE }
-          ]
-        });
+        const model = getGeminiModel(null, true);
         const result = await model.generateContent([
           'Analyze this image in high detail for a text-based AI system. Describe exactly what is shown. If it is a vehicle, identify the make, model, year range, color, and any visible damage. Be objective and extremely descriptive.',
           {
@@ -1148,7 +1207,7 @@ Return a STRICT JSON object in this exact format, with no markdown code blocks:
 
     try {
       const response = await getOpenAIClient().chat.completions.create({
-        model: process.env.GROK_MODEL || 'grok-4.3',
+        model: getGrokModelName(),
         max_tokens: 1000,
         messages: [
           { role: 'system', content: 'You are a JSON-only API. Return only valid JSON.' },
@@ -1165,10 +1224,7 @@ Return a STRICT JSON object in this exact format, with no markdown code blocks:
     } catch (err) {
       logger.warn(`Grok failed for getPartSuggestions (${err.message}). Falling back to Gemini.`);
       try {
-        const model = getGeminiClient().getGenerativeModel({ 
-          model: 'gemini-2.5-flash',
-          systemInstruction: 'You are a JSON-only API. Return only valid JSON.'
-        });
+        const model = getGeminiModel('You are a JSON-only API. Return only valid JSON.', true);
         const geminiRes = await model.generateContent([prompt]);
         let text = geminiRes.response.text().trim();
         const match = text.match(/\{[\s\S]*\}/);
@@ -1215,7 +1271,7 @@ Important: Generate 8-12 parts in the array. For images, use 'https://placehold.
 
     try {
       const response = await getOpenAIClient().chat.completions.create({
-        model: process.env.GROK_MODEL || 'grok-4.3',
+        model: getGrokModelName(),
         max_tokens: 2000,
         messages: [
           { role: 'system', content: 'You are a JSON-only API. Return only valid JSON.' },
@@ -1232,10 +1288,7 @@ Important: Generate 8-12 parts in the array. For images, use 'https://placehold.
     } catch (err) {
       logger.warn(`Grok failed for getPartDetails (${err.message}). Falling back to Gemini.`);
       try {
-        const model = getGeminiClient().getGenerativeModel({ 
-          model: 'gemini-2.5-flash',
-          systemInstruction: 'You are a JSON-only API. Return only valid JSON.'
-        });
+        const model = getGeminiModel('You are a JSON-only API. Return only valid JSON.', true);
         const geminiRes = await model.generateContent([prompt]);
         let text = geminiRes.response.text().trim();
         const match = text.match(/\{[\s\S]*\}/);
@@ -1295,9 +1348,7 @@ Important: Generate 8-12 parts in the array. For images, use 'https://placehold.
       const mimeType = base64Audio.substring(5, base64Audio.indexOf(';'));
       const data = base64Audio.substring(base64Audio.indexOf('base64,') + 7);
       
-      const model = getGeminiClient().getGenerativeModel({ 
-        model: 'gemini-2.5-flash'
-      });
+      const model = getGeminiModel(null, true);
       const result = await model.generateContent([
         'Please accurately transcribe the spoken words in this automotive voice note into clean English text. Return ONLY the transcribed text and nothing else.',
         {

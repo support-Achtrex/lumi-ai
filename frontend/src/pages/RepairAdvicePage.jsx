@@ -292,7 +292,7 @@ export default function RepairAdvicePage() {
             </div>
 
             {/* ── Itemized Parts Breakdown & Labor Details ── */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 20 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 20 }}>
               
               {/* Parts Table */}
               <div style={{ background: '#fff', borderRadius: 20, padding: 24, border: '1px solid #D0DCE8' }}>

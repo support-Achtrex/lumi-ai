@@ -71,6 +71,7 @@ export default function LoginPage() {
         loop
         muted
         playsInline
+        poster="/car_background.png"
         style={{
           position: 'fixed', top: 0, left: 0, width: '100%', height: '100%',
           objectFit: 'cover', zIndex: 0
@@ -88,7 +89,7 @@ export default function LoginPage() {
       {/* ── Header ───────────────────────────────────────── */}
       <header style={{ 
         position: 'relative', zIndex: 10, 
-        padding: '20px 24px', display: 'flex', justifyContent: 'flex-start'
+        padding: 'calc(env(safe-area-inset-top, 0px) + 16px) 20px 12px', display: 'flex', justifyContent: 'flex-start'
       }}>
         <div 
           onClick={() => navigate('/')}

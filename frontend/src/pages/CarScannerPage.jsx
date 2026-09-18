@@ -130,7 +130,7 @@ export default function CarScannerPage() {
 
         {/* ── Step 1: Upload / Camera Action Zone (When no image or after reset) ── */}
         {!imagePreview && (
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 20, marginBottom: 32 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 20, marginBottom: 32 }}>
             {/* Live Camera Box */}
             <div 
               onClick={handleCapturePhoto}
@@ -255,7 +255,7 @@ export default function CarScannerPage() {
             </div>
 
             {/* Grid Breakdown: Color, Valuation, Specs, Condition */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 20 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 20 }}>
               
               {/* 🎨 Paint & Color Specification */}
               <div style={{ background: '#fff', borderRadius: 20, padding: 24, border: '1px solid #D0DCE8', display: 'flex', flexDirection: 'column', gap: 16 }}>
