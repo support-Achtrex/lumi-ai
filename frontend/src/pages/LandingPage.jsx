@@ -3,13 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { 
   ArrowRight, 
-  Zap, 
-  ShieldCheck, 
-  Activity, 
-  Cpu,
-  Wrench,
-  ChevronDown,
-  ChevronUp,
+  ChevronDown, 
+  ChevronUp, 
   CheckCircle2,
   Gauge,
   Crosshair,
@@ -19,9 +14,7 @@ import {
   Terminal,
   Navigation,
   Car,
-  ShieldAlert,
-  Radio,
-  Sparkles
+  Wrench
 } from 'lucide-react';
 
 export default function LandingPage() {
@@ -39,50 +32,44 @@ export default function LandingPage() {
 
   const features = [
     {
-      icon: <Crosshair size={26} color="#00F0FF" />,
+      icon: <Crosshair size={28} color="#00F0FF" strokeWidth={2.2} />,
       accentColor: '#00F0FF',
-      glowBg: 'radial-gradient(circle, rgba(0, 240, 255, 0.22) 0%, rgba(0, 240, 255, 0.02) 70%)',
-      badge: 'COMPUTER VISION',
+      glowBg: 'radial-gradient(circle, rgba(0, 240, 255, 0.25) 0%, rgba(0, 240, 255, 0.04) 70%)',
       title: "Visual AI Damage Scanner",
       description: "Upload vehicle exterior or interior imagery to detect structural deformities, panel dents, micro-scratches, glass stress fractures, and active fluid leaks with neural bounding-box precision."
     },
     {
-      icon: <Gauge size={26} color="#A78BFA" />,
+      icon: <Gauge size={28} color="#A78BFA" strokeWidth={2.2} />,
       accentColor: '#A78BFA',
-      glowBg: 'radial-gradient(circle, rgba(167, 139, 250, 0.22) 0%, rgba(167, 139, 250, 0.02) 70%)',
-      badge: 'TELEMETRY STREAM',
+      glowBg: 'radial-gradient(circle, rgba(167, 139, 250, 0.25) 0%, rgba(167, 139, 250, 0.04) 70%)',
       title: "Predictive Fleet Diagnostics",
       description: "Continuously analyze live sensor telematics to compute real-time vehicle health scores and forecast component degradation cycles well before catastrophic roadside downtime."
     },
     {
-      icon: <CircuitBoard size={26} color="#34D399" />,
+      icon: <CircuitBoard size={28} color="#34D399" strokeWidth={2.2} />,
       accentColor: '#34D399',
-      glowBg: 'radial-gradient(circle, rgba(52, 211, 153, 0.22) 0%, rgba(52, 211, 153, 0.02) 70%)',
-      badge: 'COGNITIVE REASONING',
+      glowBg: 'radial-gradient(circle, rgba(52, 211, 153, 0.25) 0%, rgba(52, 211, 153, 0.04) 70%)',
       title: "Conversational Master Mechanic",
       description: "Diagnose complex OBD-II Diagnostic Trouble Codes (DTCs), sensor drift, and intermittent engine faults using multi-model cognitive reasoning and factory OEM service bulletins."
     },
     {
-      icon: <Database size={26} color="#FBBF24" />,
+      icon: <Database size={28} color="#FBBF24" strokeWidth={2.2} />,
       accentColor: '#FBBF24',
-      glowBg: 'radial-gradient(circle, rgba(251, 191, 36, 0.22) 0%, rgba(251, 191, 36, 0.02) 70%)',
-      badge: 'VIN TELEMATICS',
+      glowBg: 'radial-gradient(circle, rgba(251, 191, 36, 0.25) 0%, rgba(251, 191, 36, 0.04) 70%)',
       title: "Deep VIN Intelligence & History",
       description: "Instantly decode 17-digit VINs. Query factory build specifications, salvage history, title brands, open NHTSA safety recalls, and national auction sales data in seconds."
     },
     {
-      icon: <Sliders size={26} color="#F43F5E" />,
+      icon: <Sliders size={28} color="#F43F5E" strokeWidth={2.2} />,
       accentColor: '#F43F5E',
-      glowBg: 'radial-gradient(circle, rgba(244, 63, 94, 0.22) 0%, rgba(244, 63, 94, 0.02) 70%)',
-      badge: 'AUTOMATED DISPATCH',
+      glowBg: 'radial-gradient(circle, rgba(244, 63, 94, 0.25) 0%, rgba(244, 63, 94, 0.04) 70%)',
       title: "Intelligent Repair Workflows",
       description: "Automate parts procurement matching, standard labor-time estimation, step-by-step mechanical procedures, and direct certified mobile garage dispatch."
     },
     {
-      icon: <Terminal size={26} color="#38BDF8" />,
+      icon: <Terminal size={28} color="#38BDF8" strokeWidth={2.2} />,
       accentColor: '#38BDF8',
-      glowBg: 'radial-gradient(circle, rgba(56, 189, 248, 0.22) 0%, rgba(56, 189, 248, 0.02) 70%)',
-      badge: 'ENTERPRISE API',
+      glowBg: 'radial-gradient(circle, rgba(56, 189, 248, 0.25) 0%, rgba(56, 189, 248, 0.04) 70%)',
       title: "Developer & Fleet Console",
       description: "Seamlessly integrate cognitive automotive intelligence into your enterprise fleet management system, ERP, or custom mobile application with robust REST endpoints and webhooks."
     }
@@ -90,7 +77,7 @@ export default function LandingPage() {
 
   const audiences = [
     {
-      icon: <Navigation size={28} color="#00F0FF" />,
+      icon: <Navigation size={30} color="#00F0FF" strokeWidth={2.2} />,
       accent: '#00F0FF',
       title: "Fleet Operators",
       tagline: "Maximize Uptime & Optimize TCO",
@@ -101,7 +88,7 @@ export default function LandingPage() {
       ]
     },
     {
-      icon: <Wrench size={28} color="#A78BFA" />,
+      icon: <Wrench size={30} color="#A78BFA" strokeWidth={2.2} />,
       accent: '#A78BFA',
       title: "Service Centers & Techs",
       tagline: "Faster Turnaround & Precise Root Cause",
@@ -112,7 +99,7 @@ export default function LandingPage() {
       ]
     },
     {
-      icon: <Car size={28} color="#34D399" />,
+      icon: <Car size={30} color="#34D399" strokeWidth={2.2} />,
       accent: '#34D399',
       title: "Vehicle Owners & Drivers",
       tagline: "Transparent Automotive Intelligence",
@@ -154,7 +141,7 @@ export default function LandingPage() {
       color: '#ffffff'
     }}>
       
-      {/* ── Background Video (Enhanced Visibility) ────────────── */}
+      {/* ── Background Video (Crisp & Clearly Visible) ────────────── */}
       <video
         autoPlay
         loop
@@ -164,17 +151,17 @@ export default function LandingPage() {
         style={{
           position: 'fixed', top: 0, left: 0, width: '100%', height: '100%',
           objectFit: 'cover', zIndex: 0, pointerEvents: 'none', 
-          opacity: 0.78,
+          opacity: 0.8,
           filter: 'contrast(1.1) brightness(0.85)'
         }}
       >
         <source src="/AAIA_Video.mp4" type="video/mp4" />
       </video>
 
-      {/* ── High-Contrast Directional Overlay (Keeps Video Visible & Text Razor Sharp) ── */}
+      {/* ── High-Contrast Directional Overlay ── */}
       <div style={{
         position: 'fixed', top: 0, left: 0, width: '100%', height: '100%',
-        background: 'radial-gradient(circle at 50% 30%, rgba(3, 7, 18, 0.45) 0%, rgba(3, 7, 18, 0.75) 60%, rgba(3, 7, 18, 0.94) 100%)',
+        background: 'radial-gradient(circle at 50% 30%, rgba(3, 7, 18, 0.42) 0%, rgba(3, 7, 18, 0.72) 60%, rgba(3, 7, 18, 0.94) 100%)',
         zIndex: 1, pointerEvents: 'none'
       }} />
 
@@ -182,37 +169,25 @@ export default function LandingPage() {
       <header style={{
         position: 'sticky', top: 0, zIndex: 50,
         backdropFilter: 'blur(20px)',
-        backgroundColor: 'rgba(3, 7, 18, 0.7)',
+        backgroundColor: 'rgba(3, 7, 18, 0.72)',
         borderBottom: '1px solid rgba(56, 189, 248, 0.15)',
         padding: 'calc(env(safe-area-inset-top, 0px) + 14px) 24px 14px',
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         maxWidth: '1280px', margin: '0 auto', width: '100%', boxSizing: 'border-box'
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-          <div style={{
-            width: '40px', height: '40px', borderRadius: '10px',
-            background: 'linear-gradient(135deg, rgba(0, 240, 255, 0.2) 0%, rgba(37, 99, 235, 0.3) 100%)',
-            border: '1px solid rgba(0, 240, 255, 0.4)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            boxShadow: '0 0 16px rgba(0, 240, 255, 0.25)'
+        {/* Clean Logo & Title (No bounding box or subtitle) */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+          <img 
+            src="/favicon.png" 
+            alt="AAIA Logo" 
+            style={{ height: '36px', width: '36px', objectFit: 'contain' }} 
+          />
+          <span style={{ 
+            fontSize: '24px', fontWeight: '800', color: '#ffffff', 
+            letterSpacing: '-0.02em', lineHeight: 1
           }}>
-            <img 
-              src="/favicon.png" 
-              alt="AAIA Automotive AI Platform" 
-              style={{ height: '26px', width: '26px', objectFit: 'contain' }} 
-            />
-          </div>
-          <div>
-            <span style={{ 
-              fontSize: '22px', fontWeight: '800', color: '#ffffff', 
-              letterSpacing: '-0.02em', display: 'block', lineHeight: 1.1
-            }}>
-              AAIA
-            </span>
-            <span style={{ fontSize: '10px', color: '#00F0FF', letterSpacing: '0.14em', fontWeight: '700', textTransform: 'uppercase' }}>
-              Cognitive Automotive
-            </span>
-          </div>
+            AAIA
+          </span>
         </div>
 
         <nav style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
@@ -253,7 +228,7 @@ export default function LandingPage() {
         
         <section style={{ 
           display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-          padding: '70px 0 80px', textAlign: 'center', position: 'relative'
+          padding: '75px 0 85px', textAlign: 'center', position: 'relative'
         }}>
           
           {/* Main H1 Title with Metallic Glow */}
@@ -285,62 +260,19 @@ export default function LandingPage() {
             Bridging the gap between real-time vehicle telemetry, computer vision damage scanning, predictive fleet maintenance, and certified mobile repair.
           </p>
 
-          {/* Advanced Automotive Telemetry HUD Chips */}
+          {/* Clean, Sleek Feature Highlights (No Box Borders, No Symbols) */}
           <div style={{ 
-            display: 'flex', gap: '12px 16px', flexWrap: 'wrap', justifyContent: 'center',
-            marginBottom: '46px', alignItems: 'center'
+            display: 'flex', gap: '10px 24px', flexWrap: 'wrap', justifyContent: 'center',
+            marginBottom: '46px', alignItems: 'center',
+            fontSize: '13.5px', fontWeight: '600', letterSpacing: '0.06em', textTransform: 'uppercase'
           }}>
-            <div style={{
-              display: 'inline-flex', alignItems: 'center', gap: 8,
-              padding: '8px 16px', borderRadius: '8px',
-              background: 'rgba(6, 13, 27, 0.75)',
-              backdropFilter: 'blur(12px)',
-              border: '1px solid rgba(0, 240, 255, 0.35)',
-              boxShadow: '0 4px 18px rgba(0, 0, 0, 0.5), inset 0 0 12px rgba(0, 240, 255, 0.1)',
-              fontSize: '12px', fontWeight: '700', letterSpacing: '0.08em', textTransform: 'uppercase', color: '#E2E8F0'
-            }}>
-              <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#00F0FF', boxShadow: '0 0 8px #00F0FF' }} />
-              <Activity size={14} color="#00F0FF" /> Live Telematics Stream
-            </div>
-
-            <div style={{
-              display: 'inline-flex', alignItems: 'center', gap: 8,
-              padding: '8px 16px', borderRadius: '8px',
-              background: 'rgba(6, 13, 27, 0.75)',
-              backdropFilter: 'blur(12px)',
-              border: '1px solid rgba(167, 139, 250, 0.35)',
-              boxShadow: '0 4px 18px rgba(0, 0, 0, 0.5), inset 0 0 12px rgba(167, 139, 250, 0.1)',
-              fontSize: '12px', fontWeight: '700', letterSpacing: '0.08em', textTransform: 'uppercase', color: '#E2E8F0'
-            }}>
-              <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#A78BFA', boxShadow: '0 0 8px #A78BFA' }} />
-              <Gauge size={14} color="#A78BFA" /> Predictive Diagnostics
-            </div>
-
-            <div style={{
-              display: 'inline-flex', alignItems: 'center', gap: 8,
-              padding: '8px 16px', borderRadius: '8px',
-              background: 'rgba(6, 13, 27, 0.75)',
-              backdropFilter: 'blur(12px)',
-              border: '1px solid rgba(52, 211, 153, 0.35)',
-              boxShadow: '0 4px 18px rgba(0, 0, 0, 0.5), inset 0 0 12px rgba(52, 211, 153, 0.1)',
-              fontSize: '12px', fontWeight: '700', letterSpacing: '0.08em', textTransform: 'uppercase', color: '#E2E8F0'
-            }}>
-              <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#34D399', boxShadow: '0 0 8px #34D399' }} />
-              <CircuitBoard size={14} color="#34D399" /> Diagnostic Reasoning
-            </div>
-
-            <div style={{
-              display: 'inline-flex', alignItems: 'center', gap: 8,
-              padding: '8px 16px', borderRadius: '8px',
-              background: 'rgba(6, 13, 27, 0.75)',
-              backdropFilter: 'blur(12px)',
-              border: '1px solid rgba(251, 191, 36, 0.35)',
-              boxShadow: '0 4px 18px rgba(0, 0, 0, 0.5), inset 0 0 12px rgba(251, 191, 36, 0.1)',
-              fontSize: '12px', fontWeight: '700', letterSpacing: '0.08em', textTransform: 'uppercase', color: '#E2E8F0'
-            }}>
-              <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#FBBF24', boxShadow: '0 0 8px #FBBF24' }} />
-              <Crosshair size={14} color="#FBBF24" /> Vision Damage AI
-            </div>
+            <span style={{ color: '#F1F5F9', textShadow: '0 2px 10px rgba(0,0,0,0.9)' }}>Live Telematics Stream</span>
+            <span style={{ color: 'rgba(255,255,255,0.3)' }}>•</span>
+            <span style={{ color: '#F1F5F9', textShadow: '0 2px 10px rgba(0,0,0,0.9)' }}>Predictive Diagnostics</span>
+            <span style={{ color: 'rgba(255,255,255,0.3)' }}>•</span>
+            <span style={{ color: '#F1F5F9', textShadow: '0 2px 10px rgba(0,0,0,0.9)' }}>Diagnostic Reasoning</span>
+            <span style={{ color: 'rgba(255,255,255,0.3)' }}>•</span>
+            <span style={{ color: '#F1F5F9', textShadow: '0 2px 10px rgba(0,0,0,0.9)' }}>Vision Damage AI</span>
           </div>
           
           {/* Primary Action Button - Cyber Electric Styling */}
@@ -385,12 +317,6 @@ export default function LandingPage() {
           borderTop: '1px solid rgba(56, 189, 248, 0.15)'
         }}>
           <div style={{ textAlign: 'center', marginBottom: '52px' }}>
-            <div style={{ 
-              fontSize: '11.5px', fontWeight: '800', color: '#00F0FF', 
-              letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: '10px' 
-            }}>
-              Autonomous Automotive Architecture
-            </div>
             <h2 style={{ 
               fontSize: 'clamp(26px, 4.5vw, 40px)', fontWeight: '800', 
               letterSpacing: '-0.025em', marginBottom: '14px',
@@ -419,7 +345,7 @@ export default function LandingPage() {
                   border: '1px solid rgba(56, 189, 248, 0.16)',
                   backdropFilter: 'blur(16px)',
                   borderRadius: '16px',
-                  padding: '30px',
+                  padding: '32px 30px',
                   position: 'relative',
                   overflow: 'hidden',
                   transition: 'all 0.25s ease',
@@ -436,24 +362,16 @@ export default function LandingPage() {
                   e.currentTarget.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.55)';
                 }}
               >
-                {/* Tech Badge */}
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px' }}>
-                  <div style={{ 
-                    width: '52px', height: '52px', borderRadius: '12px', 
-                    background: feature.glowBg,
-                    border: `1px solid ${feature.accentColor}44`,
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    boxShadow: `0 0 20px ${feature.accentColor}22`
-                  }}>
-                    {feature.icon}
-                  </div>
-                  <span style={{
-                    fontSize: '10.5px', fontWeight: '800', letterSpacing: '0.12em',
-                    color: feature.accentColor, background: `${feature.accentColor}15`,
-                    padding: '4px 10px', borderRadius: '6px', border: `1px solid ${feature.accentColor}33`
-                  }}>
-                    {feature.badge}
-                  </span>
+                {/* Fully Rounded Circular Icon Container */}
+                <div style={{ 
+                  width: '60px', height: '60px', borderRadius: '50%', 
+                  background: feature.glowBg,
+                  border: `1.5px solid ${feature.accentColor}55`,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  boxShadow: `0 0 24px ${feature.accentColor}28`,
+                  marginBottom: '22px'
+                }}>
+                  {feature.icon}
                 </div>
 
                 <h3 style={{ 
@@ -476,12 +394,6 @@ export default function LandingPage() {
           borderTop: '1px solid rgba(56, 189, 248, 0.15)'
         }}>
           <div style={{ textAlign: 'center', marginBottom: '52px' }}>
-            <div style={{ 
-              fontSize: '11.5px', fontWeight: '800', color: '#38BDF8', 
-              letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: '10px' 
-            }}>
-              Operational Scalability
-            </div>
             <h2 style={{ 
               fontSize: 'clamp(26px, 4.5vw, 40px)', fontWeight: '800', 
               letterSpacing: '-0.025em', marginBottom: '14px',
@@ -516,11 +428,14 @@ export default function LandingPage() {
                   boxShadow: '0 12px 32px rgba(0,0,0,0.6)'
                 }}
               >
+                {/* Fully Rounded Circular Icon Container */}
                 <div style={{ 
-                  width: '56px', height: '56px', borderRadius: '12px',
-                  background: `${aud.accent}15`, border: `1px solid ${aud.accent}44`,
+                  width: '64px', height: '64px', borderRadius: '50%',
+                  background: `${aud.accent}18`, 
+                  border: `1.5px solid ${aud.accent}55`,
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  marginBottom: '20px', boxShadow: `0 0 20px ${aud.accent}22`
+                  marginBottom: '22px', 
+                  boxShadow: `0 0 24px ${aud.accent}28`
                 }}>
                   {aud.icon}
                 </div>
@@ -547,12 +462,6 @@ export default function LandingPage() {
           margin: '0 auto' 
         }}>
           <div style={{ textAlign: 'center', marginBottom: '44px' }}>
-            <div style={{ 
-              fontSize: '11.5px', fontWeight: '800', color: '#00F0FF', 
-              letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: '10px' 
-            }}>
-              Knowledge Base
-            </div>
             <h2 style={{ 
               fontSize: 'clamp(26px, 4.5vw, 38px)', fontWeight: '800', 
               letterSpacing: '-0.025em', marginBottom: '12px',
