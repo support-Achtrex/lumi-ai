@@ -30,6 +30,10 @@ export default function LoginPage() {
   const searchParams = new URLSearchParams(location.search);
   const redirectPath = searchParams.get('redirect');
 
+  useEffect(() => {
+    document.title = tab === 'login' ? 'Sign In | AAIA Automotive Platform' : 'Create Account | AAIA Automotive Platform';
+  }, [tab]);
+
   async function handleSubmit(e) {
     e.preventDefault();
     setLoading(true); setError('');

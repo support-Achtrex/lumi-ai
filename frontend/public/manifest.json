@@ -1,0 +1,23 @@
+{
+  "short_name": "AAIA",
+  "name": "AAIA - Autonomous Automotive Intelligence Platform",
+  "description": "AAIA is the premier cognitive automotive platform delivering AI-driven vehicle intelligence, predictive fleet maintenance, and conversational diagnostics.",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "logo.png",
+      "type": "image/png",
+      "sizes": "192x192 512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#050E1A",
+  "theme_color": "#050E1A",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "categories": ["business", "productivity", "utilities"]
+}

@@ -149,10 +149,36 @@ app.get('/api/vehicles/:vin/html-report', async (req, res) => {
 const { setupSocketHandlers } = require('./services/SocketService');
 setupSocketHandlers(io);
 
+// ── SEO & Crawler Discovery Endpoints ─────────────────────────────────────────
+app.get('/robots.txt', (req, res) => {
+  const fs = require('fs');
+  const buildPath = path.join(__dirname, 'frontend', 'build', 'robots.txt');
+  const publicPath = path.join(__dirname, 'frontend', 'public', 'robots.txt');
+  const target = fs.existsSync(buildPath) ? buildPath : publicPath;
+  res.type('text/plain');
+  res.sendFile(target);
+});
+
+app.get('/sitemap.xml', (req, res) => {
+  const fs = require('fs');
+  const buildPath = path.join(__dirname, 'frontend', 'build', 'sitemap.xml');
+  const publicPath = path.join(__dirname, 'frontend', 'public', 'sitemap.xml');
+  const target = fs.existsSync(buildPath) ? buildPath : publicPath;
+  res.type('application/xml');
+  res.sendFile(target);
+});
+
 // ── Production Frontend Serving ───────────────────────────────────────────────
 if (process.env.NODE_ENV === 'production') {
-  // Serve static files from the React frontend app
-  app.use(express.static(path.join(__dirname, 'frontend', 'build')));
+  // Serve static files from the React frontend app with caching
+  app.use(express.static(path.join(__dirname, 'frontend', 'build'), {
+    maxAge: '1d',
+    setHeaders: (res, filePath) => {
+      if (filePath.endsWith('.html')) {
+        res.setHeader('Cache-Control', 'no-cache');
+      }
+    }
+  }));
 
   // Anything that doesn't match the above API routes, send back index.html
   app.get('*', (req, res) => {
